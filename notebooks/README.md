@@ -37,3 +37,7 @@ Compares output distributions from different Gemini models to detect if they're 
 - `mmd_article.ipynb` - Main notebook with full analysis
 - `../data/mmd_test/experiment_outputs/` - Raw JSON data from Gemini API
 - `../data/mmd_test/*.png` - Generated visualizations
+
+## License
+
+MIT License - see [LICENSE](../LICENSE)
