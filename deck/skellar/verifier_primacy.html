@@ -514,6 +514,224 @@ Andriy Batutin
 <h1>RAG Case Study</h1>
 <p><em>Insurance Claims Q&amp;A</em></p>
 </section>
+<section id="the-actual-landscape" class="slide level2 center">
+<h2>The Actual Landscape</h2>
+<h3 id="organizational-reality">Organizational Reality</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                      INSURANCE COMPANY                          │
+├─────────────┬─────────────┬─────────────┬─────────────┬────────┤
+│ Underwriting│   Claims    │  Actuarial  │ Compliance  │  Sales │
+│             │             │             │             │        │
+│ "Our rules" │ "Our rules" │ "Our models"│ "The law"   │"Whatever│
+│             │             │             │             │  closes"│
+└─────────────┴─────────────┴─────────────┴─────────────┴────────┘
+      │              │             │             │            │
+      ▼              ▼             ▼             ▼            ▼
+   SharePoint    Legacy CMS    Excel hell    PDF archive   Email
+   circa 2014    (3 of them)   + Access DB   (scanned)     threads</code></pre>
+</section>
+<section id="where-knowledge-actually-lives" class="slide level2 center">
+<h2>Where Knowledge Actually Lives</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Underwriting Guidelines</strong></p>
+<ul>
+<li>400-page PDF last updated 2019</li>
+<li>“Real” rules in Janet’s head (30 years)</li>
+<li>Exceptions in email chains</li>
+<li>Regional variations in someone’s spreadsheet</li>
+</ul>
+<p><strong>Claims Procedures</strong></p>
+<ul>
+<li>Official manual in ancient Documentum</li>
+<li>Actual procedures = tribal knowledge</li>
+<li>“Ask Mike, he knows edge cases”</li>
+<li>Adjusters’ personal OneNote notebooks</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Policy Wordings</strong></p>
+<ul>
+<li>47 product variants across 3 legacy systems</li>
+<li>Version control = <code>PolicyDoc_FINAL_v3_REAL(2).docx</code></li>
+<li>State endorsements in unmaintained folders</li>
+</ul>
+<p><strong>Compliance &amp; Actuarial</strong></p>
+<ul>
+<li>50 states × years of bulletin PDFs</li>
+<li>“We got fined in 2017, don’t do it” — oral tradition</li>
+<li>Models in SAS/R/Python depending on who built it</li>
+<li>Rating algorithms: “see mainframe comments from 1987”</li>
+</ul>
+</div></div>
+</section>
+<section id="what-rag-assumes-vs-reality" class="slide level2 center">
+<h2>What RAG Assumes vs Reality</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>RAG Fantasy</th>
+<th>Insurance Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Clean corpus of documents</td>
+<td>14 systems, 6 file formats, 3 decades</td>
+</tr>
+<tr class="even">
+<td>Single source of truth</td>
+<td>Conflicting versions across departments</td>
+</tr>
+<tr class="odd">
+<td>Text-searchable content</td>
+<td>Scanned PDFs, handwritten notes, screenshots</td>
+</tr>
+<tr class="even">
+<td>Current information</td>
+<td>“That’s the old process, we didn’t update the doc”</td>
+</tr>
+<tr class="odd">
+<td>Explicit knowledge</td>
+<td>“Everyone knows you don’t apply that to commercial auto”</td>
+</tr>
+<tr class="even">
+<td>Consistent terminology</td>
+<td>UW says “risk”, Claims says “exposure”, Sales says “coverage”</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-actual-retrieval-failure-modes" class="slide level2 center">
+<h2>The Actual Retrieval Failure Modes</h2>
+<p><strong>Query</strong>: “What’s our water damage coverage for commercial property?”</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>What RAG retrieves:</strong></p>
+<ul>
+<li>Marketing brochure (optimistic)</li>
+<li>2017 underwriting guideline (outdated)</li>
+<li>Claims procedure for residential (wrong LOB)</li>
+<li>Compliance memo about flood (related but different)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>What’s missing:</strong></p>
+<ul>
+<li>Janet’s email clarifying the exception</li>
+<li>Endorsement modifying coastal zone coverage</li>
+<li>Actuarial note on why we don’t write Florida</li>
+<li>Lawsuit settlement that changed interpretation</li>
+</ul>
+</div></div>
+</section>
+<section id="the-verification-gap" class="slide level2 center">
+<h2>The Verification Gap</h2>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│              WHAT RAG OUTPUTS                              │
+│  "Based on the retrieved documents, water damage from      │
+│   burst pipes is generally covered under commercial        │
+│   property policies..."                                    │
+└────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────────┐
+│              WHAT DOMAIN EXPERT MUST VERIFY                │
+│                                                            │
+│  □ Is this the right policy form? (ISO vs manuscript)      │
+│  □ Which policy year? (wordings change)                    │
+│  □ State-specific variations?                              │
+│  □ Any endorsements that modify?                           │
+│  □ Is "burst pipe" actually "sudden and accidental"?       │
+│  □ Maintenance exclusion apply?                            │
+│  □ Sub-limits? Deductibles?                                │
+│  □ Did we change position after [lawsuit/regulation]?      │
+│  □ Commercial or habitational exposure?                    │
+│  □ Any reinsurance implications?                           │
+└────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="the-uncomfortable-math" class="slide level2 center">
+<h2>The Uncomfortable Math</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>RAG gives you:</p>
+<p><strong>~70% relevant retrieval</strong> on a good day</p>
+<p>Insurance decisions need:</p>
+<p><strong>100% accuracy</strong> on coverage determination</p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>The gap isn’t technical. It’s epistemic.</strong></p>
+<p>RAG retrieves documents. Insurance requires:</p>
+<ul>
+<li>Knowing which document is <em>authoritative</em></li>
+<li>Understanding how documents <em>interact</em></li>
+<li>Recognizing what’s <em>NOT</em> in the documents</li>
+<li>Applying judgment never written down</li>
+</ul>
+</div>
+</div></div>
+<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px;">
+<p>Domain experts aren’t “checking RAG’s work” — they’re doing the actual reasoning RAG cannot do.</p>
+<p>The retrieval just brings them reading material faster.</p>
+</div>
+</section>
+<section id="the-criteria-drift-problem" class="slide level2 center">
+<h2>The Criteria Drift Problem</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>The Assumption</strong></p>
+<p>Experts know what “correct” means before evaluation starts.</p>
+<p>Define criteria → Grade outputs → Done.</p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>The Reality</strong></p>
+<blockquote>
+<p>“Users need criteria to grade outputs, but grading outputs helps users define criteria.”</p>
+</blockquote>
+<p>— Shankar et al., 2024</p>
+</div>
+</div></div>
+<div class="fragment">
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    CRITERIA DISCOVERY                       │
+│                                                             │
+│  Expert reviews output #1    →  "This is wrong because X"   │
+│  Expert reviews output #17   →  "Wait, X doesn't apply if Y"│
+│  Expert reviews output #42   →  "Actually there's also Z"   │
+│  Expert reviews output #89   →  "Z contradicts what I said  │
+│                                  about X in output #1"      │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+<aside class="notes">
+<p>From “Who Validates the Validators?” - criteria aren’t independent of outputs. They emerge through interaction. This breaks the assumption that we can pre-define what “correct” means.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="why-this-matters-for-insurance" class="slide level2 center">
+<h2>Why This Matters for Insurance</h2>
+<ul>
+<li class="fragment"><strong>Coverage determination isn’t lookup</strong> — it’s reasoning about edge cases</li>
+<li class="fragment"><strong>Edge cases reveal new criteria</strong> — “we never thought about this scenario”</li>
+<li class="fragment"><strong>Criteria conflict</strong> — state law vs company policy vs customer expectation</li>
+<li class="fragment"><strong>Criteria change</strong> — lawsuit settlements, regulatory updates, market shifts</li>
+</ul>
+<div class="fragment" style="margin-top: 30px;">
+<p><strong>The uncomfortable truth:</strong></p>
+<p>Even domain experts don’t fully know what “correct” means until they see the specific case.</p>
+<p>The act of evaluation <em>creates</em> the evaluation criteria.</p>
+</div>
+</section>
 <section id="the-setup" class="slide level2 center">
 <h2>The Setup</h2>
 <div class="columns">
@@ -628,33 +846,28 @@ Andriy Batutin
 <p>The LLM generated a <strong>confident wrong answer</strong>.</p>
 </div>
 </section>
-<section id="rag-methodology-hamel-husain-framework" class="slide level2 center">
-<h2>RAG Methodology: Hamel Husain Framework</h2>
-<ol type="1">
-<li class="fragment"><strong>Error Analysis First</strong>
+<section id="the-anti-pattern" class="slide level2 center">
+<h2>The Anti-Pattern</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>What Most Teams Do</strong></p>
 <ul>
-<li class="fragment">Look at 50 real failures before building anything</li>
-</ul></li>
-<li class="fragment"><strong>Evaluate Retrieval Separately</strong>
-<ul>
-<li class="fragment">Recall@k: Are we finding the right documents?</li>
-</ul></li>
-<li class="fragment"><strong>Evaluate Generation Separately</strong>
-<ul>
-<li class="fragment">Faithfulness: Is it hallucinating?</li>
-<li class="fragment">Relevance: Does it answer the question?</li>
-</ul></li>
-<li class="fragment"><strong>Fix Retriever First</strong>
-<ul>
-<li class="fragment">If wrong docs go in, right answer can’t come out</li>
-</ul></li>
-<li class="fragment"><strong>Domain Expert as Judge</strong>
-<ul>
-<li class="fragment">One “benevolent dictator” who knows the domain</li>
-</ul></li>
-</ol>
+<li>Week 1: “Pick a vector database!”</li>
+<li>Week 2: “LangChain or LlamaIndex?”</li>
+<li>Week 3: “Build the RAG pipeline!”</li>
+<li>Week 6: “Why isn’t this working?”</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Hamel’s First Question</strong></p>
+<blockquote>
+<p>“Can you show me how you’re measuring if any of this actually works?”</p>
+</blockquote>
+<p>Before touching any code, understand failure modes.</p>
+</div>
+</div></div>
 <aside class="notes">
-<p>This is the Hamel Husain framework. Error analysis driven. Human-in-the-loop. It works. But it’s manual. It doesn’t scale. We’ll come back to this.</p>
+<p>This is the pattern I see in 90% of enterprise AI projects. Build first, evaluate never.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -666,6 +879,233 @@ Andriy Batutin
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="phase-1-error-analysis-first" class="slide level2 center">
+<h2>Phase 1: Error Analysis First</h2>
+<p><strong>Before building anything, go to the domain experts:</strong></p>
+<ul>
+<li class="fragment">Claims: “What questions waste your time?”</li>
+<li class="fragment">Underwriting: “What gets wrong answers?”</li>
+<li class="fragment">Customer Service: “What causes escalations?”</li>
+</ul>
+<div class="fragment">
+<pre><code>┌──────────────────────────────────────────────────────────────┐
+│                    REAL INSURANCE QUERIES                    │
+├──────────────────────────────────────────────────────────────┤
+│ "Is mold covered under my homeowner's policy?"               │
+│ "What's the deductible on my commercial auto?"               │
+│ "Does business interruption apply to COVID?"                 │
+│ "We got water damage - is this flood or burst pipe?"         │
+└──────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</section>
+<section id="build-a-failure-taxonomy-bottom-up" class="slide level2 center">
+<h2>Build a Failure Taxonomy (Bottom-Up)</h2>
+<p>Don’t start with generic “hallucination.” Let patterns emerge from 50+ queries:</p>
+<pre><code>RETRIEVAL FAILURES (can't find right docs)
+├── Wrong policy form retrieved (ISO vs manuscript)
+├── Outdated version (2019 guidelines, not 2023)
+├── Missing endorsements (add-ons that modify coverage)
+└── Cross-department doc needed
+
+GENERATION FAILURES (wrong interpretation)
+├── Missed exclusion that applies
+├── Confused similar terms ("flood" vs "water damage")
+├── Didn't apply state-specific variation
+└── Overgeneralized from training data
+
+BUSINESS LOGIC FAILURES
+├── Gave answer without required caveats
+├── Didn't escalate when should have
+└── Provided guidance that contradicts compliance</code></pre>
+</section>
+<section id="phase-2-build-a-data-viewer-first" class="slide level2 center">
+<h2>Phase 2: Build a Data Viewer First</h2>
+<p><strong>Hamel’s Key Insight:</strong></p>
+<blockquote>
+<p>“The most impactful investment isn’t a fancy eval dashboard — it’s an interface that lets anyone examine what the AI is actually doing.”</p>
+</blockquote>
+<div class="fragment">
+<p>Build this <strong>BEFORE</strong> your RAG system:</p>
+<ul>
+<li>Side-by-side: retrieved chunks vs generated answer</li>
+<li>One-click Pass/Fail + free-form critique</li>
+<li>Failure mode tagging (from your taxonomy)</li>
+<li>Filter by: line of business, query type, failure mode</li>
+</ul>
+</div>
+<aside class="notes">
+<p>This is the “look at your data” principle. The viewer is more important than the pipeline.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-data-viewer" class="slide level2 center">
+<h2>The Data Viewer</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│  Query: "Does my policy cover water damage from a burst pipe?"      │
+├─────────────────────────────────────────────────────────────────────┤
+│  RETRIEVED DOCUMENTS              │  GENERATED RESPONSE             │
+│  ┌─────────────────────────────┐  │  ┌───────────────────────────┐  │
+│  │ [1] HO-3 Policy Form - 0.87 │  │  │ Based on the documents,   │  │
+│  │ [2] Water Damage FAQ - 0.82 │  │  │ burst pipe damage is      │  │
+│  │ [3] UW Guide - 0.79         │  │  │ typically covered...      │  │
+│  └─────────────────────────────┘  │  └───────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────────┤
+│  EXPERT EVALUATION: [FAIL]                                          │
+│  Retrieved marketing FAQ instead of actual policy.                  │
+│  Customer has HO-8 (limited coverage), not HO-3.                    │
+│  Missed maintenance exclusion.                                      │
+│  Failure Mode: [Wrong policy form] [Missing exclusion logic]        │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="phase-3-synthetic-data-generation" class="slide level2 center">
+<h2>Phase 3: Synthetic Data Generation</h2>
+<p><strong>Hamel’s Framework:</strong> Features × Scenarios × Personas</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><strong>Features</strong></p>
+<ul>
+<li>coverage_determination</li>
+<li>claims_procedure</li>
+<li>policy_comparison</li>
+<li>underwriting_guidelines</li>
+<li>regulatory_compliance</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<p><strong>Scenarios</strong></p>
+<ul>
+<li>straightforward_lookup</li>
+<li>multi_doc_synthesis</li>
+<li>exclusion_applies</li>
+<li>state_variation</li>
+<li>outdated_info_exists</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<p><strong>Personas</strong></p>
+<ul>
+<li>new_csr</li>
+<li>experienced_adjuster</li>
+<li>underwriter</li>
+<li>compliance_officer</li>
+<li>external_agent</li>
+</ul>
+</div></div>
+<div class="fragment" style="margin-top: 20px;">
+<p><strong>Result:</strong> 5 × 5 × 5 = 125 test case templates, grounded in real policy data</p>
+</div>
+</section>
+<section id="phase-4-tiered-evaluation" class="slide level2 center">
+<h2>Phase 4: Tiered Evaluation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Tier 1: Retrieval</strong></p>
+<ul>
+<li>Recall@5: Did we find the right docs?</li>
+<li>Precision@5: How much noise?</li>
+<li>Version correctness: Current or outdated?</li>
+<li>Completeness: All needed docs?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Tier 2-3: Generation</strong></p>
+<ul>
+<li>Context Relevance (C|Q)</li>
+<li>Faithfulness (A|C)</li>
+<li>Answer Relevance (A|Q)</li>
+</ul>
+</div></div>
+<div class="fragment">
+<p><strong>Insurance-Specific Evals:</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Eval</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>exclusion_check</td>
+<td>If exclusion applies, did we catch it?</td>
+</tr>
+<tr class="even">
+<td>state_variation</td>
+<td>Did we apply state-specific rules?</td>
+</tr>
+<tr class="odd">
+<td>escalation_trigger</td>
+<td>Did we flag human review when needed?</td>
+</tr>
+<tr class="even">
+<td>policy_specificity</td>
+<td>Did we answer for THIS policy, not generic?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="phase-5-the-capability-funnel" class="slide level2 center">
+<h2>Phase 5: The Capability Funnel</h2>
+<p>Don’t promise “AI Claims Assistant by Q3.”</p>
+<p>Promise experiments with decision points:</p>
+<pre><code>CAPABILITY FUNNEL: Coverage Determination Assistant
+
+Level 1: Can generate syntactically valid response
+         └── "The system responds without crashing"
+
+Level 2: Can retrieve relevant documents
+         └── "Finds correct policy form 80%+ of time"
+
+Level 3: Can synthesize single-document answers
+         └── "Answers simple lookup questions correctly"
+
+Level 4: Can handle exclusions and endorsements
+         └── "Catches exclusions when they apply"
+
+Level 5: Can handle multi-document reasoning
+         └── "Combines base policy + endorsements + state rules"
+
+Current: ████████░░░░░░░░ Level 3 — Working on exclusion handling</code></pre>
+</section>
+<section id="the-uncomfortable-truth" class="slide level2 center">
+<h2>The Uncomfortable Truth</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                         RAG OUTPUT QUALITY                          │
+│                                                                     │
+│  ████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~40% usable as-is │
+│  ████████████████████████████████░░░░░░░░░░░░░░░  ~65% with caveats │
+│  ████████████████████████████████████████████████  100% need human  │
+│                                                        sign-off     │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<div class="fragment">
+<p><strong>The real value isn’t “AI answers questions.”</strong></p>
+<p>It’s:</p>
+<ul>
+<li><strong>Faster retrieval</strong> (Janet doesn’t grep through SharePoint)</li>
+<li><strong>Consistent starting point</strong> (everyone sees same base analysis)</li>
+<li><strong>Audit trail</strong> (which docs were considered)</li>
+<li><strong>Triage</strong> (simple auto-handled, complex escalated)</li>
+</ul>
+</div>
+</section>
+<section id="section-5" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text">
+<p>The generation layer (RAG) is <strong>commodity infrastructure</strong>.</p>
+<p>The verification layer (expert judgment) is where <strong>all the liability</strong> concentrates.</p>
+</div>
+<div class="fragment" style="margin-top: 40px;">
+<p>Hamel’s methodology gives you feedback loops to make verification efficient.</p>
+<p><strong>It doesn’t replace it.</strong></p>
+</div>
 </section>
 <section class="slide level2 center">
 
@@ -743,7 +1183,7 @@ Andriy Batutin
 <p><em>You’re sampling from chaos.</em></p>
 </div>
 </section>
-<section id="section-5" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text" style="font-style: italic;">
 <p>“We trained a trillion-parameter model to predict the next word,</p>
@@ -776,7 +1216,7 @@ Andriy Batutin
 </ul></li>
 </ol>
 </section>
-<section id="section-6" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-7" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>But this is still manual.</p>
@@ -1057,7 +1497,7 @@ Andriy Batutin
 <p>Governance made executable.</p>
 </div></div>
 </section>
-<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1081,7 +1521,7 @@ Andriy Batutin
 <h1>A Tale of Two Executives</h1>
 
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#1E293B">
+<section id="section-9" class="slide level2 center" data-background-color="#1E293B">
 <h2></h2>
 <div class="columns">
 <div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
@@ -1120,13 +1560,13 @@ Andriy Batutin
 </div>
 </div></div>
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Which one will you be?</p>
 </div>
 </section>
-<section id="section-10" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <p>AI adoption is <strong>not optional</strong>.</p>
 <p>The pressure is real.</p>

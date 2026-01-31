@@ -422,6 +422,229 @@ The verifier layer is what bridges this gap.
 
 ---
 
+## The Actual Landscape
+
+### Organizational Reality
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      INSURANCE COMPANY                          │
+├─────────────┬─────────────┬─────────────┬─────────────┬────────┤
+│ Underwriting│   Claims    │  Actuarial  │ Compliance  │  Sales │
+│             │             │             │             │        │
+│ "Our rules" │ "Our rules" │ "Our models"│ "The law"   │"Whatever│
+│             │             │             │             │  closes"│
+└─────────────┴─────────────┴─────────────┴─────────────┴────────┘
+      │              │             │             │            │
+      ▼              ▼             ▼             ▼            ▼
+   SharePoint    Legacy CMS    Excel hell    PDF archive   Email
+   circa 2014    (3 of them)   + Access DB   (scanned)     threads
+```
+
+---
+
+## Where Knowledge Actually Lives
+
+::: {.columns}
+::: {.column width="50%"}
+**Underwriting Guidelines**
+
+- 400-page PDF last updated 2019
+- "Real" rules in Janet's head (30 years)
+- Exceptions in email chains
+- Regional variations in someone's spreadsheet
+
+**Claims Procedures**
+
+- Official manual in ancient Documentum
+- Actual procedures = tribal knowledge
+- "Ask Mike, he knows edge cases"
+- Adjusters' personal OneNote notebooks
+:::
+
+::: {.column width="50%"}
+**Policy Wordings**
+
+- 47 product variants across 3 legacy systems
+- Version control = `PolicyDoc_FINAL_v3_REAL(2).docx`
+- State endorsements in unmaintained folders
+
+**Compliance & Actuarial**
+
+- 50 states × years of bulletin PDFs
+- "We got fined in 2017, don't do it" — oral tradition
+- Models in SAS/R/Python depending on who built it
+- Rating algorithms: "see mainframe comments from 1987"
+:::
+:::
+
+---
+
+## What RAG Assumes vs Reality
+
+| RAG Fantasy | Insurance Reality |
+|-------------|-------------------|
+| Clean corpus of documents | 14 systems, 6 file formats, 3 decades |
+| Single source of truth | Conflicting versions across departments |
+| Text-searchable content | Scanned PDFs, handwritten notes, screenshots |
+| Current information | "That's the old process, we didn't update the doc" |
+| Explicit knowledge | "Everyone knows you don't apply that to commercial auto" |
+| Consistent terminology | UW says "risk", Claims says "exposure", Sales says "coverage" |
+
+---
+
+## The Actual Retrieval Failure Modes
+
+**Query**: "What's our water damage coverage for commercial property?"
+
+::: {.columns}
+::: {.column width="50%"}
+**What RAG retrieves:**
+
+- Marketing brochure (optimistic)
+- 2017 underwriting guideline (outdated)
+- Claims procedure for residential (wrong LOB)
+- Compliance memo about flood (related but different)
+:::
+
+::: {.column width="50%"}
+**What's missing:**
+
+- Janet's email clarifying the exception
+- Endorsement modifying coastal zone coverage
+- Actuarial note on why we don't write Florida
+- Lawsuit settlement that changed interpretation
+:::
+:::
+
+---
+
+## The Verification Gap
+
+```
+┌────────────────────────────────────────────────────────────┐
+│              WHAT RAG OUTPUTS                              │
+│  "Based on the retrieved documents, water damage from      │
+│   burst pipes is generally covered under commercial        │
+│   property policies..."                                    │
+└────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────────────────────┐
+│              WHAT DOMAIN EXPERT MUST VERIFY                │
+│                                                            │
+│  □ Is this the right policy form? (ISO vs manuscript)      │
+│  □ Which policy year? (wordings change)                    │
+│  □ State-specific variations?                              │
+│  □ Any endorsements that modify?                           │
+│  □ Is "burst pipe" actually "sudden and accidental"?       │
+│  □ Maintenance exclusion apply?                            │
+│  □ Sub-limits? Deductibles?                                │
+│  □ Did we change position after [lawsuit/regulation]?      │
+│  □ Commercial or habitational exposure?                    │
+│  □ Any reinsurance implications?                           │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## The Uncomfortable Math
+
+::: {.columns}
+::: {.column width="50%"}
+RAG gives you:
+
+**~70% relevant retrieval** on a good day
+
+Insurance decisions need:
+
+**100% accuracy** on coverage determination
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**The gap isn't technical. It's epistemic.**
+
+RAG retrieves documents. Insurance requires:
+
+- Knowing which document is *authoritative*
+- Understanding how documents *interact*
+- Recognizing what's *NOT* in the documents
+- Applying judgment never written down
+:::
+:::
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px;"}
+Domain experts aren't "checking RAG's work" — they're doing the actual reasoning RAG cannot do.
+
+The retrieval just brings them reading material faster.
+:::
+
+---
+
+## The Criteria Drift Problem
+
+::: {.columns}
+::: {.column width="50%"}
+**The Assumption**
+
+Experts know what "correct" means before evaluation starts.
+
+Define criteria → Grade outputs → Done.
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**The Reality**
+
+> "Users need criteria to grade outputs, but grading outputs helps users define criteria."
+
+— Shankar et al., 2024
+:::
+:::
+:::
+
+::: {.fragment}
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    CRITERIA DISCOVERY                       │
+│                                                             │
+│  Expert reviews output #1    →  "This is wrong because X"   │
+│  Expert reviews output #17   →  "Wait, X doesn't apply if Y"│
+│  Expert reviews output #42   →  "Actually there's also Z"   │
+│  Expert reviews output #89   →  "Z contradicts what I said  │
+│                                  about X in output #1"      │
+└─────────────────────────────────────────────────────────────┘
+```
+:::
+
+::: {.notes}
+From "Who Validates the Validators?" - criteria aren't independent of outputs.
+They emerge through interaction. This breaks the assumption that we can pre-define what "correct" means.
+:::
+
+---
+
+## Why This Matters for Insurance
+
+::: {.incremental}
+- **Coverage determination isn't lookup** — it's reasoning about edge cases
+- **Edge cases reveal new criteria** — "we never thought about this scenario"
+- **Criteria conflict** — state law vs company policy vs customer expectation
+- **Criteria change** — lawsuit settlements, regulatory updates, market shifts
+:::
+
+::: {.fragment style="margin-top: 30px;"}
+**The uncomfortable truth:**
+
+Even domain experts don't fully know what "correct" means until they see the specific case.
+
+The act of evaluation *creates* the evaluation criteria.
+:::
+
+---
+
 ## The Setup
 
 ::: {.columns}
@@ -548,30 +771,274 @@ The LLM generated a **confident wrong answer**.
 
 ---
 
-## RAG Methodology: Hamel Husain Framework
+## The Anti-Pattern
 
-::: {.incremental}
-1. **Error Analysis First**
-   - Look at 50 real failures before building anything
-   
-2. **Evaluate Retrieval Separately**
-   - Recall@k: Are we finding the right documents?
-   
-3. **Evaluate Generation Separately**
-   - Faithfulness: Is it hallucinating?
-   - Relevance: Does it answer the question?
-   
-4. **Fix Retriever First**
-   - If wrong docs go in, right answer can't come out
-   
-5. **Domain Expert as Judge**
-   - One "benevolent dictator" who knows the domain
+::: {.columns}
+::: {.column width="50%"}
+**What Most Teams Do**
+
+- Week 1: "Pick a vector database!"
+- Week 2: "LangChain or LlamaIndex?"
+- Week 3: "Build the RAG pipeline!"
+- Week 6: "Why isn't this working?"
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**Hamel's First Question**
+
+> "Can you show me how you're measuring if any of this actually works?"
+
+Before touching any code, understand failure modes.
+:::
+:::
 :::
 
 ::: {.notes}
-This is the Hamel Husain framework. Error analysis driven. Human-in-the-loop.
-It works. But it's manual. It doesn't scale.
-We'll come back to this.
+This is the pattern I see in 90% of enterprise AI projects.
+Build first, evaluate never.
+:::
+
+---
+
+## Phase 1: Error Analysis First
+
+**Before building anything, go to the domain experts:**
+
+::: {.incremental}
+- Claims: "What questions waste your time?"
+- Underwriting: "What gets wrong answers?"
+- Customer Service: "What causes escalations?"
+:::
+
+::: {.fragment}
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    REAL INSURANCE QUERIES                    │
+├──────────────────────────────────────────────────────────────┤
+│ "Is mold covered under my homeowner's policy?"               │
+│ "What's the deductible on my commercial auto?"               │
+│ "Does business interruption apply to COVID?"                 │
+│ "We got water damage - is this flood or burst pipe?"         │
+└──────────────────────────────────────────────────────────────┘
+```
+:::
+
+---
+
+## Build a Failure Taxonomy (Bottom-Up)
+
+Don't start with generic "hallucination." Let patterns emerge from 50+ queries:
+
+```
+RETRIEVAL FAILURES (can't find right docs)
+├── Wrong policy form retrieved (ISO vs manuscript)
+├── Outdated version (2019 guidelines, not 2023)
+├── Missing endorsements (add-ons that modify coverage)
+└── Cross-department doc needed
+
+GENERATION FAILURES (wrong interpretation)
+├── Missed exclusion that applies
+├── Confused similar terms ("flood" vs "water damage")
+├── Didn't apply state-specific variation
+└── Overgeneralized from training data
+
+BUSINESS LOGIC FAILURES
+├── Gave answer without required caveats
+├── Didn't escalate when should have
+└── Provided guidance that contradicts compliance
+```
+
+---
+
+## Phase 2: Build a Data Viewer First
+
+**Hamel's Key Insight:**
+
+> "The most impactful investment isn't a fancy eval dashboard — it's an interface that lets anyone examine what the AI is actually doing."
+
+::: {.fragment}
+Build this **BEFORE** your RAG system:
+
+- Side-by-side: retrieved chunks vs generated answer
+- One-click Pass/Fail + free-form critique
+- Failure mode tagging (from your taxonomy)
+- Filter by: line of business, query type, failure mode
+:::
+
+::: {.notes}
+This is the "look at your data" principle.
+The viewer is more important than the pipeline.
+:::
+
+---
+
+## The Data Viewer
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  Query: "Does my policy cover water damage from a burst pipe?"      │
+├─────────────────────────────────────────────────────────────────────┤
+│  RETRIEVED DOCUMENTS              │  GENERATED RESPONSE             │
+│  ┌─────────────────────────────┐  │  ┌───────────────────────────┐  │
+│  │ [1] HO-3 Policy Form - 0.87 │  │  │ Based on the documents,   │  │
+│  │ [2] Water Damage FAQ - 0.82 │  │  │ burst pipe damage is      │  │
+│  │ [3] UW Guide - 0.79         │  │  │ typically covered...      │  │
+│  └─────────────────────────────┘  │  └───────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────────┤
+│  EXPERT EVALUATION: [FAIL]                                          │
+│  Retrieved marketing FAQ instead of actual policy.                  │
+│  Customer has HO-8 (limited coverage), not HO-3.                    │
+│  Missed maintenance exclusion.                                      │
+│  Failure Mode: [Wrong policy form] [Missing exclusion logic]        │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Phase 3: Synthetic Data Generation
+
+**Hamel's Framework:** Features × Scenarios × Personas
+
+::: {.columns}
+::: {.column width="33%"}
+**Features**
+
+- coverage_determination
+- claims_procedure
+- policy_comparison
+- underwriting_guidelines
+- regulatory_compliance
+:::
+
+::: {.column width="33%"}
+**Scenarios**
+
+- straightforward_lookup
+- multi_doc_synthesis
+- exclusion_applies
+- state_variation
+- outdated_info_exists
+:::
+
+::: {.column width="33%"}
+**Personas**
+
+- new_csr
+- experienced_adjuster
+- underwriter
+- compliance_officer
+- external_agent
+:::
+:::
+
+::: {.fragment style="margin-top: 20px;"}
+**Result:** 5 × 5 × 5 = 125 test case templates, grounded in real policy data
+:::
+
+---
+
+## Phase 4: Tiered Evaluation
+
+::: {.columns}
+::: {.column width="50%"}
+**Tier 1: Retrieval**
+
+- Recall@5: Did we find the right docs?
+- Precision@5: How much noise?
+- Version correctness: Current or outdated?
+- Completeness: All needed docs?
+:::
+
+::: {.column width="50%"}
+**Tier 2-3: Generation**
+
+- Context Relevance (C|Q)
+- Faithfulness (A|C)
+- Answer Relevance (A|Q)
+:::
+:::
+
+::: {.fragment}
+**Insurance-Specific Evals:**
+
+| Eval | Question |
+|------|----------|
+| exclusion_check | If exclusion applies, did we catch it? |
+| state_variation | Did we apply state-specific rules? |
+| escalation_trigger | Did we flag human review when needed? |
+| policy_specificity | Did we answer for THIS policy, not generic? |
+:::
+
+---
+
+## Phase 5: The Capability Funnel
+
+Don't promise "AI Claims Assistant by Q3."
+
+Promise experiments with decision points:
+
+```
+CAPABILITY FUNNEL: Coverage Determination Assistant
+
+Level 1: Can generate syntactically valid response
+         └── "The system responds without crashing"
+
+Level 2: Can retrieve relevant documents
+         └── "Finds correct policy form 80%+ of time"
+
+Level 3: Can synthesize single-document answers
+         └── "Answers simple lookup questions correctly"
+
+Level 4: Can handle exclusions and endorsements
+         └── "Catches exclusions when they apply"
+
+Level 5: Can handle multi-document reasoning
+         └── "Combines base policy + endorsements + state rules"
+
+Current: ████████░░░░░░░░ Level 3 — Working on exclusion handling
+```
+
+---
+
+## The Uncomfortable Truth
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         RAG OUTPUT QUALITY                          │
+│                                                                     │
+│  ████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░  ~40% usable as-is │
+│  ████████████████████████████████░░░░░░░░░░░░░░░  ~65% with caveats │
+│  ████████████████████████████████████████████████  100% need human  │
+│                                                        sign-off     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+::: {.fragment}
+**The real value isn't "AI answers questions."**
+
+It's:
+
+- **Faster retrieval** (Janet doesn't grep through SharePoint)
+- **Consistent starting point** (everyone sees same base analysis)
+- **Audit trail** (which docs were considered)
+- **Triage** (simple auto-handled, complex escalated)
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+The generation layer (RAG) is **commodity infrastructure**.
+
+The verification layer (expert judgment) is where **all the liability** concentrates.
+:::
+
+::: {.fragment style="margin-top: 40px;"}
+Hamel's methodology gives you feedback loops to make verification efficient.
+
+**It doesn't replace it.**
 :::
 
 ---
