@@ -231,104 +231,47 @@ Every token is a spin. The house always has edge.
 
 ---
 
-## The Math: Entropy is Capability
+## But This Is Why LLMs Are Great
 
 ::: {.columns}
-::: {.column width="50%"}
-### With Entropy $(H > 0)$
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### The Slot Machine Upside
 
-$$P(x_t \mid x_{<t}) = \text{softmax}\left(\frac{\text{logits}}{T}\right)$$
-
-- Multiple tokens have non-zero probability
-- Model can **interpolate** between training examples
-- Novel combinations possible
-- **Generalization emerges**
+- Multiple answers are always possible
+- Model **blends** patterns it learned
+- Can answer questions it **never saw**
+- Once in a while: **jackpot**
 
 :::
 
-::: {.column width="50%"}
-### Without Entropy $(H = 0)$
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Without Probability?
 
-$$P(x_t \mid x_{<t}) = \begin{cases} 1 & \text{if } x_t = \arg\max \\ 0 & \text{otherwise} \end{cases}$$
-
-- Only one token ever selected
-- Model can only **memorize** training data
-- No novel combinations
-- **Giant lookup table**
+- Only one answer ever possible
+- Model can only **repeat** training data
+- New question = **no match, no answer**
+- Just a **giant dictionary**
 
 :::
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; text-align: center; font-size: 1.2em;"}
+The probability that lets you **win the jackpot** on ANY question...
+
+is the same probability that sometimes gives you **garbage**.
+:::
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**You cannot have one without the other.**
+
+**Anyone who says otherwise is selling.**
 :::
 
 ---
 
-## Why Zero Entropy Fails
+# When the Slot Machine Loses {background-color="#1E293B"}
 
-::: {.callout-warning appearance="minimal"}
-## The Combinatorial Impossibility
-:::
-
-**Training data**: ~10 trillion tokens
-
-**Possible queries**: Effectively infinite
-
-::: {.fragment}
-If $H(\text{output}) = 0$, model can only output **exact sequences it memorized**.
-
-Novel query → no matching entry → **failure or nonsense**.
-:::
-
-::: {.fragment .fade-up style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px;"}
-**Entropy allows the model to blend patterns it learned into responses for queries it never saw.**
-
-This is generalization. This is what makes LLMs useful.
-
-This is also what makes them unpredictable.
-:::
-
----
-
-## The Temperature Tradeoff
-
-$$P(x_t) = \frac{\exp(\text{logit}_t / T)}{\sum_j \exp(\text{logit}_j / T)}$$
-
-::: {.columns}
-::: {.column width="33%"}
-### $T \to 0$
-**Deterministic**
-
-- Always picks highest logit
-- Repetitive, brittle
-- Mode collapse
-- *"The the the the..."*
-
-:::
-
-::: {.column width="33%"}
-### $T = 1$
-**Balanced**
-
-- Natural distribution
-- Creative but coherent
-- Standard setting
-
-:::
-
-::: {.column width="33%"}
-### $T \to \infty$
-**Maximum Entropy**
-
-- Uniform random
-- Pure chaos
-- *"Purple elephant finance!"*
-
-:::
-:::
-
-::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-**The same property that makes AI unreliable IS what makes it general-purpose.**
-
-**You cannot engineer this away. Anyone who says otherwise is selling.**
-:::
+*Three ways token prediction fails in insurance*
 
 ---
 
@@ -378,13 +321,15 @@ Customer relies on AI → files claim → denied → lawsuit.
 **Customer**: "Am I covered if COVID forces my restaurant to close?"
 
 ::: {.fragment}
-### The Local Decision Problem
+### RAG Retrieved Both Clauses — Doesn't Matter
 
-$$P(x_t \mid x_{<t}) \text{ commits early, cannot backtrack}$$
+Even with **both clauses in context**, the LLM generates token-by-token:
 
-- Token-by-token, model starts: *"Business interruption coverage applies when..."*
+- Starts with: *"Business interruption coverage applies when..."*
 - By the time it reaches pandemic context, it's **already committed** to coverage-positive framing
-- Cannot restructure the answer around the exclusion
+- Cannot go back and restructure the answer around the exclusion
+
+**Having the right information ≠ using it correctly.**
 
 :::
 
@@ -460,6 +405,14 @@ This is why verification matters — you need **deterministic policy lookup**, n
 This is fundamental. Not a solvable problem. A manageable risk.
 The verifier layer is what bridges this gap.
 :::
+
+---
+
+## {background-color="#0F172A"}
+
+### Your least complex insurance document
+
+![](images/pzu_sample1.png){fig-align="center" width="80%"}
 
 ---
 

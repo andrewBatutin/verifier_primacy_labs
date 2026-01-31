@@ -352,87 +352,42 @@ Andriy Batutin
 <p>Every token is a spin. The house always has edge.</p>
 </div>
 </section>
-<section id="the-math-entropy-is-capability" class="slide level2 center">
-<h2>The Math: Entropy is Capability</h2>
+<section id="but-this-is-why-llms-are-great" class="slide level2 center">
+<h2>But This Is Why LLMs Are Great</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="with-entropy-h-0">With Entropy <span class="math inline">\((H &gt; 0)\)</span></h3>
-<p><span class="math display">\[P(x_t \mid x_{&lt;t}) = \text{softmax}\left(\frac{\text{logits}}{T}\right)\]</span></p>
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="the-slot-machine-upside">The Slot Machine Upside</h3>
 <ul>
-<li>Multiple tokens have non-zero probability</li>
-<li>Model can <strong>interpolate</strong> between training examples</li>
-<li>Novel combinations possible</li>
-<li><strong>Generalization emerges</strong></li>
+<li>Multiple answers are always possible</li>
+<li>Model <strong>blends</strong> patterns it learned</li>
+<li>Can answer questions it <strong>never saw</strong></li>
+<li>Once in a while: <strong>jackpot</strong></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<h3 id="without-entropy-h-0">Without Entropy <span class="math inline">\((H = 0)\)</span></h3>
-<p><span class="math display">\[P(x_t \mid x_{&lt;t}) = \begin{cases} 1 &amp; \text{if } x_t = \arg\max \\ 0 &amp; \text{otherwise} \end{cases}\]</span></p>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="without-probability">Without Probability?</h3>
 <ul>
-<li>Only one token ever selected</li>
-<li>Model can only <strong>memorize</strong> training data</li>
-<li>No novel combinations</li>
-<li><strong>Giant lookup table</strong></li>
+<li>Only one answer ever possible</li>
+<li>Model can only <strong>repeat</strong> training data</li>
+<li>New question = <strong>no match, no answer</strong></li>
+<li>Just a <strong>giant dictionary</strong></li>
 </ul>
 </div></div>
-</section>
-<section id="why-zero-entropy-fails" class="slide level2 center">
-<h2>Why Zero Entropy Fails</h2>
-<div class="callout callout-warning no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>The Combinatorial Impossibility</strong></p>
+<div class="fragment fade-up" style="margin-top: 40px; text-align: center; font-size: 1.2em;">
+<p>The probability that lets you <strong>win the jackpot</strong> on ANY question…</p>
+<p>is the same probability that sometimes gives you <strong>garbage</strong>.</p>
 </div>
-<div class="callout-content">
+<div class="fragment fade-up" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>You cannot have one without the other.</strong></p>
+<p><strong>Anyone who says otherwise is selling.</strong></p>
+</div>
+</section>
+<section class="slide level2 center">
 
-</div>
-</div>
-</div>
-<p><strong>Training data</strong>: ~10 trillion tokens</p>
-<p><strong>Possible queries</strong>: Effectively infinite</p>
-<div class="fragment">
-<p>If <span class="math inline">\(H(\text{output}) = 0\)</span>, model can only output <strong>exact sequences it memorized</strong>.</p>
-<p>Novel query → no matching entry → <strong>failure or nonsense</strong>.</p>
-</div>
-<div class="fragment fade-up" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px;">
-<p><strong>Entropy allows the model to blend patterns it learned into responses for queries it never saw.</strong></p>
-<p>This is generalization. This is what makes LLMs useful.</p>
-<p>This is also what makes them unpredictable.</p>
-</div>
-</section>
-<section id="the-temperature-tradeoff" class="slide level2 center">
-<h2>The Temperature Tradeoff</h2>
-<p><span class="math display">\[P(x_t) = \frac{\exp(\text{logit}_t / T)}{\sum_j \exp(\text{logit}_j / T)}\]</span></p>
-<div class="columns">
-<div class="column" style="width:33%;">
-<h3 id="t-to-0"><span class="math inline">\(T \to 0\)</span></h3>
-<p><strong>Deterministic</strong></p>
-<ul>
-<li>Always picks highest logit</li>
-<li>Repetitive, brittle</li>
-<li>Mode collapse</li>
-<li><em>“The the the the…”</em></li>
-</ul>
-</div><div class="column" style="width:33%;">
-<h3 id="t-1"><span class="math inline">\(T = 1\)</span></h3>
-<p><strong>Balanced</strong></p>
-<ul>
-<li>Natural distribution</li>
-<li>Creative but coherent</li>
-<li>Standard setting</li>
-</ul>
-</div><div class="column" style="width:33%;">
-<h3 id="t-to-infty"><span class="math inline">\(T \to \infty\)</span></h3>
-<p><strong>Maximum Entropy</strong></p>
-<ul>
-<li>Uniform random</li>
-<li>Pure chaos</li>
-<li><em>“Purple elephant finance!”</em></li>
-</ul>
-</div></div>
-<div class="fragment fade-up" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p><strong>The same property that makes AI unreliable IS what makes it general-purpose.</strong></p>
-<p><strong>You cannot engineer this away. Anyone who says otherwise is selling.</strong></p>
-</div>
+</section></section>
+<section>
+<section id="when-the-slot-machine-loses" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>When the Slot Machine Loses</h1>
+<p><em>Three ways token prediction fails in insurance</em></p>
 </section>
 <section id="failure-mode-1-policy-details-are-token-predictions" class="slide level2 center">
 <h2>Failure Mode 1: Policy Details Are Token Predictions</h2>
@@ -466,13 +421,14 @@ Andriy Batutin
 </ul>
 <p><strong>Customer</strong>: “Am I covered if COVID forces my restaurant to close?”</p>
 <div class="fragment">
-<h3 id="the-local-decision-problem">The Local Decision Problem</h3>
-<p><span class="math display">\[P(x_t \mid x_{&lt;t}) \text{ commits early, cannot backtrack}\]</span></p>
+<h3 id="rag-retrieved-both-clauses-doesnt-matter">RAG Retrieved Both Clauses — Doesn’t Matter</h3>
+<p>Even with <strong>both clauses in context</strong>, the LLM generates token-by-token:</p>
 <ul>
-<li>Token-by-token, model starts: <em>“Business interruption coverage applies when…”</em></li>
+<li>Starts with: <em>“Business interruption coverage applies when…”</em></li>
 <li>By the time it reaches pandemic context, it’s <strong>already committed</strong> to coverage-positive framing</li>
-<li>Cannot restructure the answer around the exclusion</li>
+<li>Cannot go back and restructure the answer around the exclusion</li>
 </ul>
+<p><strong>Having the right information ≠ using it correctly.</strong></p>
 </div>
 <div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
 <p><strong>Inconsistent guidance across touchpoints. One chat says covered, another says excluded.</strong></p>
@@ -545,6 +501,11 @@ Andriy Batutin
           display:block!important;
       }</style></aside>
 </section>
+<section id="section-4" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<h3 id="your-least-complex-insurance-document">Your least complex insurance document</h3>
+
+<img data-src="images/pzu_sample1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section class="slide level2 center">
 
 </section></section>
@@ -782,7 +743,7 @@ Andriy Batutin
 <p><em>You’re sampling from chaos.</em></p>
 </div>
 </section>
-<section id="section-4" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-5" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text" style="font-style: italic;">
 <p>“We trained a trillion-parameter model to predict the next word,</p>
@@ -815,7 +776,7 @@ Andriy Batutin
 </ul></li>
 </ol>
 </section>
-<section id="section-5" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-6" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>But this is still manual.</p>
@@ -1096,7 +1057,7 @@ Andriy Batutin
 <p>Governance made executable.</p>
 </div></div>
 </section>
-<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1120,7 +1081,7 @@ Andriy Batutin
 <h1>A Tale of Two Executives</h1>
 
 </section>
-<section id="section-7" class="slide level2 center" data-background-color="#1E293B">
+<section id="section-8" class="slide level2 center" data-background-color="#1E293B">
 <h2></h2>
 <div class="columns">
 <div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
@@ -1159,13 +1120,13 @@ Andriy Batutin
 </div>
 </div></div>
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Which one will you be?</p>
 </div>
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-10" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <p>AI adoption is <strong>not optional</strong>.</p>
 <p>The pressure is real.</p>
