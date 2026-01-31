@@ -187,31 +187,278 @@ It's not. It's the feature that enables generalization.
 
 ---
 
-## The Math
+## The Math: Autoregressive Factorization
 
 ::: {.callout-note appearance="minimal"}
-## Entropy is Capability
+## LLMs Are Conditional Probability Machines
 :::
 
-$$H(\text{output}) > 0 \implies \text{generalization possible}$$
+The entire game is factorizing a joint distribution over a sequence into a product of conditionals:
 
-$$H(\text{output}) = 0 \implies \text{lookup table}$$
+$$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
+
+Where $x_{<t} = (x_1, x_2, \ldots, x_{t-1})$ is the context.
+
+::: {.fragment .fade-up}
+Each token is a **local decision** based on preceding context.
+
+The model cannot "see ahead" or "go back and fix."
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+**The Butterfly Effect**: One different token in context → completely different output.
+
+Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$ — small perturbations cascade.
+:::
+
+::: {.notes}
+This is the fundamental architecture. Every output is generated token by token,
+each conditioned only on what came before. No global planning. No revision.
+
+The product structure means errors compound. One wrong token early on changes
+all subsequent conditional probabilities. This is why LLM output is inherently unstable.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/llm_slot_machine.png){fig-align="center" width="70%"}
+
+::: {.fragment .fade-up style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+Every token is a spin. The house always has edge.
+:::
+
+---
+
+## The Math: Entropy is Capability
+
+::: {.columns}
+::: {.column width="50%"}
+### With Entropy $(H > 0)$
+
+$$P(x_t \mid x_{<t}) = \text{softmax}\left(\frac{\text{logits}}{T}\right)$$
+
+- Multiple tokens have non-zero probability
+- Model can **interpolate** between training examples
+- Novel combinations possible
+- **Generalization emerges**
+
+:::
+
+::: {.column width="50%"}
+### Without Entropy $(H = 0)$
+
+$$P(x_t \mid x_{<t}) = \begin{cases} 1 & \text{if } x_t = \arg\max \\ 0 & \text{otherwise} \end{cases}$$
+
+- Only one token ever selected
+- Model can only **memorize** training data
+- No novel combinations
+- **Giant lookup table**
+
+:::
+:::
+
+---
+
+## Why Zero Entropy Fails
+
+::: {.callout-warning appearance="minimal"}
+## The Combinatorial Impossibility
+:::
+
+**Training data**: ~10 trillion tokens
+
+**Possible queries**: Effectively infinite
 
 ::: {.fragment}
-The softmax temperature parameter $T$ controls this tradeoff:
+If $H(\text{output}) = 0$, model can only output **exact sequences it memorized**.
 
-- $T \to 0$: Deterministic but brittle (mode collapse)
-- $T > 0$: Creative but unpredictable
+Novel query → no matching entry → **failure or nonsense**.
 :::
 
-::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px;"}
+::: {.fragment .fade-up style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+**Entropy allows the model to blend patterns it learned into responses for queries it never saw.**
+
+This is generalization. This is what makes LLMs useful.
+
+This is also what makes them unpredictable.
+:::
+
+---
+
+## The Temperature Tradeoff
+
+$$P(x_t) = \frac{\exp(\text{logit}_t / T)}{\sum_j \exp(\text{logit}_j / T)}$$
+
+::: {.columns}
+::: {.column width="33%"}
+### $T \to 0$
+**Deterministic**
+
+- Always picks highest logit
+- Repetitive, brittle
+- Mode collapse
+- *"The the the the..."*
+
+:::
+
+::: {.column width="33%"}
+### $T = 1$
+**Balanced**
+
+- Natural distribution
+- Creative but coherent
+- Standard setting
+
+:::
+
+::: {.column width="33%"}
+### $T \to \infty$
+**Maximum Entropy**
+
+- Uniform random
+- Pure chaos
+- *"Purple elephant finance!"*
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
 **The same property that makes AI unreliable IS what makes it general-purpose.**
 
 **You cannot engineer this away. Anyone who says otherwise is selling.**
 :::
 
+---
+
+## Failure Mode 1: Policy Details Are Token Predictions
+
+**Customer**: "Does my policy cover water damage from a burst pipe?"
+
+::: {.columns}
+::: {.column width="50%"}
+### What the LLM does
+
+$$P(\text{"covered"} \mid \text{"water damage"}, \text{"burst pipe"})$$
+
+Predicts based on training distribution:
+
+*"burst pipes are typically covered under standard homeowners..."*
+
+:::
+
+::: {.column width="50%"}
+### What it should do
+
+Look up **THIS customer's** policy:
+
+- Rider exclusion?
+- Different policy class?
+- Deductible that changes everything?
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Model outputs the statistical average, not the contractual truth.**
+
+Customer relies on AI → files claim → denied → lawsuit.
+:::
+
+---
+
+## Failure Mode 2: Coverage Gaps Across Clauses
+
+**Commercial policy with**:
+
+- **Clause A**: "Business interruption covered if physical damage occurs"
+- **Clause B**: "Pandemic exclusion applies to all claims"
+
+**Customer**: "Am I covered if COVID forces my restaurant to close?"
+
+::: {.fragment}
+### The Local Decision Problem
+
+$$P(x_t \mid x_{<t}) \text{ commits early, cannot backtrack}$$
+
+- Token-by-token, model starts: *"Business interruption coverage applies when..."*
+- By the time it reaches pandemic context, it's **already committed** to coverage-positive framing
+- Cannot restructure the answer around the exclusion
+
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Inconsistent guidance across touchpoints. One chat says covered, another says excluded.**
+
+Audit nightmare.
+:::
+
+---
+
+## Failure Mode 3: Confident Bullshit Beats Lookup
+
+**Agent**: "What's the reserve amount on claim #4847291?"
+
+::: {.columns}
+::: {.column width="50%"}
+### The Probability Problem
+
+$$P(\text{"}\$45{,}000\text{"}) > P(\text{<tool\_call>})$$
+
+Generating a plausible-sounding number may be **higher probability** than generating a tool call.
+
+:::
+
+::: {.column width="50%"}
+### The Consequence
+
+- Adjuster decides based on hallucinated reserve
+- Reinsurance calculations off
+- Actuarial models corrupted
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**The model doesn't know the difference between predicting "$45,000" and looking it up.**
+
+Both are just tokens.
+:::
+
+---
+
+## The Insurance-Specific Hell
+
+::: {.callout-warning appearance="minimal"}
+## Insurance is Adversarial Documentation
+:::
+
+Policies are designed with **precise language** where one word changes everything:
+
+::: {.columns}
+::: {.column width="50%"}
+- "flood" vs "water damage"
+- "occurrence" vs "claims-made"
+- "named insured" vs "additional insured"
+:::
+
+::: {.column width="50%"}
+- "actual cash value" vs "replacement cost"
+- "per claim" vs "per occurrence"
+- "coverage A" vs "coverage B"
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**LLMs predict the vibes. Contracts encode the edge cases.**
+
+This is why verification matters — you need **deterministic policy lookup**, not probabilistic completion.
+:::
+
 ::: {.notes}
 This is fundamental. Not a solvable problem. A manageable risk.
+The verifier layer is what bridges this gap.
 :::
 
 ---
