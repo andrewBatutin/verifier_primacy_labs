@@ -27,16 +27,20 @@ execute:
   warning: false
 ---
 
-# {background-color="#0F172A"}
+## About Me
 
-::: {.r-fit-text}
-**VERIFIER PRIMACY**
+::: {.columns}
+::: {.column width="70%"}
+### Andriy Batutin
+
+- **Principal Engineer** focused on AI/ML systems
+- Building verification infrastructure for production AI
+- Writing at [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+
 :::
-
-Building Trust in AI Systems
-
-::: {.fragment .fade-up}
-*Andriy Batutin • SKELAR Analytics MeetUP • Warsaw 2026*
+::: {.column width="30%"}
+![](images/author.png){fig-align="center" width="80%"}
+:::
 :::
 
 ---
@@ -114,9 +118,9 @@ Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
 
 ::: {.incremental}
 1. **The Stochasticity Paradox** — Why AI is chaos by design
-2. **From Retrieval to Action** — The escalating risk ladder
-3. **Agentic Case Study** — When the agent acts on bad info
-4. **The Verification Stack** — Mathematical foundations
+2. **Real World Insurance Org Structure** — How AI can actuate risks
+3. **The Rubber Stamp Trap** — When "human in the loop" fails
+4. **Evaluation Methodology** — From error analysis to verifiers
 5. **Verifier Primacy** — Scaling judgment as infrastructure
 :::
 
@@ -914,7 +918,7 @@ But you CAN have their expertise review every claim.
 :::
 
 ::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
-**That's Verifer Primacy.**
+**That's Verifier Primacy.**
 :::
 
 ---

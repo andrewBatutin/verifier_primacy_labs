@@ -141,18 +141,25 @@ Andriy Batutin
 
   <p class="date">2026-03-02</p>
 </section>
-<section>
-<section id="section" class="title-slide slide level1 center" data-background-color="#0F172A">
-<h1></h1>
-<div class="r-fit-text">
-<p><strong>VERIFIER PRIMACY</strong></p>
+<section id="about-me" class="slide level2 center">
+<h2>About Me</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="andriy-batutin">Andriy Batutin</h3>
+<ul>
+<li><strong>Principal Engineer</strong> focused on AI/ML systems</li>
+<li>Building verification infrastructure for production AI</li>
+<li>Writing at <a href="https://andriybatutin.substack.com/">andriybatutin.substack.com</a></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/author.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
 </div>
-<p>Building Trust in AI Systems</p>
-<div class="fragment fade-up">
-<p><em>Andriy Batutin • SKELAR Analytics MeetUP • Warsaw 2026</em></p>
-</div>
+</div></div>
 </section>
-<section id="section-1" class="slide level2 center" data-background-color="#0F172A">
+<section id="section" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text" style="color: #DC2626;">
 <p>In the next 12 months,</p>
@@ -182,7 +189,7 @@ Andriy Batutin
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-2" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-1" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -221,9 +228,9 @@ Andriy Batutin
 <h2>Today’s Journey</h2>
 <ol type="1">
 <li class="fragment"><strong>The Stochasticity Paradox</strong> — Why AI is chaos by design</li>
-<li class="fragment"><strong>From Retrieval to Action</strong> — The escalating risk ladder</li>
-<li class="fragment"><strong>Agentic Case Study</strong> — When the agent acts on bad info</li>
-<li class="fragment"><strong>The Verification Stack</strong> — Mathematical foundations</li>
+<li class="fragment"><strong>Real World Insurance Org Structure</strong> — How AI can actuate risks</li>
+<li class="fragment"><strong>The Rubber Stamp Trap</strong> — When “human in the loop” fails</li>
+<li class="fragment"><strong>Evaluation Methodology</strong> — From error analysis to verifiers</li>
 <li class="fragment"><strong>Verifier Primacy</strong> — Scaling judgment as infrastructure</li>
 </ol>
 <aside class="notes">
@@ -243,7 +250,7 @@ Andriy Batutin
 </section>
 <section class="slide level2 center">
 
-</section></section>
+</section>
 <section>
 <section id="the-stochasticity-paradox" class="title-slide slide level1 center" data-background-color="#1E293B">
 <h1>The Stochasticity Paradox</h1>
@@ -303,7 +310,7 @@ Andriy Batutin
 <p>Errors compound multiplicatively: <span class="math inline">\(\prod_{t=1}^{T} \epsilon_t\)</span></p>
 </div>
 </section>
-<section id="section-3" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-2" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/llm_slot_machine.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"><div class="fragment fade-up" style="margin-top: 30px; text-align: center; font-size: 1.3em;">
@@ -383,7 +390,7 @@ Andriy Batutin
 <p>You’re sampling from chaos.</p>
 </div>
 </section>
-<section id="section-4" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-3" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.3em;">
@@ -391,7 +398,7 @@ Andriy Batutin
 <p>You expected to win? The math says no.</p>
 </div>
 </section>
-<section id="section-5" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-4" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Leaders must approach building AI systems</p>
@@ -410,11 +417,11 @@ Andriy Batutin
 <h1>Real World Insurance Org Structure</h1>
 <p><em>How AI Can Actuate Risks Instead of Decreasing Them</em></p>
 </section>
-<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-5" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/insurance_org.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
-<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/Insurance_risk_ladder.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
@@ -528,7 +535,7 @@ Andriy Batutin
 <p>Human adjuster must click [APPROVE] or [REJECT]. <em>“Human in the loop. Completely safe.”</em></p>
 </div>
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/claims_wb.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
@@ -678,7 +685,7 @@ Andriy Batutin
 <p>Avg overpayment: PLN 38,500 → <strong>Annual exposure: PLN 203M</strong></p>
 </div>
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>This is not a story about AI making mistakes.</p>
@@ -694,7 +701,7 @@ Andriy Batutin
 <p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
 </div>
 </section>
-<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>The question isn’t:</p>
@@ -717,7 +724,7 @@ Andriy Batutin
 <h1>Evaluation Methodology</h1>
 <p><em>Applying the <a href="https://hamel.dev/blog/posts/evals-faq/">Hamel Husain Framework</a> to Claim WD-2847</em></p>
 </section>
-<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-10" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
@@ -995,7 +1002,7 @@ Andriy Batutin
 <p><strong>Now it’s a classifier. Now it scales. Now it catches the next 22 claims.</strong></p>
 </div>
 </section>
-<section id="section-12" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-11" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>But building verifiers manually</p>
@@ -1007,7 +1014,7 @@ Andriy Batutin
 <p>But you CAN have their expertise review every claim.</p>
 </div>
 <div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
-<p><strong>That’s Verifer Primacy.</strong></p>
+<p><strong>That’s Verifier Primacy.</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -1053,7 +1060,7 @@ Andriy Batutin
 <h1>The Verification Stack</h1>
 <p><em>Six gates between AI recommendation and Maria’s screen</em></p>
 </section>
-<section id="section-13" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-12" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
 <img data-src="images/verification_stack.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
@@ -1150,7 +1157,7 @@ Andriy Batutin
 <p><strong>Senior Adjuster’s judgment reviews 500 claims.</strong></p>
 </div>
 </section>
-<section id="section-14" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-13" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1167,7 +1174,7 @@ Andriy Batutin
 <p><strong>before they retire.</strong></p>
 </div>
 </section>
-<section id="section-15" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-14" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Invest in verification infrastructure</p>
@@ -1180,7 +1187,7 @@ Andriy Batutin
 <p><strong>and become the casino.</strong></p>
 </div>
 </section>
-<section id="section-16" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-15" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p><strong>Stop praying. Start verifying.</strong></p>
