@@ -453,22 +453,31 @@ By the time you notice, **damage is done**.
 
 ## The Setup: Kraków Back Office
 
-```
-CLAIMS DEPARTMENT                          NEW: AI Claims Assistant
-───────────────────────────────────────    ────────────────────────────────────
-Staff: 12 adjusters                        - Reads claim documents
-Volume: 500+ claims/day                    - Pulls policy from admin system
-Target: 45 claims/adjuster/day             - Checks coverage rules
-Avg time per claim: 10-12 minutes          - Calculates recommended payout
-                                           - Presents recommendation to adjuster
-```
+::: {.columns}
+::: {.column width="48%" style="background-color: #1E3A5F; padding: 25px; border-radius: 8px;"}
+### Claims Department
 
-::: {.fragment style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 30px;"}
+- **Staff:** 12 adjusters
+- **Volume:** 500+ claims/day
+- **Target:** 45 claims/adjuster/day
+- **Avg time:** 10-12 minutes per claim
+:::
+
+::: {.column width="48%" style="background-color: #065F46; padding: 25px; border-radius: 8px;"}
+### NEW: AI Claims Assistant
+
+- Reads claim documents
+- Pulls policy from admin system
+- Checks coverage rules
+- Calculates recommended payout
+- Presents recommendation to adjuster
+:::
+:::
+
+::: {.fragment style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
 **AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
 
-Human adjuster must click [APPROVE] or [REJECT].
-
-*"Human in the loop. Completely safe."*
+Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely safe."*
 :::
 
 ---
