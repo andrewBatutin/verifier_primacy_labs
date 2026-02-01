@@ -1,0 +1,1203 @@
+---
+title: "VERIFIER PRIMACY"
+subtitle: "Building Trust in AI Systems"
+author: "Andriy Batutin"
+date: "03.02.2026"
+format:
+  revealjs:
+    theme: [dark, custom.scss]
+    slide-number: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+    highlight-style: github-dark
+    code-line-numbers: false
+    footer: "Verifier Primacy | [andriybatutin.substack.com](https://andriybatutin.substack.com/)"
+    width: 1920
+    height: 1080
+    margin: 0.1
+    center: true
+    hash: true
+    history: true
+    controls: true
+    progress: true
+    touch: true
+execute:
+  echo: false
+  warning: false
+---
+
+# {background-color="#0F172A"}
+
+::: {.r-fit-text}
+**VERIFIER PRIMACY**
+:::
+
+Building Trust in AI Systems
+
+::: {.fragment .fade-up}
+*Andriy Batutin • SKELAR Analytics MeetUP • Warsaw 2026*
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text style="color: #DC2626;"}
+In the next 12 months,
+:::
+
+::: {.fragment .fade-up}
+a C-level executive will lose their job
+:::
+
+::: {.fragment .fade-up}
+because of a critical AI failure.
+:::
+
+::: {.fragment .fade-up style="color: #0891B2; font-style: italic;"}
+[OpenRouter data](https://openrouter.ai/state-of-ai) supports this.
+:::
+
+::: {.notes}
+This isn't fear-mongering. This is what the data shows.
+
+OpenRouter's State of AI report: reasoning tokens went from 0% to 50%+ in 12 months.
+Prompt complexity quadrupled. Organizations are deploying agents at scale.
+
+But verification infrastructure hasn't kept pace. That gap is the risk.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/reasoning-tokens-growth.png){fig-align="center" width="80%"}
+
+::: {.aside}
+Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
+:::
+
+---
+
+## The Governance Gap {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%"}
+### [KPMG 2025](https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html)
+*48,000 people, 47 countries*
+
+- **56%** making mistakes due to AI
+- **66%** don't verify AI outputs
+- **46%** trust AI systems
+
+:::
+
+::: {.column width="50%"}
+### [Deloitte 2026](https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html)
+*3,235 leaders, 24 countries*
+
+- **75%** deploying agentic AI
+- **21%** have governance models
+- **25%** moving pilots to production
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**The gap between deployment and governance is the liability.**
+:::
+
+---
+
+## Today's Journey
+
+::: {.incremental}
+1. **The Stochasticity Paradox** — Why AI is chaos by design
+2. **From Retrieval to Action** — The escalating risk ladder
+3. **Agentic Case Study** — When the agent acts on bad info
+4. **The Verification Stack** — Mathematical foundations
+5. **Verifier Primacy** — Scaling judgment as infrastructure
+:::
+
+::: {.notes}
+The arc: WHY → WHAT GOES WRONG → HOW TO FIX IT
+
+Focus on agentic because that's where the real liability concentrates.
+RAG gives wrong answers. Agents take wrong actions.
+:::
+
+---
+
+# The Stochasticity Paradox {background-color="#1E293B"}
+
+*Why AI cannot be made reliable — and why that's the point*
+
+---
+
+## The Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### The Fear
+
+- AI outputs are unpredictable
+- Wrong action = lawsuit
+- Career ends in headline
+
+:::
+
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### The FOMO
+
+- Competitors are shipping AI
+- Boards expect transformation
+- "Laggard" is career poison
+
+:::
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; text-align: center;"}
+**Both paths feel like career risk.**
+:::
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+And here's the uncomfortable truth:
+
+**The unpredictability you fear is exactly what makes AI useful.**
+
+A perfectly reliable AI is a database.
+:::
+
+---
+
+## The Math: Autoregressive Factorization
+
+::: {.callout-note appearance="minimal"}
+## LLMs Are Conditional Probability Machines
+:::
+
+$$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
+
+Each token is a **local decision** based on preceding context.
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+**The Butterfly Effect**: One different token → completely different output.
+
+Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/llm_slot_machine.png){fig-align="center" width="70%"}
+
+::: {.fragment .fade-up style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+Every token is a spin. The house always has edge.
+:::
+
+---
+
+## The Slot Machine Tradeoff
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Why It's Great
+
+- Multiple answers possible
+- Model **blends** learned patterns
+- Answers questions **never seen**
+- Sometimes: **jackpot**
+
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Without Probability?
+
+- Only one answer ever
+- Can only **repeat** training data
+- New question = **no answer**
+- Just a **dictionary**
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**The probability that gives you jackpots is the same probability that gives you garbage.**
+
+**You cannot have one without the other.**
+:::
+
+---
+
+# From Retrieval to Action {background-color="#1E293B"}
+
+*The escalating risk ladder*
+
+---
+
+## The Risk Ladder
+
+```
+                                          ┌─────────────────────┐
+                                          │  AGENTIC AI         │
+                                          │  Takes actions      │
+                                          │  Moves money        │
+                                          │  Sends emails       │
+                                   ┌──────┤  IRREVERSIBLE       │
+                                   │      └─────────────────────┘
+                                   │
+                            ┌──────┴──────┐
+                            │  RAG        │
+                            │  Retrieves  │
+                            │  Generates  │
+                     ┌──────┤  WRONG INFO │
+                     │      └─────────────┘
+                     │
+              ┌──────┴──────┐
+              │  CHATBOT    │
+              │  Answers    │
+              │  WRONG      │
+              └─────────────┘
+                     │
+    ─────────────────┴─────────────────────────────────────────►
+    LOW RISK                                           HIGH RISK
+    (user verifies)                          (machine acts autonomously)
+```
+
+---
+
+## RAG: The Foundation Problem
+
+::: {.columns}
+::: {.column width="50%"}
+### Information Asymmetry
+
+$$H(\text{Query}) \ll H(\text{Document})$$
+
+- Query: "Is knee surgery covered?" = **4 tokens**
+- Answer location: Page 147, Section 8.3.2(b)
+
+*Asking search to read minds.*
+
+:::
+
+::: {.column width="50%"}
+### Embedding Geometry
+
+In high-dimensional space:
+
+$$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
+
+"What's my deductible?" ≈ "What is a deductible?"
+
+*Similar ≠ Relevant*
+
+:::
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**RAG retrieves plausible documents. LLM generates confident answers.**
+
+But confidence ≠ correctness.
+:::
+
+---
+
+## RAG Failure: Annoying but Recoverable
+
+**Customer**: "Is my knee surgery covered?"
+
+**AI**: "Yes, orthopedic procedures are covered." *(wrong — exclusion on page 147)*
+
+::: {.columns}
+::: {.column width="50%"}
+### What Happens
+
+- Customer calls to confirm
+- Agent catches the error
+- Correct info provided
+- Minor embarrassment
+
+:::
+
+::: {.column width="50%"}
+### The Saving Grace
+
+**Human in the loop.**
+
+Customer still has to act.
+
+Time to catch mistakes.
+
+:::
+:::
+
+::: {.fragment style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**RAG is passive. Wrong info waits for someone to act on it.**
+:::
+
+---
+
+## Agentic AI: No Safety Net
+
+**Same RAG retrieval. But now the agent ACTS.**
+
+::: {.columns}
+::: {.column width="50%"}
+### What Changes
+
+- Agent has tools: `approve_claim`, `send_payment`, `update_record`
+- Same wrong retrieval
+- Same confident LLM
+- **But now it executes**
+
+:::
+
+::: {.column width="50%"}
+### The Consequence
+
+No human checkpoint.
+
+Action happens at machine speed.
+
+By the time you notice, **damage is done**.
+
+:::
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Agentic AI multiplies RAG failures by the cost of autonomous action.**
+:::
+
+---
+
+# Agentic Case Study {background-color="#1E293B"}
+
+*Insurance Claims Processing Agent*
+
+---
+
+## The Setup
+
+::: {.columns}
+::: {.column width="55%"}
+**Insurance Claims Automation Platform**
+
+- AI agent with **8 tools**: 
+  - `lookup_policy`, `check_coverage`
+  - `calculate_payout`, `approve_claim`
+  - `deny_claim`, `request_docs`
+  - `send_payment`, `update_crm`
+- Processes **500+ claims/day**
+- Connected to payment systems
+- Auto-approval threshold: $10,000
+
+:::
+
+::: {.column width="45%"}
+::: {.callout-warning}
+## The Request
+
+**Claim**: Water damage, burst pipe
+
+**Claimant**: Commercial property, Policy #CP-847291
+
+**Agent task**: Assess coverage, process claim
+
+:::
+:::
+:::
+
+---
+
+## The Chain of Failures
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 1: RETRIEVAL (RAG layer)                                      │
+│                                                                     │
+│  Agent calls: lookup_policy(policy_id="CP-847291")                  │
+│  Retrieved: General commercial property guidelines                  │
+│  MISSED: Endorsement CP-1147 excluding "gradual water damage"       │
+│                                                                     │
+│  Status: Wrong docs, but no harm yet                                │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 2: REASONING                                                  │
+│                                                                     │
+│  Agent reasons: "Water damage from burst pipe is covered under      │
+│  standard commercial property. Claim is valid."                     │
+│                                                                     │
+│  MISSED: "Burst pipe" was actually slow leak over 3 months          │
+│  (gradual = excluded, sudden = covered)                             │
+│                                                                     │
+│  Status: Wrong conclusion, but no harm yet                          │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STEP 3: ACTION — HERE'S WHERE IT GETS BAD                          │
+│                                                                     │
+│  00:00  approve_claim(claim_id="WD-2847", amount=8500)              │
+│  00:03  send_payment(account="****7291", amount=8500)     💸        │
+│  00:05  update_crm(status="PAID", adjuster_notes="Auto-approved")   │
+│  00:07  send_email(to=claimant, template="claim_approved")          │
+│                                                                     │
+│  Total time: 7 seconds. Payment initiated. Email sent.              │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## The Consequence
+
+::: {.columns}
+::: {.column width="50%"}
+### Immediate
+
+- **$8,500** paid for excluded claim
+- Payment already in ACH pipeline
+- Claimant has written confirmation
+- CRM shows "legitimately paid"
+
+:::
+
+::: {.column width="50%"}
+### Downstream
+
+- Recovery attempt = bad PR + legal costs
+- If we DON'T recover = precedent set
+- Auditor finds 47 similar cases
+- **Pattern of auto-approving excluded claims**
+
+:::
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+### The Math
+
+47 similar cases × $8,500 average = **$399,500** in improper payments
+
+Plus: Regulatory inquiry. E&O claim. Reinsurance dispute.
+
+**VP of Claims Operations: terminated.**
+:::
+
+---
+
+## Why Agents Fail: The Math
+
+### LLM = Token Predictor
+
+$$P(\text{next\_token} \mid \text{context})$$
+
+::: {.fragment}
+The model doesn't know `approve_claim` is different from `describe_claim`.
+
+**Both are just tokens.**
+:::
+
+::: {.fragment style="margin-top: 30px;"}
+It knows what **text** follows "claim approved."
+
+It doesn't know what happens to your **bank account**.
+:::
+
+---
+
+## Why Agents Fail: The Math
+
+### Combinatorial Explosion
+
+$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
+
+::: {.fragment}
+8 tools × 5 params × 4 steps = **12,800+ trajectories**
+
+Per claim. 500 claims/day.
+
+**No exhaustive testing possible.**
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+You're not running a system. You're **sampling from chaos**.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text style="font-style: italic;"}
+"We trained a trillion-parameter model to predict the next token,
+
+gave it access to your payment systems,
+
+and said **'good luck.'**"
+:::
+
+---
+
+## The Compounding Problem
+
+::: {.columns}
+::: {.column width="50%"}
+### RAG Alone
+
+```
+Wrong retrieval
+      ↓
+Wrong answer
+      ↓
+Human catches it (maybe)
+      ↓
+Embarrassment
+```
+
+**Recoverable.**
+
+:::
+
+::: {.column width="50%"}
+### RAG + Agent
+
+```
+Wrong retrieval
+      ↓
+Wrong reasoning
+      ↓
+Wrong tool call
+      ↓
+Irreversible action
+      ↓
+Money moved / email sent / record changed
+```
+
+**Compounded. At machine speed.**
+
+:::
+:::
+
+::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**Agentic AI doesn't add risk. It multiplies it.**
+
+Every RAG failure becomes an action failure.
+:::
+
+---
+
+# Evaluation Methodology {background-color="#EA580C"}
+
+*The Hamel Husain Framework — Adapted for Agents*
+
+---
+
+## Phase 1: Error Analysis First
+
+**Before building, understand how agents fail:**
+
+```
+AGENTIC FAILURE TAXONOMY
+
+RETRIEVAL FAILURES (inherited from RAG)
+├── Wrong document retrieved
+├── Missing critical endorsement/exclusion
+└── Outdated information used
+
+REASONING FAILURES  
+├── Misinterpreted retrieved context
+├── Drew wrong conclusion from right docs
+└── Ignored conflicting information
+
+TOOL SELECTION FAILURES
+├── Wrong tool for the situation
+├── Right tool, wrong parameters
+└── Unnecessary tool call (should have escalated)
+
+ACTION SEQUENCE FAILURES
+├── Correct actions in wrong order
+├── Missing prerequisite check
+└── Didn't stop when should have
+```
+
+---
+
+## Phase 2: Tiered Evaluation
+
+::: {.columns}
+::: {.column width="50%"}
+### Tier 1: Retrieval
+- Did we find the right docs?
+- Did we find ALL relevant docs?
+- Are they current?
+
+### Tier 2: Reasoning
+- Given docs, is conclusion correct?
+- Are caveats/exceptions noted?
+- Is confidence calibrated?
+:::
+
+::: {.column width="50%"}
+### Tier 3: Tool Selection
+- Is this the right tool?
+- Are parameters correct?
+- Should we escalate instead?
+
+### Tier 4: End-to-End
+- Did we achieve the goal?
+- Did we cause any harm?
+- Is outcome defensible?
+:::
+:::
+
+---
+
+## Phase 3: Transition Failure Matrix
+
+**Map where agents break down:**
+
+```
+FROM STATE        → TO STATE           FAILURE RATE
+─────────────────────────────────────────────────────
+lookup_policy    → check_coverage      3% (wrong policy)
+check_coverage   → calculate_payout    12% (missed exclusion)  ← HOTSPOT
+calculate_payout → approve_claim       2% (math errors)
+approve_claim    → send_payment        1% (system errors)
+ANY STATE        → escalate_human      47% MISSED  ← CRITICAL
+```
+
+::: {.fragment style="margin-top: 20px;"}
+**The insight:** `check_coverage → calculate_payout` and `escalate_human` are your investment priorities.
+:::
+
+---
+
+## Phase 4: The Data Viewer
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  Claim: WD-2847 | Water damage, commercial property                 │
+├─────────────────────────────────────────────────────────────────────┤
+│  TRACE                           │  EXPERT EVALUATION               │
+│  ┌─────────────────────────────┐ │  ┌───────────────────────────┐   │
+│  │ 1. lookup_policy ✓          │ │  │ [FAIL] Step 1             │   │
+│  │ 2. check_coverage ✓         │ │  │ Retrieved base policy     │   │
+│  │ 3. calculate_payout ✓       │ │  │ but missed CP-1147        │   │
+│  │ 4. approve_claim ✓          │ │  │ endorsement.              │   │
+│  │ 5. send_payment ✓           │ │  │                           │   │
+│  │                             │ │  │ [FAIL] Step 2             │   │
+│  │ All tools returned success! │ │  │ "Burst pipe" was gradual  │   │
+│  │                             │ │  │ leak — excluded.          │   │
+│  └─────────────────────────────┘ │  │                           │   │
+│                                  │  │ Should have: ESCALATE     │   │
+│                                  │  └───────────────────────────┘   │
+├─────────────────────────────────────────────────────────────────────┤
+│  Failure Modes: [Missing endorsement] [Gradual vs sudden] [No esc] │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+But this is still manual.
+
+Still human-bound.
+
+Still doesn't scale.
+:::
+
+::: {.fragment .fade-up style="margin-top: 60px;"}
+You can't have a domain expert review every claim.
+:::
+
+::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
+**So what do we do?**
+:::
+
+---
+
+# VERIFIER PRIMACY {background-color="#7C3AED"}
+
+*The Core Insight*
+
+---
+
+## The Asymmetry
+
+::: {.callout-important appearance="minimal"}
+## P ≠ NP Intuition Applied to Trust
+:::
+
+$$|\text{Rule Space}| \ll |\text{Action Space}|$$
+
+::: {.columns}
+::: {.column width="50%"}
+### Generation / Action
+- Exponentially hard
+- Infinite trajectories
+- Unbounded creativity
+:::
+
+::: {.column width="50%"}
+### Verification
+- Tractable constraints
+- Finite rule sets
+- Composable checks
+:::
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 30px; border-radius: 8px; margin-top: 40px; text-align: center; font-size: 1.3em;"}
+**Generating correct action: exponentially hard.**
+
+**Checking if action is valid: tractable.**
+:::
+
+---
+
+## From Analysis to Infrastructure
+
+::: {.callout-tip appearance="minimal"}
+## Verifier Primacy
+Take the artifacts of error analysis and **PRODUCTIONIZE** them.
+:::
+
+| Error Analysis Output | → | Verifier Infrastructure |
+|----------------------|---|------------------------|
+| "Missed endorsements on commercial" | → | Endorsement completeness checker |
+| "Gradual vs sudden confusion" | → | Temporal damage classifier |
+| "Should have escalated" | → | Escalation trigger rules |
+| Expert critiques on edge cases | → | LLM-as-judge prompts |
+| Transition failure hotspots | → | Step-level validators |
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**Human-BUILT, machine-EXECUTED.**
+
+Domain knowledge becomes infrastructure.
+:::
+
+---
+
+# The Verification Stack {background-color="#1E293B"}
+
+*Six layers, each with mathematical foundation*
+
+---
+
+## Layer 0: Guardrails
+
+**Pre-execution constraints — Stop obvious violations**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Constraint Satisfaction:**
+$$A_{\text{valid}} = \{a \in A : c(a) = \text{true}, \forall c \in C\}$$
+
+**Anomaly Detection:**
+$$\text{Flag if } -\log P_{\text{normal}}(a) > \theta$$
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- Max auto-approval: $10,000
+- Rate limit: ≤20 claims/hour/adjuster
+- Scope: Can't approve own claims
+- PII: Block SSN in external comms
+
+:::
+:::
+
+---
+
+## Layer 1: Schema Validation
+
+**Structural correctness — Is the action well-formed?**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Formal Language Membership:**
+$$v(x) = \mathbb{1}[x \in L(S)]$$
+
+JSON Schema, Pydantic = CFG membership test
+
+$O(n)$ parsing, **deterministic**
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- Claim ID matches pattern
+- Policy number exists in system
+- Amount is positive number
+- Required fields present
+
+:::
+:::
+
+---
+
+## Layer 2: Semantic Consistency
+
+**Does the output contradict itself or known facts?**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Propositional Consistency:**
+$$\exists M : M \models p_1 \land p_2 \land \ldots \land p_n$$
+
+**NLI Classification:**
+$$(premise, hyp) \to \{\text{entails}, \text{contradicts}, \text{neutral}\}$$
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- "Claim approved" + "Coverage excluded" → **contradiction**
+- "Gradual damage" + "Sudden event coverage" → **contradiction**
+- Amount approved ≤ Amount claimed
+
+:::
+:::
+
+---
+
+## Layer 3: Domain Rules
+
+**Business logic, regulatory requirements**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Rule Engines (Horn Clauses):**
+$$\text{condition}_1 \land \text{condition}_2 \to \text{action\_allowed}$$
+
+**Deontic Logic:**
+$$F(\text{approve}) \leftarrow \text{exclusion\_applies}$$
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- If endorsement excludes → cannot approve
+- If amount > reserve → requires supervisor
+- If litigation hold → freeze all actions
+- If state = FL, hurricane → special rules
+
+:::
+:::
+
+---
+
+## Layer 4: LLM-as-Judge
+
+**"Would the domain expert approve this action?"**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Alignment as Distribution Matching:**
+$$\min KL(P_{\text{expert}} \| P_{\text{judge}})$$
+
+**Inter-Rater Reliability:**
+$$\kappa = \frac{p_o - p_e}{1 - p_e} > 0.8$$
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- Taxonomy of failure modes as prompt
+- Few-shot examples from expert critiques
+- Calibration loop: judge vs adjuster agreement
+- Active learning on edge cases
+
+:::
+:::
+
+---
+
+## Layer 5: Human Escalation
+
+**Route uncertain/high-stakes cases to humans**
+
+::: {.columns}
+::: {.column width="50%"}
+### Math Foundation
+
+**Selective Prediction:**
+$$\text{Reject if confidence} < \theta$$
+
+**Cost-Sensitive:**
+$$\text{Escalate iff } P(\text{error}) \times C_{\text{miss}} > C_{\text{human}}$$
+
+:::
+
+::: {.column width="50%"}
+### Insurance Implementation
+
+- Confidence < 70% → escalate
+- Amount > $50k → always escalate
+- New failure mode → escalate + add to taxonomy
+- Claimant is litigious → always escalate
+
+:::
+:::
+
+---
+
+## The Stack Applied to Our Case
+
+```
+CLAIM WD-2847: Water damage, commercial property
+─────────────────────────────────────────────────────────────────────
+
+✓ GUARDRAILS        Amount $8,500 < $10k threshold      PASS
+
+✓ SCHEMA            All fields valid                     PASS
+
+✗ SEMANTIC          "Gradual leak" + "Sudden coverage"   CONTRADICTION
+                    Agent reasoning inconsistent         BLOCKED
+
+  ─── Would have continued if semantic passed ───
+
+✗ DOMAIN RULES      Endorsement CP-1147 excludes         BLOCKED
+                    gradual water damage
+
+✗ LLM-JUDGE         "This looks like gradual damage      BLOCKED
+                    claim being approved under sudden
+                    coverage. Expert would reject."
+
+→ ESCALATE          Routed to human adjuster
+                    Claim correctly denied
+                    $8,500 saved
+                    Pattern flagged for 46 similar
+```
+
+---
+
+## The Stack as Funnel
+
+```
+ALL AGENT ACTIONS
+     │
+     ▼
+┌─────────────────────┐
+│    GUARDRAILS       │  ~5% blocked (obvious violations)
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│  SCHEMA VALIDATION  │  ~2% blocked (malformed)
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│ SEMANTIC CONSISTENCY│  ~8% blocked (contradictions)
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│    DOMAIN RULES     │  ~10% blocked (policy violations)
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│   LLM-AS-JUDGE      │  ~5% blocked (nuanced failures)
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│  HUMAN ESCALATION   │  ~8% escalated (uncertain)
+└─────────────────────┘
+     │
+     ▼
+~62% AUTO-APPROVED (with full audit trail)
+```
+
+---
+
+## What Verifier Primacy Unlocks
+
+::: {.columns}
+::: {.column width="50%"}
+### True Autonomy
+
+Agents act without human review — **because verifiers watch**.
+
+You can finally ship autonomous systems.
+
+### Validation Trail
+
+Every action logged. Every gate documented.
+
+"Here's what it tried. Here's why we blocked it."
+
+:::
+
+::: {.column width="50%"}
+### Real-Time Protection
+
+Not post-mortem. Not batch review.
+
+Catch the wrong action **BEFORE** payment sends.
+
+### Defensible to the Board
+
+"Here's our verification layer. Here's our audit trail."
+
+Governance made executable.
+
+:::
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+Everyone will have GPT-5.
+:::
+
+::: {.fragment}
+AI capability is becoming **commodity**.
+:::
+
+::: {.fragment .fade-up style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
+**TRUST is the moat.**
+:::
+
+::: {.fragment style="margin-top: 40px;"}
+You're not investing in AI.
+
+You're investing in **AI GOVERNANCE**.
+:::
+
+---
+
+# A Tale of Two Executives {background-color="#1E293B"}
+
+---
+
+## {background-color="#1E293B"}
+
+::: {.columns}
+::: {.column width="48%" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;"}
+### EXECUTIVE A
+
+- Shipped claims agent fast
+- Demo was impressive
+- Board was excited
+
+::: {.fragment}
+- Agent paid 47 excluded claims
+- "Why did it fail?" — "We don't know."
+- "Will it happen again?" — "We can't guarantee."
+:::
+
+::: {.fragment style="color: #DC2626; font-weight: bold; margin-top: 20px;"}
+$400k exposure. Regulatory inquiry. Career over.
+:::
+
+:::
+
+::: {.column width="48%" style="background-color: #D1FAE5; padding: 30px; border-radius: 12px;"}
+### EXECUTIVE B
+
+- Shipped claims agent with verification stack
+- Same agent, same failure attempts
+
+::: {.fragment}
+- **Semantic layer caught contradictions**
+- **Domain rules caught exclusions**
+- Escalated to human review
+:::
+
+::: {.fragment style="color: #059669; font-weight: bold; margin-top: 20px;"}
+"Here's the audit trail. Zero improper payments."
+
+Promoted. Trusted. Leading AI transformation.
+:::
+
+:::
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Which one will you be?
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+AI adoption is **not optional**.
+
+The pressure is real.
+
+::: {.fragment style="color: #DC2626; margin-top: 30px;"}
+But adoption without governance is **liability**.
+:::
+
+::: {.fragment style="background-color: #7C3AED; padding: 40px; border-radius: 12px; margin-top: 50px;"}
+::: {.r-fit-text}
+**Stop praying. Start verifying.**
+:::
+:::
+
+::: {.fragment style="color: #64748B; margin-top: 40px;"}
+Andriy Batutin • @AI_Capitalist • andriybatutin.substack.com
+:::
+
+---
+
+# Appendix: Key Equations {background-color="#1E293B"}
+
+---
+
+## Reference Card
+
+::: {.columns}
+::: {.column width="50%"}
+### Stochasticity
+$$P(x_1, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
+
+### Information Asymmetry
+$$H(\text{Query}) \ll H(\text{Document})$$
+
+### Action Space
+$$|A| = n^{\text{tools}} \times m^{\text{params}} \times k^{\text{steps}}$$
+
+:::
+
+::: {.column width="50%"}
+### Verifier Primacy
+$$|\text{Rules}| \ll |\text{Actions}|$$
+
+### Judge Calibration
+$$\kappa = \frac{p_o - p_e}{1 - p_e}$$
+
+### Escalation
+$$\text{Escalate iff } P(e) \cdot C_{\text{miss}} > C_{\text{human}}$$
+
+:::
+:::

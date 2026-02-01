@@ -1107,116 +1107,7 @@ Current: ████████░░░░░░░░ Level 3 — Working on
 <p><strong>It doesn’t replace it.</strong></p>
 </div>
 </section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="agentic-case-study" class="title-slide slide level1 center" data-background-color="#1E293B">
-<h1>Agentic Case Study</h1>
-<p><em>Travel Booking Agent</em></p>
-</section>
-<section id="the-setup-1" class="slide level2 center">
-<h2>The Setup</h2>
-<div class="columns">
-<div class="column" style="width:55%;">
-<p><strong>Enterprise Travel Management Platform</strong></p>
-<ul>
-<li>AI agent with 12 tools: flights, hotels, cars, expenses, calendar</li>
-<li>Processes 2,000+ booking requests/day</li>
-<li>Connected to corporate credit cards (avg limit: $50k)</li>
-</ul>
-</div><div class="column" style="width:45%;">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>The Failure</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Request:</strong> “Book the usual NYC trip for next Tuesday”</p>
-<p><strong>Agent interpretation:</strong></p>
-<ul>
-<li>“Usual” = last booking pattern (business class)</li>
-<li>“NYC” = wrong airport (LGA vs JFK)</li>
-<li>“Tuesday” = wrong week (parsed ambiguously)</li>
-</ul>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="the-chain-reaction" class="slide level2 center">
-<h2>The Chain Reaction</h2>
-<ul>
-<li class="fragment">Agent auto-charged corporate card: <strong>$18,400</strong> (3 × business class)</li>
-<li class="fragment">Sent calendar invites to 3 executives with wrong details</li>
-<li class="fragment">Auto-booked hotel + car at wrong location: <strong>$2,100</strong></li>
-<li class="fragment">Total exposure before human noticed: <strong>$20,500 in 47 seconds</strong></li>
-</ul>
-<div class="fragment fade-up" style="color: #DC2626; font-weight: bold; font-size: 1.2em; margin-top: 40px;">
-<p>CTO asked: “Why didn’t we have any safeguards?”</p>
-<p>No answer.</p>
-</div>
-</section>
-<section id="why-agents-fail-the-math" class="slide level2 center">
-<h2>Why Agents Fail: The Math</h2>
-<h3 id="llm-token-predictor">1. LLM = Token Predictor</h3>
-<p><span class="math display">\[P(\text{next\_token} \mid \text{context})\]</span></p>
-<div class="fragment">
-<p>The model doesn’t know <code>book_flight</code> is different from <code>book_club</code>.</p>
-<p>Both are just tokens.</p>
-</div>
-<div class="fragment">
-<p>It knows what <strong>text</strong> follows “confirm purchase.”</p>
-<p>It doesn’t know what happens to your <strong>credit card</strong>.</p>
-</div>
-</section>
-<section id="why-agents-fail-the-math-1" class="slide level2 center">
-<h2>Why Agents Fail: The Math</h2>
-<h3 id="combinatorial-explosion">2. Combinatorial Explosion</h3>
-<p><span class="math display">\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</span></p>
-<div class="fragment">
-<p>12 tools × 5 params × 3 steps = <strong>324,000+ trajectories</strong></p>
-<p>No exhaustive testing possible.</p>
-<p><em>You’re sampling from chaos.</em></p>
-</div>
-</section>
-<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
-<h2></h2>
-<div class="r-fit-text" style="font-style: italic;">
-<p>“We trained a trillion-parameter model to predict the next word,</p>
-<p>pointed it at your bank account,</p>
-<p>and said ‘good luck.’”</p>
-</div>
-</section>
-<section id="agentic-methodology-hamel-husain-framework" class="slide level2 center">
-<h2>Agentic Methodology: Hamel Husain Framework</h2>
-<ol type="1">
-<li class="fragment"><strong>End-to-End Success First</strong>
-<ul>
-<li class="fragment">“Did we meet the user’s goal?” — Binary pass/fail</li>
-<li class="fragment">Treat agent as black box first</li>
-</ul></li>
-<li class="fragment"><strong>Step-Level Diagnostics</strong> (when it fails)
-<ul>
-<li class="fragment">Wrong tool selected?</li>
-<li class="fragment">Bad parameters?</li>
-<li class="fragment">Failed error recovery?</li>
-</ul></li>
-<li class="fragment"><strong>Transition Failure Matrix</strong>
-<ul>
-<li class="fragment">Map: [last success] → [failure point]</li>
-<li class="fragment">“GenSQL→ExecSQL fails 12×. Now you know where to invest.”</li>
-</ul></li>
-<li class="fragment"><strong>Trace Everything</strong>
-<ul>
-<li class="fragment">No observability = no debugging</li>
-</ul></li>
-</ol>
-</section>
-<section id="section-7" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-6" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>But this is still manual.</p>
@@ -1224,7 +1115,7 @@ Current: ████████░░░░░░░░ Level 3 — Working on
 <p>Still doesn’t scale.</p>
 </div>
 <div class="fragment fade-up" style="margin-top: 60px;">
-<p>You can’t have a domain expert review every API call.</p>
+<p>You can’t have a domain expert review every query.</p>
 </div>
 <div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
 <p><strong>So what do we do?</strong></p>
@@ -1497,7 +1388,7 @@ Current: ████████░░░░░░░░ Level 3 — Working on
 <p>Governance made executable.</p>
 </div></div>
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1521,7 +1412,7 @@ Current: ████████░░░░░░░░ Level 3 — Working on
 <h1>A Tale of Two Executives</h1>
 
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#1E293B">
+<section id="section-8" class="slide level2 center" data-background-color="#1E293B">
 <h2></h2>
 <div class="columns">
 <div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
@@ -1560,13 +1451,13 @@ Current: ████████░░░░░░░░ Level 3 — Working on
 </div>
 </div></div>
 </section>
-<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Which one will you be?</p>
 </div>
 </section>
-<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-10" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <p>AI adoption is <strong>not optional</strong>.</p>
 <p>The pressure is real.</p>

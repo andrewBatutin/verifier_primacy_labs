@@ -1043,128 +1043,6 @@ Hamel's methodology gives you feedback loops to make verification efficient.
 
 ---
 
-# Agentic Case Study {background-color="#1E293B"}
-
-*Travel Booking Agent*
-
----
-
-## The Setup
-
-::: {.columns}
-::: {.column width="55%"}
-**Enterprise Travel Management Platform**
-
-- AI agent with 12 tools: flights, hotels, cars, expenses, calendar
-- Processes 2,000+ booking requests/day
-- Connected to corporate credit cards (avg limit: $50k)
-
-:::
-
-::: {.column width="45%"}
-::: {.callout-warning}
-## The Failure
-
-**Request:** "Book the usual NYC trip for next Tuesday"
-
-**Agent interpretation:**
-
-- "Usual" = last booking pattern (business class)
-- "NYC" = wrong airport (LGA vs JFK)
-- "Tuesday" = wrong week (parsed ambiguously)
-:::
-:::
-:::
-
----
-
-## The Chain Reaction
-
-::: {.incremental}
-- Agent auto-charged corporate card: **$18,400** (3 × business class)
-- Sent calendar invites to 3 executives with wrong details
-- Auto-booked hotel + car at wrong location: **$2,100**
-- Total exposure before human noticed: **$20,500 in 47 seconds**
-:::
-
-::: {.fragment .fade-up style="color: #DC2626; font-weight: bold; font-size: 1.2em; margin-top: 40px;"}
-CTO asked: "Why didn't we have any safeguards?"
-
-No answer.
-:::
-
----
-
-## Why Agents Fail: The Math
-
-### 1. LLM = Token Predictor
-
-$$P(\text{next\_token} \mid \text{context})$$
-
-::: {.fragment}
-The model doesn't know `book_flight` is different from `book_club`.
-
-Both are just tokens.
-:::
-
-::: {.fragment}
-It knows what **text** follows "confirm purchase."
-
-It doesn't know what happens to your **credit card**.
-:::
-
----
-
-## Why Agents Fail: The Math
-
-### 2. Combinatorial Explosion
-
-$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
-
-::: {.fragment}
-12 tools × 5 params × 3 steps = **324,000+ trajectories**
-
-No exhaustive testing possible.
-
-*You're sampling from chaos.*
-:::
-
----
-
-## {background-color="#0F172A"}
-
-::: {.r-fit-text style="font-style: italic;"}
-"We trained a trillion-parameter model to predict the next word,
-
-pointed it at your bank account,
-
-and said 'good luck.'"
-:::
-
----
-
-## Agentic Methodology: Hamel Husain Framework
-
-::: {.incremental}
-1. **End-to-End Success First**
-   - "Did we meet the user's goal?" — Binary pass/fail
-   - Treat agent as black box first
-   
-2. **Step-Level Diagnostics** (when it fails)
-   - Wrong tool selected?
-   - Bad parameters?
-   - Failed error recovery?
-   
-3. **Transition Failure Matrix**
-   - Map: [last success] → [failure point]
-   - "GenSQL→ExecSQL fails 12×. Now you know where to invest."
-   
-4. **Trace Everything**
-   - No observability = no debugging
-:::
-
----
-
 ## {background-color="#7C3AED"}
 
 ::: {.r-fit-text}
@@ -1176,7 +1054,7 @@ Still doesn't scale.
 :::
 
 ::: {.fragment .fade-up style="margin-top: 60px;"}
-You can't have a domain expert review every API call.
+You can't have a domain expert review every query.
 :::
 
 ::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
