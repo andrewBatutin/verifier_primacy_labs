@@ -528,27 +528,10 @@ Andriy Batutin
 <p>Human adjuster must click [APPROVE] or [REJECT]. <em>“Human in the loop. Completely safe.”</em></p>
 </div>
 </section>
-<section id="marias-screen-0947-am" class="slide level2 center">
-<h2>Maria’s Screen — 09:47 AM</h2>
-<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
-│  CLAIMS WORKBENCH                                       Maria Kowalska  │
-│  Queue: 47 claims remaining              Today: 18/45 processed         │
-├─────────────────────────────────────────────────────────────────────────┤
-│  CLAIM #WD-2847 | Water Damage - Commercial Property                    │
-│  Claimant: Restauracja Złota Kaczka Sp. z o.o. | Policy: CP-847291      │
-│                                                                         │
-│  ┌───────────────────────────────────────────────────────────────────┐  │
-│  │   ███  AI ASSISTANT RECOMMENDATION  ███                           │  │
-│  │   Coverage: ✓ APPLIES          Policy Status: ✓ ACTIVE            │  │
-│  │   Deductible: PLN 5,000        Coverage Limit: PLN 500,000        │  │
-│  │   Damage Assessment: PLN 43,500                                   │  │
-│  │   Less Deductible:   PLN  5,000                                   │  │
-│  │   ─────────────────────────────                                   │  │
-│  │   RECOMMENDED PAYOUT: PLN 38,500    Confidence: 94%               │  │
-│  └───────────────────────────────────────────────────────────────────┘  │
-│       [ APPROVE ]         [ REJECT ]         [ ESCALATE ]               │
-└─────────────────────────────────────────────────────────────────────────┘</code></pre>
-</section>
+<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/claims_wb.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
 <section id="what-maria-does" class="slide level2 center">
 <h2>What Maria Does</h2>
 <div class="columns">
@@ -574,27 +557,20 @@ Andriy Batutin
 <section id="what-maria-should-have-checked" class="slide level2 center">
 <h2>What Maria Should Have Checked</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>IF [View Policy] — Page 147:</strong></p>
-<pre><code>ENDORSEMENT CP-1147 - WATER DAMAGE
-
-Coverage for water damage LIMITED TO
-sudden and accidental discharge.
-
-EXCLUDED:
-- Gradual seepage &gt;14 days
-- Damage from lack of maintenance
-- Known source not repaired</code></pre>
-</div><div class="column" style="width:50%;">
-<p><strong>IF [View Claim Form]:</strong></p>
-<pre><code>Section 3: Description of Loss
-
-"We noticed water stains on ceiling
-in November. Thought it was
-condensation. On January 15 ceiling
-collapsed. Plumber found pipe had
-been leaking for 'at least 2-3
-months' based on corrosion."</code></pre>
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="if-view-policy-page-147">IF [View Policy] — Page 147</h3>
+<p><strong>ENDORSEMENT CP-1147 - WATER DAMAGE</strong></p>
+<p>Coverage for water damage <strong>LIMITED TO sudden and accidental discharge.</strong></p>
+<p><strong>EXCLUDED:</strong></p>
+<ul>
+<li>Gradual seepage &gt;14 days</li>
+<li>Damage from lack of maintenance</li>
+<li>Known source not repaired</li>
+</ul>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="if-view-claim-form">IF [View Claim Form]</h3>
+<p><strong>Section 3: Description of Loss</strong></p>
+<p><em>“We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for <strong>‘at least 2-3 months’</strong> based on corrosion.”</em></p>
 </div></div>
 <div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
 <p><strong>GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0</strong></p>
@@ -610,22 +586,55 @@ months' based on corrosion."</code></pre>
 </div><div class="column" style="width:50%;">
 <h3 id="ai-reasoning">AI Reasoning</h3>
 <p>✓ Water damage covered <em>(generally true)</em> ✓ Policy is active ✓ Amount within limits ✗ <strong>Did NOT parse “2-3 months”</strong> ✗ <strong>Did NOT flag gradual vs sudden</strong></p>
-<p><em>Why? Scanned PDF, OCR 87%. Free text. No structured field. Janet knows this. AI doesn’t.</em></p>
+<p><em>Why? Scanned PDF, OCR 87%. Free text. No structured field. Senior Adjuster knows this. AI doesn’t.</em></p>
 </div></div>
 </section>
 <section id="the-aftermath" class="slide level2 center">
 <h2>The Aftermath</h2>
-<pre><code>09:47:38    Maria clicks [APPROVE]
-09:47:39    System logs: "Claim WD-2847 APPROVED by Maria Kowalska"
-09:48:00    Maria is already on Claim #WD-2848
-
-Day +3      Payment of PLN 38,500 processed
-Day +47     Monthly audit sample pulls Claim WD-2847
-Day +48     Senior Adjuster: "Why did we pay this? It's gradual damage."
-Day +49     Recovery attempted. Claimant: "We have approval confirmation."
-Day +51     Legal involved. Claimant has written record.
-
-Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000</code></pre>
+<div style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<p><strong>09:47:38</strong> — Maria clicks [APPROVE]</p>
+<p><strong>09:47:39</strong> — System logs: <em>“Claim WD-2847 APPROVED by Maria Kowalska”</em></p>
+<p><strong>09:48:00</strong> — Maria is already on Claim #WD-2848</p>
+</div>
+<div style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 20px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>+3</strong></td>
+<td>Payment of PLN 38,500 processed</td>
+</tr>
+<tr class="even">
+<td><strong>+47</strong></td>
+<td>Monthly audit sample pulls Claim WD-2847</td>
+</tr>
+<tr class="odd">
+<td><strong>+48</strong></td>
+<td>Senior Adjuster: <em>“Why did we pay this? It’s gradual damage.”</em></td>
+</tr>
+<tr class="even">
+<td><strong>+49</strong></td>
+<td>Recovery attempted. Claimant: <em>“We have approval confirmation.”</em></td>
+</tr>
+<tr class="odd">
+<td><strong>+51</strong></td>
+<td>Legal involved. Claimant has written record.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>Day +180</strong> — Pattern discovered. <strong>23 similar claims. Total: PLN 885,500</strong></p>
+</div>
 </section>
 <section id="the-accountability-question" class="slide level2 center">
 <h2>The Accountability Question</h2>
@@ -666,10 +675,10 @@ Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000</code></pr
 </div></div>
 <div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
 <p>12 adjusters × 2 errors/day × 220 days = <strong>5,280 errors/year</strong></p>
-<p>Avg overpayment: PLN 35,000 → <strong>Annual exposure: PLN 184M</strong></p>
+<p>Avg overpayment: PLN 38,500 → <strong>Annual exposure: PLN 203M</strong></p>
 </div>
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-9" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>This is not a story about AI making mistakes.</p>
@@ -685,7 +694,7 @@ Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000</code></pr
 <p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
 </div>
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>The question isn’t:</p>
@@ -706,112 +715,299 @@ Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000</code></pr
 <section>
 <section id="evaluation-methodology" class="title-slide slide level1 center" data-background-color="#EA580C">
 <h1>Evaluation Methodology</h1>
-<p><em>The Hamel Husain Framework — Adapted for Agents</em></p>
+<p><em>Applying the <a href="https://hamel.dev/blog/posts/evals-faq/">Hamel Husain Framework</a> to Claim WD-2847</em></p>
 </section>
+<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
 <section id="phase-1-error-analysis-first" class="slide level2 center">
 <h2>Phase 1: Error Analysis First</h2>
-<p><strong>Before building, understand how agents fail:</strong></p>
-<pre><code>AGENTIC FAILURE TAXONOMY
-
-RETRIEVAL FAILURES (inherited from RAG)
-├── Wrong document retrieved
-├── Missing critical endorsement/exclusion
-└── Outdated information used
-
-REASONING FAILURES  
-├── Misinterpreted retrieved context
-├── Drew wrong conclusion from right docs
-└── Ignored conflicting information
-
-TOOL SELECTION FAILURES
-├── Wrong tool for the situation
-├── Right tool, wrong parameters
-└── Unnecessary tool call (should have escalated)
-
-ACTION SEQUENCE FAILURES
-├── Correct actions in wrong order
-├── Missing prerequisite check
-└── Didn't stop when should have</code></pre>
-</section>
-<section id="phase-2-tiered-evaluation" class="slide level2 center">
-<h2>Phase 2: Tiered Evaluation</h2>
+<p><strong>Before using new LLM, understand how Maria’s claim failed:</strong></p>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="tier-1-retrieval">Tier 1: Retrieval</h3>
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="retrieval-failure">Retrieval Failure</h3>
 <ul>
-<li>Did we find the right docs?</li>
-<li>Did we find ALL relevant docs?</li>
-<li>Are they current?</li>
+<li>AI queried “water damage coverage CP-847291”</li>
+<li><strong>Returned:</strong> base policy ✓</li>
+<li><strong>Missed:</strong> Endorsement CP-1147 ✗</li>
+<li><em>Why: No “water” keyword in endorsement title, stored in separate DMS</em></li>
 </ul>
-<h3 id="tier-2-reasoning">Tier 2: Reasoning</h3>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="reasoning-failure">Reasoning Failure</h3>
 <ul>
-<li>Given docs, is conclusion correct?</li>
-<li>Are caveats/exceptions noted?</li>
-<li>Is confidence calibrated?</li>
+<li>AI read claim form but didn’t flag “2-3 months”</li>
+<li>OCR quality: 87% on scanned PDF</li>
+<li>No structured field for “duration”</li>
+<li><em>Gradual vs sudden distinction: not in training</em></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<h3 id="tier-3-tool-selection">Tier 3: Tool Selection</h3>
+</div></div>
+<div class="columns" style="margin-top: 20px;">
+<div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="tool-selection-failure">Tool Selection Failure</h3>
 <ul>
-<li>Is this the right tool?</li>
-<li>Are parameters correct?</li>
-<li>Should we escalate instead?</li>
+<li><strong>Called:</strong> <code>recommend_approval(38500)</code></li>
+<li><strong>Should have:</strong> <code>escalate_to_senior("unclear timeline")</code></li>
+<li><em>Escalation trigger missed: temporal ambiguity</em></li>
 </ul>
-<h3 id="tier-4-end-to-end">Tier 4: End-to-End</h3>
+</div><div class="column" style="background-color: #0F172A; padding: 20px; border-radius: 8px;">
+<h3 id="human-oversight-failure">Human Oversight Failure</h3>
 <ul>
-<li>Did we achieve the goal?</li>
-<li>Did we cause any harm?</li>
-<li>Is outcome defensible?</li>
+<li>Maria saw: 94% confidence, 47 in queue</li>
+<li>Maria did NOT click: [View Policy] [View Claim]</li>
+<li><strong>Time on claim: 26 seconds</strong></li>
+<li><em>System designed for 45/day = no time to verify</em></li>
 </ul>
 </div></div>
 </section>
-<section id="phase-3-transition-failure-matrix" class="slide level2 center">
-<h2>Phase 3: Transition Failure Matrix</h2>
-<p><strong>Map where agents break down:</strong></p>
-<pre><code>FROM STATE        → TO STATE           FAILURE RATE
-─────────────────────────────────────────────────────
-lookup_policy    → check_coverage      3% (wrong policy)
-check_coverage   → calculate_payout    12% (missed exclusion)  ← HOTSPOT
-calculate_payout → approve_claim       2% (math errors)
-approve_claim    → send_payment        1% (system errors)
-ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
-<div class="fragment" style="margin-top: 20px;">
-<p><strong>The insight:</strong> <code>check_coverage → calculate_payout</code> and <code>escalate_human</code> are your investment priorities.</p>
+<section id="phase-2-build-failure-taxonomy" class="slide level2 center">
+<h2>Phase 2: Build Failure Taxonomy</h2>
+<p><strong>From WD-2847 and 22 similar claims, patterns emerge:</strong></p>
+<div class="columns">
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="retrieval-failures">Retrieval Failures</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Freq</th>
+<th>WD-2847?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Missing endorsement</td>
+<td>34%</td>
+<td>✓</td>
+</tr>
+<tr class="even">
+<td>Wrong policy version</td>
+<td>18%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Cross-system doc gap</td>
+<td>23%</td>
+<td>✓</td>
+</tr>
+<tr class="even">
+<td>Outdated guidelines</td>
+<td>12%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="reasoning-failures">Reasoning Failures</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Freq</th>
+<th>WD-2847?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gradual vs sudden</td>
+<td>41%</td>
+<td>✓</td>
+</tr>
+<tr class="even">
+<td>Maintenance exclusion</td>
+<td>22%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Coverage limit misread</td>
+<td>15%</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Deductible calculation</td>
+<td>8%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>The 41% gradual/sudden failure rate = your first verifier target.</strong></p>
 </div>
 </section>
-<section id="phase-4-the-data-viewer" class="slide level2 center">
-<h2>Phase 4: The Data Viewer</h2>
-<pre><code>┌─────────────────────────────────────────────────────────────────────┐
-│  Claim: WD-2847 | Water damage, commercial property                 │
-├─────────────────────────────────────────────────────────────────────┤
-│  TRACE                           │  EXPERT EVALUATION               │
-│  ┌─────────────────────────────┐ │  ┌───────────────────────────┐   │
-│  │ 1. lookup_policy ✓          │ │  │ [FAIL] Step 1             │   │
-│  │ 2. check_coverage ✓         │ │  │ Retrieved base policy     │   │
-│  │ 3. calculate_payout ✓       │ │  │ but missed CP-1147        │   │
-│  │ 4. approve_claim ✓          │ │  │ endorsement.              │   │
-│  │ 5. send_payment ✓           │ │  │                           │   │
-│  │                             │ │  │ [FAIL] Step 2             │   │
-│  │ All tools returned success! │ │  │ "Burst pipe" was gradual  │   │
-│  │                             │ │  │ leak — excluded.          │   │
-│  └─────────────────────────────┘ │  │                           │   │
-│                                  │  │ Should have: ESCALATE     │   │
-│                                  │  └───────────────────────────┘   │
-├─────────────────────────────────────────────────────────────────────┤
-│  Failure Modes: [Missing endorsement] [Gradual vs sudden] [No esc] │
-└─────────────────────────────────────────────────────────────────────┘</code></pre>
+<section id="phase-3-tiered-evaluation" class="slide level2 center">
+<h2>Phase 3: Tiered Evaluation</h2>
+<p><strong>Decompose Maria’s 26-second decision into verifiable checkpoints:</strong></p>
+<div class="columns">
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="tier-1-retrieval">Tier 1: Retrieval</h3>
+<ul>
+<li>✓ Base policy CP-847291</li>
+<li>✗ <strong>Endorsements — MISSING CP-1147</strong></li>
+<li>✓ Current version</li>
+<li>✓ Claim form</li>
+</ul>
+<p><strong>Score: 3/4 = 75%</strong></p>
+<p><em>VERDICT: INCOMPLETE</em></p>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="tier-2-reasoning">Tier 2: Reasoning</h3>
+<ul>
+<li>✗ Coverage determination — WRONG</li>
+<li>✗ Exclusions checked — MISSED</li>
+<li>✗ Timeline extracted — MISSED</li>
+<li>✗ Damage classified — WRONG</li>
+</ul>
+<p><strong>Score: 0/4 = 0%</strong></p>
+<p><em>VERDICT: FAIL</em></p>
+</div></div>
+<div class="columns" style="margin-top: 20px;">
+<div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="tier-3-tool-selection">Tier 3: Tool Selection</h3>
+<ul>
+<li>✗ Selected: <code>recommend_approval</code></li>
+<li>✗ Should have: <code>escalate_to_senior</code></li>
+</ul>
+<p><em>VERDICT: FAIL — timeline ambiguity</em></p>
+</div><div class="column" style="background-color: #DC2626; padding: 20px; border-radius: 8px;">
+<h3 id="tier-4-end-to-end">Tier 4: End-to-End</h3>
+<ul>
+<li>✗ Correct coverage? NO</li>
+<li>✗ Correct payout? NO</li>
+<li>✗ No improper payment? NO</li>
+</ul>
+<p><em>VERDICT: CATASTROPHIC FAILURE</em></p>
+</div></div>
 </section>
-<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
+<section id="phase-4-transition-failure-matrix" class="slide level2 center">
+<h2>Phase 4: Transition Failure Matrix</h2>
+<p><strong>Map where the WD-2847 workflow broke down:</strong></p>
+<div style="background-color: #0F172A; padding: 20px; border-radius: 8px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 22%">
+<col style="width: 31%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>From State</th>
+<th>To State</th>
+<th>Failure Rate</th>
+<th>WD-2847</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>receive_claim</td>
+<td>lookup_policy</td>
+<td>2%</td>
+<td>✓ passed</td>
+</tr>
+<tr class="even">
+<td>lookup_policy</td>
+<td><strong>retrieve_endorsements</strong></td>
+<td><strong>31%</strong></td>
+<td><strong>✗ FAILED</strong></td>
+</tr>
+<tr class="odd">
+<td>retrieve_endorse</td>
+<td>check_coverage</td>
+<td>4%</td>
+<td><em>(skipped)</em></td>
+</tr>
+<tr class="even">
+<td>check_coverage</td>
+<td><strong>extract_timeline</strong></td>
+<td><strong>28%</strong></td>
+<td><strong>✗ WOULD FAIL</strong></td>
+</tr>
+<tr class="odd">
+<td>extract_timeline</td>
+<td>classify_damage</td>
+<td>15%</td>
+<td><em>(skipped)</em></td>
+</tr>
+<tr class="even">
+<td>calculate_payout</td>
+<td>recommend_action</td>
+<td>2%</td>
+<td>✗ wrong rec</td>
+</tr>
+<tr class="odd">
+<td><strong>ANY_STATE</strong></td>
+<td><strong>escalate_to_senior</strong></td>
+<td><strong>47% MISSED</strong></td>
+<td><strong>✗ CRITICAL</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px;">
+<p><strong>Investment Priorities:</strong> (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%</p>
+</div>
+</section>
+<section id="phase-5-the-data-viewer" class="slide level2 center" data-background-color="#0F172A">
+<h2>Phase 5: The Data Viewer</h2>
+
+<img data-src="images/claims-web-ui.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section>
+<section id="from-analysis-to-verifiers" class="slide level2 center">
+<h2>From Analysis to Verifiers</h2>
+<p><strong>Each WD-2847 failure mode becomes infrastructure:</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 36%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What Failed</th>
+<th>What We Learned</th>
+<th>Verifier Built</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Endorsement CP-1147 not retrieved</td>
+<td>Endorsements stored separately</td>
+<td><strong>Endorsement Completeness Checker</strong></td>
+</tr>
+<tr class="even">
+<td>“2-3 months” not flagged</td>
+<td>Temporal language in free text</td>
+<td><strong>Temporal Damage Classifier</strong></td>
+</tr>
+<tr class="odd">
+<td>Escalation not triggered</td>
+<td>AI confident despite gaps</td>
+<td><strong>Escalation Trigger Rules</strong></td>
+</tr>
+<tr class="even">
+<td>Maria had 26 seconds</td>
+<td>System designed for throughput</td>
+<td><strong>Pre-Human Verification Gate</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>Senior Adjuster’s expertise about gradual vs sudden?</strong></p>
+<p><strong>Now it’s a classifier. Now it scales. Now it catches the next 22 claims.</strong></p>
+</div>
+</section>
+<section id="section-12" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
-<p>But this is still manual.</p>
-<p>Still human-bound.</p>
-<p>Still doesn’t scale.</p>
+<p>But building verifiers manually</p>
+<p>for every failure mode</p>
+<p>still doesn’t scale.</p>
 </div>
 <div class="fragment fade-up" style="margin-top: 60px;">
-<p>You can’t have a domain expert review every claim.</p>
+<p>You can’t have Senior Adjuster review every claim.</p>
+<p>But you CAN have their expertise review every claim.</p>
 </div>
 <div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
-<p><strong>So what do we do?</strong></p>
+<p><strong>That’s the Verification Stack.</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -1112,7 +1308,7 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 <p>Governance made executable.</p>
 </div></div>
 </section>
-<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-13" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1136,7 +1332,7 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 <h1>A Tale of Two Executives</h1>
 
 </section>
-<section id="section-12" class="slide level2 center" data-background-color="#1E293B">
+<section id="section-14" class="slide level2 center" data-background-color="#1E293B">
 <h2></h2>
 <div class="columns">
 <div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
@@ -1175,13 +1371,13 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 </div>
 </div></div>
 </section>
-<section id="section-13" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-15" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Which one will you be?</p>
 </div>
 </section>
-<section id="section-14" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-16" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <p>AI adoption is <strong>not optional</strong>.</p>
 <p>The pressure is real.</p>

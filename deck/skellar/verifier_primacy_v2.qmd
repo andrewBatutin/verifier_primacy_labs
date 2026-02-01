@@ -482,28 +482,9 @@ Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely
 
 ---
 
-## Maria's Screen — 09:47 AM
+## {background-color="#0F172A"}
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│  CLAIMS WORKBENCH                                       Maria Kowalska  │
-│  Queue: 47 claims remaining              Today: 18/45 processed         │
-├─────────────────────────────────────────────────────────────────────────┤
-│  CLAIM #WD-2847 | Water Damage - Commercial Property                    │
-│  Claimant: Restauracja Złota Kaczka Sp. z o.o. | Policy: CP-847291      │
-│                                                                         │
-│  ┌───────────────────────────────────────────────────────────────────┐  │
-│  │   ███  AI ASSISTANT RECOMMENDATION  ███                           │  │
-│  │   Coverage: ✓ APPLIES          Policy Status: ✓ ACTIVE            │  │
-│  │   Deductible: PLN 5,000        Coverage Limit: PLN 500,000        │  │
-│  │   Damage Assessment: PLN 43,500                                   │  │
-│  │   Less Deductible:   PLN  5,000                                   │  │
-│  │   ─────────────────────────────                                   │  │
-│  │   RECOMMENDED PAYOUT: PLN 38,500    Confidence: 94%               │  │
-│  └───────────────────────────────────────────────────────────────────┘  │
-│       [ APPROVE ]         [ REJECT ]         [ ESCALATE ]               │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+![](images/claims_wb.png){fig-align="center" width="85%"}
 
 ---
 
@@ -539,35 +520,26 @@ Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely
 ## What Maria Should Have Checked
 
 ::: {.columns}
-::: {.column width="50%"}
-**IF [View Policy] — Page 147:**
+::: {.column width="48%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### IF [View Policy] — Page 147
 
-```
-ENDORSEMENT CP-1147 - WATER DAMAGE
+**ENDORSEMENT CP-1147 - WATER DAMAGE**
 
-Coverage for water damage LIMITED TO
-sudden and accidental discharge.
+Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 
-EXCLUDED:
+**EXCLUDED:**
+
 - Gradual seepage >14 days
 - Damage from lack of maintenance
 - Known source not repaired
-```
 :::
 
-::: {.column width="50%"}
-**IF [View Claim Form]:**
+::: {.column width="48%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### IF [View Claim Form]
 
-```
-Section 3: Description of Loss
+**Section 3: Description of Loss**
 
-"We noticed water stains on ceiling
-in November. Thought it was
-condensation. On January 15 ceiling
-collapsed. Plumber found pipe had
-been leaking for 'at least 2-3
-months' based on corrosion."
-```
+*"We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for **'at least 2-3 months'** based on corrosion."*
 :::
 :::
 
@@ -600,7 +572,7 @@ months' based on corrosion."
 ✗ **Did NOT parse "2-3 months"**
 ✗ **Did NOT flag gradual vs sudden**
 
-*Why? Scanned PDF, OCR 87%. Free text. No structured field. Janet knows this. AI doesn't.*
+*Why? Scanned PDF, OCR 87%. Free text. No structured field. Senior Adjuster knows this. AI doesn't.*
 :::
 :::
 
@@ -608,19 +580,27 @@ months' based on corrosion."
 
 ## The Aftermath
 
-```
-09:47:38    Maria clicks [APPROVE]
-09:47:39    System logs: "Claim WD-2847 APPROVED by Maria Kowalska"
-09:48:00    Maria is already on Claim #WD-2848
+::: {style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+**09:47:38** — Maria clicks [APPROVE]
 
-Day +3      Payment of PLN 38,500 processed
-Day +47     Monthly audit sample pulls Claim WD-2847
-Day +48     Senior Adjuster: "Why did we pay this? It's gradual damage."
-Day +49     Recovery attempted. Claimant: "We have approval confirmation."
-Day +51     Legal involved. Claimant has written record.
+**09:47:39** — System logs: *"Claim WD-2847 APPROVED by Maria Kowalska"*
 
-Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000
-```
+**09:48:00** — Maria is already on Claim #WD-2848
+:::
+
+::: {style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+| Day | Event |
+|-----|-------|
+| **+3** | Payment of PLN 38,500 processed |
+| **+47** | Monthly audit sample pulls Claim WD-2847 |
+| **+48** | Senior Adjuster: *"Why did we pay this? It's gradual damage."* |
+| **+49** | Recovery attempted. Claimant: *"We have approval confirmation."* |
+| **+51** | Legal involved. Claimant has written record. |
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Day +180** — Pattern discovered. **23 similar claims. Total: PLN 885,500**
+:::
 
 ---
 
@@ -675,7 +655,7 @@ The human isn't REVIEWING. The human is LEGITIMIZING.
 ::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
 12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
 
-Avg overpayment: PLN 35,000 → **Annual exposure: PLN 184M**
+Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
 :::
 
 ---
@@ -726,132 +706,215 @@ The question is:
 
 # Evaluation Methodology {background-color="#EA580C"}
 
-*The Hamel Husain Framework — Adapted for Agents*
+*Applying the [Hamel Husain Framework](https://hamel.dev/blog/posts/evals-faq/) to Claim WD-2847*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/five-step-eval.png){fig-align="center" width="85%"}
 
 ---
 
 ## Phase 1: Error Analysis First
 
-**Before building, understand how agents fail:**
-
-```
-AGENTIC FAILURE TAXONOMY
-
-RETRIEVAL FAILURES (inherited from RAG)
-├── Wrong document retrieved
-├── Missing critical endorsement/exclusion
-└── Outdated information used
-
-REASONING FAILURES  
-├── Misinterpreted retrieved context
-├── Drew wrong conclusion from right docs
-└── Ignored conflicting information
-
-TOOL SELECTION FAILURES
-├── Wrong tool for the situation
-├── Right tool, wrong parameters
-└── Unnecessary tool call (should have escalated)
-
-ACTION SEQUENCE FAILURES
-├── Correct actions in wrong order
-├── Missing prerequisite check
-└── Didn't stop when should have
-```
-
----
-
-## Phase 2: Tiered Evaluation
+**Before using new LLM, understand how Maria's claim failed:**
 
 ::: {.columns}
-::: {.column width="50%"}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Retrieval Failure
+
+- AI queried "water damage coverage CP-847291"
+- **Returned:** base policy ✓
+- **Missed:** Endorsement CP-1147 ✗
+- *Why: No "water" keyword in endorsement title, stored in separate DMS*
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Reasoning Failure
+
+- AI read claim form but didn't flag "2-3 months"
+- OCR quality: 87% on scanned PDF
+- No structured field for "duration"
+- *Gradual vs sudden distinction: not in training*
+:::
+:::
+
+::: {.columns style="margin-top: 20px;"}
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Tool Selection Failure
+
+- **Called:** `recommend_approval(38500)`
+- **Should have:** `escalate_to_senior("unclear timeline")`
+- *Escalation trigger missed: temporal ambiguity*
+:::
+
+::: {.column width="50%" style="background-color: #0F172A; padding: 20px; border-radius: 8px;"}
+### Human Oversight Failure
+
+- Maria saw: 94% confidence, 47 in queue
+- Maria did NOT click: [View Policy] [View Claim]
+- **Time on claim: 26 seconds**
+- *System designed for 45/day = no time to verify*
+:::
+:::
+
+---
+
+## Phase 2: Build Failure Taxonomy
+
+**From WD-2847 and 22 similar claims, patterns emerge:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Retrieval Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Missing endorsement | 34% | ✓ |
+| Wrong policy version | 18% | |
+| Cross-system doc gap | 23% | ✓ |
+| Outdated guidelines | 12% | |
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Reasoning Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Gradual vs sudden | 41% | ✓ |
+| Maintenance exclusion | 22% | |
+| Coverage limit misread | 15% | |
+| Deductible calculation | 8% | |
+:::
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**The 41% gradual/sudden failure rate = your first verifier target.**
+:::
+
+---
+
+## Phase 3: Tiered Evaluation
+
+**Decompose Maria's 26-second decision into verifiable checkpoints:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
 ### Tier 1: Retrieval
-- Did we find the right docs?
-- Did we find ALL relevant docs?
-- Are they current?
 
+- ✓ Base policy CP-847291
+- ✗ **Endorsements — MISSING CP-1147**
+- ✓ Current version
+- ✓ Claim form
+
+**Score: 3/4 = 75%**
+
+*VERDICT: INCOMPLETE*
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
 ### Tier 2: Reasoning
-- Given docs, is conclusion correct?
-- Are caveats/exceptions noted?
-- Is confidence calibrated?
+
+- ✗ Coverage determination — WRONG
+- ✗ Exclusions checked — MISSED
+- ✗ Timeline extracted — MISSED
+- ✗ Damage classified — WRONG
+
+**Score: 0/4 = 0%**
+
+*VERDICT: FAIL*
+:::
 :::
 
-::: {.column width="50%"}
+::: {.columns style="margin-top: 20px;"}
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
 ### Tier 3: Tool Selection
-- Is this the right tool?
-- Are parameters correct?
-- Should we escalate instead?
 
+- ✗ Selected: `recommend_approval`
+- ✗ Should have: `escalate_to_senior`
+
+*VERDICT: FAIL — timeline ambiguity*
+:::
+
+::: {.column width="50%" style="background-color: #DC2626; padding: 20px; border-radius: 8px;"}
 ### Tier 4: End-to-End
-- Did we achieve the goal?
-- Did we cause any harm?
-- Is outcome defensible?
+
+- ✗ Correct coverage? NO
+- ✗ Correct payout? NO
+- ✗ No improper payment? NO
+
+*VERDICT: CATASTROPHIC FAILURE*
 :::
 :::
 
 ---
 
-## Phase 3: Transition Failure Matrix
+## Phase 4: Transition Failure Matrix
 
-**Map where agents break down:**
+**Map where the WD-2847 workflow broke down:**
 
-```
-FROM STATE        → TO STATE           FAILURE RATE
-─────────────────────────────────────────────────────
-lookup_policy    → check_coverage      3% (wrong policy)
-check_coverage   → calculate_payout    12% (missed exclusion)  ← HOTSPOT
-calculate_payout → approve_claim       2% (math errors)
-approve_claim    → send_payment        1% (system errors)
-ANY STATE        → escalate_human      47% MISSED  ← CRITICAL
-```
+::: {style="background-color: #0F172A; padding: 20px; border-radius: 8px;"}
+| From State | To State | Failure Rate | WD-2847 |
+|------------|----------|--------------|---------|
+| receive_claim | lookup_policy | 2% | ✓ passed |
+| lookup_policy | **retrieve_endorsements** | **31%** | **✗ FAILED** |
+| retrieve_endorse | check_coverage | 4% | *(skipped)* |
+| check_coverage | **extract_timeline** | **28%** | **✗ WOULD FAIL** |
+| extract_timeline | classify_damage | 15% | *(skipped)* |
+| calculate_payout | recommend_action | 2% | ✗ wrong rec |
+| **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
+:::
 
-::: {.fragment style="margin-top: 20px;"}
-**The insight:** `check_coverage → calculate_payout` and `escalate_human` are your investment priorities.
+::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+**Investment Priorities:** (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%
 :::
 
 ---
 
-## Phase 4: The Data Viewer
+## Phase 5: The Data Viewer {background-color="#0F172A"}
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│  Claim: WD-2847 | Water damage, commercial property                 │
-├─────────────────────────────────────────────────────────────────────┤
-│  TRACE                           │  EXPERT EVALUATION               │
-│  ┌─────────────────────────────┐ │  ┌───────────────────────────┐   │
-│  │ 1. lookup_policy ✓          │ │  │ [FAIL] Step 1             │   │
-│  │ 2. check_coverage ✓         │ │  │ Retrieved base policy     │   │
-│  │ 3. calculate_payout ✓       │ │  │ but missed CP-1147        │   │
-│  │ 4. approve_claim ✓          │ │  │ endorsement.              │   │
-│  │ 5. send_payment ✓           │ │  │                           │   │
-│  │                             │ │  │ [FAIL] Step 2             │   │
-│  │ All tools returned success! │ │  │ "Burst pipe" was gradual  │   │
-│  │                             │ │  │ leak — excluded.          │   │
-│  └─────────────────────────────┘ │  │                           │   │
-│                                  │  │ Should have: ESCALATE     │   │
-│                                  │  └───────────────────────────┘   │
-├─────────────────────────────────────────────────────────────────────┤
-│  Failure Modes: [Missing endorsement] [Gradual vs sudden] [No esc] │
-└─────────────────────────────────────────────────────────────────────┘
-```
+![](images/claims-web-ui.png){fig-align="center" width="90%"}
+
+---
+
+## From Analysis to Verifiers
+
+**Each WD-2847 failure mode becomes infrastructure:**
+
+| What Failed | What We Learned | Verifier Built |
+|-------------|-----------------|----------------|
+| Endorsement CP-1147 not retrieved | Endorsements stored separately | **Endorsement Completeness Checker** |
+| "2-3 months" not flagged | Temporal language in free text | **Temporal Damage Classifier** |
+| Escalation not triggered | AI confident despite gaps | **Escalation Trigger Rules** |
+| Maria had 26 seconds | System designed for throughput | **Pre-Human Verification Gate** |
+
+::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Senior Adjuster's expertise about gradual vs sudden?**
+
+**Now it's a classifier. Now it scales. Now it catches the next 22 claims.**
+:::
 
 ---
 
 ## {background-color="#7C3AED"}
 
 ::: {.r-fit-text}
-But this is still manual.
+But building verifiers manually
 
-Still human-bound.
+for every failure mode
 
-Still doesn't scale.
+still doesn't scale.
 :::
 
 ::: {.fragment .fade-up style="margin-top: 60px;"}
-You can't have a domain expert review every claim.
+You can't have Senior Adjuster review every claim.
+
+But you CAN have their expertise review every claim.
 :::
 
 ::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
-**So what do we do?**
+**That's the Verification Stack.**
 :::
 
 ---
