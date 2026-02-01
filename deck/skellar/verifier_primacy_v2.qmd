@@ -33,13 +33,14 @@ execute:
 ::: {.column width="70%"}
 ### Andriy Batutin
 
-- **Principal Engineer** focused on AI/ML systems
-- Building verification infrastructure for production AI
+- **Senior AI Engineer** focused on AI/ML systems
+- Accenture | Shelf | MacPaw
+- AI Agentic Systems.
 - Writing at [andriybatutin.substack.com](https://andriybatutin.substack.com/)
 
 :::
 ::: {.column width="30%"}
-![](images/author.png){fig-align="center" width="80%"}
+![](images/abatutin_img.jpg){fig-align="center" width="80%"}
 :::
 :::
 
@@ -131,8 +132,6 @@ Focus on agentic because that's where the real liability concentrates.
 RAG gives wrong answers. Agents take wrong actions.
 :::
 
----
-
 # The Stochasticity Paradox {background-color="#1E293B"}
 
 *Why AI cannot be made reliable — and why that's the point*
@@ -173,9 +172,9 @@ And here's the uncomfortable truth:
 A perfectly reliable AI is a database.
 :::
 
----
-
 # Fundamentals of Modern AI Stack {background-color="#1E293B"}
+
+*Why LLMs, RAG, and Agents Fail by Design*
 
 ---
 
@@ -327,8 +326,6 @@ not a casino player.
 **That is how they will win in the long run.**
 :::
 
----
-
 # Real World Insurance Org Structure {background-color="#1E293B"}
 
 *How AI Can Actuate Risks Instead of Decreasing Them*
@@ -345,9 +342,9 @@ not a casino player.
 
 ![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
 
----
-
 # Risk Decomposition {background-color="#1E293B"}
+
+*RAG vs Agentic AI Failure Modes*
 
 ---
 
@@ -446,8 +443,6 @@ By the time you notice, **damage is done**.
 ::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
 **Agentic AI multiplies RAG failures by the cost of autonomous action.**
 :::
-
----
 
 # The Rubber Stamp Trap {background-color="#1E293B"}
 
@@ -706,8 +701,6 @@ The question is:
 → **THE VERIFICATION STACK**
 :::
 
----
-
 # Evaluation Methodology {background-color="#EA580C"}
 
 *Applying the [Hamel Husain Framework](https://hamel.dev/blog/posts/evals-faq/) to Claim WD-2847*
@@ -921,8 +914,6 @@ But you CAN have their expertise review every claim.
 **That's Verifier Primacy.**
 :::
 
----
-
 # VERIFIER PRIMACY {background-color="#7C3AED"}
 
 *From Error Analysis to Scalable Judgment*
@@ -962,8 +953,6 @@ $|\text{Rules}| \ll |\text{Claims}|$
 
 **Build verifiers once. Run them infinitely.**
 :::
-
----
 
 # The Verification Stack {background-color="#1E293B"}
 
