@@ -1007,7 +1007,7 @@ Andriy Batutin
 <p>But you CAN have their expertise review every claim.</p>
 </div>
 <div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
-<p><strong>That’s the Verification Stack.</strong></p>
+<p><strong>That’s Verifer Primacy.</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -1016,98 +1016,33 @@ Andriy Batutin
 <section>
 <section id="verifier-primacy" class="title-slide slide level1 center" data-background-color="#7C3AED">
 <h1>VERIFIER PRIMACY</h1>
-<p><em>The Core Insight</em></p>
+<p><em>From Error Analysis to Scalable Judgment</em></p>
 </section>
-<section id="the-asymmetry" class="slide level2 center">
-<h2>The Asymmetry</h2>
-<div class="callout callout-important no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>P ≠ NP Intuition Applied to Trust</strong></p>
-</div>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<p><span class="math display">\[|\text{Rule Space}| \ll |\text{Action Space}|\]</span></p>
+<section id="the-core-insight" class="slide level2 center">
+<h2>The Core Insight</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="generation-action">Generation / Action</h3>
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="what-failed">What Failed</h3>
 <ul>
-<li>Exponentially hard</li>
-<li>Infinite trajectories</li>
-<li>Unbounded creativity</li>
+<li>Senior Adjuster knows gradual vs sudden</li>
+<li>Senior Adjuster knows to check endorsements</li>
+<li>Senior Adjuster knows when to escalate</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<h3 id="verification">Verification</h3>
+<p><strong>But Senior Adjuster can’t review 500 claims/day.</strong></p>
+<p>So Maria got 26 seconds and a 94% confidence score.</p>
+</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
+<h3 id="what-if">What If</h3>
 <ul>
-<li>Tractable constraints</li>
-<li>Finite rule sets</li>
-<li>Composable checks</li>
+<li>Senior Adjuster’s knowledge was <strong>encoded in rules</strong></li>
+<li>Endorsement checks were <strong>automated</strong></li>
+<li>Escalation triggers were <strong>systematic</strong></li>
 </ul>
+<p><strong>Senior Adjuster reviews the rules once.</strong></p>
+<p><strong>Rules review every claim, forever.</strong></p>
 </div></div>
 <div class="fragment" style="background-color: #0F172A; padding: 30px; border-radius: 8px; margin-top: 40px; text-align: center; font-size: 1.3em;">
-<p><strong>Generating correct action: exponentially hard.</strong></p>
-<p><strong>Checking if action is valid: tractable.</strong></p>
-</div>
-</section>
-<section id="from-analysis-to-infrastructure" class="slide level2 center">
-<h2>From Analysis to Infrastructure</h2>
-<div class="callout callout-tip no-icon callout-titled callout-style-simple">
-<div class="callout-body">
-<div class="callout-title">
-<p><strong>Verifier Primacy</strong></p>
-</div>
-<div class="callout-content">
-<p>Take the artifacts of error analysis and <strong>PRODUCTIONIZE</strong> them.</p>
-</div>
-</div>
-</div>
-<table class="caption-top">
-<colgroup>
-<col style="width: 44%">
-<col style="width: 6%">
-<col style="width: 48%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Error Analysis Output</th>
-<th>→</th>
-<th>Verifier Infrastructure</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>“Missed endorsements on commercial”</td>
-<td>→</td>
-<td>Endorsement completeness checker</td>
-</tr>
-<tr class="even">
-<td>“Gradual vs sudden confusion”</td>
-<td>→</td>
-<td>Temporal damage classifier</td>
-</tr>
-<tr class="odd">
-<td>“Should have escalated”</td>
-<td>→</td>
-<td>Escalation trigger rules</td>
-</tr>
-<tr class="even">
-<td>Expert critiques on edge cases</td>
-<td>→</td>
-<td>LLM-as-judge prompts</td>
-</tr>
-<tr class="odd">
-<td>Transition failure hotspots</td>
-<td>→</td>
-<td>Step-level validators</td>
-</tr>
-</tbody>
-</table>
-<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p><strong>Human-BUILT, machine-EXECUTED.</strong></p>
-<p>Domain knowledge becomes infrastructure.</p>
+<p><span class="math inline">\(|\text{Rules}| \ll |\text{Claims}|\)</span></p>
+<p><strong>Build verifiers once. Run them infinitely.</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -1116,199 +1051,106 @@ Andriy Batutin
 <section>
 <section id="the-verification-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
 <h1>The Verification Stack</h1>
-<p><em>Six layers, each with mathematical foundation</em></p>
-</section>
-<section id="layer-0-guardrails" class="slide level2 center">
-<h2>Layer 0: Guardrails</h2>
-<p><strong>Pre-execution constraints — Stop obvious violations</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation">Math Foundation</h3>
-<p><strong>Constraint Satisfaction:</strong> <span class="math display">\[A_{\text{valid}} = \{a \in A : c(a) = \text{true}, \forall c \in C\}\]</span></p>
-<p><strong>Anomaly Detection:</strong> <span class="math display">\[\text{Flag if } -\log P_{\text{normal}}(a) &gt; \theta\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation">Insurance Implementation</h3>
-<ul>
-<li>Max auto-approval: $10,000</li>
-<li>Rate limit: ≤20 claims/hour/adjuster</li>
-<li>Scope: Can’t approve own claims</li>
-<li>PII: Block SSN in external comms</li>
-</ul>
-</div></div>
-</section>
-<section id="layer-1-schema-validation" class="slide level2 center">
-<h2>Layer 1: Schema Validation</h2>
-<p><strong>Structural correctness — Is the action well-formed?</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation-1">Math Foundation</h3>
-<p><strong>Formal Language Membership:</strong> <span class="math display">\[v(x) = \mathbb{1}[x \in L(S)]\]</span></p>
-<p>JSON Schema, Pydantic = CFG membership test</p>
-<p><span class="math inline">\(O(n)\)</span> parsing, <strong>deterministic</strong></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation-1">Insurance Implementation</h3>
-<ul>
-<li>Claim ID matches pattern</li>
-<li>Policy number exists in system</li>
-<li>Amount is positive number</li>
-<li>Required fields present</li>
-</ul>
-</div></div>
-</section>
-<section id="layer-2-semantic-consistency" class="slide level2 center">
-<h2>Layer 2: Semantic Consistency</h2>
-<p><strong>Does the output contradict itself or known facts?</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation-2">Math Foundation</h3>
-<p><strong>Propositional Consistency:</strong> <span class="math display">\[\exists M : M \models p_1 \land p_2 \land \ldots \land p_n\]</span></p>
-<p><strong>NLI Classification:</strong> <span class="math display">\[(premise, hyp) \to \{\text{entails}, \text{contradicts}, \text{neutral}\}\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation-2">Insurance Implementation</h3>
-<ul>
-<li>“Claim approved” + “Coverage excluded” → <strong>contradiction</strong></li>
-<li>“Gradual damage” + “Sudden event coverage” → <strong>contradiction</strong></li>
-<li>Amount approved ≤ Amount claimed</li>
-</ul>
-</div></div>
-</section>
-<section id="layer-3-domain-rules" class="slide level2 center">
-<h2>Layer 3: Domain Rules</h2>
-<p><strong>Business logic, regulatory requirements</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation-3">Math Foundation</h3>
-<p><strong>Rule Engines (Horn Clauses):</strong> <span class="math display">\[\text{condition}_1 \land \text{condition}_2 \to \text{action\_allowed}\]</span></p>
-<p><strong>Deontic Logic:</strong> <span class="math display">\[F(\text{approve}) \leftarrow \text{exclusion\_applies}\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation-3">Insurance Implementation</h3>
-<ul>
-<li>If endorsement excludes → cannot approve</li>
-<li>If amount &gt; reserve → requires supervisor</li>
-<li>If litigation hold → freeze all actions</li>
-<li>If state = FL, hurricane → special rules</li>
-</ul>
-</div></div>
-</section>
-<section id="layer-4-llm-as-judge" class="slide level2 center">
-<h2>Layer 4: LLM-as-Judge</h2>
-<p><strong>“Would the domain expert approve this action?”</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation-4">Math Foundation</h3>
-<p><strong>Alignment as Distribution Matching:</strong> <span class="math display">\[\min KL(P_{\text{expert}} \| P_{\text{judge}})\]</span></p>
-<p><strong>Inter-Rater Reliability:</strong> <span class="math display">\[\kappa = \frac{p_o - p_e}{1 - p_e} &gt; 0.8\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation-4">Insurance Implementation</h3>
-<ul>
-<li>Taxonomy of failure modes as prompt</li>
-<li>Few-shot examples from expert critiques</li>
-<li>Calibration loop: judge vs adjuster agreement</li>
-<li>Active learning on edge cases</li>
-</ul>
-</div></div>
-</section>
-<section id="layer-5-human-escalation" class="slide level2 center">
-<h2>Layer 5: Human Escalation</h2>
-<p><strong>Route uncertain/high-stakes cases to humans</strong></p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="math-foundation-5">Math Foundation</h3>
-<p><strong>Selective Prediction:</strong> <span class="math display">\[\text{Reject if confidence} &lt; \theta\]</span></p>
-<p><strong>Cost-Sensitive:</strong> <span class="math display">\[\text{Escalate iff } P(\text{error}) \times C_{\text{miss}} &gt; C_{\text{human}}\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="insurance-implementation-5">Insurance Implementation</h3>
-<ul>
-<li>Confidence &lt; 70% → escalate</li>
-<li>Amount &gt; $50k → always escalate</li>
-<li>New failure mode → escalate + add to taxonomy</li>
-<li>Claimant is litigious → always escalate</li>
-</ul>
-</div></div>
-</section>
-<section id="the-stack-applied-to-our-case" class="slide level2 center">
-<h2>The Stack Applied to Our Case</h2>
-<pre><code>CLAIM WD-2847: Water damage, commercial property
-─────────────────────────────────────────────────────────────────────
-
-✓ GUARDRAILS        Amount $8,500 &lt; $10k threshold      PASS
-
-✓ SCHEMA            All fields valid                     PASS
-
-✗ SEMANTIC          "Gradual leak" + "Sudden coverage"   CONTRADICTION
-                    Agent reasoning inconsistent         BLOCKED
-
-  ─── Would have continued if semantic passed ───
-
-✗ DOMAIN RULES      Endorsement CP-1147 excludes         BLOCKED
-                    gradual water damage
-
-✗ LLM-JUDGE         "This looks like gradual damage      BLOCKED
-                    claim being approved under sudden
-                    coverage. Expert would reject."
-
-→ ESCALATE          Routed to human adjuster
-                    Claim correctly denied
-                    $8,500 saved
-                    Pattern flagged for 46 similar</code></pre>
-</section>
-<section id="the-stack-as-funnel" class="slide level2 center">
-<h2>The Stack as Funnel</h2>
-<pre><code>ALL AGENT ACTIONS
-     │
-     ▼
-┌─────────────────────┐
-│    GUARDRAILS       │  ~5% blocked (obvious violations)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│  SCHEMA VALIDATION  │  ~2% blocked (malformed)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│ SEMANTIC CONSISTENCY│  ~8% blocked (contradictions)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│    DOMAIN RULES     │  ~10% blocked (policy violations)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│   LLM-AS-JUDGE      │  ~5% blocked (nuanced failures)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│  HUMAN ESCALATION   │  ~8% escalated (uncertain)
-└─────────────────────┘
-     │
-     ▼
-~62% AUTO-APPROVED (with full audit trail)</code></pre>
-</section>
-<section id="what-verifier-primacy-unlocks" class="slide level2 center">
-<h2>What Verifier Primacy Unlocks</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="true-autonomy">True Autonomy</h3>
-<p>Agents act without human review — <strong>because verifiers watch</strong>.</p>
-<p>You can finally ship autonomous systems.</p>
-<h3 id="validation-trail">Validation Trail</h3>
-<p>Every action logged. Every gate documented.</p>
-<p>“Here’s what it tried. Here’s why we blocked it.”</p>
-</div><div class="column" style="width:50%;">
-<h3 id="real-time-protection">Real-Time Protection</h3>
-<p>Not post-mortem. Not batch review.</p>
-<p>Catch the wrong action <strong>BEFORE</strong> payment sends.</p>
-<h3 id="defensible-to-the-board">Defensible to the Board</h3>
-<p>“Here’s our verification layer. Here’s our audit trail.”</p>
-<p>Governance made executable.</p>
-</div></div>
+<p><em>Six gates between AI recommendation and Maria’s screen</em></p>
 </section>
 <section id="section-13" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/verification_stack.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
+<section id="the-six-verification-layers" class="slide level2 center">
+<h2>The Six Verification Layers</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Purpose</th>
+<th>WD-2847 Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>0. Guardrails</strong></td>
+<td>Amount limits, rate limits, scope constraints</td>
+<td>✓ PASS — PLN 38,500 &lt; 40,000</td>
+</tr>
+<tr class="even">
+<td><strong>1. Schema</strong></td>
+<td>Valid format, required fields, data types</td>
+<td>✓ PASS — All fields valid</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Retrieval</strong></td>
+<td>All documents retrieved? Endorsements complete?</td>
+<td><strong>✗ BLOCKED</strong> — Missing CP-1147</td>
+</tr>
+<tr class="even">
+<td><strong>3. Semantic</strong></td>
+<td>Does reasoning contradict itself?</td>
+<td>✗ Would block — “2-3 months” vs “sudden”</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Domain Rules</strong></td>
+<td>Business logic, exclusions, regulations</td>
+<td>✗ Would block — CP-1147 excludes gradual</td>
+</tr>
+<tr class="even">
+<td><strong>5. LLM-as-Judge</strong></td>
+<td>Would Senior Adjuster approve?</td>
+<td>✗ Would block — “Recommend DENY”</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Human Escalation</strong></td>
+<td>Route flagged cases to expert</td>
+<td>→ Escalate to Senior Adjuster</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.</strong></p>
+</div>
+</section>
+<section id="the-knowledge-transfer" class="slide level2 center">
+<h2>The Knowledge Transfer</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="senior-adjusters-head">Senior Adjuster’s Head</h3>
+<ul>
+<li>30 years of edge cases</li>
+<li>“Always check endorsements”</li>
+<li>“Timeline = red flag”</li>
+<li>“When in doubt, escalate”</li>
+</ul>
+<p><em>Retires in 5 years. Knowledge leaves.</em></p>
+</div><div class="column" style="background-color: #7C3AED; padding: 20px; border-radius: 8px;">
+<h3 id="the-interview">The Interview</h3>
+<ul>
+<li>“What do you check first?”</li>
+<li>“What makes you suspicious?”</li>
+<li>“When do you escalate?”</li>
+<li>“Show me a tricky case.”</li>
+</ul>
+<p><em>Knowledge captured.</em></p>
+</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
+<h3 id="the-verifier">The Verifier</h3>
+<ul>
+<li>Endorsement completeness gate</li>
+<li>Temporal damage classifier</li>
+<li>Escalation trigger rules</li>
+<li>LLM-as-judge with examples</li>
+</ul>
+<p><em>Knowledge scales forever.</em></p>
+</div></div>
+<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<p><strong>Senior Adjuster doesn’t review 500 claims.</strong></p>
+<p><strong>Senior Adjuster’s judgment reviews 500 claims.</strong></p>
+</div>
+</section>
+<section id="section-14" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1317,80 +1159,34 @@ Andriy Batutin
 <p>AI capability is becoming <strong>commodity</strong>.</p>
 </div>
 <div class="fragment fade-up" style="color: #0891B2; font-size: 1.5em; margin-top: 40px;">
-<p><strong>TRUST is the moat.</strong></p>
+<p><strong>Encoded expertise is the moat.</strong></p>
 </div>
 <div class="fragment" style="margin-top: 40px;">
 <p>You’re not investing in AI.</p>
-<p>You’re investing in <strong>AI GOVERNANCE</strong>.</p>
+<p>You’re investing in <strong>capturing what your experts know</strong></p>
+<p><strong>before they retire.</strong></p>
 </div>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="a-tale-of-two-executives" class="title-slide slide level1 center" data-background-color="#1E293B">
-<h1>A Tale of Two Executives</h1>
-
-</section>
-<section id="section-14" class="slide level2 center" data-background-color="#1E293B">
-<h2></h2>
-<div class="columns">
-<div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
-<h3 id="executive-a">EXECUTIVE A</h3>
-<ul>
-<li>Shipped claims agent fast</li>
-<li>Demo was impressive</li>
-<li>Board was excited</li>
-</ul>
-<div class="fragment">
-<ul>
-<li>Agent paid 47 excluded claims</li>
-<li>“Why did it fail?” — “We don’t know.”</li>
-<li>“Will it happen again?” — “We can’t guarantee.”</li>
-</ul>
-</div>
-<div class="fragment" style="color: #DC2626; font-weight: bold; margin-top: 20px;">
-<p>$400k exposure. Regulatory inquiry. Career over.</p>
-</div>
-</div><div class="column" style="background-color: #D1FAE5; padding: 30px; border-radius: 12px;">
-<h3 id="executive-b">EXECUTIVE B</h3>
-<ul>
-<li>Shipped claims agent with verification stack</li>
-<li>Same agent, same failure attempts</li>
-</ul>
-<div class="fragment">
-<ul>
-<li><strong>Semantic layer caught contradictions</strong></li>
-<li><strong>Domain rules caught exclusions</strong></li>
-<li>Escalated to human review</li>
-</ul>
-</div>
-<div class="fragment" style="color: #059669; font-weight: bold; margin-top: 20px;">
-<p>“Here’s the audit trail. Zero improper payments.”</p>
-<p>Promoted. Trusted. Leading AI transformation.</p>
-</div>
-</div></div>
 </section>
 <section id="section-15" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
-<p>Which one will you be?</p>
+<p>Invest in verification infrastructure</p>
+<p>to use LLMs safely.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 50px; font-size: 1.3em;">
+<p>This is the best way to tame chaos</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px; font-size: 1.5em;">
+<p><strong>and become the casino.</strong></p>
 </div>
 </section>
 <section id="section-16" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
-<p>AI adoption is <strong>not optional</strong>.</p>
-<p>The pressure is real.</p>
-<div class="fragment" style="color: #DC2626; margin-top: 30px;">
-<p>But adoption without governance is <strong>liability</strong>.</p>
-</div>
-<div class="fragment" style="background-color: #7C3AED; padding: 40px; border-radius: 12px; margin-top: 50px;">
 <div class="r-fit-text">
 <p><strong>Stop praying. Start verifying.</strong></p>
 </div>
-</div>
-<div class="fragment" style="color: #64748B; margin-top: 40px;">
-<p>Andriy Batutin • <span class="citation" data-cites="AI_Capitalist">@AI_Capitalist</span> • andriybatutin.substack.com</p>
+<div class="fragment" style="color: #64748B; margin-top: 60px;">
+<p>Andriy Batutin • <a href="https://andriybatutin.substack.com/">andriybatutin.substack.com</a></p>
 </div>
 
 </section></section>

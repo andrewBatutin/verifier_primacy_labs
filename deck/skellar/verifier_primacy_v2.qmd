@@ -914,355 +914,124 @@ But you CAN have their expertise review every claim.
 :::
 
 ::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
-**That's the Verification Stack.**
+**That's Verifer Primacy.**
 :::
 
 ---
 
 # VERIFIER PRIMACY {background-color="#7C3AED"}
 
-*The Core Insight*
+*From Error Analysis to Scalable Judgment*
 
 ---
 
-## The Asymmetry
-
-::: {.callout-important appearance="minimal"}
-## P ≠ NP Intuition Applied to Trust
-:::
-
-$$|\text{Rule Space}| \ll |\text{Action Space}|$$
+## The Core Insight
 
 ::: {.columns}
-::: {.column width="50%"}
-### Generation / Action
-- Exponentially hard
-- Infinite trajectories
-- Unbounded creativity
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### What Failed
+
+- Senior Adjuster knows gradual vs sudden
+- Senior Adjuster knows to check endorsements
+- Senior Adjuster knows when to escalate
+
+**But Senior Adjuster can't review 500 claims/day.**
+
+So Maria got 26 seconds and a 94% confidence score.
 :::
 
-::: {.column width="50%"}
-### Verification
-- Tractable constraints
-- Finite rule sets
-- Composable checks
+::: {.column width="50%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### What If
+
+- Senior Adjuster's knowledge was **encoded in rules**
+- Endorsement checks were **automated**
+- Escalation triggers were **systematic**
+
+**Senior Adjuster reviews the rules once.**
+
+**Rules review every claim, forever.**
 :::
 :::
 
 ::: {.fragment style="background-color: #0F172A; padding: 30px; border-radius: 8px; margin-top: 40px; text-align: center; font-size: 1.3em;"}
-**Generating correct action: exponentially hard.**
+$|\text{Rules}| \ll |\text{Claims}|$
 
-**Checking if action is valid: tractable.**
-:::
-
----
-
-## From Analysis to Infrastructure
-
-::: {.callout-tip appearance="minimal"}
-## Verifier Primacy
-Take the artifacts of error analysis and **PRODUCTIONIZE** them.
-:::
-
-| Error Analysis Output | → | Verifier Infrastructure |
-|----------------------|---|------------------------|
-| "Missed endorsements on commercial" | → | Endorsement completeness checker |
-| "Gradual vs sudden confusion" | → | Temporal damage classifier |
-| "Should have escalated" | → | Escalation trigger rules |
-| Expert critiques on edge cases | → | LLM-as-judge prompts |
-| Transition failure hotspots | → | Step-level validators |
-
-::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-**Human-BUILT, machine-EXECUTED.**
-
-Domain knowledge becomes infrastructure.
+**Build verifiers once. Run them infinitely.**
 :::
 
 ---
 
 # The Verification Stack {background-color="#1E293B"}
 
-*Six layers, each with mathematical foundation*
+*Six gates between AI recommendation and Maria's screen*
 
 ---
 
-## Layer 0: Guardrails
+## {background-color="#0F172A"}
 
-**Pre-execution constraints — Stop obvious violations**
+![](images/verification_stack.png){fig-align="center" width="85%"}
+
+---
+
+## The Six Verification Layers
+
+| Layer | Purpose | WD-2847 Result |
+|-------|---------|----------------|
+| **0. Guardrails** | Amount limits, rate limits, scope constraints | ✓ PASS — PLN 38,500 < 40,000 |
+| **1. Schema** | Valid format, required fields, data types | ✓ PASS — All fields valid |
+| **2. Retrieval** | All documents retrieved? Endorsements complete? | **✗ BLOCKED** — Missing CP-1147 |
+| **3. Semantic** | Does reasoning contradict itself? | ✗ Would block — "2-3 months" vs "sudden" |
+| **4. Domain Rules** | Business logic, exclusions, regulations | ✗ Would block — CP-1147 excludes gradual |
+| **5. LLM-as-Judge** | Would Senior Adjuster approve? | ✗ Would block — "Recommend DENY" |
+| **6. Human Escalation** | Route flagged cases to expert | → Escalate to Senior Adjuster |
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.**
+:::
+
+---
+
+## The Knowledge Transfer
 
 ::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
+::: {.column width="33%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Senior Adjuster's Head
 
-**Constraint Satisfaction:**
-$$A_{\text{valid}} = \{a \in A : c(a) = \text{true}, \forall c \in C\}$$
+- 30 years of edge cases
+- "Always check endorsements"
+- "Timeline = red flag"
+- "When in doubt, escalate"
 
-**Anomaly Detection:**
-$$\text{Flag if } -\log P_{\text{normal}}(a) > \theta$$
-
+*Retires in 5 years. Knowledge leaves.*
 :::
 
-::: {.column width="50%"}
-### Insurance Implementation
+::: {.column width="33%" style="background-color: #7C3AED; padding: 20px; border-radius: 8px;"}
+### The Interview
 
-- Max auto-approval: $10,000
-- Rate limit: ≤20 claims/hour/adjuster
-- Scope: Can't approve own claims
-- PII: Block SSN in external comms
+- "What do you check first?"
+- "What makes you suspicious?"
+- "When do you escalate?"
+- "Show me a tricky case."
 
-:::
-:::
-
----
-
-## Layer 1: Schema Validation
-
-**Structural correctness — Is the action well-formed?**
-
-::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
-
-**Formal Language Membership:**
-$$v(x) = \mathbb{1}[x \in L(S)]$$
-
-JSON Schema, Pydantic = CFG membership test
-
-$O(n)$ parsing, **deterministic**
-
+*Knowledge captured.*
 :::
 
-::: {.column width="50%"}
-### Insurance Implementation
+::: {.column width="33%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### The Verifier
 
-- Claim ID matches pattern
-- Policy number exists in system
-- Amount is positive number
-- Required fields present
+- Endorsement completeness gate
+- Temporal damage classifier
+- Escalation trigger rules
+- LLM-as-judge with examples
 
+*Knowledge scales forever.*
 :::
 :::
 
----
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**Senior Adjuster doesn't review 500 claims.**
 
-## Layer 2: Semantic Consistency
-
-**Does the output contradict itself or known facts?**
-
-::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
-
-**Propositional Consistency:**
-$$\exists M : M \models p_1 \land p_2 \land \ldots \land p_n$$
-
-**NLI Classification:**
-$$(premise, hyp) \to \{\text{entails}, \text{contradicts}, \text{neutral}\}$$
-
-:::
-
-::: {.column width="50%"}
-### Insurance Implementation
-
-- "Claim approved" + "Coverage excluded" → **contradiction**
-- "Gradual damage" + "Sudden event coverage" → **contradiction**
-- Amount approved ≤ Amount claimed
-
-:::
-:::
-
----
-
-## Layer 3: Domain Rules
-
-**Business logic, regulatory requirements**
-
-::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
-
-**Rule Engines (Horn Clauses):**
-$$\text{condition}_1 \land \text{condition}_2 \to \text{action\_allowed}$$
-
-**Deontic Logic:**
-$$F(\text{approve}) \leftarrow \text{exclusion\_applies}$$
-
-:::
-
-::: {.column width="50%"}
-### Insurance Implementation
-
-- If endorsement excludes → cannot approve
-- If amount > reserve → requires supervisor
-- If litigation hold → freeze all actions
-- If state = FL, hurricane → special rules
-
-:::
-:::
-
----
-
-## Layer 4: LLM-as-Judge
-
-**"Would the domain expert approve this action?"**
-
-::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
-
-**Alignment as Distribution Matching:**
-$$\min KL(P_{\text{expert}} \| P_{\text{judge}})$$
-
-**Inter-Rater Reliability:**
-$$\kappa = \frac{p_o - p_e}{1 - p_e} > 0.8$$
-
-:::
-
-::: {.column width="50%"}
-### Insurance Implementation
-
-- Taxonomy of failure modes as prompt
-- Few-shot examples from expert critiques
-- Calibration loop: judge vs adjuster agreement
-- Active learning on edge cases
-
-:::
-:::
-
----
-
-## Layer 5: Human Escalation
-
-**Route uncertain/high-stakes cases to humans**
-
-::: {.columns}
-::: {.column width="50%"}
-### Math Foundation
-
-**Selective Prediction:**
-$$\text{Reject if confidence} < \theta$$
-
-**Cost-Sensitive:**
-$$\text{Escalate iff } P(\text{error}) \times C_{\text{miss}} > C_{\text{human}}$$
-
-:::
-
-::: {.column width="50%"}
-### Insurance Implementation
-
-- Confidence < 70% → escalate
-- Amount > $50k → always escalate
-- New failure mode → escalate + add to taxonomy
-- Claimant is litigious → always escalate
-
-:::
-:::
-
----
-
-## The Stack Applied to Our Case
-
-```
-CLAIM WD-2847: Water damage, commercial property
-─────────────────────────────────────────────────────────────────────
-
-✓ GUARDRAILS        Amount $8,500 < $10k threshold      PASS
-
-✓ SCHEMA            All fields valid                     PASS
-
-✗ SEMANTIC          "Gradual leak" + "Sudden coverage"   CONTRADICTION
-                    Agent reasoning inconsistent         BLOCKED
-
-  ─── Would have continued if semantic passed ───
-
-✗ DOMAIN RULES      Endorsement CP-1147 excludes         BLOCKED
-                    gradual water damage
-
-✗ LLM-JUDGE         "This looks like gradual damage      BLOCKED
-                    claim being approved under sudden
-                    coverage. Expert would reject."
-
-→ ESCALATE          Routed to human adjuster
-                    Claim correctly denied
-                    $8,500 saved
-                    Pattern flagged for 46 similar
-```
-
----
-
-## The Stack as Funnel
-
-```
-ALL AGENT ACTIONS
-     │
-     ▼
-┌─────────────────────┐
-│    GUARDRAILS       │  ~5% blocked (obvious violations)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│  SCHEMA VALIDATION  │  ~2% blocked (malformed)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│ SEMANTIC CONSISTENCY│  ~8% blocked (contradictions)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│    DOMAIN RULES     │  ~10% blocked (policy violations)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│   LLM-AS-JUDGE      │  ~5% blocked (nuanced failures)
-└─────────────────────┘
-     │
-     ▼
-┌─────────────────────┐
-│  HUMAN ESCALATION   │  ~8% escalated (uncertain)
-└─────────────────────┘
-     │
-     ▼
-~62% AUTO-APPROVED (with full audit trail)
-```
-
----
-
-## What Verifier Primacy Unlocks
-
-::: {.columns}
-::: {.column width="50%"}
-### True Autonomy
-
-Agents act without human review — **because verifiers watch**.
-
-You can finally ship autonomous systems.
-
-### Validation Trail
-
-Every action logged. Every gate documented.
-
-"Here's what it tried. Here's why we blocked it."
-
-:::
-
-::: {.column width="50%"}
-### Real-Time Protection
-
-Not post-mortem. Not batch review.
-
-Catch the wrong action **BEFORE** payment sends.
-
-### Defensible to the Board
-
-"Here's our verification layer. Here's our audit trail."
-
-Governance made executable.
-
-:::
+**Senior Adjuster's judgment reviews 500 claims.**
 :::
 
 ---
@@ -1278,62 +1047,15 @@ AI capability is becoming **commodity**.
 :::
 
 ::: {.fragment .fade-up style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
-**TRUST is the moat.**
+**Encoded expertise is the moat.**
 :::
 
 ::: {.fragment style="margin-top: 40px;"}
 You're not investing in AI.
 
-You're investing in **AI GOVERNANCE**.
-:::
+You're investing in **capturing what your experts know**
 
----
-
-# A Tale of Two Executives {background-color="#1E293B"}
-
----
-
-## {background-color="#1E293B"}
-
-::: {.columns}
-::: {.column width="48%" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;"}
-### EXECUTIVE A
-
-- Shipped claims agent fast
-- Demo was impressive
-- Board was excited
-
-::: {.fragment}
-- Agent paid 47 excluded claims
-- "Why did it fail?" — "We don't know."
-- "Will it happen again?" — "We can't guarantee."
-:::
-
-::: {.fragment style="color: #DC2626; font-weight: bold; margin-top: 20px;"}
-$400k exposure. Regulatory inquiry. Career over.
-:::
-
-:::
-
-::: {.column width="48%" style="background-color: #D1FAE5; padding: 30px; border-radius: 12px;"}
-### EXECUTIVE B
-
-- Shipped claims agent with verification stack
-- Same agent, same failure attempts
-
-::: {.fragment}
-- **Semantic layer caught contradictions**
-- **Domain rules caught exclusions**
-- Escalated to human review
-:::
-
-::: {.fragment style="color: #059669; font-weight: bold; margin-top: 20px;"}
-"Here's the audit trail. Zero improper payments."
-
-Promoted. Trusted. Leading AI transformation.
-:::
-
-:::
+**before they retire.**
 :::
 
 ---
@@ -1341,28 +1063,28 @@ Promoted. Trusted. Leading AI transformation.
 ## {background-color="#7C3AED"}
 
 ::: {.r-fit-text}
-Which one will you be?
+Invest in verification infrastructure
+
+to use LLMs safely.
+:::
+
+::: {.fragment .fade-up style="margin-top: 50px; font-size: 1.3em;"}
+This is the best way to tame chaos
+:::
+
+::: {.fragment .fade-up style="margin-top: 30px; font-size: 1.5em;"}
+**and become the casino.**
 :::
 
 ---
 
 ## {background-color="#0F172A"}
 
-AI adoption is **not optional**.
-
-The pressure is real.
-
-::: {.fragment style="color: #DC2626; margin-top: 30px;"}
-But adoption without governance is **liability**.
-:::
-
-::: {.fragment style="background-color: #7C3AED; padding: 40px; border-radius: 12px; margin-top: 50px;"}
 ::: {.r-fit-text}
 **Stop praying. Start verifying.**
 :::
-:::
 
-::: {.fragment style="color: #64748B; margin-top: 40px;"}
-Andriy Batutin • @AI_Capitalist • andriybatutin.substack.com
+::: {.fragment style="color: #64748B; margin-top: 60px;"}
+Andriy Batutin •  [andriybatutin.substack.com](https://andriybatutin.substack.com/)
 :::
 
