@@ -276,8 +276,16 @@ Andriy Batutin
 <p>A perfectly reliable AI is a database.</p>
 </div>
 </section>
-<section id="the-math-autoregressive-factorization" class="slide level2 center">
-<h2>The Math: Autoregressive Factorization</h2>
+<section class="slide level2 center">
+
+</section></section>
+<section>
+<section id="fundamentals-of-modern-ai-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>Fundamentals of Modern AI Stack</h1>
+
+</section>
+<section id="the-autoregressive-decoder" class="slide level2 center">
+<h2>The Autoregressive Decoder</h2>
 <div class="callout callout-note no-icon callout-titled callout-style-simple">
 <div class="callout-body">
 <div class="callout-title">
@@ -302,87 +310,143 @@ Andriy Batutin
 <p>Every token is a spin. The house always has edge.</p>
 </div>
 </section>
-<section id="the-slot-machine-tradeoff" class="slide level2 center">
-<h2>The Slot Machine Tradeoff</h2>
+<section id="information-imbalance" class="slide level2 center">
+<h2>Information Imbalance</h2>
+<div class="callout callout-warning no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Query Entropy &lt;&lt; Document Entropy</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<p><span class="math display">\[H(\text{Query}) \ll H(\text{Document})\]</span></p>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
-<h3 id="why-its-great">Why It’s Great</h3>
-<ul>
-<li>Multiple answers possible</li>
-<li>Model <strong>blends</strong> learned patterns</li>
-<li>Answers questions <strong>never seen</strong></li>
-<li>Sometimes: <strong>jackpot</strong></li>
-</ul>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
-<h3 id="without-probability">Without Probability?</h3>
-<ul>
-<li>Only one answer ever</li>
-<li>Can only <strong>repeat</strong> training data</li>
-<li>New question = <strong>no answer</strong></li>
-<li>Just a <strong>dictionary</strong></li>
-</ul>
+<div class="column" style="width:50%;">
+<h3 id="the-question">The Question</h3>
+<p>“Is knee surgery covered?”</p>
+<p><strong>= 4 tokens</strong></p>
+</div><div class="column" style="width:50%;">
+<h3 id="the-answer-location">The Answer Location</h3>
+<p>Page 147, Section 8.3.2(b)</p>
+<p>Endorsement CP-1147, Exclusion (iii)</p>
 </div></div>
 <div class="fragment fade-up" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p><strong>The probability that gives you jackpots is the same probability that gives you garbage.</strong></p>
-<p><strong>You cannot have one without the other.</strong></p>
+<p><strong>You’re asking search to read minds.</strong></p>
+</div>
+</section>
+<section id="the-retrieval-problem" class="slide level2 center">
+<h2>The Retrieval Problem</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="semantic-search-fails">Semantic Search Fails</h3>
+<p>In high-dimensional space:</p>
+<p><span class="math display">\[\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c\]</span></p>
+<p><strong>Similar ≠ Relevant</strong></p>
+<p>“What’s my deductible?” ≈ “What is a deductible?”</p>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="keyword-search-fails">Keyword Search Fails</h3>
+<p>Synonymy &amp; polysemy break everything:</p>
+<ul>
+<li>“coverage” ≠ “benefits”</li>
+<li>“benefits” ≠ “included services”</li>
+<li>“included services” ≠ “covered procedures”</li>
+</ul>
+<p><strong>Same concept, different words.</strong></p>
+</div></div>
+<div class="fragment fade-up" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<p><strong>RAG retrieves plausible documents. LLM generates confident answers.</strong></p>
+<p>But confidence ≠ correctness.</p>
+</div>
+</section>
+<section id="agentic-combinatorial-explosion" class="slide level2 center">
+<h2>Agentic Combinatorial Explosion</h2>
+<div class="callout callout-important no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>The Action Space Is Intractable</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<p><span class="math display">\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</span></p>
+<div class="fragment">
+<p>8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
+<p>Per claim. 500 claims/day.</p>
+</div>
+<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<p><strong>No exhaustive testing possible.</strong></p>
+<p>You’re sampling from chaos.</p>
+</div>
+</section>
+<section id="section-4" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.3em;">
+<p><strong>Every query is a pull. Every action is a bet.</strong></p>
+<p>You expected to win? The math says no.</p>
+</div>
+</section>
+<section id="section-5" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>Leaders must approach building AI systems</p>
+<p>with the mentality of a <strong>casino owner</strong>,</p>
+<p>not a casino player.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<p><strong>That is how they will win in the long run.</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
 
 </section></section>
 <section>
-<section id="from-retrieval-to-action" class="title-slide slide level1 center" data-background-color="#1E293B">
-<h1>From Retrieval to Action</h1>
-<p><em>The escalating risk ladder</em></p>
+<section id="real-world-insurance-org-structure" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>Real World Insurance Org Structure</h1>
+<p><em>How AI Can Actuate Risks Instead of Decreasing Them</em></p>
 </section>
-<section id="the-risk-ladder" class="slide level2 center">
-<h2>The Risk Ladder</h2>
-<pre><code>                                          ┌─────────────────────┐
-                                          │  AGENTIC AI         │
-                                          │  Takes actions      │
-                                          │  Moves money        │
-                                          │  Sends emails       │
-                                   ┌──────┤  IRREVERSIBLE       │
-                                   │      └─────────────────────┘
-                                   │
-                            ┌──────┴──────┐
-                            │  RAG        │
-                            │  Retrieves  │
-                            │  Generates  │
-                     ┌──────┤  WRONG INFO │
-                     │      └─────────────┘
-                     │
-              ┌──────┴──────┐
-              │  CHATBOT    │
-              │  Answers    │
-              │  WRONG      │
-              └─────────────┘
-                     │
-    ─────────────────┴─────────────────────────────────────────►
-    LOW RISK                                           HIGH RISK
-    (user verifies)                          (machine acts autonomously)</code></pre>
+<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/insurance_org.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
+<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/Insurance_risk_ladder.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
+<section class="slide level2 center">
+
+</section></section>
+<section>
+<section id="risk-decomposition" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>Risk Decomposition</h1>
+
 </section>
 <section id="rag-the-foundation-problem" class="slide level2 center">
 <h2>RAG: The Foundation Problem</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="information-asymmetry">Information Asymmetry</h3>
-<p><span class="math display">\[H(\text{Query}) \ll H(\text{Document})\]</span></p>
+<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<h3 id="what-rag-promises">What RAG Promises</h3>
 <ul>
-<li>Query: “Is knee surgery covered?” = <strong>4 tokens</strong></li>
-<li>Answer location: Page 147, Section 8.3.2(b)</li>
+<li>“Ground AI in your documents”</li>
+<li>“Reduce hallucinations”</li>
+<li>“Enterprise-ready AI”</li>
 </ul>
-<p><em>Asking search to read minds.</em></p>
-</div><div class="column" style="width:50%;">
-<h3 id="embedding-geometry">Embedding Geometry</h3>
-<p>In high-dimensional space:</p>
-<p><span class="math display">\[\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c\]</span></p>
-<p>“What’s my deductible?” ≈ “What is a deductible?”</p>
-<p><em>Similar ≠ Relevant</em></p>
+</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<h3 id="what-rag-delivers">What RAG Delivers</h3>
+<ul>
+<li>Retrieves <strong>plausible</strong> docs</li>
+<li>Misses <strong>critical</strong> exclusions</li>
+<li>Confident answers from <strong>wrong</strong> context</li>
+</ul>
 </div></div>
 <div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p><strong>RAG retrieves plausible documents. LLM generates confident answers.</strong></p>
-<p>But confidence ≠ correctness.</p>
+<p><strong>You already saw the math: Info gap + Retrieval failure + Compounding errors.</strong></p>
+<p>RAG inherits all the problems. It doesn’t solve them.</p>
 </div>
 </section>
 <section id="rag-failure-annoying-but-recoverable" class="slide level2 center">
@@ -434,172 +498,195 @@ Andriy Batutin
 
 </section></section>
 <section>
-<section id="agentic-case-study" class="title-slide slide level1 center" data-background-color="#1E293B">
-<h1>Agentic Case Study</h1>
-<p><em>Insurance Claims Processing Agent</em></p>
+<section id="the-rubber-stamp-trap" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>The Rubber Stamp Trap</h1>
+<p><em>When “Human in the Loop” Becomes Human-Shaped Decoration</em></p>
 </section>
-<section id="the-setup" class="slide level2 center">
-<h2>The Setup</h2>
+<section id="the-setup-kraków-back-office" class="slide level2 center">
+<h2>The Setup: Kraków Back Office</h2>
+<pre><code>CLAIMS DEPARTMENT                          NEW: AI Claims Assistant
+───────────────────────────────────────    ────────────────────────────────────
+Staff: 12 adjusters                        - Reads claim documents
+Volume: 500+ claims/day                    - Pulls policy from admin system
+Target: 45 claims/adjuster/day             - Checks coverage rules
+Avg time per claim: 10-12 minutes          - Calculates recommended payout
+                                           - Presents recommendation to adjuster</code></pre>
+<div class="fragment" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 30px;">
+<p><strong>AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.</strong></p>
+<p>Human adjuster must click [APPROVE] or [REJECT].</p>
+<p><em>“Human in the loop. Completely safe.”</em></p>
+</div>
+</section>
+<section id="marias-screen-0947-am" class="slide level2 center">
+<h2>Maria’s Screen — 09:47 AM</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│  CLAIMS WORKBENCH                                       Maria Kowalska  │
+│  Queue: 47 claims remaining              Today: 18/45 processed         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  CLAIM #WD-2847 | Water Damage - Commercial Property                    │
+│  Claimant: Restauracja Złota Kaczka Sp. z o.o. | Policy: CP-847291      │
+│                                                                         │
+│  ┌───────────────────────────────────────────────────────────────────┐  │
+│  │   ███  AI ASSISTANT RECOMMENDATION  ███                           │  │
+│  │   Coverage: ✓ APPLIES          Policy Status: ✓ ACTIVE            │  │
+│  │   Deductible: PLN 5,000        Coverage Limit: PLN 500,000        │  │
+│  │   Damage Assessment: PLN 43,500                                   │  │
+│  │   Less Deductible:   PLN  5,000                                   │  │
+│  │   ─────────────────────────────                                   │  │
+│  │   RECOMMENDED PAYOUT: PLN 38,500    Confidence: 94%               │  │
+│  └───────────────────────────────────────────────────────────────────┘  │
+│       [ APPROVE ]         [ REJECT ]         [ ESCALATE ]               │
+└─────────────────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="what-maria-does" class="slide level2 center">
+<h2>What Maria Does</h2>
 <div class="columns">
-<div class="column" style="width:55%;">
-<p><strong>Insurance Claims Automation Platform</strong></p>
+<div class="column" style="width:50%;">
+<p><strong>09:47:12 — Maria sees:</strong></p>
 <ul>
-<li>AI agent with <strong>8 tools</strong>:
-<ul>
-<li><code>lookup_policy</code>, <code>check_coverage</code></li>
-<li><code>calculate_payout</code>, <code>approve_claim</code></li>
-<li><code>deny_claim</code>, <code>request_docs</code></li>
-<li><code>send_payment</code>, <code>update_crm</code></li>
-</ul></li>
-<li>Processes <strong>500+ claims/day</strong></li>
-<li>Connected to payment systems</li>
-<li>Auto-approval threshold: $10,000</li>
+<li>Water damage ✓ <em>(common claim type)</em></li>
+<li>Commercial property ✓ <em>(handles daily)</em></li>
+<li>Coverage applies ✓ <em>(AI checked)</em></li>
+<li>Amount reasonable ✓ <em>(within limits)</em></li>
+<li>Confidence 94% ✓ <em>(AI is sure)</em></li>
+<li>47 claims still in queue ✗ <em>(pressure)</em></li>
 </ul>
-</div><div class="column" style="width:45%;">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>The Request</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Claim</strong>: Water damage, burst pipe</p>
-<p><strong>Claimant</strong>: Commercial property, Policy #CP-847291</p>
-<p><strong>Agent task</strong>: Assess coverage, process claim</p>
-</div>
-</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Maria thinks:</strong></p>
+<p><em>“AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard.”</em></p>
+<p><strong>09:47:38</strong> — Maria clicks: <strong>[APPROVE]</strong></p>
+<div class="fragment" style="background-color: #DC2626; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>Time spent on claim: 26 seconds</strong></p>
 </div>
 </div></div>
 </section>
-<section id="the-chain-of-failures" class="slide level2 center">
-<h2>The Chain of Failures</h2>
-<pre><code>┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 1: RETRIEVAL (RAG layer)                                      │
-│                                                                     │
-│  Agent calls: lookup_policy(policy_id="CP-847291")                  │
-│  Retrieved: General commercial property guidelines                  │
-│  MISSED: Endorsement CP-1147 excluding "gradual water damage"       │
-│                                                                     │
-│  Status: Wrong docs, but no harm yet                                │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 2: REASONING                                                  │
-│                                                                     │
-│  Agent reasons: "Water damage from burst pipe is covered under      │
-│  standard commercial property. Claim is valid."                     │
-│                                                                     │
-│  MISSED: "Burst pipe" was actually slow leak over 3 months          │
-│  (gradual = excluded, sudden = covered)                             │
-│                                                                     │
-│  Status: Wrong conclusion, but no harm yet                          │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 3: ACTION — HERE'S WHERE IT GETS BAD                          │
-│                                                                     │
-│  00:00  approve_claim(claim_id="WD-2847", amount=8500)              │
-│  00:03  send_payment(account="****7291", amount=8500)     💸        │
-│  00:05  update_crm(status="PAID", adjuster_notes="Auto-approved")   │
-│  00:07  send_email(to=claimant, template="claim_approved")          │
-│                                                                     │
-│  Total time: 7 seconds. Payment initiated. Email sent.              │
-└─────────────────────────────────────────────────────────────────────┘</code></pre>
-</section>
-<section id="the-consequence-1" class="slide level2 center">
-<h2>The Consequence</h2>
+<section id="what-maria-should-have-checked" class="slide level2 center">
+<h2>What Maria Should Have Checked</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 id="immediate">Immediate</h3>
-<ul>
-<li><strong>$8,500</strong> paid for excluded claim</li>
-<li>Payment already in ACH pipeline</li>
-<li>Claimant has written confirmation</li>
-<li>CRM shows “legitimately paid”</li>
-</ul>
+<p><strong>IF [View Policy] — Page 147:</strong></p>
+<pre><code>ENDORSEMENT CP-1147 - WATER DAMAGE
+
+Coverage for water damage LIMITED TO
+sudden and accidental discharge.
+
+EXCLUDED:
+- Gradual seepage &gt;14 days
+- Damage from lack of maintenance
+- Known source not repaired</code></pre>
 </div><div class="column" style="width:50%;">
-<h3 id="downstream">Downstream</h3>
-<ul>
-<li>Recovery attempt = bad PR + legal costs</li>
-<li>If we DON’T recover = precedent set</li>
-<li>Auditor finds 47 similar cases</li>
-<li><strong>Pattern of auto-approving excluded claims</strong></li>
-</ul>
+<p><strong>IF [View Claim Form]:</strong></p>
+<pre><code>Section 3: Description of Loss
+
+"We noticed water stains on ceiling
+in November. Thought it was
+condensation. On January 15 ceiling
+collapsed. Plumber found pipe had
+been leaking for 'at least 2-3
+months' based on corrosion."</code></pre>
 </div></div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;">
-<h3 id="the-math">The Math</h3>
-<p>47 similar cases × $8,500 average = <strong>$399,500</strong> in improper payments</p>
-<p>Plus: Regulatory inquiry. E&amp;O claim. Reinsurance dispute.</p>
-<p><strong>VP of Claims Operations: terminated.</strong></p>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p><strong>GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0</strong></p>
 </div>
 </section>
-<section id="why-agents-fail-the-math" class="slide level2 center">
-<h2>Why Agents Fail: The Math</h2>
-<h3 id="llm-token-predictor">LLM = Token Predictor</h3>
-<p><span class="math display">\[P(\text{next\_token} \mid \text{context})\]</span></p>
-<div class="fragment">
-<p>The model doesn’t know <code>approve_claim</code> is different from <code>describe_claim</code>.</p>
-<p><strong>Both are just tokens.</strong></p>
-</div>
-<div class="fragment" style="margin-top: 30px;">
-<p>It knows what <strong>text</strong> follows “claim approved.”</p>
-<p>It doesn’t know what happens to your <strong>bank account</strong>.</p>
-</div>
-</section>
-<section id="why-agents-fail-the-math-1" class="slide level2 center">
-<h2>Why Agents Fail: The Math</h2>
-<h3 id="combinatorial-explosion">Combinatorial Explosion</h3>
-<p><span class="math display">\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</span></p>
-<div class="fragment">
-<p>8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
-<p>Per claim. 500 claims/day.</p>
-<p><strong>No exhaustive testing possible.</strong></p>
-</div>
-<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p>You’re not running a system. You’re <strong>sampling from chaos</strong>.</p>
-</div>
-</section>
-<section id="section-4" class="slide level2 center" data-background-color="#0F172A">
-<h2></h2>
-<div class="r-fit-text" style="font-style: italic;">
-<p>“We trained a trillion-parameter model to predict the next token,</p>
-<p>gave it access to your payment systems,</p>
-<p>and said <strong>‘good luck.’</strong>”</p>
-</div>
-</section>
-<section id="the-compounding-problem" class="slide level2 center">
-<h2>The Compounding Problem</h2>
+<section id="what-the-ai-missed-and-why" class="slide level2 center">
+<h2>What the AI Missed (and Why)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 id="rag-alone">RAG Alone</h3>
-<pre><code>Wrong retrieval
-      ↓
-Wrong answer
-      ↓
-Human catches it (maybe)
-      ↓
-Embarrassment</code></pre>
-<p><strong>Recoverable.</strong></p>
+<h3 id="ai-retrieval">AI Retrieval</h3>
+<p>✓ Found policy CP-847291 ✓ Found base coverage ✓ Found deductible: PLN 5,000 ✗ <strong>Did NOT retrieve Endorsement CP-1147</strong></p>
+<p><em>Why? Endorsement in separate DMS. RAG query “water damage coverage” returned base policy. “CP-1147” doesn’t contain “water”.</em></p>
 </div><div class="column" style="width:50%;">
-<h3 id="rag-agent">RAG + Agent</h3>
-<pre><code>Wrong retrieval
-      ↓
-Wrong reasoning
-      ↓
-Wrong tool call
-      ↓
-Irreversible action
-      ↓
-Money moved / email sent / record changed</code></pre>
-<p><strong>Compounded. At machine speed.</strong></p>
+<h3 id="ai-reasoning">AI Reasoning</h3>
+<p>✓ Water damage covered <em>(generally true)</em> ✓ Policy is active ✓ Amount within limits ✗ <strong>Did NOT parse “2-3 months”</strong> ✗ <strong>Did NOT flag gradual vs sudden</strong></p>
+<p><em>Why? Scanned PDF, OCR 87%. Free text. No structured field. Janet knows this. AI doesn’t.</em></p>
+</div></div>
+</section>
+<section id="the-aftermath" class="slide level2 center">
+<h2>The Aftermath</h2>
+<pre><code>09:47:38    Maria clicks [APPROVE]
+09:47:39    System logs: "Claim WD-2847 APPROVED by Maria Kowalska"
+09:48:00    Maria is already on Claim #WD-2848
+
+Day +3      Payment of PLN 38,500 processed
+Day +47     Monthly audit sample pulls Claim WD-2847
+Day +48     Senior Adjuster: "Why did we pay this? It's gradual damage."
+Day +49     Recovery attempted. Claimant: "We have approval confirmation."
+Day +51     Legal involved. Claimant has written record.
+
+Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000</code></pre>
+</section>
+<section id="the-accountability-question" class="slide level2 center">
+<h2>The Accountability Question</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>MARIA:</strong> <em>“AI said it was covered. 94% confidence. I can’t check every endorsement on every claim. I process 45/day.”</em></p>
+<p><strong>IT:</strong> <em>“AI performed as designed. Human approval is required precisely for edge cases. The human approved it.”</em></p>
+</div><div class="column" style="width:50%;">
+<p><strong>CLAIMS MGR:</strong> <em>“We set 45/day target based on AI assistance. That’s what we promised the board.”</em></p>
+<p><strong>VP:</strong> <em>“The audit trail shows human approval. That’s our compliance defense. …right?”</em></p>
 </div></div>
 <div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
-<p><strong>Agentic AI doesn’t add risk. It multiplies it.</strong></p>
-<p>Every RAG failure becomes an action failure.</p>
+<p><strong>“Human in the loop” became “Human as rubber stamp”</strong></p>
+<p>The human isn’t REVIEWING. The human is LEGITIMIZING.</p>
+</div>
+</section>
+<section id="the-math-of-rubber-stamping" class="slide level2 center">
+<h2>The Math of Rubber Stamping</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="before-ai">Before AI</h3>
+<ul>
+<li>Claims/day/adjuster: <strong>15</strong></li>
+<li>Time per claim: <strong>30 min</strong></li>
+<li>Error rate: <strong>2%</strong></li>
+<li>Human catches own mistakes: <strong>80%</strong></li>
+<li><strong>Net errors/day: 0.06</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="after-ai-rubber-stamping">After AI (Rubber Stamping)</h3>
+<ul>
+<li>Claims/day/adjuster: <strong>45</strong></li>
+<li>Time per claim: <strong>10 min</strong> <em>(mostly AI)</em></li>
+<li>AI error rate: <strong>5%</strong></li>
+<li>Human override rate: <strong>3%</strong></li>
+<li><strong>Net errors/day: ~2.0</strong></li>
+</ul>
+</div></div>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<p>12 adjusters × 2 errors/day × 220 days = <strong>5,280 errors/year</strong></p>
+<p>Avg overpayment: PLN 35,000 → <strong>Annual exposure: PLN 184M</strong></p>
+</div>
+</section>
+<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text">
+<p>This is not a story about AI making mistakes.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px;">
+<p>AI will always make mistakes.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px;">
+<p>This is a story about a system designed to <strong>LOOK LIKE</strong> it has human oversight</p>
+<p>while <strong>REMOVING</strong> the conditions that make oversight possible.</p>
+</div>
+<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 40px; text-align: center;">
+<p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
+</div>
+</section>
+<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>The question isn’t:</p>
+<p><em>“How do we make AI more accurate?”</em></p>
+</div>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.3em;">
+<p>The question is:</p>
+<p><strong>“How do we verify AI outputs BEFORE the human sees them</strong></p>
+<p><strong>so the human isn’t the last line of defense?“</strong></p>
+</div>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<p>→ <strong>THE VERIFICATION STACK</strong></p>
 </div>
 </section>
 <section class="slide level2 center">
@@ -702,7 +789,7 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 │  Failure Modes: [Missing endorsement] [Gradual vs sudden] [No esc] │
 └─────────────────────────────────────────────────────────────────────┘</code></pre>
 </section>
-<section id="section-5" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-10" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>But this is still manual.</p>
@@ -1014,7 +1101,7 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 <p>Governance made executable.</p>
 </div></div>
 </section>
-<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-11" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
@@ -1038,7 +1125,7 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 <h1>A Tale of Two Executives</h1>
 
 </section>
-<section id="section-7" class="slide level2 center" data-background-color="#1E293B">
+<section id="section-12" class="slide level2 center" data-background-color="#1E293B">
 <h2></h2>
 <div class="columns">
 <div class="column" style="background-color: #FEE2E2; padding: 30px; border-radius: 12px;">
@@ -1077,13 +1164,13 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 </div>
 </div></div>
 </section>
-<section id="section-8" class="slide level2 center" data-background-color="#7C3AED">
+<section id="section-13" class="slide level2 center" data-background-color="#7C3AED">
 <h2></h2>
 <div class="r-fit-text">
 <p>Which one will you be?</p>
 </div>
 </section>
-<section id="section-9" class="slide level2 center" data-background-color="#0F172A">
+<section id="section-14" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <p>AI adoption is <strong>not optional</strong>.</p>
 <p>The pressure is real.</p>
@@ -1098,33 +1185,6 @@ ANY STATE        → escalate_human      47% MISSED  ← CRITICAL</code></pre>
 <div class="fragment" style="color: #64748B; margin-top: 40px;">
 <p>Andriy Batutin • <span class="citation" data-cites="AI_Capitalist">@AI_Capitalist</span> • andriybatutin.substack.com</p>
 </div>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="appendix-key-equations" class="title-slide slide level1 center" data-background-color="#1E293B">
-<h1>Appendix: Key Equations</h1>
-
-</section>
-<section id="reference-card" class="slide level2 center">
-<h2>Reference Card</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="stochasticity">Stochasticity</h3>
-<p><span class="math display">\[P(x_1, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{&lt;t})\]</span></p>
-<h3 id="information-asymmetry-1">Information Asymmetry</h3>
-<p><span class="math display">\[H(\text{Query}) \ll H(\text{Document})\]</span></p>
-<h3 id="action-space">Action Space</h3>
-<p><span class="math display">\[|A| = n^{\text{tools}} \times m^{\text{params}} \times k^{\text{steps}}\]</span></p>
-</div><div class="column" style="width:50%;">
-<h3 id="verifier-primacy-2">Verifier Primacy</h3>
-<p><span class="math display">\[|\text{Rules}| \ll |\text{Actions}|\]</span></p>
-<h3 id="judge-calibration">Judge Calibration</h3>
-<p><span class="math display">\[\kappa = \frac{p_o - p_e}{1 - p_e}\]</span></p>
-<h3 id="escalation">Escalation</h3>
-<p><span class="math display">\[\text{Escalate iff } P(e) \cdot C_{\text{miss}} &gt; C_{\text{human}}\]</span></p>
-</div></div>
 
 </section></section>
     </div>

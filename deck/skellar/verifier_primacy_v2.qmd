@@ -171,7 +171,11 @@ A perfectly reliable AI is a database.
 
 ---
 
-## The Math: Autoregressive Factorization
+# Fundamentals of Modern AI Stack {background-color="#1E293B"}
+
+---
+
+## The Autoregressive Decoder
 
 ::: {.callout-note appearance="minimal"}
 ## LLMs Are Conditional Probability Machines
@@ -199,108 +203,176 @@ Every token is a spin. The house always has edge.
 
 ---
 
-## The Slot Machine Tradeoff
+## Information Imbalance
+
+::: {.callout-warning appearance="minimal"}
+## Query Entropy << Document Entropy
+:::
+
+$$H(\text{Query}) \ll H(\text{Document})$$
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
-### Why It's Great
+::: {.column width="50%"}
+### The Question
 
-- Multiple answers possible
-- Model **blends** learned patterns
-- Answers questions **never seen**
-- Sometimes: **jackpot**
+"Is knee surgery covered?"
+
+**= 4 tokens**
 
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
-### Without Probability?
+::: {.column width="50%"}
+### The Answer Location
 
-- Only one answer ever
-- Can only **repeat** training data
-- New question = **no answer**
-- Just a **dictionary**
+Page 147, Section 8.3.2(b)
+
+Endorsement CP-1147, Exclusion (iii)
 
 :::
 :::
 
 ::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-**The probability that gives you jackpots is the same probability that gives you garbage.**
-
-**You cannot have one without the other.**
+**You're asking search to read minds.**
 :::
 
 ---
 
-# From Retrieval to Action {background-color="#1E293B"}
+## The Retrieval Problem
 
-*The escalating risk ladder*
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Semantic Search Fails
+
+In high-dimensional space:
+
+$$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
+
+**Similar ≠ Relevant**
+
+"What's my deductible?" ≈ "What is a deductible?"
+
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Keyword Search Fails
+
+Synonymy & polysemy break everything:
+
+- "coverage" ≠ "benefits"
+- "benefits" ≠ "included services"
+- "included services" ≠ "covered procedures"
+
+**Same concept, different words.**
+
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**RAG retrieves plausible documents. LLM generates confident answers.**
+
+But confidence ≠ correctness.
+:::
 
 ---
 
-## The Risk Ladder
+## Agentic Combinatorial Explosion
 
-```
-                                          ┌─────────────────────┐
-                                          │  AGENTIC AI         │
-                                          │  Takes actions      │
-                                          │  Moves money        │
-                                          │  Sends emails       │
-                                   ┌──────┤  IRREVERSIBLE       │
-                                   │      └─────────────────────┘
-                                   │
-                            ┌──────┴──────┐
-                            │  RAG        │
-                            │  Retrieves  │
-                            │  Generates  │
-                     ┌──────┤  WRONG INFO │
-                     │      └─────────────┘
-                     │
-              ┌──────┴──────┐
-              │  CHATBOT    │
-              │  Answers    │
-              │  WRONG      │
-              └─────────────┘
-                     │
-    ─────────────────┴─────────────────────────────────────────►
-    LOW RISK                                           HIGH RISK
-    (user verifies)                          (machine acts autonomously)
-```
+::: {.callout-important appearance="minimal"}
+## The Action Space Is Intractable
+:::
+
+$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
+
+::: {.fragment}
+8 tools × 5 params × 4 steps = **12,800+ trajectories**
+
+Per claim. 500 claims/day.
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**No exhaustive testing possible.**
+
+You're sampling from chaos.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/ai_casino.png){fig-align="center" width="80%"}
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.3em;"}
+**Every query is a pull. Every action is a bet.**
+
+You expected to win? The math says no.
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Leaders must approach building AI systems
+
+with the mentality of a **casino owner**,
+
+not a casino player.
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+**That is how they will win in the long run.**
+:::
+
+---
+
+# Real World Insurance Org Structure {background-color="#1E293B"}
+
+*How AI Can Actuate Risks Instead of Decreasing Them*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/insurance_org.png){fig-align="center" width="85%"}
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
+
+---
+
+# Risk Decomposition {background-color="#1E293B"}
 
 ---
 
 ## RAG: The Foundation Problem
 
 ::: {.columns}
-::: {.column width="50%"}
-### Information Asymmetry
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### What RAG Promises
 
-$$H(\text{Query}) \ll H(\text{Document})$$
-
-- Query: "Is knee surgery covered?" = **4 tokens**
-- Answer location: Page 147, Section 8.3.2(b)
-
-*Asking search to read minds.*
+- "Ground AI in your documents"
+- "Reduce hallucinations"
+- "Enterprise-ready AI"
 
 :::
 
-::: {.column width="50%"}
-### Embedding Geometry
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### What RAG Delivers
 
-In high-dimensional space:
-
-$$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
-
-"What's my deductible?" ≈ "What is a deductible?"
-
-*Similar ≠ Relevant*
+- Retrieves **plausible** docs
+- Misses **critical** exclusions
+- Confident answers from **wrong** context
 
 :::
 :::
 
 ::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-**RAG retrieves plausible documents. LLM generates confident answers.**
+**You already saw the math: Info gap + Retrieval failure + Compounding errors.**
 
-But confidence ≠ correctness.
+RAG inherits all the problems. It doesn't solve them.
 :::
 
 ---
@@ -373,218 +445,272 @@ By the time you notice, **damage is done**.
 
 ---
 
-# Agentic Case Study {background-color="#1E293B"}
+# The Rubber Stamp Trap {background-color="#1E293B"}
 
-*Insurance Claims Processing Agent*
-
----
-
-## The Setup
-
-::: {.columns}
-::: {.column width="55%"}
-**Insurance Claims Automation Platform**
-
-- AI agent with **8 tools**: 
-  - `lookup_policy`, `check_coverage`
-  - `calculate_payout`, `approve_claim`
-  - `deny_claim`, `request_docs`
-  - `send_payment`, `update_crm`
-- Processes **500+ claims/day**
-- Connected to payment systems
-- Auto-approval threshold: $10,000
-
-:::
-
-::: {.column width="45%"}
-::: {.callout-warning}
-## The Request
-
-**Claim**: Water damage, burst pipe
-
-**Claimant**: Commercial property, Policy #CP-847291
-
-**Agent task**: Assess coverage, process claim
-
-:::
-:::
-:::
+*When "Human in the Loop" Becomes Human-Shaped Decoration*
 
 ---
 
-## The Chain of Failures
+## The Setup: Kraków Back Office
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 1: RETRIEVAL (RAG layer)                                      │
-│                                                                     │
-│  Agent calls: lookup_policy(policy_id="CP-847291")                  │
-│  Retrieved: General commercial property guidelines                  │
-│  MISSED: Endorsement CP-1147 excluding "gradual water damage"       │
-│                                                                     │
-│  Status: Wrong docs, but no harm yet                                │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 2: REASONING                                                  │
-│                                                                     │
-│  Agent reasons: "Water damage from burst pipe is covered under      │
-│  standard commercial property. Claim is valid."                     │
-│                                                                     │
-│  MISSED: "Burst pipe" was actually slow leak over 3 months          │
-│  (gradual = excluded, sudden = covered)                             │
-│                                                                     │
-│  Status: Wrong conclusion, but no harm yet                          │
-└─────────────────────────────────────────────────────────────────────┘
-                                    │
-                                    ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  STEP 3: ACTION — HERE'S WHERE IT GETS BAD                          │
-│                                                                     │
-│  00:00  approve_claim(claim_id="WD-2847", amount=8500)              │
-│  00:03  send_payment(account="****7291", amount=8500)     💸        │
-│  00:05  update_crm(status="PAID", adjuster_notes="Auto-approved")   │
-│  00:07  send_email(to=claimant, template="claim_approved")          │
-│                                                                     │
-│  Total time: 7 seconds. Payment initiated. Email sent.              │
-└─────────────────────────────────────────────────────────────────────┘
+CLAIMS DEPARTMENT                          NEW: AI Claims Assistant
+───────────────────────────────────────    ────────────────────────────────────
+Staff: 12 adjusters                        - Reads claim documents
+Volume: 500+ claims/day                    - Pulls policy from admin system
+Target: 45 claims/adjuster/day             - Checks coverage rules
+Avg time per claim: 10-12 minutes          - Calculates recommended payout
+                                           - Presents recommendation to adjuster
+```
+
+::: {.fragment style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 30px;"}
+**AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
+
+Human adjuster must click [APPROVE] or [REJECT].
+
+*"Human in the loop. Completely safe."*
+:::
+
+---
+
+## Maria's Screen — 09:47 AM
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│  CLAIMS WORKBENCH                                       Maria Kowalska  │
+│  Queue: 47 claims remaining              Today: 18/45 processed         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  CLAIM #WD-2847 | Water Damage - Commercial Property                    │
+│  Claimant: Restauracja Złota Kaczka Sp. z o.o. | Policy: CP-847291      │
+│                                                                         │
+│  ┌───────────────────────────────────────────────────────────────────┐  │
+│  │   ███  AI ASSISTANT RECOMMENDATION  ███                           │  │
+│  │   Coverage: ✓ APPLIES          Policy Status: ✓ ACTIVE            │  │
+│  │   Deductible: PLN 5,000        Coverage Limit: PLN 500,000        │  │
+│  │   Damage Assessment: PLN 43,500                                   │  │
+│  │   Less Deductible:   PLN  5,000                                   │  │
+│  │   ─────────────────────────────                                   │  │
+│  │   RECOMMENDED PAYOUT: PLN 38,500    Confidence: 94%               │  │
+│  └───────────────────────────────────────────────────────────────────┘  │
+│       [ APPROVE ]         [ REJECT ]         [ ESCALATE ]               │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## The Consequence
+## What Maria Does
 
 ::: {.columns}
 ::: {.column width="50%"}
-### Immediate
+**09:47:12 — Maria sees:**
 
-- **$8,500** paid for excluded claim
-- Payment already in ACH pipeline
-- Claimant has written confirmation
-- CRM shows "legitimately paid"
-
+- Water damage ✓ *(common claim type)*
+- Commercial property ✓ *(handles daily)*
+- Coverage applies ✓ *(AI checked)*
+- Amount reasonable ✓ *(within limits)*
+- Confidence 94% ✓ *(AI is sure)*
+- 47 claims still in queue ✗ *(pressure)*
 :::
 
 ::: {.column width="50%"}
-### Downstream
+**Maria thinks:**
 
-- Recovery attempt = bad PR + legal costs
-- If we DON'T recover = precedent set
-- Auditor finds 47 similar cases
-- **Pattern of auto-approving excluded claims**
+*"AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard."*
 
+**09:47:38** — Maria clicks: **[APPROVE]**
+
+::: {.fragment style="background-color: #DC2626; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Time spent on claim: 26 seconds**
 :::
 :::
-
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;"}
-### The Math
-
-47 similar cases × $8,500 average = **$399,500** in improper payments
-
-Plus: Regulatory inquiry. E&O claim. Reinsurance dispute.
-
-**VP of Claims Operations: terminated.**
 :::
 
 ---
 
-## Why Agents Fail: The Math
+## What Maria Should Have Checked
 
-### LLM = Token Predictor
+::: {.columns}
+::: {.column width="50%"}
+**IF [View Policy] — Page 147:**
 
-$$P(\text{next\_token} \mid \text{context})$$
+```
+ENDORSEMENT CP-1147 - WATER DAMAGE
 
-::: {.fragment}
-The model doesn't know `approve_claim` is different from `describe_claim`.
+Coverage for water damage LIMITED TO
+sudden and accidental discharge.
 
-**Both are just tokens.**
+EXCLUDED:
+- Gradual seepage >14 days
+- Damage from lack of maintenance
+- Known source not repaired
+```
 :::
 
-::: {.fragment style="margin-top: 30px;"}
-It knows what **text** follows "claim approved."
+::: {.column width="50%"}
+**IF [View Claim Form]:**
 
-It doesn't know what happens to your **bank account**.
+```
+Section 3: Description of Loss
+
+"We noticed water stains on ceiling
+in November. Thought it was
+condensation. On January 15 ceiling
+collapsed. Plumber found pipe had
+been leaking for 'at least 2-3
+months' based on corrosion."
+```
+:::
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0**
 :::
 
 ---
 
-## Why Agents Fail: The Math
+## What the AI Missed (and Why)
 
-### Combinatorial Explosion
+::: {.columns}
+::: {.column width="50%"}
+### AI Retrieval
 
-$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
+✓ Found policy CP-847291
+✓ Found base coverage
+✓ Found deductible: PLN 5,000
+✗ **Did NOT retrieve Endorsement CP-1147**
 
-::: {.fragment}
-8 tools × 5 params × 4 steps = **12,800+ trajectories**
-
-Per claim. 500 claims/day.
-
-**No exhaustive testing possible.**
+*Why? Endorsement in separate DMS. RAG query "water damage coverage" returned base policy. "CP-1147" doesn't contain "water".*
 :::
 
-::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-You're not running a system. You're **sampling from chaos**.
+::: {.column width="50%"}
+### AI Reasoning
+
+✓ Water damage covered *(generally true)*
+✓ Policy is active
+✓ Amount within limits
+✗ **Did NOT parse "2-3 months"**
+✗ **Did NOT flag gradual vs sudden**
+
+*Why? Scanned PDF, OCR 87%. Free text. No structured field. Janet knows this. AI doesn't.*
+:::
+:::
+
+---
+
+## The Aftermath
+
+```
+09:47:38    Maria clicks [APPROVE]
+09:47:39    System logs: "Claim WD-2847 APPROVED by Maria Kowalska"
+09:48:00    Maria is already on Claim #WD-2848
+
+Day +3      Payment of PLN 38,500 processed
+Day +47     Monthly audit sample pulls Claim WD-2847
+Day +48     Senior Adjuster: "Why did we pay this? It's gradual damage."
+Day +49     Recovery attempted. Claimant: "We have approval confirmation."
+Day +51     Legal involved. Claimant has written record.
+
+Day +180    Pattern discovered. 23 similar claims. Total: PLN 847,000
+```
+
+---
+
+## The Accountability Question
+
+::: {.columns}
+::: {.column width="50%"}
+**MARIA:** *"AI said it was covered. 94% confidence. I can't check every endorsement on every claim. I process 45/day."*
+
+**IT:** *"AI performed as designed. Human approval is required precisely for edge cases. The human approved it."*
+:::
+
+::: {.column width="50%"}
+**CLAIMS MGR:** *"We set 45/day target based on AI assistance. That's what we promised the board."*
+
+**VP:** *"The audit trail shows human approval. That's our compliance defense. ...right?"*
+:::
+:::
+
+::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**"Human in the loop" became "Human as rubber stamp"**
+
+The human isn't REVIEWING. The human is LEGITIMIZING.
+:::
+
+---
+
+## The Math of Rubber Stamping
+
+::: {.columns}
+::: {.column width="50%"}
+### Before AI
+
+- Claims/day/adjuster: **15**
+- Time per claim: **30 min**
+- Error rate: **2%**
+- Human catches own mistakes: **80%**
+- **Net errors/day: 0.06**
+:::
+
+::: {.column width="50%"}
+### After AI (Rubber Stamping)
+
+- Claims/day/adjuster: **45**
+- Time per claim: **10 min** *(mostly AI)*
+- AI error rate: **5%**
+- Human override rate: **3%**
+- **Net errors/day: ~2.0**
+:::
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
+
+Avg overpayment: PLN 35,000 → **Annual exposure: PLN 184M**
 :::
 
 ---
 
 ## {background-color="#0F172A"}
 
-::: {.r-fit-text style="font-style: italic;"}
-"We trained a trillion-parameter model to predict the next token,
+::: {.r-fit-text}
+This is not a story about AI making mistakes.
+:::
 
-gave it access to your payment systems,
+::: {.fragment .fade-up style="margin-top: 30px;"}
+AI will always make mistakes.
+:::
 
-and said **'good luck.'**"
+::: {.fragment .fade-up style="margin-top: 30px;"}
+This is a story about a system designed to **LOOK LIKE** it has human oversight
+
+while **REMOVING** the conditions that make oversight possible.
+:::
+
+::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 40px; text-align: center;"}
+What gave: **actual oversight.** What remained: **the appearance of oversight.**
 :::
 
 ---
 
-## The Compounding Problem
+## {background-color="#7C3AED"}
 
-::: {.columns}
-::: {.column width="50%"}
-### RAG Alone
+::: {.r-fit-text}
+The question isn't:
 
-```
-Wrong retrieval
-      ↓
-Wrong answer
-      ↓
-Human catches it (maybe)
-      ↓
-Embarrassment
-```
-
-**Recoverable.**
-
+*"How do we make AI more accurate?"*
 :::
 
-::: {.column width="50%"}
-### RAG + Agent
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.3em;"}
+The question is:
 
-```
-Wrong retrieval
-      ↓
-Wrong reasoning
-      ↓
-Wrong tool call
-      ↓
-Irreversible action
-      ↓
-Money moved / email sent / record changed
-```
+**"How do we verify AI outputs BEFORE the human sees them**
 
-**Compounded. At machine speed.**
-
-:::
+**so the human isn't the last line of defense?"**
 :::
 
-::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
-**Agentic AI doesn't add risk. It multiplies it.**
-
-Every RAG failure becomes an action failure.
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+→ **THE VERIFICATION STACK**
 :::
 
 ---
@@ -1168,36 +1294,3 @@ But adoption without governance is **liability**.
 Andriy Batutin • @AI_Capitalist • andriybatutin.substack.com
 :::
 
----
-
-# Appendix: Key Equations {background-color="#1E293B"}
-
----
-
-## Reference Card
-
-::: {.columns}
-::: {.column width="50%"}
-### Stochasticity
-$$P(x_1, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
-
-### Information Asymmetry
-$$H(\text{Query}) \ll H(\text{Document})$$
-
-### Action Space
-$$|A| = n^{\text{tools}} \times m^{\text{params}} \times k^{\text{steps}}$$
-
-:::
-
-::: {.column width="50%"}
-### Verifier Primacy
-$$|\text{Rules}| \ll |\text{Actions}|$$
-
-### Judge Calibration
-$$\kappa = \frac{p_o - p_e}{1 - p_e}$$
-
-### Escalation
-$$\text{Escalate iff } P(e) \cdot C_{\text{miss}} > C_{\text{human}}$$
-
-:::
-:::
