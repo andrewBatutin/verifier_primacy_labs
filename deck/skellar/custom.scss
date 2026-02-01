@@ -1,25 +1,49 @@
 /*-- scss:defaults --*/
 
-// Colors
-$body-bg: #0F172A;
-$body-color: #F8FAFC;
-$link-color: #0891B2;
-$selection-bg: #7C3AED;
+// ===========================================
+// COLOR PALETTE - Semantic color variables
+// ===========================================
+
+// Base colors
+$color-bg-primary: #0F172A;        // Slate 900 - main background
+$color-bg-secondary: #1E293B;      // Slate 800 - cards, code blocks
+$color-text-primary: #F8FAFC;      // Slate 50 - main text
+$color-text-muted: #64748B;        // Slate 500 - secondary text
+
+// Accent colors
+$color-accent-cyan: #0891B2;       // Cyan 600 - links, h3, highlights
+$color-accent-violet: #7C3AED;     // Violet 600 - emphasis, selection
+$color-accent-emerald: #059669;    // Emerald 600 - success states
+$color-accent-orange: #EA580C;     // Orange 600 - layer highlights
+
+// Semantic colors (refined for better contrast)
+$color-danger: #EF4444;            // Red 500 - softer red for text
+$color-danger-bg: #991B1B;         // Red 800 - fear boxes (richer)
+$color-danger-border: #DC2626;     // Red 600 - borders
+$color-info-bg: #1E40AF;           // Blue 800 - FOMO boxes (more saturated)
+$color-success-bg: #065F46;        // Emerald 800 - success boxes
+
+// Apply to Quarto variables
+$body-bg: $color-bg-primary;
+$body-color: $color-text-primary;
+$link-color: $color-accent-cyan;
+$selection-bg: $color-accent-violet;
 
 // Fonts
 $font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-display: "Inter", sans-serif;  // For headlines
 $presentation-font-size-root: 42px;
 $presentation-h1-font-size: 2.5em;
 $presentation-h2-font-size: 1.8em;
 $presentation-h3-font-size: 1.4em;
 
 // Headings
-$presentation-heading-font: "Inter", sans-serif;
-$presentation-heading-color: #F8FAFC;
+$presentation-heading-font: $font-family-display;
+$presentation-heading-color: $color-text-primary;
 
 /*-- scss:rules --*/
 
-// Import Google Font
+// Import Google Fonts - Inter with display weights
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 // Base styles
@@ -35,23 +59,31 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .reveal h1 {
-  color: #F8FAFC;
+  color: $color-text-primary;
+}
+
+// Gradient text for section headers on secondary backgrounds
+.reveal section[data-background-color="#1E293B"] h1 {
+  background: linear-gradient(90deg, $color-accent-cyan, $color-accent-violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .reveal h2 {
-  color: #F8FAFC;
-  border-bottom: 3px solid #0891B2;
+  color: $color-text-primary;
+  border-bottom: 3px solid $color-accent-cyan;
   padding-bottom: 0.3em;
   display: inline-block;
 }
 
 .reveal h3 {
-  color: #0891B2;
+  color: $color-accent-cyan;
 }
 
 // Code blocks
 .reveal pre {
-  background-color: #1E293B;
+  background-color: $color-bg-secondary;
   border-radius: 8px;
   padding: 20px;
   font-size: 0.7em;
@@ -60,7 +92,7 @@ $presentation-heading-color: #F8FAFC;
 
 .reveal code {
   font-family: "JetBrains Mono", "Fira Code", monospace;
-  background-color: #1E293B;
+  background-color: $color-bg-secondary;
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -72,44 +104,44 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .reveal .callout-note {
-  background-color: rgba(8, 145, 178, 0.15);
-  border-left: 4px solid #0891B2;
+  background-color: rgba($color-accent-cyan, 0.15);
+  border-left: 4px solid $color-accent-cyan;
 }
 
 .reveal .callout-warning {
-  background-color: rgba(220, 38, 38, 0.15);
-  border-left: 4px solid #DC2626;
+  background-color: rgba($color-danger-border, 0.15);
+  border-left: 4px solid $color-danger-border;
 }
 
 .reveal .callout-important {
-  background-color: rgba(124, 58, 237, 0.15);
-  border-left: 4px solid #7C3AED;
+  background-color: rgba($color-accent-violet, 0.15);
+  border-left: 4px solid $color-accent-violet;
 }
 
 .reveal .callout-tip {
-  background-color: rgba(5, 150, 105, 0.15);
-  border-left: 4px solid #059669;
+  background-color: rgba($color-accent-emerald, 0.15);
+  border-left: 4px solid $color-accent-emerald;
 }
 
 // Custom text styles
 .red-text {
-  color: #DC2626 !important;
+  color: $color-danger !important;
 }
 
 .teal-text {
-  color: #0891B2 !important;
+  color: $color-accent-cyan !important;
 }
 
 .purple-text {
-  color: #7C3AED !important;
+  color: $color-accent-violet !important;
 }
 
 .green-text {
-  color: #059669 !important;
+  color: $color-accent-emerald !important;
 }
 
 .muted-text {
-  color: #64748B !important;
+  color: $color-text-muted !important;
 }
 
 // Tables
@@ -119,8 +151,8 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .reveal table th {
-  background-color: #1E293B;
-  color: #0891B2;
+  background-color: $color-bg-secondary;
+  color: $color-accent-cyan;
   padding: 12px 20px;
   font-weight: 600;
 }
@@ -131,7 +163,7 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .reveal table tr:hover td {
-  background-color: rgba(8, 145, 178, 0.1);
+  background-color: rgba($color-accent-cyan, 0.1);
 }
 
 // Columns
@@ -151,7 +183,7 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .reveal ul li::marker {
-  color: #0891B2;
+  color: $color-accent-cyan;
 }
 
 // Incremental animations
@@ -161,7 +193,7 @@ $presentation-heading-color: #F8FAFC;
 
 // Slide backgrounds with gradient
 .reveal .slide-background-content {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  background: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
 }
 
 // Custom boxes
@@ -172,28 +204,83 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .problem-box {
-  background-color: rgba(220, 38, 38, 0.1);
-  border-left: 4px solid #DC2626;
+  background-color: rgba($color-danger-border, 0.1);
+  border-left: 4px solid $color-danger-border;
 }
 
 .truth-box {
-  background-color: rgba(8, 145, 178, 0.1);
-  border-left: 4px solid #0891B2;
+  background-color: rgba($color-accent-cyan, 0.1);
+  border-left: 4px solid $color-accent-cyan;
 }
 
 .failure-box {
-  background-color: rgba(220, 38, 38, 0.15);
-  border: 2px solid #DC2626;
+  background-color: rgba($color-danger-border, 0.15);
+  border: 2px solid $color-danger-border;
 }
 
 .success-box {
-  background-color: rgba(5, 150, 105, 0.15);
-  border: 2px solid #059669;
+  background-color: rgba($color-accent-emerald, 0.15);
+  border: 2px solid $color-accent-emerald;
+}
+
+// ===========================================
+// SEMANTIC BOXES - Fear/FOMO with better contrast
+// ===========================================
+
+.fear-box {
+  background-color: $color-danger-bg;  // Red 800 - richer
+  padding: 20px;
+  border-radius: 8px;
+  color: $color-text-primary;
+}
+
+.fomo-box {
+  background-color: $color-info-bg;    // Blue 800 - more saturated
+  padding: 20px;
+  border-radius: 8px;
+  color: $color-text-primary;
+}
+
+.insight-box {
+  background-color: $color-accent-violet;
+  padding: 20px;
+  border-radius: 8px;
+  color: $color-text-primary;
+  text-align: center;
+}
+
+.danger-callout {
+  background-color: $color-danger;
+  padding: 20px;
+  border-radius: 8px;
+  color: $color-text-primary;
+  text-align: center;
+}
+
+.success-callout {
+  background-color: $color-success-bg;
+  padding: 25px;
+  border-radius: 8px;
+  color: $color-text-primary;
+}
+
+.neutral-box {
+  background-color: $color-bg-primary;
+  padding: 20px;
+  border-radius: 8px;
+  color: $color-text-primary;
+}
+
+.info-box {
+  background-color: rgba($color-accent-cyan, 0.15);
+  border: 2px solid $color-accent-cyan;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 // Math blocks
 .reveal .math {
-  color: #F8FAFC;
+  color: $color-text-primary;
 }
 
 .reveal .MathJax {
@@ -208,29 +295,29 @@ $presentation-heading-color: #F8FAFC;
 
 // Footer
 .reveal .slide-number {
-  color: #64748B;
+  color: $color-text-muted;
   font-size: 0.6em;
 }
 
 .reveal .footer {
-  color: #64748B;
+  color: $color-text-muted;
   font-size: 0.5em;
 }
 
 // Progress bar
 .reveal .progress {
-  background: rgba(8, 145, 178, 0.2);
+  background: rgba($color-accent-cyan, 0.2);
   height: 4px;
 }
 
 .reveal .progress span {
-  background: linear-gradient(90deg, #0891B2, #7C3AED);
+  background: linear-gradient(90deg, $color-accent-cyan, $color-accent-violet);
 }
 
 // Blockquotes
 .reveal blockquote {
-  background-color: rgba(124, 58, 237, 0.1);
-  border-left: 4px solid #7C3AED;
+  background-color: rgba($color-accent-violet, 0.1);
+  border-left: 4px solid $color-accent-violet;
   padding: 20px 30px;
   font-style: italic;
   border-radius: 0 8px 8px 0;
@@ -257,47 +344,47 @@ $presentation-heading-color: #F8FAFC;
 }
 
 .layer-0 {
-  background: linear-gradient(90deg, rgba(100, 116, 139, 0.3), rgba(100, 116, 139, 0.1));
-  border-left: 4px solid #64748B;
+  background: linear-gradient(90deg, rgba($color-text-muted, 0.3), rgba($color-text-muted, 0.1));
+  border-left: 4px solid $color-text-muted;
 }
 
 .layer-1 {
-  background: linear-gradient(90deg, rgba(5, 150, 105, 0.3), rgba(5, 150, 105, 0.1));
-  border-left: 4px solid #059669;
+  background: linear-gradient(90deg, rgba($color-accent-emerald, 0.3), rgba($color-accent-emerald, 0.1));
+  border-left: 4px solid $color-accent-emerald;
 }
 
 .layer-2 {
-  background: linear-gradient(90deg, rgba(8, 145, 178, 0.3), rgba(8, 145, 178, 0.1));
-  border-left: 4px solid #0891B2;
+  background: linear-gradient(90deg, rgba($color-accent-cyan, 0.3), rgba($color-accent-cyan, 0.1));
+  border-left: 4px solid $color-accent-cyan;
 }
 
 .layer-3 {
-  background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(124, 58, 237, 0.1));
-  border-left: 4px solid #7C3AED;
+  background: linear-gradient(90deg, rgba($color-accent-violet, 0.3), rgba($color-accent-violet, 0.1));
+  border-left: 4px solid $color-accent-violet;
 }
 
 .layer-4 {
-  background: linear-gradient(90deg, rgba(234, 88, 12, 0.3), rgba(234, 88, 12, 0.1));
-  border-left: 4px solid #EA580C;
+  background: linear-gradient(90deg, rgba($color-accent-orange, 0.3), rgba($color-accent-orange, 0.1));
+  border-left: 4px solid $color-accent-orange;
 }
 
 .layer-5 {
-  background: linear-gradient(90deg, rgba(220, 38, 38, 0.3), rgba(220, 38, 38, 0.1));
-  border-left: 4px solid #DC2626;
+  background: linear-gradient(90deg, rgba($color-danger-border, 0.3), rgba($color-danger-border, 0.1));
+  border-left: 4px solid $color-danger-border;
 }
 
 // Emphasis boxes
 .highlight-box {
-  background-color: rgba(8, 145, 178, 0.15);
-  border: 2px solid #0891B2;
+  background-color: rgba($color-accent-cyan, 0.15);
+  border: 2px solid $color-accent-cyan;
   padding: 20px;
   border-radius: 8px;
   margin: 20px 0;
 }
 
 .warning-box {
-  background-color: rgba(220, 38, 38, 0.15);
-  border: 2px solid #DC2626;
+  background-color: rgba($color-danger-border, 0.15);
+  border: 2px solid $color-danger-border;
   padding: 20px;
   border-radius: 8px;
   margin: 20px 0;

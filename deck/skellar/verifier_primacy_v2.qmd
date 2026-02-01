@@ -109,8 +109,10 @@ Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
 :::
 :::
 
-::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment .fade-up}
+::: {.danger-callout style="margin-top: 30px;"}
 **The gap between deployment and governance is the liability.**
+:::
 :::
 
 ---
@@ -141,22 +143,20 @@ RAG gives wrong answers. Agents take wrong actions.
 ## The Problem
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### The Fear
 
 - AI outputs are unpredictable
 - Wrong action = lawsuit
 - Career ends in headline
-
 :::
 
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### The FOMO
 
 - Competitors are shipping AI
 - Boards expect transformation
 - "Laggard" is career poison
-
 :::
 :::
 
@@ -164,12 +164,14 @@ RAG gives wrong answers. Agents take wrong actions.
 **Both paths feel like career risk.**
 :::
 
-::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment .fade-up}
+::: {.insight-box style="margin-top: 20px;"}
 And here's the uncomfortable truth:
 
 **The unpredictability you fear is exactly what makes AI useful.**
 
 A perfectly reliable AI is a database.
+:::
 :::
 
 # Fundamentals of Modern AI Stack {background-color="#1E293B"}
@@ -188,10 +190,12 @@ $$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
 
 Each token is a **local decision** based on preceding context.
 
-::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+::: {.fragment .fade-up}
+::: {.danger-callout style="margin-top: 20px; text-align: left;"}
 **The Butterfly Effect**: One different token → completely different output.
 
 Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
+:::
 :::
 
 ---
@@ -234,8 +238,10 @@ Endorsement CP-1147, Exclusion (iii)
 :::
 :::
 
-::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment .fade-up}
+::: {.insight-box style="margin-top: 30px;"}
 **You're asking search to read minds.**
+:::
 :::
 
 ---
@@ -243,7 +249,7 @@ Endorsement CP-1147, Exclusion (iii)
 ## The Retrieval Problem
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Semantic Search Fails
 
 In high-dimensional space:
@@ -253,10 +259,9 @@ $$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
 **Similar ≠ Relevant**
 
 "What's my deductible?" ≈ "What is a deductible?"
-
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Keyword Search Fails
 
 Synonymy & polysemy break everything:
@@ -266,14 +271,15 @@ Synonymy & polysemy break everything:
 - "included services" ≠ "covered procedures"
 
 **Same concept, different words.**
-
 :::
 :::
 
-::: {.fragment .fade-up style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment .fade-up}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **RAG retrieves plausible documents. LLM generates confident answers.**
 
 But confidence ≠ correctness.
+:::
 :::
 
 ---
@@ -292,10 +298,12 @@ $$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\t
 Per claim. 500 claims/day.
 :::
 
-::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **No exhaustive testing possible.**
 
 You're sampling from chaos.
+:::
 :::
 
 ---
@@ -304,10 +312,12 @@ You're sampling from chaos.
 
 ![](images/ai_casino.png){fig-align="center" width="80%"}
 
-::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.3em;"}
+::: {.fragment .fade-up}
+::: {.danger-callout .large-text style="margin-top: 30px;"}
 **Every query is a pull. Every action is a bet.**
 
 You expected to win? The math says no.
+:::
 :::
 
 ---
@@ -351,29 +361,29 @@ not a casino player.
 ## RAG: The Foundation Problem
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### What RAG Promises
 
 - "Ground AI in your documents"
 - "Reduce hallucinations"
 - "Enterprise-ready AI"
-
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### What RAG Delivers
 
 - Retrieves **plausible** docs
 - Misses **critical** exclusions
 - Confident answers from **wrong** context
-
 :::
 :::
 
-::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **You already saw the math: Info gap + Retrieval failure + Compounding errors.**
 
 RAG inherits all the problems. It doesn't solve them.
+:::
 :::
 
 ---
@@ -407,8 +417,10 @@ Time to catch mistakes.
 :::
 :::
 
-::: {.fragment style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.fomo-box style="margin-top: 20px; text-align: center;"}
 **RAG is passive. Wrong info waits for someone to act on it.**
+:::
 :::
 
 ---
@@ -440,8 +452,10 @@ By the time you notice, **damage is done**.
 :::
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **Agentic AI multiplies RAG failures by the cost of autonomous action.**
+:::
 :::
 
 # The Rubber Stamp Trap {background-color="#1E293B"}
@@ -453,7 +467,7 @@ By the time you notice, **damage is done**.
 ## The Setup: Kraków Back Office
 
 ::: {.columns}
-::: {.column width="48%" style="background-color: #1E3A5F; padding: 25px; border-radius: 8px;"}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Claims Department
 
 - **Staff:** 12 adjusters
@@ -462,7 +476,7 @@ By the time you notice, **damage is done**.
 - **Avg time:** 10-12 minutes per claim
 :::
 
-::: {.column width="48%" style="background-color: #065F46; padding: 25px; border-radius: 8px;"}
+::: {.column width="48%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
 ### NEW: AI Claims Assistant
 
 - Reads claim documents
@@ -473,10 +487,12 @@ By the time you notice, **damage is done**.
 :::
 :::
 
-::: {.fragment style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment}
+::: {.fear-box style="margin-top: 30px; text-align: center;"}
 **AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
 
 Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely safe."*
+:::
 :::
 
 ---
@@ -508,8 +524,10 @@ Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely
 
 **09:47:38** — Maria clicks: **[APPROVE]**
 
-::: {.fragment style="background-color: #DC2626; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **Time spent on claim: 26 seconds**
+:::
 :::
 :::
 :::
@@ -519,7 +537,7 @@ Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely
 ## What Maria Should Have Checked
 
 ::: {.columns}
-::: {.column width="48%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### IF [View Policy] — Page 147
 
 **ENDORSEMENT CP-1147 - WATER DAMAGE**
@@ -533,7 +551,7 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 - Known source not repaired
 :::
 
-::: {.column width="48%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="48%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### IF [View Claim Form]
 
 **Section 3: Description of Loss**
@@ -542,8 +560,10 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 :::
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0**
+:::
 :::
 
 ---
@@ -579,7 +599,7 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 
 ## The Aftermath
 
-::: {style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.fomo-box}
 **09:47:38** — Maria clicks [APPROVE]
 
 **09:47:39** — System logs: *"Claim WD-2847 APPROVED by Maria Kowalska"*
@@ -587,7 +607,7 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 **09:48:00** — Maria is already on Claim #WD-2848
 :::
 
-::: {style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+::: {.fear-box style="margin-top: 20px;"}
 | Day | Event |
 |-----|-------|
 | **+3** | Payment of PLN 38,500 processed |
@@ -597,8 +617,10 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 | **+51** | Legal involved. Claimant has written record. |
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **Day +180** — Pattern discovered. **23 similar claims. Total: PLN 885,500**
+:::
 :::
 
 ---
@@ -619,10 +641,12 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 :::
 :::
 
-::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment}
+::: {.insight-box style="margin-top: 30px;"}
 **"Human in the loop" became "Human as rubber stamp"**
 
 The human isn't REVIEWING. The human is LEGITIMIZING.
+:::
 :::
 
 ---
@@ -651,10 +675,12 @@ The human isn't REVIEWING. The human is LEGITIMIZING.
 :::
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
 
 Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
+:::
 :::
 
 ---
@@ -675,8 +701,10 @@ This is a story about a system designed to **LOOK LIKE** it has human oversight
 while **REMOVING** the conditions that make oversight possible.
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 40px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 40px;"}
 What gave: **actual oversight.** What remained: **the appearance of oversight.**
+:::
 :::
 
 ---
@@ -718,7 +746,7 @@ The question is:
 **Before using new LLM, understand how Maria's claim failed:**
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Retrieval Failure
 
 - AI queried "water damage coverage CP-847291"
@@ -727,7 +755,7 @@ The question is:
 - *Why: No "water" keyword in endorsement title, stored in separate DMS*
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Reasoning Failure
 
 - AI read claim form but didn't flag "2-3 months"
@@ -738,7 +766,7 @@ The question is:
 :::
 
 ::: {.columns style="margin-top: 20px;"}
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Tool Selection Failure
 
 - **Called:** `recommend_approval(38500)`
@@ -746,7 +774,7 @@ The question is:
 - *Escalation trigger missed: temporal ambiguity*
 :::
 
-::: {.column width="50%" style="background-color: #0F172A; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #334155; padding: 20px; border-radius: 8px;"}
 ### Human Oversight Failure
 
 - Maria saw: 94% confidence, 47 in queue
@@ -763,7 +791,7 @@ The question is:
 **From WD-2847 and 22 similar claims, patterns emerge:**
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Retrieval Failures
 
 | Pattern | Freq | WD-2847? |
@@ -774,7 +802,7 @@ The question is:
 | Outdated guidelines | 12% | |
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Reasoning Failures
 
 | Pattern | Freq | WD-2847? |
@@ -786,8 +814,10 @@ The question is:
 :::
 :::
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **The 41% gradual/sudden failure rate = your first verifier target.**
+:::
 :::
 
 ---
@@ -797,7 +827,7 @@ The question is:
 **Decompose Maria's 26-second decision into verifiable checkpoints:**
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Tier 1: Retrieval
 
 - ✓ Base policy CP-847291
@@ -810,7 +840,7 @@ The question is:
 *VERDICT: INCOMPLETE*
 :::
 
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Tier 2: Reasoning
 
 - ✗ Coverage determination — WRONG
@@ -825,7 +855,7 @@ The question is:
 :::
 
 ::: {.columns style="margin-top: 20px;"}
-::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
 ### Tier 3: Tool Selection
 
 - ✗ Selected: `recommend_approval`
@@ -834,7 +864,7 @@ The question is:
 *VERDICT: FAIL — timeline ambiguity*
 :::
 
-::: {.column width="50%" style="background-color: #DC2626; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background: linear-gradient(135deg, #991B1B, #7F1D1D); padding: 20px; border-radius: 8px; border-left: 4px solid #DC2626;"}
 ### Tier 4: End-to-End
 
 - ✗ Correct coverage? NO
@@ -851,7 +881,7 @@ The question is:
 
 **Map where the WD-2847 workflow broke down:**
 
-::: {style="background-color: #0F172A; padding: 20px; border-radius: 8px;"}
+::: {.neutral-box}
 | From State | To State | Failure Rate | WD-2847 |
 |------------|----------|--------------|---------|
 | receive_claim | lookup_policy | 2% | ✓ passed |
@@ -863,8 +893,10 @@ The question is:
 | **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
 :::
 
-::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px;"}
+::: {.fragment}
+::: {.insight-box style="margin-top: 20px;"}
 **Investment Priorities:** (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%
+:::
 :::
 
 ---
@@ -886,10 +918,12 @@ The question is:
 | Escalation not triggered | AI confident despite gaps | **Escalation Trigger Rules** |
 | Maria had 26 seconds | System designed for throughput | **Pre-Human Verification Gate** |
 
-::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.insight-box style="margin-top: 20px;"}
 **Senior Adjuster's expertise about gradual vs sudden?**
 
 **Now it's a classifier. Now it scales. Now it catches the next 22 claims.**
+:::
 :::
 
 ---
@@ -923,7 +957,7 @@ But you CAN have their expertise review every claim.
 ## The Core Insight
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### What Failed
 
 - Senior Adjuster knows gradual vs sudden
@@ -948,11 +982,15 @@ So Maria got 26 seconds and a 94% confidence score.
 :::
 :::
 
-::: {.fragment style="background-color: #0F172A; padding: 30px; border-radius: 8px; margin-top: 40px; text-align: center; font-size: 1.3em;"}
+::: {.fragment}
+::: {.neutral-box style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;"}
 $|\text{Rules}| \ll |\text{Claims}|$
 
 **Build verifiers once. Run them infinitely.**
 :::
+:::
+
+---
 
 # The Verification Stack {background-color="#1E293B"}
 
@@ -978,8 +1016,10 @@ $|\text{Rules}| \ll |\text{Claims}|$
 | **5. LLM-as-Judge** | Would Senior Adjuster approve? | ✗ Would block — "Recommend DENY" |
 | **6. Human Escalation** | Route flagged cases to expert | → Escalate to Senior Adjuster |
 
-::: {.fragment style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
 **WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.**
+:::
 :::
 
 ---
@@ -987,7 +1027,7 @@ $|\text{Rules}| \ll |\text{Claims}|$
 ## The Knowledge Transfer
 
 ::: {.columns}
-::: {.column width="33%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+::: {.column width="33%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
 ### Senior Adjuster's Head
 
 - 30 years of edge cases
@@ -998,7 +1038,7 @@ $|\text{Rules}| \ll |\text{Claims}|$
 *Retires in 5 years. Knowledge leaves.*
 :::
 
-::: {.column width="33%" style="background-color: #7C3AED; padding: 20px; border-radius: 8px;"}
+::: {.column width="33%" style="background-color: #0891B2; padding: 20px; border-radius: 8px;"}
 ### The Interview
 
 - "What do you check first?"
@@ -1021,10 +1061,12 @@ $|\text{Rules}| \ll |\text{Claims}|$
 :::
 :::
 
-::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+::: {.fragment}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **Senior Adjuster doesn't review 500 claims.**
 
 **Senior Adjuster's judgment reviews 500 claims.**
+:::
 :::
 
 ---

@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="verifier_primacy_v2_files/libs/revealjs/dist/theme/quarto-3fd0b39b30c541cde9ff2502054e1e9d.css">
+  <link rel="stylesheet" href="verifier_primacy_v2_files/libs/revealjs/dist/theme/quarto-772e520486accbfb4e20b6de85fc714a.css">
   <link href="verifier_primacy_v2_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="verifier_primacy_v2_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="verifier_primacy_v2_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -221,8 +221,10 @@ Andriy Batutin
 <li><strong>25%</strong> moving pilots to production</li>
 </ul>
 </div></div>
-<div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment fade-up">
+<div class="danger-callout" style="margin-top: 30px;">
 <p><strong>The gap between deployment and governance is the liability.</strong></p>
+</div>
 </div>
 </section>
 <section id="todays-journey" class="slide level2 center">
@@ -257,14 +259,14 @@ Andriy Batutin
 <section id="the-problem" class="slide level2 center">
 <h2>The Problem</h2>
 <div class="columns">
-<div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="the-fear">The Fear</h3>
 <ul>
 <li>AI outputs are unpredictable</li>
 <li>Wrong action = lawsuit</li>
 <li>Career ends in headline</li>
 </ul>
-</div><div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="the-fomo">The FOMO</h3>
 <ul>
 <li>Competitors are shipping AI</li>
@@ -275,10 +277,12 @@ Andriy Batutin
 <div class="fragment fade-up" style="margin-top: 40px; text-align: center;">
 <p><strong>Both paths feel like career risk.</strong></p>
 </div>
-<div class="fragment fade-up" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment fade-up">
+<div class="insight-box" style="margin-top: 20px;">
 <p>And here’s the uncomfortable truth:</p>
 <p><strong>The unpredictability you fear is exactly what makes AI useful.</strong></p>
 <p>A perfectly reliable AI is a database.</p>
+</div>
 </div>
 </section></section>
 <section>
@@ -300,9 +304,11 @@ Andriy Batutin
 </div>
 <p><span class="math display">\[P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{&lt;t})\]</span></p>
 <p>Each token is a <strong>local decision</strong> based on preceding context.</p>
-<div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px;">
+<div class="fragment fade-up">
+<div class="danger-callout" style="margin-top: 20px; text-align: left;">
 <p><strong>The Butterfly Effect</strong>: One different token → completely different output.</p>
 <p>Errors compound multiplicatively: <span class="math inline">\(\prod_{t=1}^{T} \epsilon_t\)</span></p>
+</div>
 </div>
 </section>
 <section id="section-2" class="slide level2 center" data-background-color="#0F172A">
@@ -335,20 +341,22 @@ Andriy Batutin
 <p>Page 147, Section 8.3.2(b)</p>
 <p>Endorsement CP-1147, Exclusion (iii)</p>
 </div></div>
-<div class="fragment fade-up" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment fade-up">
+<div class="insight-box" style="margin-top: 30px;">
 <p><strong>You’re asking search to read minds.</strong></p>
+</div>
 </div>
 </section>
 <section id="the-retrieval-problem" class="slide level2 center">
 <h2>The Retrieval Problem</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="semantic-search-fails">Semantic Search Fails</h3>
 <p>In high-dimensional space:</p>
 <p><span class="math display">\[\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c\]</span></p>
 <p><strong>Similar ≠ Relevant</strong></p>
 <p>“What’s my deductible?” ≈ “What is a deductible?”</p>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="keyword-search-fails">Keyword Search Fails</h3>
 <p>Synonymy &amp; polysemy break everything:</p>
 <ul>
@@ -358,9 +366,11 @@ Andriy Batutin
 </ul>
 <p><strong>Same concept, different words.</strong></p>
 </div></div>
-<div class="fragment fade-up" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment fade-up">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>RAG retrieves plausible documents. LLM generates confident answers.</strong></p>
 <p>But confidence ≠ correctness.</p>
+</div>
 </div>
 </section>
 <section id="agentic-combinatorial-explosion" class="slide level2 center">
@@ -380,17 +390,21 @@ Andriy Batutin
 <p>8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
 <p>Per claim. 500 claims/day.</p>
 </div>
-<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>No exhaustive testing possible.</strong></p>
 <p>You’re sampling from chaos.</p>
+</div>
 </div>
 </section>
 <section id="section-3" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
-<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.3em;">
+<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up">
+<div class="danger-callout large-text" style="margin-top: 30px;">
 <p><strong>Every query is a pull. Every action is a bet.</strong></p>
 <p>You expected to win? The math says no.</p>
+</div>
 </div>
 </section>
 <section id="section-4" class="slide level2 center" data-background-color="#7C3AED">
@@ -425,14 +439,14 @@ Andriy Batutin
 <section id="rag-the-foundation-problem" class="slide level2 center">
 <h2>RAG: The Foundation Problem</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="what-rag-promises">What RAG Promises</h3>
 <ul>
 <li>“Ground AI in your documents”</li>
 <li>“Reduce hallucinations”</li>
 <li>“Enterprise-ready AI”</li>
 </ul>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="what-rag-delivers">What RAG Delivers</h3>
 <ul>
 <li>Retrieves <strong>plausible</strong> docs</li>
@@ -440,9 +454,11 @@ Andriy Batutin
 <li>Confident answers from <strong>wrong</strong> context</li>
 </ul>
 </div></div>
-<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>You already saw the math: Info gap + Retrieval failure + Compounding errors.</strong></p>
 <p>RAG inherits all the problems. It doesn’t solve them.</p>
+</div>
 </div>
 </section>
 <section id="rag-failure-annoying-but-recoverable" class="slide level2 center">
@@ -464,8 +480,10 @@ Andriy Batutin
 <p>Customer still has to act.</p>
 <p>Time to catch mistakes.</p>
 </div></div>
-<div class="fragment" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="fomo-box" style="margin-top: 20px; text-align: center;">
 <p><strong>RAG is passive. Wrong info waits for someone to act on it.</strong></p>
+</div>
 </div>
 </section>
 <section id="agentic-ai-no-safety-net" class="slide level2 center">
@@ -486,8 +504,10 @@ Andriy Batutin
 <p>Action happens at machine speed.</p>
 <p>By the time you notice, <strong>damage is done</strong>.</p>
 </div></div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>Agentic AI multiplies RAG failures by the cost of autonomous action.</strong></p>
+</div>
 </div>
 </section></section>
 <section>
@@ -498,7 +518,7 @@ Andriy Batutin
 <section id="the-setup-kraków-back-office" class="slide level2 center">
 <h2>The Setup: Kraków Back Office</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 25px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="claims-department">Claims Department</h3>
 <ul>
 <li><strong>Staff:</strong> 12 adjusters</li>
@@ -506,7 +526,7 @@ Andriy Batutin
 <li><strong>Target:</strong> 45 claims/adjuster/day</li>
 <li><strong>Avg time:</strong> 10-12 minutes per claim</li>
 </ul>
-</div><div class="column" style="background-color: #065F46; padding: 25px; border-radius: 8px;">
+</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
 <h3 id="new-ai-claims-assistant">NEW: AI Claims Assistant</h3>
 <ul>
 <li>Reads claim documents</li>
@@ -516,9 +536,11 @@ Andriy Batutin
 <li>Presents recommendation to adjuster</li>
 </ul>
 </div></div>
-<div class="fragment" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment">
+<div class="fear-box" style="margin-top: 30px; text-align: center;">
 <p><strong>AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.</strong></p>
 <p>Human adjuster must click [APPROVE] or [REJECT]. <em>“Human in the loop. Completely safe.”</em></p>
+</div>
 </div>
 </section>
 <section id="section-7" class="slide level2 center" data-background-color="#0F172A">
@@ -542,15 +564,17 @@ Andriy Batutin
 <p><strong>Maria thinks:</strong></p>
 <p><em>“AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard.”</em></p>
 <p><strong>09:47:38</strong> — Maria clicks: <strong>[APPROVE]</strong></p>
-<div class="fragment" style="background-color: #DC2626; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>Time spent on claim: 26 seconds</strong></p>
+</div>
 </div>
 </div></div>
 </section>
 <section id="what-maria-should-have-checked" class="slide level2 center">
 <h2>What Maria Should Have Checked</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="if-view-policy-page-147">IF [View Policy] — Page 147</h3>
 <p><strong>ENDORSEMENT CP-1147 - WATER DAMAGE</strong></p>
 <p>Coverage for water damage <strong>LIMITED TO sudden and accidental discharge.</strong></p>
@@ -560,13 +584,15 @@ Andriy Batutin
 <li>Damage from lack of maintenance</li>
 <li>Known source not repaired</li>
 </ul>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="if-view-claim-form">IF [View Claim Form]</h3>
 <p><strong>Section 3: Description of Loss</strong></p>
 <p><em>“We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for <strong>‘at least 2-3 months’</strong> based on corrosion.”</em></p>
 </div></div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0</strong></p>
+</div>
 </div>
 </section>
 <section id="what-the-ai-missed-and-why" class="slide level2 center">
@@ -584,12 +610,12 @@ Andriy Batutin
 </section>
 <section id="the-aftermath" class="slide level2 center">
 <h2>The Aftermath</h2>
-<div style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="fomo-box">
 <p><strong>09:47:38</strong> — Maria clicks [APPROVE]</p>
 <p><strong>09:47:39</strong> — System logs: <em>“Claim WD-2847 APPROVED by Maria Kowalska”</em></p>
 <p><strong>09:48:00</strong> — Maria is already on Claim #WD-2848</p>
 </div>
-<div style="background-color: #7F1D1D; padding: 20px; border-radius: 8px; margin-top: 20px;">
+<div class="fear-box" style="margin-top: 20px;">
 <table class="caption-top">
 <colgroup>
 <col style="width: 41%">
@@ -625,8 +651,10 @@ Andriy Batutin
 </tbody>
 </table>
 </div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>Day +180</strong> — Pattern discovered. <strong>23 similar claims. Total: PLN 885,500</strong></p>
+</div>
 </div>
 </section>
 <section id="the-accountability-question" class="slide level2 center">
@@ -639,9 +667,11 @@ Andriy Batutin
 <p><strong>CLAIMS MGR:</strong> <em>“We set 45/day target based on AI assistance. That’s what we promised the board.”</em></p>
 <p><strong>VP:</strong> <em>“The audit trail shows human approval. That’s our compliance defense. …right?”</em></p>
 </div></div>
-<div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment">
+<div class="insight-box" style="margin-top: 30px;">
 <p><strong>“Human in the loop” became “Human as rubber stamp”</strong></p>
 <p>The human isn’t REVIEWING. The human is LEGITIMIZING.</p>
+</div>
 </div>
 </section>
 <section id="the-math-of-rubber-stamping" class="slide level2 center">
@@ -666,9 +696,11 @@ Andriy Batutin
 <li><strong>Net errors/day: ~2.0</strong></li>
 </ul>
 </div></div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p>12 adjusters × 2 errors/day × 220 days = <strong>5,280 errors/year</strong></p>
 <p>Avg overpayment: PLN 38,500 → <strong>Annual exposure: PLN 203M</strong></p>
+</div>
 </div>
 </section>
 <section id="section-8" class="slide level2 center" data-background-color="#0F172A">
@@ -683,8 +715,10 @@ Andriy Batutin
 <p>This is a story about a system designed to <strong>LOOK LIKE</strong> it has human oversight</p>
 <p>while <strong>REMOVING</strong> the conditions that make oversight possible.</p>
 </div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 40px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 40px;">
 <p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
+</div>
 </div>
 </section>
 <section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
@@ -715,7 +749,7 @@ Andriy Batutin
 <h2>Phase 1: Error Analysis First</h2>
 <p><strong>Before using new LLM, understand how Maria’s claim failed:</strong></p>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="retrieval-failure">Retrieval Failure</h3>
 <ul>
 <li>AI queried “water damage coverage CP-847291”</li>
@@ -723,7 +757,7 @@ Andriy Batutin
 <li><strong>Missed:</strong> Endorsement CP-1147 ✗</li>
 <li><em>Why: No “water” keyword in endorsement title, stored in separate DMS</em></li>
 </ul>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="reasoning-failure">Reasoning Failure</h3>
 <ul>
 <li>AI read claim form but didn’t flag “2-3 months”</li>
@@ -733,14 +767,14 @@ Andriy Batutin
 </ul>
 </div></div>
 <div class="columns" style="margin-top: 20px;">
-<div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="tool-selection-failure">Tool Selection Failure</h3>
 <ul>
 <li><strong>Called:</strong> <code>recommend_approval(38500)</code></li>
 <li><strong>Should have:</strong> <code>escalate_to_senior("unclear timeline")</code></li>
 <li><em>Escalation trigger missed: temporal ambiguity</em></li>
 </ul>
-</div><div class="column" style="background-color: #0F172A; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #334155; padding: 20px; border-radius: 8px;">
 <h3 id="human-oversight-failure">Human Oversight Failure</h3>
 <ul>
 <li>Maria saw: 94% confidence, 47 in queue</li>
@@ -754,7 +788,7 @@ Andriy Batutin
 <h2>Phase 2: Build Failure Taxonomy</h2>
 <p><strong>From WD-2847 and 22 similar claims, patterns emerge:</strong></p>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="retrieval-failures">Retrieval Failures</h3>
 <table class="caption-top">
 <thead>
@@ -787,7 +821,7 @@ Andriy Batutin
 </tr>
 </tbody>
 </table>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="reasoning-failures">Reasoning Failures</h3>
 <table class="caption-top">
 <thead>
@@ -821,15 +855,17 @@ Andriy Batutin
 </tbody>
 </table>
 </div></div>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>The 41% gradual/sudden failure rate = your first verifier target.</strong></p>
+</div>
 </div>
 </section>
 <section id="phase-3-tiered-evaluation" class="slide level2 center">
 <h2>Phase 3: Tiered Evaluation</h2>
 <p><strong>Decompose Maria’s 26-second decision into verifiable checkpoints:</strong></p>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="tier-1-retrieval">Tier 1: Retrieval</h3>
 <ul>
 <li>✓ Base policy CP-847291</li>
@@ -839,7 +875,7 @@ Andriy Batutin
 </ul>
 <p><strong>Score: 3/4 = 75%</strong></p>
 <p><em>VERDICT: INCOMPLETE</em></p>
-</div><div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="tier-2-reasoning">Tier 2: Reasoning</h3>
 <ul>
 <li>✗ Coverage determination — WRONG</li>
@@ -851,14 +887,14 @@ Andriy Batutin
 <p><em>VERDICT: FAIL</em></p>
 </div></div>
 <div class="columns" style="margin-top: 20px;">
-<div class="column" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
 <h3 id="tier-3-tool-selection">Tier 3: Tool Selection</h3>
 <ul>
 <li>✗ Selected: <code>recommend_approval</code></li>
 <li>✗ Should have: <code>escalate_to_senior</code></li>
 </ul>
 <p><em>VERDICT: FAIL — timeline ambiguity</em></p>
-</div><div class="column" style="background-color: #DC2626; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background: linear-gradient(135deg, #991B1B, #7F1D1D); padding: 20px; border-radius: 8px; border-left: 4px solid #DC2626;">
 <h3 id="tier-4-end-to-end">Tier 4: End-to-End</h3>
 <ul>
 <li>✗ Correct coverage? NO</li>
@@ -871,7 +907,7 @@ Andriy Batutin
 <section id="phase-4-transition-failure-matrix" class="slide level2 center">
 <h2>Phase 4: Transition Failure Matrix</h2>
 <p><strong>Map where the WD-2847 workflow broke down:</strong></p>
-<div style="background-color: #0F172A; padding: 20px; border-radius: 8px;">
+<div class="neutral-box">
 <table class="caption-top">
 <colgroup>
 <col style="width: 26%">
@@ -933,8 +969,10 @@ Andriy Batutin
 </tbody>
 </table>
 </div>
-<div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px;">
+<div class="fragment">
+<div class="insight-box" style="margin-top: 20px;">
 <p><strong>Investment Priorities:</strong> (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%</p>
+</div>
 </div>
 </section>
 <section id="phase-5-the-data-viewer" class="slide level2 center" data-background-color="#0F172A">
@@ -980,9 +1018,11 @@ Andriy Batutin
 </tr>
 </tbody>
 </table>
-<div class="fragment" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="insight-box" style="margin-top: 20px;">
 <p><strong>Senior Adjuster’s expertise about gradual vs sudden?</strong></p>
 <p><strong>Now it’s a classifier. Now it scales. Now it catches the next 22 claims.</strong></p>
+</div>
 </div>
 </section>
 <section id="section-11" class="slide level2 center" data-background-color="#7C3AED">
@@ -1008,7 +1048,7 @@ Andriy Batutin
 <section id="the-core-insight" class="slide level2 center">
 <h2>The Core Insight</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="what-failed">What Failed</h3>
 <ul>
 <li>Senior Adjuster knows gradual vs sudden</li>
@@ -1027,10 +1067,15 @@ Andriy Batutin
 <p><strong>Senior Adjuster reviews the rules once.</strong></p>
 <p><strong>Rules review every claim, forever.</strong></p>
 </div></div>
-<div class="fragment" style="background-color: #0F172A; padding: 30px; border-radius: 8px; margin-top: 40px; text-align: center; font-size: 1.3em;">
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;">
 <p><span class="math inline">\(|\text{Rules}| \ll |\text{Claims}|\)</span></p>
 <p><strong>Build verifiers once. Run them infinitely.</strong></p>
 </div>
+</div>
+</section>
+<section class="slide level2 center">
+
 </section></section>
 <section>
 <section id="the-verification-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
@@ -1094,14 +1139,16 @@ Andriy Batutin
 </tr>
 </tbody>
 </table>
-<div class="fragment" style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;">
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
 <p><strong>WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.</strong></p>
+</div>
 </div>
 </section>
 <section id="the-knowledge-transfer" class="slide level2 center">
 <h2>The Knowledge Transfer</h2>
 <div class="columns">
-<div class="column" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
 <h3 id="senior-adjusters-head">Senior Adjuster’s Head</h3>
 <ul>
 <li>30 years of edge cases</li>
@@ -1110,7 +1157,7 @@ Andriy Batutin
 <li>“When in doubt, escalate”</li>
 </ul>
 <p><em>Retires in 5 years. Knowledge leaves.</em></p>
-</div><div class="column" style="background-color: #7C3AED; padding: 20px; border-radius: 8px;">
+</div><div class="column" style="background-color: #0891B2; padding: 20px; border-radius: 8px;">
 <h3 id="the-interview">The Interview</h3>
 <ul>
 <li>“What do you check first?”</li>
@@ -1129,9 +1176,11 @@ Andriy Batutin
 </ul>
 <p><em>Knowledge scales forever.</em></p>
 </div></div>
-<div class="fragment" style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;">
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>Senior Adjuster doesn’t review 500 claims.</strong></p>
 <p><strong>Senior Adjuster’s judgment reviews 500 claims.</strong></p>
+</div>
 </div>
 </section>
 <section id="section-13" class="slide level2 center" data-background-color="#0F172A">
