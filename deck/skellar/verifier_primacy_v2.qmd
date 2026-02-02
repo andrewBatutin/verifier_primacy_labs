@@ -951,6 +951,22 @@ The question is:
 
 ![](images/five-step-eval.png){fig-align="center" width="85%"}
 
+::: {.notes}
+
+Методика має п'ять кроків.
+Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.
+
+Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.
+
+Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.
+
+Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?
+
+П'ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.
+
+:::
+
+
 ---
 
 ## Phase 1: Error Analysis First
@@ -977,24 +993,7 @@ The question is:
 :::
 :::
 
-::: {.columns style="margin-top: 20px;"}
-::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
-### Tool Selection Failure
 
-- **Called:** `recommend_approval(38500)`
-- **Should have:** `escalate_to_senior("unclear timeline")`
-- *Escalation trigger missed: temporal ambiguity*
-:::
-
-::: {.column width="50%" style="background-color: #334155; padding: 20px; border-radius: 8px;"}
-### Human Oversight Failure
-
-- Maria saw: 94% confidence, 47 in queue
-- Maria did NOT click: [View Policy] [View Claim]
-- **Time on claim: 26 seconds**
-- *System designed for 45/day = no time to verify*
-:::
-:::
 
 ---
 
@@ -1066,26 +1065,6 @@ The question is:
 :::
 :::
 
-::: {.columns style="margin-top: 20px;"}
-::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
-### Tier 3: Tool Selection
-
-- ✗ Selected: `recommend_approval`
-- ✗ Should have: `escalate_to_senior`
-
-*VERDICT: FAIL — timeline ambiguity*
-:::
-
-::: {.column width="50%" style="background: linear-gradient(135deg, #991B1B, #7F1D1D); padding: 20px; border-radius: 8px; border-left: 4px solid #DC2626;"}
-### Tier 4: End-to-End
-
-- ✗ Correct coverage? NO
-- ✗ Correct payout? NO
-- ✗ No improper payment? NO
-
-*VERDICT: CATASTROPHIC FAILURE*
-:::
-:::
 
 ---
 
@@ -1098,10 +1077,8 @@ The question is:
 |------------|----------|--------------|---------|
 | receive_claim | lookup_policy | 2% | ✓ passed |
 | lookup_policy | **retrieve_endorsements** | **31%** | **✗ FAILED** |
-| retrieve_endorse | check_coverage | 4% | *(skipped)* |
 | check_coverage | **extract_timeline** | **28%** | **✗ WOULD FAIL** |
 | extract_timeline | classify_damage | 15% | *(skipped)* |
-| calculate_payout | recommend_action | 2% | ✗ wrong rec |
 | **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
 :::
 
@@ -1220,7 +1197,6 @@ $|\text{Rules}| \ll |\text{Claims}|$
 
 | Layer | Purpose | WD-2847 Result |
 |-------|---------|----------------|
-| **0. Guardrails** | Amount limits, rate limits, scope constraints | ✓ PASS — PLN 38,500 < 40,000 |
 | **1. Schema** | Valid format, required fields, data types | ✓ PASS — All fields valid |
 | **2. Retrieval** | All documents retrieved? Endorsements complete? | **✗ BLOCKED** — Missing CP-1147 |
 | **3. Semantic** | Does reasoning contradict itself? | ✗ Would block — "2-3 months" vs "sudden" |
@@ -1228,58 +1204,6 @@ $|\text{Rules}| \ll |\text{Claims}|$
 | **5. LLM-as-Judge** | Would Senior Adjuster approve? | ✗ Would block — "Recommend DENY" |
 | **6. Human Escalation** | Route flagged cases to expert | → Escalate to Senior Adjuster |
 
-::: {.fragment}
-::: {.danger-callout style="margin-top: 20px;"}
-**WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.**
-:::
-:::
-
----
-
-## The Knowledge Transfer
-
-::: {.columns}
-::: {.column width="33%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
-### Senior Adjuster's Head
-
-- 30 years of edge cases
-- "Always check endorsements"
-- "Timeline = red flag"
-- "When in doubt, escalate"
-
-*Retires in 5 years. Knowledge leaves.*
-:::
-
-::: {.column width="33%" style="background-color: #0891B2; padding: 20px; border-radius: 8px;"}
-### The Interview
-
-- "What do you check first?"
-- "What makes you suspicious?"
-- "When do you escalate?"
-- "Show me a tricky case."
-
-*Knowledge captured.*
-:::
-
-::: {.column width="33%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
-### The Verifier
-
-- Endorsement completeness gate
-- Temporal damage classifier
-- Escalation trigger rules
-- LLM-as-judge with examples
-
-*Knowledge scales forever.*
-:::
-:::
-
-::: {.fragment}
-::: {.neutral-box style="margin-top: 30px; text-align: center;"}
-**Senior Adjuster doesn't review 500 claims.**
-
-**Senior Adjuster's judgment reviews 500 claims.**
-:::
-:::
 
 ---
 

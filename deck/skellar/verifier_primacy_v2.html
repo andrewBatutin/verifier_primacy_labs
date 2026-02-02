@@ -1090,7 +1090,24 @@ Andriy Batutin
 <section id="section-10" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
-<img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
+<img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
+<p>Методика має п’ять кроків. Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.</p>
+<p>Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.</p>
+<p>Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.</p>
+<p>Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?</p>
+<p>П’ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="phase-1-error-analysis-first" class="slide level2 center">
 <h2>Phase 1: Error Analysis First</h2>
 <p><strong>Before using new LLM, understand how Maria’s claim failed:</strong></p>
@@ -1110,23 +1127,6 @@ Andriy Batutin
 <li>OCR quality: 87% on scanned PDF</li>
 <li>No structured field for “duration”</li>
 <li><em>Gradual vs sudden distinction: not in training</em></li>
-</ul>
-</div></div>
-<div class="columns" style="margin-top: 20px;">
-<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
-<h3 id="tool-selection-failure">Tool Selection Failure</h3>
-<ul>
-<li><strong>Called:</strong> <code>recommend_approval(38500)</code></li>
-<li><strong>Should have:</strong> <code>escalate_to_senior("unclear timeline")</code></li>
-<li><em>Escalation trigger missed: temporal ambiguity</em></li>
-</ul>
-</div><div class="column" style="background-color: #334155; padding: 20px; border-radius: 8px;">
-<h3 id="human-oversight-failure">Human Oversight Failure</h3>
-<ul>
-<li>Maria saw: 94% confidence, 47 in queue</li>
-<li>Maria did NOT click: [View Policy] [View Claim]</li>
-<li><strong>Time on claim: 26 seconds</strong></li>
-<li><em>System designed for 45/day = no time to verify</em></li>
 </ul>
 </div></div>
 </section>
@@ -1232,23 +1232,6 @@ Andriy Batutin
 <p><strong>Score: 0/4 = 0%</strong></p>
 <p><em>VERDICT: FAIL</em></p>
 </div></div>
-<div class="columns" style="margin-top: 20px;">
-<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
-<h3 id="tier-3-tool-selection">Tier 3: Tool Selection</h3>
-<ul>
-<li>✗ Selected: <code>recommend_approval</code></li>
-<li>✗ Should have: <code>escalate_to_senior</code></li>
-</ul>
-<p><em>VERDICT: FAIL — timeline ambiguity</em></p>
-</div><div class="column" style="background: linear-gradient(135deg, #991B1B, #7F1D1D); padding: 20px; border-radius: 8px; border-left: 4px solid #DC2626;">
-<h3 id="tier-4-end-to-end">Tier 4: End-to-End</h3>
-<ul>
-<li>✗ Correct coverage? NO</li>
-<li>✗ Correct payout? NO</li>
-<li>✗ No improper payment? NO</li>
-</ul>
-<p><em>VERDICT: CATASTROPHIC FAILURE</em></p>
-</div></div>
 </section>
 <section id="phase-4-transition-failure-matrix" class="slide level2 center">
 <h2>Phase 4: Transition Failure Matrix</h2>
@@ -1283,28 +1266,16 @@ Andriy Batutin
 <td><strong>✗ FAILED</strong></td>
 </tr>
 <tr class="odd">
-<td>retrieve_endorse</td>
-<td>check_coverage</td>
-<td>4%</td>
-<td><em>(skipped)</em></td>
-</tr>
-<tr class="even">
 <td>check_coverage</td>
 <td><strong>extract_timeline</strong></td>
 <td><strong>28%</strong></td>
 <td><strong>✗ WOULD FAIL</strong></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>extract_timeline</td>
 <td>classify_damage</td>
 <td>15%</td>
 <td><em>(skipped)</em></td>
-</tr>
-<tr class="even">
-<td>calculate_payout</td>
-<td>recommend_action</td>
-<td>2%</td>
-<td>✗ wrong rec</td>
 </tr>
 <tr class="odd">
 <td><strong>ANY_STATE</strong></td>
@@ -1449,85 +1420,37 @@ Andriy Batutin
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>0. Guardrails</strong></td>
-<td>Amount limits, rate limits, scope constraints</td>
-<td>✓ PASS — PLN 38,500 &lt; 40,000</td>
-</tr>
-<tr class="even">
 <td><strong>1. Schema</strong></td>
 <td>Valid format, required fields, data types</td>
 <td>✓ PASS — All fields valid</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>2. Retrieval</strong></td>
 <td>All documents retrieved? Endorsements complete?</td>
 <td><strong>✗ BLOCKED</strong> — Missing CP-1147</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>3. Semantic</strong></td>
 <td>Does reasoning contradict itself?</td>
 <td>✗ Would block — “2-3 months” vs “sudden”</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>4. Domain Rules</strong></td>
 <td>Business logic, exclusions, regulations</td>
 <td>✗ Would block — CP-1147 excludes gradual</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>5. LLM-as-Judge</strong></td>
 <td>Would Senior Adjuster approve?</td>
 <td>✗ Would block — “Recommend DENY”</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>6. Human Escalation</strong></td>
 <td>Route flagged cases to expert</td>
 <td>→ Escalate to Senior Adjuster</td>
 </tr>
 </tbody>
 </table>
-<div class="fragment">
-<div class="danger-callout" style="margin-top: 20px;">
-<p><strong>WD-2847 stopped at Layer 2. PLN 38,500 saved. Pattern flagged for 22 similar.</strong></p>
-</div>
-</div>
-</section>
-<section id="the-knowledge-transfer" class="slide level2 center">
-<h2>The Knowledge Transfer</h2>
-<div class="columns">
-<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
-<h3 id="senior-adjusters-head">Senior Adjuster’s Head</h3>
-<ul>
-<li>30 years of edge cases</li>
-<li>“Always check endorsements”</li>
-<li>“Timeline = red flag”</li>
-<li>“When in doubt, escalate”</li>
-</ul>
-<p><em>Retires in 5 years. Knowledge leaves.</em></p>
-</div><div class="column" style="background-color: #0891B2; padding: 20px; border-radius: 8px;">
-<h3 id="the-interview">The Interview</h3>
-<ul>
-<li>“What do you check first?”</li>
-<li>“What makes you suspicious?”</li>
-<li>“When do you escalate?”</li>
-<li>“Show me a tricky case.”</li>
-</ul>
-<p><em>Knowledge captured.</em></p>
-</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
-<h3 id="the-verifier">The Verifier</h3>
-<ul>
-<li>Endorsement completeness gate</li>
-<li>Temporal damage classifier</li>
-<li>Escalation trigger rules</li>
-<li>LLM-as-judge with examples</li>
-</ul>
-<p><em>Knowledge scales forever.</em></p>
-</div></div>
-<div class="fragment">
-<div class="neutral-box" style="margin-top: 30px; text-align: center;">
-<p><strong>Senior Adjuster doesn’t review 500 claims.</strong></p>
-<p><strong>Senior Adjuster’s judgment reviews 500 claims.</strong></p>
-</div>
-</div>
 </section>
 <section id="section-13" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
