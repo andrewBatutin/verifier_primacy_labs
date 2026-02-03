@@ -864,7 +864,7 @@ The question is:
 
 ---
 
-## Phase 1: Error Analysis First
+## Phase 1: Error Analysis First {visibility="hidden"}
 
 **Before using new LLM, understand how Maria's claim failed:**
 
@@ -892,7 +892,7 @@ The question is:
 
 ---
 
-## Phase 2: Build Failure Taxonomy
+## Phase 2: Build Failure Taxonomy {visibility="hidden"}
 
 **From WD-2847 and 22 similar claims, patterns emerge:**
 
@@ -928,7 +928,7 @@ The question is:
 
 ---
 
-## Phase 3: Tiered Evaluation
+## Phase 3: Tiered Evaluation {visibility="hidden"}
 
 **Decompose Maria's 26-second decision into verifiable checkpoints:**
 
@@ -963,7 +963,7 @@ The question is:
 
 ---
 
-## Phase 4: Transition Failure Matrix
+## Phase 4: Transition Failure Matrix {visibility="hidden"}
 
 **Map where the WD-2847 workflow broke down:**
 
@@ -1054,7 +1054,7 @@ $|\text{Rules}| \ll |\text{Claims}|$
 :::
 :::
 
----
+
 
 # The Verification Stack {background-color="#1E293B"}
 
@@ -1131,6 +1131,7 @@ This is the best way to tame chaos
 :::
 
 ::: {.fragment style="color: #64748B; margin-top: 60px;"}
-Andriy Batutin •  [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+
+![](images/abatutin_qr.png){fig-align="center" width="20%"}
 :::
 

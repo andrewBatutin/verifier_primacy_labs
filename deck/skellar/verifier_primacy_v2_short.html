@@ -1030,190 +1030,10 @@ Andriy Batutin
           display:block!important;
       }</style></aside>
 </section>
-<section id="phase-1-error-analysis-first" class="slide level2 center">
-<h2>Phase 1: Error Analysis First</h2>
-<p><strong>Before using new LLM, understand how Maria’s claim failed:</strong></p>
-<div class="columns">
-<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
-<h3 id="retrieval-failure">Retrieval Failure</h3>
-<ul>
-<li>AI queried “water damage coverage CP-847291”</li>
-<li><strong>Returned:</strong> base policy ✓</li>
-<li><strong>Missed:</strong> Endorsement CP-1147 ✗</li>
-<li><em>Why: No “water” keyword in endorsement title, stored in separate DMS</em></li>
-</ul>
-</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
-<h3 id="reasoning-failure">Reasoning Failure</h3>
-<ul>
-<li>AI read claim form but didn’t flag “2-3 months”</li>
-<li>OCR quality: 87% on scanned PDF</li>
-<li>No structured field for “duration”</li>
-<li><em>Gradual vs sudden distinction: not in training</em></li>
-</ul>
-</div></div>
-</section>
-<section id="phase-2-build-failure-taxonomy" class="slide level2 center">
-<h2>Phase 2: Build Failure Taxonomy</h2>
-<p><strong>From WD-2847 and 22 similar claims, patterns emerge:</strong></p>
-<div class="columns">
-<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
-<h3 id="retrieval-failures">Retrieval Failures</h3>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Pattern</th>
-<th>Freq</th>
-<th>WD-2847?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Missing endorsement</td>
-<td>34%</td>
-<td>✓</td>
-</tr>
-<tr class="even">
-<td>Wrong policy version</td>
-<td>18%</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Cross-system doc gap</td>
-<td>23%</td>
-<td>✓</td>
-</tr>
-<tr class="even">
-<td>Outdated guidelines</td>
-<td>12%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
-<h3 id="reasoning-failures">Reasoning Failures</h3>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Pattern</th>
-<th>Freq</th>
-<th>WD-2847?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Gradual vs sudden</td>
-<td>41%</td>
-<td>✓</td>
-</tr>
-<tr class="even">
-<td>Maintenance exclusion</td>
-<td>22%</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Coverage limit misread</td>
-<td>15%</td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Deductible calculation</td>
-<td>8%</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div></div>
-<div class="fragment">
-<div class="danger-callout" style="margin-top: 20px;">
-<p><strong>The 41% gradual/sudden failure rate = your first verifier target.</strong></p>
-</div>
-</div>
-</section>
-<section id="phase-3-tiered-evaluation" class="slide level2 center">
-<h2>Phase 3: Tiered Evaluation</h2>
-<p><strong>Decompose Maria’s 26-second decision into verifiable checkpoints:</strong></p>
-<div class="columns">
-<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
-<h3 id="tier-1-retrieval">Tier 1: Retrieval</h3>
-<ul>
-<li>✓ Base policy CP-847291</li>
-<li>✗ <strong>Endorsements — MISSING CP-1147</strong></li>
-<li>✓ Current version</li>
-<li>✓ Claim form</li>
-</ul>
-<p><strong>Score: 3/4 = 75%</strong></p>
-<p><em>VERDICT: INCOMPLETE</em></p>
-</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
-<h3 id="tier-2-reasoning">Tier 2: Reasoning</h3>
-<ul>
-<li>✗ Coverage determination — WRONG</li>
-<li>✗ Exclusions checked — MISSED</li>
-<li>✗ Timeline extracted — MISSED</li>
-<li>✗ Damage classified — WRONG</li>
-</ul>
-<p><strong>Score: 0/4 = 0%</strong></p>
-<p><em>VERDICT: FAIL</em></p>
-</div></div>
-</section>
-<section id="phase-4-transition-failure-matrix" class="slide level2 center">
-<h2>Phase 4: Transition Failure Matrix</h2>
-<p><strong>Map where the WD-2847 workflow broke down:</strong></p>
-<div class="neutral-box">
-<table class="caption-top">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 22%">
-<col style="width: 31%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>From State</th>
-<th>To State</th>
-<th>Failure Rate</th>
-<th>WD-2847</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>receive_claim</td>
-<td>lookup_policy</td>
-<td>2%</td>
-<td>✓ passed</td>
-</tr>
-<tr class="even">
-<td>lookup_policy</td>
-<td><strong>retrieve_endorsements</strong></td>
-<td><strong>31%</strong></td>
-<td><strong>✗ FAILED</strong></td>
-</tr>
-<tr class="odd">
-<td>check_coverage</td>
-<td><strong>extract_timeline</strong></td>
-<td><strong>28%</strong></td>
-<td><strong>✗ WOULD FAIL</strong></td>
-</tr>
-<tr class="even">
-<td>extract_timeline</td>
-<td>classify_damage</td>
-<td>15%</td>
-<td><em>(skipped)</em></td>
-</tr>
-<tr class="odd">
-<td><strong>ANY_STATE</strong></td>
-<td><strong>escalate_to_senior</strong></td>
-<td><strong>47% MISSED</strong></td>
-<td><strong>✗ CRITICAL</strong></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="fragment">
-<div class="insight-box" style="margin-top: 20px;">
-<p><strong>Investment Priorities:</strong> (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%</p>
-</div>
-</div>
-</section>
+
+
+
+
 <section id="phase-5-the-data-viewer" class="slide level2 center" data-background-color="#0F172A">
 <h2>Phase 5: The Data Viewer</h2>
 
@@ -1266,9 +1086,6 @@ Andriy Batutin
 <p><strong>Build verifiers once. Run them infinitely.</strong></p>
 </div>
 </div>
-</section>
-<section class="slide level2 center">
-
 </section></section>
 <section>
 <section id="the-verification-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
@@ -1364,7 +1181,11 @@ Andriy Batutin
 <p><strong>Stop praying. Start verifying.</strong></p>
 </div>
 <div class="fragment" style="color: #64748B; margin-top: 60px;">
-<p>Andriy Batutin • <a href="https://andriybatutin.substack.com/">andriybatutin.substack.com</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/abatutin_qr.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>
+</figure>
+</div>
 </div>
 
 </section></section>
