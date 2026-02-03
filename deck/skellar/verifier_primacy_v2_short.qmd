@@ -1,6 +1,6 @@
 ---
 title: "VERIFIER PRIMACY"
-subtitle: "Building Trust in AI Systems. SKELAR Analytics MeetUp"
+subtitle: "Building Trust in AI Systems. \n\n SKELAR Analytics MeetUp"
 author: "Andriy Batutin"
 date: "03.02.2026"
 format:
