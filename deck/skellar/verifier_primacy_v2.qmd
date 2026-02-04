@@ -1,0 +1,1261 @@
+---
+title: "VERIFIER PRIMACY"
+subtitle: "Building Trust in AI Systems. SKELAR Analytics MeetUp"
+author: "Andriy Batutin"
+date: "03.02.2026"
+format:
+  revealjs:
+    theme: [dark, custom.scss]
+    slide-number: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+    highlight-style: github-dark
+    code-line-numbers: false
+    footer: "Verifier Primacy | [andriybatutin.substack.com](https://andriybatutin.substack.com/)"
+    width: 1920
+    height: 1080
+    margin: 0.1
+    center: true
+    hash: true
+    history: true
+    controls: true
+    progress: true
+    touch: true
+execute:
+  echo: false
+  warning: false
+---
+
+## About Me
+
+::: {.columns}
+::: {.column width="70%"}
+### Andriy Batutin
+
+- **Senior AI Engineer** focused on AI/ML systems
+- Accenture | Shelf | MacPaw
+- Writing at [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+- linkedin [andrewbatutin](https://www.linkedin.com/in/andrewbatutin/)
+
+:::
+::: {.column width="30%"}
+![](images/abatutin_img.jpg){fig-align="center" width="80%"}
+:::
+:::
+
+::: {.notes}
+Добрий день! Мене звати Андрій Батутін.
+Я Senior AI Engineer, працював в Accenture, Shelf, MacPaw.
+
+Останні роки фокусуюсь на AI Agents — це коли AI не просто відповідає на питання юзера, а виконує конкретні дії — шукає інформацію в інтернеті, замовляє піцу або заповнює страхову форму.
+
+І сьогодні я хочу поговорити про те, чому ці системи небезпечні, і як вибудувати довіру до них.
+:::
+
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text style="color: #DC2626;"}
+In the next 12 months,
+:::
+
+::: {.fragment .fade-up}
+a C-level executive will lose their job
+because of a critical AI failure.
+:::
+
+::: {.fragment .fade-up style="color: #0891B2; font-style: italic;"}
+[OpenRouter data](https://openrouter.ai/state-of-ai) supports this.
+:::
+
+::: {.notes}
+Ось моя теза: протягом наступних 12 місяців хтось із C-level втратить роботу через критичний AI fail.
+
+Це не залякування. Це математика.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/reasoning-tokens-growth.png){fig-align="center" width="80%"}
+
+::: {.aside}
+Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
+:::
+
+::: {.notes}
+Подивіться на цей графік з OpenRouter.
+Рік тому трафік на "думаючі" моделі — ті, що планують і міркують перед дією — був майже нуль. Зараз — більше 50%.
+
+Що це означає? Компанії масово деплоять агентів, які думають, планують, виконують складні задачі.
+Але інфраструктура верифікації не встигає. Цей gap — це ризик.
+:::
+
+---
+
+## The Governance Gap {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%"}
+### [KPMG 2025](https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html)
+*48,000 people, 47 countries*
+
+- **56%** making mistakes due to AI
+- **66%** don't verify AI outputs
+- **46%** trust AI systems
+
+:::
+
+::: {.column width="50%"}
+### [Deloitte 2026](https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html)
+*3,235 leaders, 24 countries*
+
+- **75%** deploying agentic AI
+- **21%** have governance models
+- **25%** moving pilots to production
+
+:::
+:::
+
+::: {.fragment .fade-up}
+::: {.danger-callout style="margin-top: 30px;"}
+**The gap between deployment and governance is major risk.**
+:::
+:::
+
+::: {.notes}
+KPMG опитали 48 тисяч людей у 47 країнах.
+56% кажуть, що роблять помилки через AI. 66% не перевіряють що AI видає.
+
+Deloitte: 75% компаній вже запускають AI-агентів. Але тільки 21% мають систему контролю.
+Три чверті запускають. П'ята частина контролює. Решта — молиться.
+:::
+
+---
+
+## Today's Journey
+
+::: {.fade-up}
+1. **The Stochasticity Paradox** — Why AI is chaos by design
+2. **Real World Insurance Org Structure** — How AI can actuate risks
+3. **The Rubber Stamp Trap** — When "human in the loop" fails
+4. **Evaluation Methodology** — From error analysis to verifiers
+5. **Verifier Primacy** — Scaling judgment as infrastructure
+:::
+
+::: {.notes}
+The arc: WHY → WHAT GOES WRONG → HOW TO FIX IT
+
+Focus on agentic because that's where the real liability concentrates.
+RAG gives wrong answers. Agents take wrong actions.
+:::
+
+# The Stochasticity Paradox {background-color="#1E293B"}
+
+*Why AI cannot be made reliable — and why that's the point*
+
+---
+
+## The Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### The Fear
+
+- AI outputs are unpredictable
+- Wrong action = lawsuit
+- Career ends in headline
+:::
+
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### The FOMO
+
+- Competitors are shipping AI
+- Boards expect transformation
+- "Slowpoke" is career poison
+:::
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; text-align: center;"}
+**Both paths feel like career risk.**
+:::
+
+::: {.fragment .fade-up}
+::: {.insight-box style="margin-top: 20px;"}
+And here's the uncomfortable truth:
+
+**The unpredictability you fear is exactly what makes AI useful.**
+
+A perfectly reliable AI is a database.
+:::
+:::
+::: {.notes}
+Отже, для будь-якого IT-лідера зараз є дві сторони медалі.
+Страх: AI непередбачуваний. Одна помилка — судовий позов, заголовки в пресі, кінець кар'єри.
+
+FOMO: конкуренти вже запускають AI. Борд чекає трансформації. Бути останнім — теж кінець кар'єри.
+Обидва шляхи виглядають як ризик.
+Але ось парадокс: та непередбачуваність, якої ви боїтесь — це саме те, що робить AI корисним
+:::
+
+
+# Fundamentals of Modern AI Stack {background-color="#1E293B"}
+
+*Why LLMs, RAG, and Agents Fail by Design*
+
+---
+
+## The Autoregressive Decoder
+
+::: {.callout-note appearance="minimal"}
+## LLMs Are Conditional Probability Machines
+:::
+
+$$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
+
+Each token is a **local decision** based on preceding context.
+
+::: {.fragment .fade-up}
+::: {.danger-callout style="margin-top: 20px; text-align: left;"}
+**The Butterfly Effect**: One different token → completely different output.
+
+Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
+:::
+:::
+
+::: {.notes}
+Що таке LLM математично? 
+Машина, яка дивиться на всі попередні слова і вгадує наступне слово. 
+Одне слово за раз. Без можливості заглянути вперед чи виправити помилку.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/llm_slot_machine.png){fig-align="center" width="80%" height="80%"}
+
+::: {.fragment .fade-up style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+Every token is a spin. The house always has edge.
+:::
+
+::: {.notes}
+Як слот-машина. Кожне слово — spin. Ви не контролюєте результат. 
+Помилка на третьому слові — весь текст поїхав.
+Це не баг. Це так працює.
+:::
+
+---
+
+## Information Imbalance
+
+::: {.callout-warning appearance="minimal"}
+## Query Entropy << Document Entropy
+:::
+
+$$H(\text{Query}) \ll H(\text{Document})$$
+
+::: {.columns}
+::: {.column width="50%"}
+### The Question
+
+"Is knee surgery covered?"
+
+**= 4 tokens**
+
+:::
+
+::: {.column width="50%"}
+### The Answer Location
+
+Page 147, Section 8.3.2(b)
+
+Endorsement CP-1147, Exclusion (iii)
+
+**= 4000 tokens**
+:::
+:::
+
+::: {.fragment .fade-up}
+::: {.insight-box style="margin-top: 30px;"}
+**You're asking search to read minds.**
+:::
+:::
+
+::: {.notes}
+Уявіть: AI шукає відповідь у тисячі сторінок ваших документів.
+Ви питаєте: "Чи покриває страховка операцію на коліні?"
+
+6 слів питання. 
+
+Правильна відповідь: сторінка 147, секція 8.3.2(b), якийсь апендикс з кодом.
+Відповідь закопана в одному реченні на 147 сторінці.
+В докементі в якому 4000 слів
+:::
+
+---
+
+## The Retrieval Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Semantic Search Fails
+
+In high-dimensional space:
+
+$$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
+
+**Similar ≠ Relevant**
+
+"What's my deductible?" ≈ "What is a deductible?"
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Keyword Search Fails
+
+Synonymy & polysemy break everything:
+
+- "coverage" ≠ "benefits"
+- "benefits" ≠ "included services"
+- "included services" ≠ "covered procedures"
+
+**Same concept, different words.**
+:::
+:::
+
+::: {.fragment .fade-up}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
+**RAG retrieves plausible documents. LLM generates confident answers.**
+
+But confidence ≠ correctness.
+:::
+:::
+
+::: {.notes}
+Це як шукати голку в стозі сіна, коли ви не знаєте як голка виглядає.
+
+AI знайде щось схоже. AI відповість впевнено.
+Але впевненість — це не правильність.
+:::
+
+---
+
+## Agentic Combinatorial Explosion
+
+::: {.callout-important appearance="minimal"}
+## The Action Space Is Intractable
+:::
+
+$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
+
+::: {.fragment}
+8 tools × 5 params × 4 steps = **12,800+ trajectories**
+
+Per claim. 500 claims/day.
+:::
+
+::: {.fragment}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
+**No exhaustive testing possible.**
+
+You're sampling from chaos.
+:::
+:::
+
+::: {.notes}
+Agentic AI - ще гірше
+
+Порахуємо: 8 інструментів, 5 параметрів, 4 кроки — це 12 тисяч можливих сценаріїв. 
+На один запит. 500 запитів на день. Протестувати все неможливо
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/ai_casino.png){fig-align="center" width="80%"}
+
+::: {.fragment .fade-up}
+::: {.danger-callout .large-text style="margin-bottom: 30px;"}
+**Every query is a pull. Every action is a bet.**
+
+You expected to win? Own the casino.
+:::
+:::
+
+::: {.notes}
+Ви просто граєте замісто одної слот машини на багатьох одночасно.
+
+Кожен запит — pull. Кожна дія — ставка x 10.
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Leaders must approach building AI systems
+
+with the mentality of a **casino owner**,
+
+not a casino player.
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+**That is how they will win in the long run.**
+:::
+
+::: {.notes}
+Лідери мають думати як власник казино, не як гравець. 
+
+:::
+
+# Real World Insurance Org Structure {background-color="#1E293B"}
+
+*How AI Can Actuate Risks Instead of Decreasing Them*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/insurance_org.png){fig-align="center" width="85%"}
+
+
+::: {.notes}
+Давайте подивимось на реальну структуру страхової компанії.
+Хед офіс, бек офіс, кастомер сапорт. 
+Один відділ відповідає за страхові поліси — вони в SharePoint з 2019 року, але реальні правила в голові у Олени, яка працює тут 30 років.
+
+Інший обробляє страхові випадки — "нова" система 2005 року, + нотатки в зошиті у супервайзера.
+
+Тепер уявіть: ви ставите AI поверх цього хаосу. 
+Агент бачить частину даних одного відділу, але не бачить даних з іншіх відділів, 
+І не знає про email де Олена відписала за особливий порадок вилат в 2023 році.
+
+:::
+
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
+
+::: {.notes}
+Розглянемо три рівні ризику, який AI несе страховій індустрії.
+
+Перший: chatbot на сайті помилився — клієнт роздратований. Неприємно, але не критично.
+
+Другий: пошук по документах помилився — клієнт отримав неправильну інформацію. Гірше, але є час зловити і виправити.
+
+Третій: AI-агент помилився і сам відправив гроші клієнту. Це вже реальна проблема.
+
+Але найгірше — rubber stamp trap. Коли людина не дивлячись апрувить неправильне рішення AI.
+І головна проблема: з AI людина може робити такі помилки набагато частіше.
+
+:::
+
+# Risk Decomposition {background-color="#1E293B"}
+
+
+*RAG vs Agentic AI Failure Modes*
+
+---
+
+## RAG: The Foundation Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### What RAG Promises
+
+- "Ground AI in your documents"
+- "Reduce hallucinations"
+- "Enterprise-ready AI"
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### What RAG Delivers
+
+- Retrieves **plausible** docs
+- Misses **critical** exclusions
+- Confident answers from **wrong** context
+:::
+:::
+
+::: {.fragment}
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
+**You already saw the math: Info gap + Retrieval failure + Compounding errors.**
+
+RAG inherits all the problems. It doesn't solve them.
+:::
+:::
+
+---
+
+## RAG Failure: Annoying but Recoverable
+
+**Customer**: "Is my knee surgery covered?"
+
+**AI**: "Yes, orthopedic procedures are covered." *(wrong — exclusion on page 147)*
+
+::: {.columns}
+::: {.column width="50%"}
+### What Happens
+
+- Customer calls to confirm
+- Agent catches the error
+- Correct info provided
+- Minor embarrassment
+
+:::
+
+::: {.column width="50%"}
+### The Saving Grace
+
+**Human in the loop.**
+
+Customer still has to act.
+
+Time to catch mistakes.
+
+:::
+:::
+
+::: {.fragment}
+::: {.fomo-box style="margin-top: 20px; text-align: center;"}
+**RAG is passive. Wrong info waits for someone to act on it.**
+:::
+:::
+
+---
+
+## Agentic AI: No Safety Net
+
+**Same RAG retrieval. But now the agent ACTS.**
+
+::: {.columns}
+::: {.column width="50%"}
+### What Changes
+
+- Agent has tools: `approve_claim`, `send_payment`, `update_record`
+- Same wrong retrieval
+- Same confident LLM
+- **But now it executes**
+
+:::
+
+::: {.column width="50%"}
+### The Consequence
+
+No human checkpoint.
+
+Action happens at machine speed.
+
+By the time you notice, **damage is done**.
+
+:::
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
+**Agentic AI multiplies RAG failures by the cost of autonomous action.**
+:::
+:::
+
+# The Rubber Stamp Trap {background-color="#1E293B"}
+
+*When "Human in the Loop" Becomes Human-Shaped Decoration*
+
+---
+
+## The Setup: Kraków Back Office
+
+::: {.columns}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Claims Department
+
+- **Staff:** 12 adjusters
+- **Volume:** 500+ claims/day
+- **Target:** 45 claims/adjuster/day
+- **Avg time:** 10-12 minutes per claim
+:::
+
+::: {.column width="48%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### NEW: AI Claims Assistant
+
+- Reads claim documents
+- Pulls policy from admin system
+- Checks coverage rules
+- Calculates recommended payout
+- Presents recommendation to adjuster
+:::
+:::
+
+::: {.fragment}
+::: {.fear-box style="margin-top: 30px; text-align: center;"}
+**AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
+
+Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely safe."*
+:::
+:::
+::: {.notes}
+Краків, департамент обробки страхових випадків. 
+12 людей обробляють 500 заявок на день. 
+Кожен має закрити 45.
+
+Впроваджують AI Claims Assistant. 
+Він читає документи, витягує поліс, перевіряє що покрито, рахує скільки платити, показує рекомендацію.
+
+Але — AI не має права апрувити. 
+Не має доступу до платежів. Фінальне рішення — за людиною. APPROVE або REJECT.
+"Human in the loop. Абсолютно безпечно."
+Правда?
+
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/claims_wb.png){fig-align="center" width="85%"}
+
+::: {.notes}
+Екран Марії. Заявка WD-2847 — затоплення, комерційна нерухомість.
+
+AI рекомендує: APPROVE. 38 500 злотих. Впевненість — 94%.
+
+В черзі 47 заявок. Таргет — 45. Зараз 9:47 ранку.
+
+Що робить Марія?
+
+:::
+
+---
+
+## What Maria Does
+
+::: {.columns}
+::: {.column width="50%"}
+**09:47:12 — Maria sees:**
+
+- Water damage ✓ *(common claim type)*
+- Commercial property ✓ *(handles daily)*
+- Coverage applies ✓ *(AI checked)*
+- Amount reasonable ✓ *(within limits)*
+- Confidence 94% ✓ *(AI is sure)*
+- 47 claims still in queue ✗ *(pressure)*
+:::
+
+::: {.column width="50%"}
+**Maria thinks:**
+
+*"AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard."*
+
+**09:47:38** — Maria clicks: **[APPROVE]**
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
+**Time spent on claim: 26 seconds**
+:::
+:::
+:::
+:::
+
+::: {.notes}
+09:47:12 — Марія бачить: затоплення, комерційна нерухомість, покриття є, сума адекватна, впевненість 94%.
+
+Марія думає: "AI вже перевірив поліс. 94%. Сума до 50 тисяч, ескалація не потрібна. Стандартний кейс."
+
+09:47:38 — Марія клікає APPROVE.
+
+26 секунд.
+
+:::
+
+---
+
+## What Maria Should Have Checked
+
+::: {.columns}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### IF [View Policy] — Page 147
+
+**ENDORSEMENT CP-1147 - WATER DAMAGE**
+
+Coverage for water damage **LIMITED TO sudden and accidental discharge.**
+
+**EXCLUDED:**
+
+- Gradual seepage >14 days
+- Damage from lack of maintenance
+- Known source not repaired
+:::
+
+::: {.column width="48%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### IF [View Claim Form]
+
+**Section 3: Description of Loss**
+
+*"We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for **'at least 2-3 months'** based on corrosion."*
+:::
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
+**GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0**
+:::
+:::
+::: {.notes}
+А тепер — що вона пропустила.
+
+Поліс, сторінка 147: затоплення покрито тільки якщо раптове. Протікання більше 14 днів — виключення.
+
+У заявці чорним по білому: "труба текла 2-3 місяці."
+
+Правильна виплата: нуль. Не 38 500.
+
+:::
+
+---
+
+## What the AI Missed (and Why)
+
+::: {.columns}
+::: {.column width="50%"}
+### AI Retrieval
+
+✓ Found policy CP-847291
+✓ Found base coverage
+✓ Found deductible: PLN 5,000
+✗ **Did NOT retrieve Endorsement CP-1147**
+
+*Why? Endorsement in separate DMS. RAG query "water damage coverage" returned base policy. "CP-1147" doesn't contain "water".*
+:::
+
+::: {.column width="50%"}
+### AI Reasoning
+
+✓ Water damage covered *(generally true)*
+✓ Policy is active
+✓ Amount within limits
+✗ **Did NOT parse "2-3 months"**
+✗ **Did NOT flag gradual vs sudden**
+
+*Why? Free text. No structured field. Senior Adjuster knows this. AI doesn't.*
+:::
+:::
+::: {.notes}
+Чому AI помилився?
+Проблема перша: виключення лежало в іншій системі. 
+
+AI шукав "затоплення" — знайшов базовий поліс. Виключення називалось "CP-1147" — без слова "вода". Пошук його не зачепив.
+Проблема друга: "труба текла 2-3 місяці" було написано в заявці. 
+
+Але — вільний текст без структури. AI прочитав і пропустив.
+Людина з 30-річним досвідом це ловить автоматично. AI — ні.
+
+:::
+
+---
+
+## The Aftermath
+
+::: {.fomo-box}
+**09:47:39** — System logs: *"Claim WD-2847 APPROVED by Maria Kowalska"*
+:::
+
+::: {.fear-box style="margin-top: 20px;"}
+| Day | Event |
+|-----|-------|
+| **+3** | Payment of PLN 38,500 processed |
+| **+47** | Monthly audit sample pulls Claim WD-2847 |
+| **+48** | Senior Adjuster: *"Why did we pay this? It's gradual damage."* |
+| **+49** | Recovery attempted. Claimant: *"We have approval confirmation."* |
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 10px;"}
+**Day +180** — Pattern discovered. **23 similar claims. Total: PLN 885,500**
+:::
+:::
+::: {.notes}
+День 3 — платіж.
+
+День 47 — аудит.
+
+День 49 — клієнт: "У мене ваш апрув."
+
+День 180 — 23 кейси, 885 тисяч.
+
+:::
+---
+
+## The Accountability Question
+
+::: {.columns}
+::: {.column width="50%"}
+**MARIA:** *"AI said it was covered. 94% confidence. I can't check every endorsement on every claim. I process 45/day."*
+
+**IT:** *"AI performed as designed. Human approval is required precisely for edge cases. The human approved it."*
+:::
+
+::: {.column width="50%"}
+**CLAIMS MGR:** *"We set 45/day target based on AI assistance. That's what we promised the board."*
+
+**VP:** *"The audit trail shows human approval. That's our compliance defense. ...right?"*
+:::
+:::
+
+::: {.fragment}
+::: {.insight-box style="margin-top: 30px;"}
+**"Human in the loop" became "Human as rubber stamp"**
+
+The human isn't REVIEWING. The human is LEGITIMIZING.
+:::
+:::
+
+::: {.notes}
+Марія: "AI сказав 94%."
+IT: "Людина апрувила."
+
+Менеджер: "Таргет від борду."
+
+Кожен показує на іншого.
+"Human in the loop" перетворився на "human as rubber stamp". 
+Не перевірка — легітимізація рішення AI.
+
+:::
+
+---
+
+## The Math of Rubber Stamping
+
+::: {.columns}
+::: {.column width="50%"}
+### Before AI
+
+- Claims/day/adjuster: **15**
+- Time per claim: **30 min**
+- Error rate: **2%**
+- Human catches own mistakes: **80%**
+- **Net errors/day: 0.06**
+:::
+
+::: {.column width="50%"}
+### After AI (Rubber Stamping)
+
+- Claims/day/adjuster: **45**
+- Time per claim: **10 min** *(mostly AI)*
+- AI error rate: **5%**
+- Human override rate: **3%**
+- **Net errors/day: ~2.0**
+:::
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
+12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
+
+Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
+:::
+:::
+::: {.notes}
+До AI: 15 кейсів на день, 30 хвилин кожен, 2% помилок, людина ловить 80% своїх помилок. 
+Результат: 0.06 помилки на день.
+Після AI: 45 кейсів на день, 10 хвилин кожен, AI помиляється в 5%, людина виправляє 3%.
+Результат: 2 помилки на день.
+
+12 людей × 2 помилки × 220 робочих днів = 5 280 помилок на рік.
+
+Середня переплата 38 500 — це 203 мільйони злотих річної експозиції.
+:::
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+This is not a story about AI making mistakes.
+:::
+
+::: {.fragment .fade-up style="margin-top: 30px;"}
+AI will always make mistakes.
+:::
+
+::: {.fragment .fade-up style="margin-top: 30px;"}
+This is a story about a system designed to **LOOK LIKE** it has human oversight
+
+while **REMOVING** the conditions that make oversight possible.
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 40px;"}
+What gave: **actual oversight.** What remained: **the appearance of oversight.**
+:::
+:::
+::: {.notes}
+Це не історія про те, що AI помиляється. 
+AI завжди буде помилятися. 
+Це історія про систему, яка виглядає як контроль над AI.
+Але насправді це AI контролює поведінку людей.
+
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+The question isn't:
+
+*"How do we make AI more accurate?"*
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.3em;"}
+The question is:
+
+**"How do we verify AI outputs BEFORE the human sees them**
+
+**so the human isn't the last line of defense?"**
+:::
+
+::: {.notes}
+
+Питання не "як зробити AI точнішим?"
+Питання: "Як перевіряти те, що AI видає, ДО того, як людина це бачить?" 
+
+Щоб людина не була останньою лінією оборони.
+
+:::
+
+::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+→ **THE VERIFICATION STACK**
+:::
+
+# Evaluation Methodology {background-color="#EA580C"}
+
+*Applying the [Hamel Husain Framework](https://hamel.dev/blog/posts/evals-faq/) to Claim WD-2847*
+
+::: {.notes}
+
+Найкращим фреймворком для побудови надійного AI наразі є метода Hamel Husain
+
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/five-step-eval.png){fig-align="center" width="85%"}
+
+::: {.notes}
+
+Методика має п'ять кроків.
+Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.
+
+Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.
+
+Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.
+
+Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?
+
+П'ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.
+
+:::
+
+
+---
+
+## Phase 1: Error Analysis First
+
+**Before using new LLM, understand how Maria's claim failed:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Retrieval Failure
+
+- AI queried "water damage coverage CP-847291"
+- **Returned:** base policy ✓
+- **Missed:** Endorsement CP-1147 ✗
+- *Why: No "water" keyword in endorsement title, stored in separate DMS*
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Reasoning Failure
+
+- AI read claim form but didn't flag "2-3 months"
+- OCR quality: 87% on scanned PDF
+- No structured field for "duration"
+- *Gradual vs sudden distinction: not in training*
+:::
+:::
+
+
+
+---
+
+## Phase 2: Build Failure Taxonomy
+
+**From WD-2847 and 22 similar claims, patterns emerge:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Retrieval Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Missing endorsement | 34% | ✓ |
+| Wrong policy version | 18% | |
+| Cross-system doc gap | 23% | ✓ |
+| Outdated guidelines | 12% | |
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Reasoning Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Gradual vs sudden | 41% | ✓ |
+| Maintenance exclusion | 22% | |
+| Coverage limit misread | 15% | |
+| Deductible calculation | 8% | |
+:::
+:::
+
+::: {.fragment}
+::: {.danger-callout style="margin-top: 20px;"}
+**The 41% gradual/sudden failure rate = your first verifier target.**
+:::
+:::
+
+---
+
+## Phase 3: Tiered Evaluation
+
+**Decompose Maria's 26-second decision into verifiable checkpoints:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Tier 1: Retrieval
+
+- ✓ Base policy CP-847291
+- ✗ **Endorsements — MISSING CP-1147**
+- ✓ Current version
+- ✓ Claim form
+
+**Score: 3/4 = 75%**
+
+*VERDICT: INCOMPLETE*
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Tier 2: Reasoning
+
+- ✗ Coverage determination — WRONG
+- ✗ Exclusions checked — MISSED
+- ✗ Timeline extracted — MISSED
+- ✗ Damage classified — WRONG
+
+**Score: 0/4 = 0%**
+
+*VERDICT: FAIL*
+:::
+:::
+
+
+---
+
+## Phase 4: Transition Failure Matrix
+
+**Map where the WD-2847 workflow broke down:**
+
+::: {.neutral-box}
+| From State | To State | Failure Rate | WD-2847 |
+|------------|----------|--------------|---------|
+| receive_claim | lookup_policy | 2% | ✓ passed |
+| lookup_policy | **retrieve_endorsements** | **31%** | **✗ FAILED** |
+| check_coverage | **extract_timeline** | **28%** | **✗ WOULD FAIL** |
+| extract_timeline | classify_damage | 15% | *(skipped)* |
+| **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
+:::
+
+::: {.fragment}
+::: {.insight-box style="margin-top: 20px;"}
+**Investment Priorities:** (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%
+:::
+:::
+
+---
+
+## Phase 5: The Data Viewer {background-color="#0F172A"}
+
+![](images/claims-web-ui.png){fig-align="center" width="90%"}
+
+---
+
+## From Analysis to Verifiers
+
+**Each WD-2847 failure mode becomes infrastructure:**
+
+| What Failed | What We Learned | Verifier Built |
+|-------------|-----------------|----------------|
+| Endorsement CP-1147 not retrieved | Endorsements stored separately | **Endorsement Completeness Checker** |
+| "2-3 months" not flagged | Temporal language in free text | **Temporal Damage Classifier** |
+| Escalation not triggered | AI confident despite gaps | **Escalation Trigger Rules** |
+| Maria had 26 seconds | System designed for throughput | **Pre-Human Verification Gate** |
+
+::: {.fragment}
+::: {.insight-box style="margin-top: 20px;"}
+**Senior Adjuster's expertise about gradual vs sudden?**
+
+**Now it's a classifier. Now it scales. Now it catches the next 22 claims.**
+:::
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+But building verifiers manually
+
+for every failure mode
+
+still doesn't scale.
+:::
+
+::: {.fragment .fade-up style="margin-top: 60px;"}
+You can't have Senior Adjuster review every claim.
+
+But you CAN have their expertise review every claim.
+:::
+
+::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
+**That's Verifier Primacy.**
+:::
+
+# VERIFIER PRIMACY {background-color="#7C3AED"}
+
+*From Error Analysis to Scalable Judgment*
+
+---
+
+## The Core Insight
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### What Failed
+
+- Senior Adjuster knows gradual vs sudden
+- Senior Adjuster knows to check endorsements
+- Senior Adjuster knows when to escalate
+
+**But Senior Adjuster can't review 500 claims/day.**
+
+So Maria got 26 seconds and a 94% confidence score.
+:::
+
+::: {.column width="50%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### What If
+
+- Senior Adjuster's knowledge was **encoded in rules**
+- Endorsement checks were **automated**
+- Escalation triggers were **systematic**
+
+**Senior Adjuster reviews the rules once.**
+
+**Rules review every claim, forever.**
+:::
+:::
+
+::: {.fragment}
+::: {.neutral-box style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;"}
+$|\text{Rules}| \ll |\text{Claims}|$
+
+**Build verifiers once. Run them infinitely.**
+:::
+:::
+
+---
+
+# The Verification Stack {background-color="#1E293B"}
+
+*Six gates between AI recommendation and Maria's screen*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/verification_stack.png){fig-align="center" width="85%"}
+
+---
+
+## The Six Verification Layers
+
+| Layer | Purpose | WD-2847 Result |
+|-------|---------|----------------|
+| **1. Schema** | Valid format, required fields, data types | ✓ PASS — All fields valid |
+| **2. Retrieval** | All documents retrieved? Endorsements complete? | **✗ BLOCKED** — Missing CP-1147 |
+| **3. Semantic** | Does reasoning contradict itself? | ✗ Would block — "2-3 months" vs "sudden" |
+| **4. Domain Rules** | Business logic, exclusions, regulations | ✗ Would block — CP-1147 excludes gradual |
+| **5. LLM-as-Judge** | Would Senior Adjuster approve? | ✗ Would block — "Recommend DENY" |
+| **6. Human Escalation** | Route flagged cases to expert | → Escalate to Senior Adjuster |
+
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+Everyone will have GPT-5.
+:::
+
+::: {.fragment}
+AI capability is becoming **commodity**.
+:::
+
+::: {.fragment .fade-up style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
+**Encoded expertise is the moat.**
+:::
+
+::: {.fragment style="margin-top: 40px;"}
+You're not investing in AI.
+
+You're investing in **capturing what your experts know**
+
+**before they retire.**
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Invest in verification infrastructure
+
+to use LLMs safely.
+:::
+
+::: {.fragment .fade-up style="margin-top: 50px; font-size: 1.3em;"}
+This is the best way to tame chaos
+:::
+
+::: {.fragment .fade-up style="margin-top: 30px; font-size: 1.5em;"}
+**and become the casino.**
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+**Stop praying. Start verifying.**
+:::
+
+::: {.fragment style="color: #64748B; margin-top: 60px;"}
+Andriy Batutin •  [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+:::
+

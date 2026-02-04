@@ -1,0 +1,430 @@
+---
+title: "VERIFIER PRIMACY"
+subtitle: "Building Trust in AI Systems"
+author: "Andriy Batutin"
+date: "03.02.2026"
+format:
+  revealjs:
+    theme: [dark, custom.scss]
+    slide-number: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+    highlight-style: github-dark
+    code-line-numbers: false
+    footer: "Verifier Primacy | [andriybatutin.substack.com](https://andriybatutin.substack.com/)"
+    width: 1920
+    height: 1080
+    margin: 0.1
+    center: true
+    hash: true
+    history: true
+    controls: true
+    progress: true
+    touch: true
+execute:
+  echo: false
+  warning: false
+---
+
+## About Me
+
+::: {.columns}
+::: {.column width="70%"}
+### Andriy Batutin
+
+- **Senior AI Engineer** focused on AI/ML systems
+- Building verification infrastructure for production AI
+- Writing at [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+
+:::
+::: {.column width="30%"}
+![](images/author.png){fig-align="center" width="80%"}
+:::
+:::
+
+---
+
+# The Problem {background-color="#1E293B"}
+
+*Why AI deployment is career risk*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/reasoning-tokens-growth.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 1: Reasoning tokens explosion
+
+OpenRouter data: reasoning tokens 0% → 50%+ in 12 months.
+Organizations deploying agents at scale.
+Verification infrastructure hasn't kept pace.
+:::
+
+---
+
+## The Governance Gap {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%"}
+### [KPMG 2025](https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html)
+
+- **56%** making mistakes due to AI
+- **66%** don't verify AI outputs
+:::
+
+::: {.column width="50%"}
+### [Deloitte 2026](https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html)
+
+- **75%** deploying agentic AI
+- **21%** have governance models
+:::
+:::
+
+::: {.fragment .fade-up style="background-color: #DC2626; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**The gap between deployment and governance is the liability.**
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/llm_slot_machine.png){fig-align="center" width="70%"}
+
+::: {.fragment .fade-up style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+Every token is a spin. The house always has edge.
+:::
+
+::: {.notes}
+IMAGE 2: Slot machine
+
+LLMs are conditional probability machines.
+Each token = local decision based on context.
+Errors compound multiplicatively.
+The unpredictability IS what makes AI useful.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/ai_casino.png){fig-align="center" width="85%"}
+
+::: {.fragment .fade-up style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; font-size: 1.2em;"}
+Leaders must build AI systems with the mentality of a **casino owner**, not a player.
+:::
+
+::: {.notes}
+IMAGE 3: AI Casino
+
+Every query is a pull. Every action is a bet.
+You expected to win? The math says no.
+Casino owners win by controlling the odds.
+That's what verification infrastructure does.
+:::
+
+---
+
+# Insurance Reality {background-color="#1E293B"}
+
+*Where AI meets organizational chaos*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/insurance_org.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 4: Insurance org structure
+
+6 departments, 6 data silos, 6 systems.
+Underwriting: "What we cover" (SharePoint, Janet's head)
+Claims: "What happened" (Legacy 1998, free text)
+Knowledge lives in people, not systems.
+Now add AI on top of this mess.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 5: Risk ladder
+
+Chatbot: Wrong answer → user annoyed
+RAG: Wrong info → user might act on it
+Agentic: Wrong info → AI ACTS on it → irreversible
+
+The rubber stamp trap: AI recommends, human "approves" in 26 seconds.
+Human in the loop becomes human-shaped decoration.
+:::
+
+---
+
+# The Rubber Stamp Trap {background-color="#1E293B"}
+
+*Claim WD-2847: When oversight becomes theater*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/claims_wb.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 6: Claims workbench
+
+Maria's screen. Claim WD-2847.
+Water damage, commercial property.
+AI says: APPROVE PLN 38,500. Confidence 94%.
+47 claims in queue. Target: 45/day.
+:::
+
+---
+
+## What Happened in 26 Seconds
+
+::: {.columns}
+::: {.column width="50%"}
+**Maria sees:**
+
+- Water damage ✓ *(common)*
+- AI checked coverage ✓
+- Confidence 94% ✓
+- 47 claims in queue ✗
+
+**09:47:38** — Maria clicks **[APPROVE]**
+:::
+
+::: {.column width="50%"}
+**Maria missed:**
+
+- **Endorsement CP-1147** — gradual damage excluded
+- **Claim form:** *"leaking 2-3 months"*
+- Gradual leak = **PLN 0**, not PLN 38,500
+
+::: {.fragment style="background-color: #DC2626; padding: 15px; border-radius: 8px; margin-top: 20px;"}
+**Day +180:** 23 similar claims. **PLN 885,500** exposure.
+:::
+:::
+:::
+
+---
+
+## The Accountability Gap
+
+::: {.columns}
+::: {.column width="50%"}
+**MARIA:** *"AI said 94% confident. I process 45/day."*
+
+**IT:** *"Human approval is required. The human approved it."*
+:::
+
+::: {.column width="50%"}
+**CLAIMS MGR:** *"45/day target is what we promised the board."*
+
+**VP:** *"Audit trail shows human approval. ...right?"*
+:::
+:::
+
+::: {.fragment style="background-color: #7C3AED; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**"Human in the loop" became "Human as rubber stamp"**
+
+System designed to LOOK LIKE oversight while REMOVING conditions for oversight.
+:::
+
+---
+
+# From Failure to Verifiers {background-color="#EA580C"}
+
+*The Hamel Husain Framework*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/five-step-eval.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 7: Five-step eval framework
+
+1. Error Analysis First — understand failures before building
+2. Build Failure Taxonomy — patterns from real cases
+3. Tiered Evaluation — decompose into checkpoints
+4. Transition Matrix — map where workflow breaks
+5. Data Viewer — make it visible
+:::
+
+---
+
+## WD-2847 Failure Decomposition
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E3A5F; padding: 20px; border-radius: 8px;"}
+### Retrieval Failure
+
+- ✓ Found base policy
+- ✗ **Missed Endorsement CP-1147**
+- *Why: Separate DMS, no "water" in title*
+
+### Reasoning Failure
+
+- ✗ **Didn't flag "2-3 months"**
+- *Why: OCR 87%, free text, no training*
+:::
+
+::: {.column width="50%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Patterns from 23 Similar Claims
+
+| Failure | Frequency |
+|---------|-----------|
+| Missing endorsement | 34% |
+| Gradual vs sudden | **41%** |
+| Missed escalation | **47%** |
+
+::: {.fragment}
+**→ These become verifier targets**
+:::
+:::
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/claims-web-ui.png){fig-align="center" width="90%"}
+
+::: {.notes}
+IMAGE 8: Data viewer / verification UI
+
+What Maria SHOULD have seen:
+- Endorsement gap detected
+- Timeline anomaly flagged
+- Escalation recommended
+- Confidence dropped to 31%
+
+This is what the verification stack produces.
+:::
+
+---
+
+# Verifier Primacy {background-color="#7C3AED"}
+
+*Scaling expert judgment as infrastructure*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/verification_stack.png){fig-align="center" width="85%"}
+
+::: {.notes}
+IMAGE 9: Verification stack
+
+6 layers between AI output and human screen:
+0. Guardrails — amount limits, rate limits
+1. Schema — valid format, required fields
+2. Retrieval — all docs retrieved?
+3. Semantic — reasoning consistent?
+4. Domain Rules — exclusions, regulations
+5. LLM-as-Judge — would expert approve?
+6. Human Escalation — route flagged cases
+
+WD-2847 blocked at Layer 2. PLN 38,500 saved.
+:::
+
+---
+
+## WD-2847 Through the Stack
+
+| Layer | Check | Result |
+|-------|-------|--------|
+| **0. Guardrails** | Amount < PLN 40k | ✓ PASS |
+| **1. Schema** | All fields valid | ✓ PASS |
+| **2. Retrieval** | All endorsements? | **✗ BLOCKED** — Missing CP-1147 |
+| **3. Semantic** | "2-3 months" + "sudden"? | ✗ Would block |
+| **4. Domain** | CP-1147 exclusion | ✗ Would block |
+| **5. LLM-Judge** | Expert approve? | ✗ Would block |
+
+::: {.fragment style="background-color: #065F46; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center;"}
+**Stopped at Layer 2. Escalated to Senior Adjuster. Correctly denied.**
+:::
+
+---
+
+## The Knowledge Transfer
+
+::: {.columns}
+::: {.column width="33%" style="background-color: #7F1D1D; padding: 20px; border-radius: 8px;"}
+### Expert's Head
+
+- "Always check endorsements"
+- "Timeline = red flag"
+- "When in doubt, escalate"
+
+*Retires in 5 years.*
+:::
+
+::: {.column width="33%" style="background-color: #7C3AED; padding: 20px; border-radius: 8px;"}
+### The Interview
+
+- "What do you check first?"
+- "What makes you suspicious?"
+- "Show me a tricky case."
+
+*Knowledge captured.*
+:::
+
+::: {.column width="33%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### The Verifier
+
+- Endorsement gate
+- Temporal classifier
+- Escalation rules
+
+*Scales forever.*
+:::
+:::
+
+::: {.fragment style="background-color: #0F172A; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center;"}
+**Expert doesn't review 500 claims. Expert's judgment reviews 500 claims.**
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+Everyone will have GPT-5.
+:::
+
+::: {.fragment}
+AI capability is **commodity**.
+:::
+
+::: {.fragment .fade-up style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
+**Encoded expertise is the moat.**
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Invest in verification infrastructure.
+
+Become the casino.
+:::
+
+::: {.fragment .fade-up style="margin-top: 50px; font-size: 1.5em;"}
+**Stop praying. Start verifying.**
+:::
+
+::: {.fragment style="color: #64748B; margin-top: 60px;"}
+Andriy Batutin • [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+:::

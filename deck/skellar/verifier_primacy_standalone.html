@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERIFIER PRIMACY — Building Trust in AI Systems</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root {
+      --r-background-color: #0F172A;
+      --r-main-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --r-main-font-size: 42px;
+      --r-main-color: #F8FAFC;
+      --r-heading-font: 'Inter', sans-serif;
+      --r-heading-color: #F8FAFC;
+      --r-heading-letter-spacing: -0.02em;
+      --r-heading-text-transform: none;
+      --r-link-color: #0891B2;
+      --r-selection-background-color: #7C3AED;
+      
+      --navy: #0F172A;
+      --navy-light: #1E293B;
+      --teal: #0891B2;
+      --purple: #7C3AED;
+      --red: #DC2626;
+      --green: #059669;
+      --orange: #EA580C;
+      --slate: #64748B;
+      --light: #F8FAFC;
+    }
+    
+    .reveal {
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    
+    .reveal h1 { font-size: 2.5em; font-weight: 800; }
+    .reveal h2 { font-size: 1.8em; font-weight: 700; border-bottom: 3px solid var(--teal); display: inline-block; padding-bottom: 0.2em; }
+    .reveal h3 { font-size: 1.4em; font-weight: 600; color: var(--teal); }
+    
+    .reveal .r-fit-text { font-weight: 800; letter-spacing: -0.03em; }
+    
+    .reveal pre { background: var(--navy-light); border-radius: 8px; padding: 20px; font-size: 0.55em; }
+    .reveal code { font-family: 'JetBrains Mono', 'Fira Code', monospace; background: var(--navy-light); padding: 2px 8px; border-radius: 4px; }
+    
+    .reveal .columns { display: flex; gap: 40px; }
+    .reveal .column { flex: 1; }
+    
+    .reveal ul, .reveal ol { text-align: left; margin-left: 1em; }
+    .reveal li { margin-bottom: 0.5em; }
+    .reveal li::marker { color: var(--teal); }
+    
+    .reveal table { border-collapse: collapse; margin: 1em auto; font-size: 0.8em; }
+    .reveal th { background: var(--navy-light); color: var(--teal); padding: 12px 20px; font-weight: 600; }
+    .reveal td { padding: 12px 20px; border-bottom: 1px solid #334155; }
+    
+    .callout { padding: 20px 30px; border-radius: 8px; margin: 20px 0; text-align: left; }
+    .callout-note { background: rgba(8, 145, 178, 0.15); border-left: 4px solid var(--teal); }
+    .callout-warning { background: rgba(220, 38, 38, 0.15); border-left: 4px solid var(--red); }
+    .callout-important { background: rgba(124, 58, 237, 0.15); border-left: 4px solid var(--purple); }
+    .callout-tip { background: rgba(5, 150, 105, 0.15); border-left: 4px solid var(--green); }
+    
+    .callout-title { font-weight: 600; margin-bottom: 10px; font-size: 0.9em; }
+    .callout-note .callout-title { color: var(--teal); }
+    .callout-warning .callout-title { color: var(--red); }
+    .callout-important .callout-title { color: var(--purple); }
+    .callout-tip .callout-title { color: var(--green); }
+    
+    .red { color: var(--red) !important; }
+    .teal { color: var(--teal) !important; }
+    .purple { color: var(--purple) !important; }
+    .green { color: var(--green) !important; }
+    .slate { color: var(--slate) !important; }
+    
+    .highlight-box { background: rgba(8, 145, 178, 0.15); border: 2px solid var(--teal); padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .purple-box { background: var(--purple); padding: 30px; border-radius: 8px; margin: 20px 0; }
+    
+    .exec-box { padding: 30px; border-radius: 12px; text-align: left; }
+    .exec-a { background: rgba(220, 38, 38, 0.15); }
+    .exec-b { background: rgba(5, 150, 105, 0.15); }
+    
+    .stack-layer { padding: 12px 25px; margin: 6px 0; border-radius: 8px; text-align: left; font-size: 0.75em; }
+    .layer-0 { background: linear-gradient(90deg, rgba(100,116,139,0.3), rgba(100,116,139,0.1)); border-left: 4px solid var(--slate); }
+    .layer-1 { background: linear-gradient(90deg, rgba(5,150,105,0.3), rgba(5,150,105,0.1)); border-left: 4px solid var(--green); }
+    .layer-2 { background: linear-gradient(90deg, rgba(8,145,178,0.3), rgba(8,145,178,0.1)); border-left: 4px solid var(--teal); }
+    .layer-3 { background: linear-gradient(90deg, rgba(124,58,237,0.3), rgba(124,58,237,0.1)); border-left: 4px solid var(--purple); }
+    .layer-4 { background: linear-gradient(90deg, rgba(234,88,12,0.3), rgba(234,88,12,0.1)); border-left: 4px solid var(--orange); }
+    .layer-5 { background: linear-gradient(90deg, rgba(220,38,38,0.3), rgba(220,38,38,0.1)); border-left: 4px solid var(--red); }
+    
+    .reveal .progress { background: rgba(8, 145, 178, 0.2); height: 4px; }
+    .reveal .progress span { background: linear-gradient(90deg, var(--teal), var(--purple)); }
+    
+    .reveal .slide-number { color: var(--slate); font-size: 0.5em; }
+    
+    .small { font-size: 0.8em; }
+    .smaller { font-size: 0.65em; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      
+      <!-- TITLE -->
+      <section data-background-color="#0F172A">
+        <h1 class="r-fit-text">VERIFIER PRIMACY</h1>
+        <p>Building Trust in AI Systems</p>
+        <p class="fragment fade-up slate" style="margin-top: 60px;"><em>Andriy Batutin • Data Science Summit 2025</em></p>
+        <aside class="notes">Welcome. Today we talk about what keeps AI leaders up at night.</aside>
+      </section>
+      
+      <!-- HOOK -->
+      <section data-background-color="#0F172A">
+        <p class="r-fit-text red">In the next 12 months,</p>
+        <p class="fragment fade-up" style="font-size: 1.3em;">a C-level executive will lose their job</p>
+        <p class="fragment fade-up" style="font-size: 1.3em;">because of a critical AI failure.</p>
+        <p class="fragment fade-up teal" style="margin-top: 40px;"><em>This is mathematically guaranteed.</em></p>
+      </section>
+      
+      <!-- AGENDA -->
+      <section data-background-color="#1E293B">
+        <h2>Today's Journey</h2>
+        <ol>
+          <li class="fragment"><strong>The Stochasticity Paradox</strong> — Why AI is chaos by design</li>
+          <li class="fragment"><strong>RAG: The Retrieval Curse</strong> — Why knowledge systems fail</li>
+          <li class="fragment"><strong>RAG: Methodology</strong> — How to build reliable RAG</li>
+          <li class="fragment"><strong>Agentic: The Action Illusion</strong> — Why agents are liabilities</li>
+          <li class="fragment"><strong>Agentic: Methodology</strong> — How to build reliable agents</li>
+          <li class="fragment"><strong>Verifier Primacy</strong> — Scaling judgment as infrastructure</li>
+        </ol>
+      </section>
+      
+      <!-- STOCHASTICITY SECTION -->
+      <section data-background-color="#1E293B">
+        <h1>The Stochasticity Paradox</h1>
+        <p class="slate"><em>Why AI cannot be made reliable — and why that's the point</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Paradox</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>What executives fear</h3>
+            <ul>
+              <li>AI outputs are unpredictable</li>
+              <li>You can't guarantee correctness</li>
+              <li>You can't prevent failures</li>
+            </ul>
+          </div>
+          <div class="column fragment">
+            <h3>The uncomfortable truth</h3>
+            <p>This unpredictability is <strong>exactly what makes AI useful</strong>.</p>
+            <p style="margin-top: 20px;">A perfectly reliable AI is a database.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Math</h2>
+        <div class="callout callout-note">
+          <div class="callout-title">Entropy is Capability</div>
+        </div>
+        <p>\[H(\text{output}) > 0 \implies \text{generalization possible}\]</p>
+        <p>\[H(\text{output}) = 0 \implies \text{lookup table}\]</p>
+        <div class="fragment purple-box" style="margin-top: 40px;">
+          <p><strong>The same property that makes AI unreliable IS what makes it general-purpose.</strong></p>
+          <p><strong>You cannot engineer this away.</strong></p>
+        </div>
+      </section>
+      
+      <!-- RAG SECTION -->
+      <section data-background-color="#1E293B">
+        <h1>RAG Case Study</h1>
+        <p class="slate"><em>Insurance Claims Q&A</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Setup</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>Fortune 500 Insurance Company</h3>
+            <ul>
+              <li>50,000+ policy documents</li>
+              <li>Average 180 pages each</li>
+              <li>Customer service AI for claims questions</li>
+              <li>Goal: reduce call center volume by 40%</li>
+            </ul>
+          </div>
+          <div class="column">
+            <div class="callout callout-warning">
+              <div class="callout-title">⚠️ The Failure</div>
+              <p><strong>Customer:</strong> "Is my knee surgery covered?"</p>
+              <p><strong>AI:</strong> "Yes, orthopedic procedures are covered under your plan."</p>
+              <p><strong>Reality:</strong> Customer had the basic plan. Exclusion on page 147.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Consequence</h2>
+        <ul>
+          <li class="fragment">Customer proceeded with <strong>$45,000 surgery</strong> based on AI advice</li>
+          <li class="fragment">Claim denied</li>
+          <li class="fragment">Customer sued citing "AI-provided coverage confirmation"</li>
+          <li class="fragment">Settlement: <strong>$120,000</strong> + legal fees + regulatory scrutiny</li>
+        </ul>
+        <p class="fragment red" style="font-size: 1.3em; font-weight: bold; margin-top: 40px;">VP of Digital Innovation: terminated</p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Why RAG Fails: The Math</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>1. Information Asymmetry</h3>
+            <p>\[H(\text{Query}) \ll H(\text{Document})\]</p>
+            <p>Query: "Is knee surgery covered?" = <strong>4 tokens</strong></p>
+            <p>Answer: Page 147, Section 8.3.2(b)</p>
+            <p class="fragment slate"><em>You're asking a search engine to read minds.</em></p>
+          </div>
+          <div class="column">
+            <h3>2. Embedding Geometry Curse</h3>
+            <p>In high-dimensional space (\(d \gg 100\)):</p>
+            <p>\[\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c\]</p>
+            <p class="fragment">"What's my deductible?" ≈ "What is a deductible?"</p>
+            <p class="fragment slate"><em>Only one answers your question.</em></p>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>RAG Methodology: Hamel Husain Framework</h2>
+        <ol>
+          <li class="fragment"><strong>Error Analysis First</strong> — Look at 50 real failures before building anything</li>
+          <li class="fragment"><strong>Evaluate Retrieval Separately</strong> — Recall@k: Are we finding the right documents?</li>
+          <li class="fragment"><strong>Evaluate Generation Separately</strong> — Faithfulness, Relevance</li>
+          <li class="fragment"><strong>Fix Retriever First</strong> — If wrong docs go in, right answer can't come out</li>
+          <li class="fragment"><strong>Domain Expert as Judge</strong> — One "benevolent dictator"</li>
+        </ol>
+      </section>
+      
+      <!-- AGENTIC SECTION -->
+      <section data-background-color="#1E293B">
+        <h1>Agentic Case Study</h1>
+        <p class="slate"><em>Travel Booking Agent</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Setup</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>Enterprise Travel Platform</h3>
+            <ul>
+              <li>AI agent with <strong>12 tools</strong>: flights, hotels, cars, expenses, calendar</li>
+              <li>Processes 2,000+ booking requests/day</li>
+              <li>Connected to corporate credit cards (avg limit: $50k)</li>
+            </ul>
+          </div>
+          <div class="column">
+            <div class="callout callout-warning">
+              <div class="callout-title">⚠️ The Failure</div>
+              <p><strong>Request:</strong> "Book the usual NYC trip for next Tuesday"</p>
+              <p><strong>Agent interpretation:</strong></p>
+              <ul class="small">
+                <li>"Usual" = last booking pattern (business class)</li>
+                <li>"NYC" = wrong airport (LGA vs JFK)</li>
+                <li>"Tuesday" = wrong week</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Chain Reaction</h2>
+        <ul>
+          <li class="fragment">Agent auto-charged corporate card: <strong>$18,400</strong> (3 × business class)</li>
+          <li class="fragment">Sent calendar invites to 3 executives with wrong details</li>
+          <li class="fragment">Auto-booked hotel + car at wrong location: <strong>$2,100</strong></li>
+          <li class="fragment">Total exposure before human noticed: <strong class="red">$20,500 in 47 seconds</strong></li>
+        </ul>
+        <p class="fragment red" style="font-size: 1.2em; margin-top: 40px;">CTO asked: "Why didn't we have any safeguards?" — <strong>No answer.</strong></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Why Agents Fail: The Math</h2>
+        <h3>1. LLM = Token Predictor</h3>
+        <p>\[P(\text{next\_token} \mid \text{context})\]</p>
+        <p class="fragment">The model doesn't know <code>book_flight</code> is different from <code>book_club</code>. <strong>Both are just tokens.</strong></p>
+        <p class="fragment" style="margin-top: 30px;">It knows what <em>text</em> follows "confirm purchase."<br>It doesn't know what happens to your <strong>credit card</strong>.</p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Why Agents Fail: The Math</h2>
+        <h3>2. Combinatorial Explosion</h3>
+        <p>\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</p>
+        <p class="fragment">12 tools × 5 params × 3 steps = <strong>324,000+ trajectories</strong></p>
+        <p class="fragment">No exhaustive testing possible.</p>
+        <p class="fragment slate"><em>You're sampling from chaos.</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <p class="r-fit-text" style="font-style: italic;">"We trained a trillion-parameter model<br>to predict the next word,<br>pointed it at your bank account,<br>and said <span class="red">'good luck.'</span>"</p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Agentic Methodology: Hamel Husain Framework</h2>
+        <ol>
+          <li class="fragment"><strong>End-to-End Success First</strong> — "Did we meet the user's goal?" Binary pass/fail</li>
+          <li class="fragment"><strong>Step-Level Diagnostics</strong> — Wrong tool? Bad params? Failed recovery?</li>
+          <li class="fragment"><strong>Transition Failure Matrix</strong> — Map [last success] → [failure point]</li>
+          <li class="fragment"><strong>Trace Everything</strong> — No observability = no debugging</li>
+        </ol>
+      </section>
+      
+      <!-- BRIDGE -->
+      <section data-background-color="#7C3AED">
+        <p class="r-fit-text">But this is still manual.</p>
+        <p class="r-fit-text">Still human-bound.</p>
+        <p class="r-fit-text">Still doesn't scale.</p>
+        <p class="fragment" style="margin-top: 60px; font-size: 1.3em;">You can't have a domain expert review every API call.</p>
+        <p class="fragment" style="font-size: 1.5em; margin-top: 40px;"><strong>So what do we do?</strong></p>
+      </section>
+      
+      <!-- VERIFIER PRIMACY -->
+      <section data-background-color="#7C3AED">
+        <h1 class="r-fit-text">VERIFIER PRIMACY</h1>
+        <p><em>The Core Insight</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Asymmetry</h2>
+        <div class="callout callout-important">
+          <div class="callout-title">P ≠ NP Intuition Applied to Trust</div>
+        </div>
+        <p style="font-size: 1.5em;">\[|\text{Rule Space}| \ll |\text{Action Space}|\]</p>
+        <div class="columns" style="margin-top: 40px;">
+          <div class="column">
+            <h3>Generation</h3>
+            <ul>
+              <li>Exponentially hard</li>
+              <li>Infinite trajectories</li>
+              <li>Unbounded creativity</li>
+            </ul>
+          </div>
+          <div class="column">
+            <h3>Verification</h3>
+            <ul>
+              <li>Tractable constraints</li>
+              <li>Finite rule sets</li>
+              <li>Composable checks</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fragment highlight-box" style="margin-top: 40px; text-align: center;">
+          <p><strong>Generating a correct answer: exponentially hard.</strong></p>
+          <p><strong>Checking if an answer is valid: tractable.</strong></p>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>From Analysis to Infrastructure</h2>
+        <div class="callout callout-tip">
+          <div class="callout-title">Verifier Primacy</div>
+          <p>Take the artifacts of error analysis and <strong>PRODUCTIONIZE</strong> them.</p>
+        </div>
+        <table class="small" style="margin-top: 30px;">
+          <tr><th>Error Analysis Output</th><th>→</th><th>Verifier Infrastructure</th></tr>
+          <tr><td>"Retrieval fails on X pattern"</td><td>→</td><td>Retrieval validator for X</td></tr>
+          <tr><td>"Agent picks wrong tool when Y"</td><td>→</td><td>Tool choice gate for Y</td></tr>
+          <tr><td>"Hallucination when Z context"</td><td>→</td><td>Faithfulness judge for Z</td></tr>
+          <tr><td>Expert critiques & annotations</td><td>→</td><td>LLM-as-judge prompts</td></tr>
+          <tr><td>Transition failure hotspots</td><td>→</td><td>Step-level validators</td></tr>
+        </table>
+        <div class="fragment purple-box" style="margin-top: 30px; text-align: center;">
+          <p><strong>Human-BUILT, machine-EXECUTED.</strong></p>
+          <p>Knowledge leaves heads, enters infrastructure.</p>
+        </div>
+      </section>
+      
+      <!-- VERIFICATION STACK -->
+      <section data-background-color="#1E293B">
+        <h1>The Verification Stack</h1>
+        <p class="slate"><em>With Mathematical Foundations</em></p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 0: Guardrails</h2>
+        <p class="teal"><strong>Pre-execution constraints</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Constraint Satisfaction:</strong></p>
+            <p>\[A_{\text{valid}} = \{a \in A : c(a) = \text{true}, \forall c \in C\}\]</p>
+            <p><strong>Anomaly Detection:</strong></p>
+            <p>\[\text{Flag if } -\log P_{\text{normal}}(a) > \theta\]</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>Max transaction: $10k</li>
+              <li>Rate limit: ≤5 calls/minute</li>
+              <li>Scope: customer's own data only</li>
+              <li>PII detection: block SSN, credit card</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 1: Schema Validation</h2>
+        <p class="green"><strong>Structural correctness — Is it well-formed?</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Formal Language Membership:</strong></p>
+            <p>\[v(x) = \mathbb{1}[x \in L(S)]\]</p>
+            <p>JSON Schema, Pydantic = CFG membership test</p>
+            <p>\(O(n)\) parsing, deterministic</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>JSON structure matches schema</li>
+              <li>Required fields present</li>
+              <li>Enum values within allowed set</li>
+              <li>Date formats valid</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 2: Semantic Consistency</h2>
+        <p class="teal"><strong>Does the output contradict itself?</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Propositional Consistency:</strong></p>
+            <p>\[\exists M : M \models p_1 \land p_2 \land \ldots \land p_n\]</p>
+            <p><strong>NLI Classification:</strong></p>
+            <p>\[(premise, hyp) \to \{\text{entails}, \text{contradicts}, \text{neutral}\}\]</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>"Deductible is $500" + "Deductible is $1000" → <span class="red">contradiction</span></li>
+              <li>Pairwise entailment check across claims</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 3: Domain Rules</h2>
+        <p class="purple"><strong>Business logic, regulatory requirements</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Rule Engines (Horn Clauses):</strong></p>
+            <p>\[\text{cond}_1 \land \text{cond}_2 \to \text{action\_allowed}\]</p>
+            <p><strong>Deontic Logic:</strong></p>
+            <p>\[F(\text{refund}) \leftarrow \text{amount} > \text{policy\_limit}\]</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>Transaction > $10k → requires approval</li>
+              <li>Customer tier = basic → exclusion list applies</li>
+              <li>State = California → disclosure required</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 4: LLM-as-Judge</h2>
+        <p style="color: var(--orange);"><strong>"Would the domain expert approve?"</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Alignment as Distribution Matching:</strong></p>
+            <p>\[\min KL(P_{\text{expert}} \| P_{\text{judge}})\]</p>
+            <p><strong>Inter-Rater Reliability:</strong></p>
+            <p>\[\kappa = \frac{p_o - p_e}{1 - p_e} > 0.8\]</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>Taxonomy of failure modes</li>
+              <li>Few-shot examples from expert critiques</li>
+              <li>Calibration loop: judge vs expert agreement</li>
+              <li>Active learning for edge cases</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Layer 5: Human Escalation</h2>
+        <p class="red"><strong>Route uncertain/high-stakes cases to humans</strong></p>
+        <div class="columns">
+          <div class="column">
+            <h3>Math Foundation</h3>
+            <p><strong>Selective Prediction:</strong></p>
+            <p>\[\text{Reject if confidence} < \theta\]</p>
+            <p><strong>Cost-Sensitive:</strong></p>
+            <p>\[\text{Escalate iff } P(\text{error}) \times C_{\text{miss}} > C_{\text{human}}\]</p>
+          </div>
+          <div class="column">
+            <h3>Implementation</h3>
+            <ul>
+              <li>Confidence < 70% → escalate</li>
+              <li>Transaction > $50k → always escalate</li>
+              <li>New failure mode → escalate + add to taxonomy</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>The Stack as Funnel</h2>
+        <div class="stack-layer layer-0"><strong>GUARDRAILS</strong> — Pre-execution constraints <span class="slate">(~5% blocked)</span></div>
+        <div class="stack-layer layer-1"><strong>SCHEMA VALIDATION</strong> — Is it well-formed? <span class="slate">(~2% blocked)</span></div>
+        <div class="stack-layer layer-2"><strong>SEMANTIC CONSISTENCY</strong> — Does it contradict itself? <span class="slate">(~3% blocked)</span></div>
+        <div class="stack-layer layer-3"><strong>DOMAIN RULES</strong> — Does it violate business logic? <span class="slate">(~5% blocked)</span></div>
+        <div class="stack-layer layer-4"><strong>LLM-AS-JUDGE</strong> — Would the domain expert approve? <span class="slate">(~8% blocked)</span></div>
+        <div class="stack-layer layer-5"><strong>HUMAN ESCALATION</strong> — Uncertain? Ask a human. <span class="slate">(~5% escalated)</span></div>
+        <p style="margin-top: 20px; text-align: center;"><strong>~72% AUTO-APPROVED</strong> (with full audit trail)</p>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>What Verifier Primacy Unlocks</h2>
+        <div class="columns">
+          <div class="column">
+            <h3>🔓 True Autonomy</h3>
+            <p>Agents act without human review — <strong>because verifiers watch</strong>.</p>
+            <h3 style="margin-top: 30px;">📋 Validation Trail</h3>
+            <p>Every decision logged. Every gate documented.</p>
+          </div>
+          <div class="column">
+            <h3>🛡️ Real-Time Protection</h3>
+            <p>Catch the wrong token <strong>BEFORE</strong> it costs $200k.</p>
+            <h3 style="margin-top: 30px;">⚖️ Defensible to the Board</h3>
+            <p>"Here's our verification layer. Here's our audit trail."</p>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <p class="r-fit-text">Everyone will have GPT-5.</p>
+        <p class="fragment" style="font-size: 1.3em;">AI capability is becoming <strong>commodity</strong>.</p>
+        <p class="fragment teal" style="font-size: 1.8em; margin-top: 40px;"><strong>TRUST is the moat.</strong></p>
+        <p class="fragment" style="margin-top: 40px;">You're not investing in AI.<br>You're investing in <strong>AI GOVERNANCE</strong>.</p>
+      </section>
+      
+      <!-- TALE OF TWO EXECUTIVES -->
+      <section data-background-color="#1E293B">
+        <h1>A Tale of Two Executives</h1>
+      </section>
+      
+      <section data-background-color="#1E293B">
+        <div class="columns">
+          <div class="column exec-box exec-a">
+            <h3>EXECUTIVE A</h3>
+            <ul>
+              <li>Shipped AI fast</li>
+              <li>Demo was impressive</li>
+              <li>Board was excited</li>
+            </ul>
+            <ul class="fragment" style="margin-top: 20px;">
+              <li>Agent made $200k error</li>
+              <li>"Why did it fail?" — "We don't know."</li>
+              <li>"Will it happen again?" — "We can't guarantee."</li>
+            </ul>
+            <p class="fragment red" style="margin-top: 20px; font-weight: bold;">Headline. Lawsuit. Career over.</p>
+          </div>
+          <div class="column exec-box exec-b">
+            <h3>EXECUTIVE B</h3>
+            <ul>
+              <li>Shipped AI with verification layer</li>
+              <li>Same agent, same error attempt</li>
+            </ul>
+            <ul class="fragment" style="margin-top: 20px;">
+              <li><strong>Verifier caught it</strong></li>
+              <li>Logged it. Blocked it.</li>
+              <li>Escalated to human review</li>
+            </ul>
+            <p class="fragment" style="margin-top: 20px;">"Why didn't it fail?" — "Here's the audit trail."</p>
+            <p class="fragment green" style="font-weight: bold;">Promoted. Trusted. Leading AI transformation.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section data-background-color="#7C3AED">
+        <p class="r-fit-text">Which one will you be?</p>
+      </section>
+      
+      <!-- CLOSE -->
+      <section data-background-color="#0F172A">
+        <p style="font-size: 1.3em;">AI adoption is <strong>not optional</strong>.</p>
+        <p>The pressure is real.</p>
+        <p class="fragment red" style="margin-top: 30px; font-size: 1.2em;">But adoption without governance is <strong>liability</strong>.</p>
+        <div class="fragment purple-box" style="margin-top: 50px;">
+          <p class="r-fit-text" style="margin: 0;"><strong>Stop praying. Start verifying.</strong></p>
+        </div>
+        <p class="fragment slate" style="margin-top: 40px;">Andriy Batutin • @AI_Capitalist • aicapitalist.substack.com</p>
+      </section>
+      
+      <!-- APPENDIX -->
+      <section data-background-color="#1E293B">
+        <h1>Appendix: Key Equations</h1>
+      </section>
+      
+      <section data-background-color="#0F172A">
+        <h2>Reference Card</h2>
+        <div class="columns smaller">
+          <div class="column">
+            <h3>Stochasticity Paradox</h3>
+            <p>\[H(\text{output}) > 0 \iff \text{generalization}\]</p>
+            <h3>Information Asymmetry</h3>
+            <p>\[H(\text{Query}) \ll H(\text{Document})\]</p>
+            <h3>Action Space Explosion</h3>
+            <p>\[|A| = n^{\text{tools}} \times m^{\text{params}} \times k^{\text{steps}}\]</p>
+          </div>
+          <div class="column">
+            <h3>Verifier Primacy</h3>
+            <p>\[|\text{Rules}| \ll |\text{Actions}|\]</p>
+            <h3>Judge Calibration</h3>
+            <p>\[\kappa = \frac{p_o - p_e}{1 - p_e}\]</p>
+            <h3>Escalation Threshold</h3>
+            <p>\[\text{Escalate iff } P(e) \cdot C_{\text{miss}} > C_{\text{human}}\]</p>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/math/math.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      progress: true,
+      history: true,
+      center: true,
+      transition: 'slide',
+      backgroundTransition: 'fade',
+      plugins: [ RevealNotes, RevealHighlight, RevealMath.MathJax3 ]
+    });
+  </script>
+</body>
+</html>
