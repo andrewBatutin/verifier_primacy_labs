@@ -129,7 +129,7 @@
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">VERIFIER PRIMACY</h1>
   <p class="subtitle">Building Trust Infrastructure for AI Systems.<br>
-SKELAR Analytics MeetUp</p>
+LLMday Warsaw 2026 Q1</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -159,9 +159,9 @@ Andriy Batutin
 </div>
 </div></div>
 <aside class="notes">
-<p>Добрий день! Мене звати Андрій Батутін. Я Senior AI Engineer, працював в Accenture, Shelf, MacPaw.</p>
-<p>Останні роки фокусуюсь на AI Agents — це коли AI не просто відповідає на питання юзера, а виконує конкретні дії — шукає інформацію в інтернеті, замовляє піцу або заповнює страхову форму.</p>
-<p>І сьогодні я хочу поговорити про те, чому ці системи небезпечні, і як вибудувати довіру до них.</p>
+<p>Hello! My name is Andriy Batutin. I’m a Senior AI Engineer — I’ve worked at Accenture, Shelf, and MacPaw.</p>
+<p>In recent years I’ve been focusing on AI Agents — systems where AI doesn’t just answer user questions, but takes concrete actions — searching the internet, ordering pizza, or filling out insurance forms.</p>
+<p>And today I want to talk about why these systems are dangerous, and how to build trust in them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -179,15 +179,15 @@ Andriy Batutin
 <div class="r-fit-text" style="color: #DC2626;">
 <p>In the next 12 months,</p>
 </div>
-<div class="fragment fade-up">
+<div style="font-size: 1.3em;">
 <p>a C-level executive will lose their job because of a critical AI failure.</p>
 </div>
-<div class="fragment fade-up" style="color: #0891B2; font-style: italic;">
+<div style="color: #0891B2; font-style: italic;">
 <p><a href="https://openrouter.ai/state-of-ai">OpenRouter data</a> supports this.</p>
 </div>
 <aside class="notes">
-<p>Ось моя теза: протягом наступних 12 місяців хтось із C-level втратить роботу через критичний AI fail.</p>
-<p>Це не залякування. Це математика.</p>
+<p>Here’s my thesis: within the next 12 months, a C-level executive will lose their job because of a critical AI failure.</p>
+<p>This isn’t fearmongering. This is math.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -209,8 +209,8 @@ Andriy Batutin
 </div>
 
 <aside class="notes">
-<p>Подивіться на цей графік з OpenRouter. Рік тому трафік на “думаючі” моделі — ті, що планують і міркують перед дією — був майже нуль. Зараз — більше 50%.</p>
-<p>Що це означає? Компанії масово деплоять агентів, які думають, планують, виконують складні задачі. Але інфраструктура верифікації не встигає. Цей gap — це ризик.</p>
+<p>Look at this graph from OpenRouter. A year ago, traffic to “thinking” models — the ones that plan and reason before acting — was nearly zero. Now it’s over 50%.</p>
+<p>What does this mean? Companies are mass-deploying agents that think, plan, and execute complex tasks. But verification infrastructure isn’t keeping up. That gap is risk.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -245,14 +245,12 @@ Andriy Batutin
 <li><strong>25%</strong> moving pilots to production</li>
 </ul>
 </div></div>
-<div class="fragment fade-up">
 <div class="danger-callout" style="margin-top: 30px;">
 <p><strong>The gap between deployment and governance is major risk.</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>KPMG опитали 48 тисяч людей у 47 країнах. 56% кажуть, що роблять помилки через AI. 66% не перевіряють що AI видає.</p>
-<p>Deloitte: 75% компаній вже запускають AI-агентів. Але тільки 21% мають систему контролю. Три чверті запускають. П’ята частина контролює. Решта — молиться.</p>
+<p>KPMG surveyed 48,000 people across 47 countries. 56% say they’re making mistakes because of AI. 66% don’t verify what AI produces.</p>
+<p>Deloitte: 75% of companies are already deploying AI agents. But only 21% have governance models. Three-quarters deploying. One-fifth governing. The rest are praying.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -288,14 +286,12 @@ Andriy Batutin
 </ul>
 <p><strong>The gap between “impressive demo” and “contractually reliable” is enormous.</strong></p>
 </div></div>
-<div class="fragment fade-up">
 <div class="danger-callout" style="margin-top: 30px;">
 <p><strong>You cannot close this gap by improving the model. You close it by verifying the output.</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>Sierra — компанія за $10B — зробила свій бенчмарк τ-bench. Найкращі моделі проходять 85% тестів. На чистих, синтетичних даних. В реальності — набагато гірше.</p>
-<p>Висновок: розрив між “вражаючим демо” і “контрактно надійним” — величезний. І його не закрити кращою моделлю. Тільки верифікацією.</p>
+<p>Sierra — a $10B company — built their own benchmark, τ-bench. The best models pass 85% of tests. On clean, synthetic data. In reality — much worse.</p>
+<p>The takeaway: the gap between “impressive demo” and “contractually reliable” is enormous. And you can’t close it with a better model. Only with verification.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -310,7 +306,7 @@ Andriy Batutin
 </section>
 <section id="todays-journey" class="slide level2 center">
 <h2>Today’s Journey</h2>
-<div class="fade-up">
+<div style="text-align: left;">
 <ol type="1">
 <li><strong>The Stochasticity Paradox</strong> — Why AI is chaos by design</li>
 <li><strong>Real World Insurance Org Structure</strong> — How AI can actuate risks</li>
@@ -358,19 +354,17 @@ Andriy Batutin
 <li>“Slowpoke” is career poison</li>
 </ul>
 </div></div>
-<div class="fragment fade-up" style="margin-top: 40px; text-align: center;">
+<div style="margin-top: 40px; text-align: center;">
 <p><strong>Both paths feel like career risk.</strong></p>
 </div>
-<div class="fragment fade-up">
 <div class="insight-box" style="margin-top: 20px;">
 <p>And here’s the uncomfortable truth:</p>
 <p><strong>The unpredictability you fear is exactly what makes AI useful.</strong></p>
 <p>A perfectly reliable AI is a database.</p>
 </div>
-</div>
 <aside class="notes">
-<p>Отже, для будь-якого IT-лідера зараз є дві сторони медалі. Страх: AI непередбачуваний. Одна помилка — судовий позов, заголовки в пресі, кінець кар’єри.</p>
-<p>FOMO: конкуренти вже запускають AI. Борд чекає трансформації. Бути останнім — теж кінець кар’єри. Обидва шляхи виглядають як ризик. Але ось парадокс: та непередбачуваність, якої ви боїтесь — це саме те, що робить AI корисним</p>
+<p>So for any IT leader right now, there are two sides of the coin. Fear: AI is unpredictable. One mistake — a lawsuit, press headlines, end of career.</p>
+<p>FOMO: competitors are already shipping AI. The board expects transformation. Being last is also end of career. Both paths look like risk. But here’s the paradox: the unpredictability you fear is exactly what makes AI useful.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -402,14 +396,12 @@ Andriy Batutin
 </div>
 <p><span class="math display">\[P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{&lt;t})\]</span></p>
 <p>Each token is a <strong>local decision</strong> based on preceding context.</p>
-<div class="fragment fade-up">
 <div class="danger-callout" style="margin-top: 20px; text-align: left;">
 <p><strong>The Butterfly Effect</strong>: One different token → completely different output.</p>
 <p>Errors compound multiplicatively: <span class="math inline">\(\prod_{t=1}^{T} \epsilon_t\)</span></p>
 </div>
-</div>
 <aside class="notes">
-<p>Що таке LLM математично? Машина, яка дивиться на всі попередні слова і вгадує наступне слово. Одне слово за раз. Без можливості заглянути вперед чи виправити помилку.</p>
+<p>What is an LLM mathematically? A machine that looks at all previous words and guesses the next word. One word at a time. No ability to look ahead or correct a mistake.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -429,11 +421,11 @@ Andriy Batutin
 <p><img data-src="images/llm_slot_machine.png" class="quarto-figure quarto-figure-center" style="width:80.0%;height:80.0%"></p>
 </figure>
 </div>
-<div class="fragment fade-up" style="margin-top: 30px; text-align: center; font-size: 1.3em;">
+<div style="margin-top: 30px; text-align: center; font-size: 1.3em;">
 <p>Every token is a spin. The house always has edge.</p>
 </div>
 <aside class="notes">
-<p>Як слот-машина. Кожне слово — spin. Ви не контролюєте результат. Помилка на третьому слові — весь текст поїхав. Це не баг. Це так працює.</p>
+<p>Like a slot machine. Every word is a spin. You don’t control the outcome. An error on the third word — the entire text goes off the rails. This isn’t a bug. This is how it works.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -470,15 +462,13 @@ Andriy Batutin
 <p>Endorsement CP-1147, Exclusion (iii)</p>
 <p><strong>= 4000 tokens</strong></p>
 </div></div>
-<div class="fragment fade-up">
 <div class="insight-box" style="margin-top: 30px;">
 <p><strong>You’re asking search to read minds.</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>Уявіть: AI шукає відповідь у тисячі сторінок ваших документів. Ви питаєте: “Чи покриває страховка операцію на коліні?”</p>
-<p>6 слів питання.</p>
-<p>Правильна відповідь: сторінка 147, секція 8.3.2(b), якийсь апендикс з кодом. Відповідь закопана в одному реченні на 147 сторінці. В документі в якому 4000 слів</p>
+<p>Imagine: AI is searching for an answer across thousands of pages of your documents. You ask: “Is knee surgery covered?”</p>
+<p>6 words in the question.</p>
+<p>The correct answer: page 147, section 8.3.2(b), some appendix with a code. The answer is buried in a single sentence on page 147. In a document that’s 4,000 words long.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -510,15 +500,13 @@ Andriy Batutin
 </ul>
 <p><strong>Same concept, different words.</strong></p>
 </div></div>
-<div class="fragment fade-up">
 <div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>RAG retrieves plausible documents. LLM generates confident answers.</strong></p>
 <p>But confidence ≠ correctness.</p>
 </div>
-</div>
 <aside class="notes">
-<p>Це як шукати голку в стозі сіна, коли ви не знаєте як голка виглядає.</p>
-<p>AI знайде щось схоже. AI відповість впевнено. Але впевненість — це не правильність.</p>
+<p>It’s like searching for a needle in a haystack when you don’t know what the needle looks like.</p>
+<p>AI will find something similar. AI will answer confidently. But confidence is not correctness.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -544,19 +532,15 @@ Andriy Batutin
 </div>
 </div>
 <p><span class="math display">\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</span></p>
-<div class="fragment">
-<p>8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
-<p>Per claim. 500 claims/day.</p>
-</div>
-<div class="fragment">
+<p>::: 8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
+<p>Per claim. 500 claims/day. :::</p>
 <div class="neutral-box" style="margin-top: 30px; text-align: center;">
 <p><strong>No exhaustive testing possible.</strong></p>
 <p>You’re sampling from chaos. But the rules the agent must obey? <strong>Those are finite and enumerable.</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>Agentic AI -&nbsp;ще гірше</p>
-<p>Порахуємо: 8 інструментів, 5 параметрів, 4 кроки — це 12 тисяч можливих сценаріїв. На один запит. 500 запитів на день. Протестувати все неможливо</p>
+<p>Agentic AI — it’s even worse.</p>
+<p>Let’s do the math: 8 tools, 5 parameters, 4 steps — that’s 12,000 possible trajectories. Per single request. 500 requests per day. Exhaustive testing is impossible.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -572,15 +556,13 @@ Andriy Batutin
 <section id="section-3" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 
-<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up">
-<div class="danger-callout large-text" style="margin-bottom: 30px;">
+<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="danger-callout large-text" style="margin-bottom: 30px;">
 <p><strong>Every query is a pull. Every action is a bet.</strong></p>
 <p>You expected to win? Own the casino.</p>
 </div>
-</div>
 <aside class="notes">
-<p>Ви просто граєте замісто одної слот машини на багатьох одночасно.</p>
-<p>Кожен запит — pull. Кожна дія — ставка x 10.</p>
+<p>You’re just playing multiple slot machines at once instead of one.</p>
+<p>Every query is a pull. Every action is a bet times 10.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -600,11 +582,11 @@ Andriy Batutin
 <p>with the mentality of a <strong>casino owner</strong>,</p>
 <p>not a casino player.</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<div style="margin-top: 40px; font-size: 1.5em;">
 <p><strong>That is how they will win in the long run.</strong></p>
 </div>
 <aside class="notes">
-<p>Лідери мають думати як власник казино, не як гравець.</p>
+<p>Leaders must think like casino owners, not casino players.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -626,9 +608,9 @@ Andriy Batutin
 <h2></h2>
 
 <img data-src="images/insurance_org.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
-<p>Давайте подивимось на реальну структуру страхової компанії. Хед офіс, бек офіс, кастомер сапорт. Один відділ відповідає за страхові поліси — вони в SharePoint з 2019 року, але реальні правила в голові у Олени, яка працює тут 30 років.</p>
-<p>Інший обробляє страхові випадки — “нова” система 2005 року, + нотатки в зошиті у супервайзера.</p>
-<p>Тепер уявіть: ви ставите AI поверх цього хаосу. Агент бачить частину даних одного відділу, але не бачить даних з іншіх відділів, І не знає про email де Олена відписала за особливий порадок вилат в 2023 році.</p>
+<p>Let’s look at a real insurance company structure. Head office, back office, customer support. One department handles insurance policies — they’re in SharePoint since 2019, but the real rules live in the head of Olena, who’s been working here for 30 years.</p>
+<p>Another processes claims — a “new” system from 2005, plus notes in the supervisor’s notebook.</p>
+<p>Now imagine: you put AI on top of this chaos. The agent sees data from one department but can’t see data from others, and doesn’t know about the email where Olena described a special payout procedure in 2023.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -645,11 +627,11 @@ Andriy Batutin
 <h2></h2>
 
 <img data-src="images/Insurance_risk_ladder.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
-<p>Розглянемо три рівні ризику, який AI несе страховій індустрії.</p>
-<p>Перший: chatbot на сайті помилився — клієнт роздратований. Неприємно, але не критично.</p>
-<p>Другий: пошук по документах помилився — клієнт отримав неправильну інформацію. Гірше, але є час зловити і виправити.</p>
-<p>Третій: AI-агент помилився і сам відправив гроші клієнту. Це вже реальна проблема.</p>
-<p>Але найгірше — rubber stamp trap. Коли людина не дивлячись апрувить неправильне рішення AI. І головна проблема: з AI людина може робити такі помилки набагато частіше.</p>
+<p>Let’s consider three levels of risk that AI brings to the insurance industry.</p>
+<p>First: a chatbot on the website makes a mistake — the customer is annoyed. Unpleasant, but not critical.</p>
+<p>Second: document search makes a mistake — the customer gets wrong information. Worse, but there’s time to catch and fix it.</p>
+<p>Third: an AI agent makes a mistake and sends money to the customer on its own. That’s a real problem.</p>
+<p>But the worst is the rubber stamp trap. When a human blindly approves AI’s wrong decision. And the key issue: with AI, humans can make these mistakes far more frequently.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -688,16 +670,14 @@ Andriy Batutin
 <li>Presents recommendation to adjuster</li>
 </ul>
 </div></div>
-<div class="fragment">
 <div class="fear-box" style="margin-top: 30px; text-align: center;">
 <p><strong>AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.</strong></p>
 <p>Human adjuster must click [APPROVE] or [REJECT]. <em>“Human in the loop. Completely safe.”</em></p>
 </div>
-</div>
 <aside class="notes">
-<p>Краків, департамент обробки страхових випадків. 12 людей обробляють 500 заявок на день. Кожен має закрити 45.</p>
-<p>Впроваджують AI Claims Assistant. Він читає документи, витягує поліс, перевіряє що покрито, рахує скільки платити, показує рекомендацію.</p>
-<p>Але — AI не має права апрувити. Не має доступу до платежів. Фінальне рішення — за людиною. APPROVE або REJECT. “Human in the loop. Абсолютно безпечно.” Правда?</p>
+<p>Kraków, claims processing department. 12 people process 500 claims per day. Each one has to close 45.</p>
+<p>They deploy an AI Claims Assistant. It reads documents, pulls the policy, checks what’s covered, calculates the payout, and presents the recommendation.</p>
+<p>But — AI doesn’t have authority to approve. No access to the payment system. The final decision is with the human. APPROVE or REJECT. “Human in the loop. Completely safe.” Right?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -714,10 +694,10 @@ Andriy Batutin
 <h2></h2>
 
 <img data-src="images/claims_wb.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
-<p>Екран Марії. Заявка WD-2847 — затоплення, комерційна нерухомість.</p>
-<p>AI рекомендує: APPROVE. 38 500 злотих. Впевненість — 94%.</p>
-<p>В черзі 47 заявок. Таргет — 45. Зараз 9:47 ранку.</p>
-<p>Що робить Марія?</p>
+<p>Maria’s screen. Claim WD-2847 — water damage, commercial property.</p>
+<p>AI recommends: APPROVE. PLN 38,500. Confidence — 94%.</p>
+<p>47 claims in the queue. Target — 45. It’s 9:47 AM.</p>
+<p>What does Maria do?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -747,17 +727,15 @@ Andriy Batutin
 <p><strong>Maria thinks:</strong></p>
 <p><em>“AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard.”</em></p>
 <p><strong>09:47:38</strong> — Maria clicks: <strong>[APPROVE]</strong></p>
-<div class="fragment">
 <div class="danger-callout" style="margin-top: 20px;">
 <p><strong>Time spent on claim: 26 seconds</strong></p>
 </div>
-</div>
 </div></div>
 <aside class="notes">
-<p>09:47:12 — Марія бачить: затоплення, комерційна нерухомість, покриття є, сума адекватна, впевненість 94%.</p>
-<p>Марія думає: “AI вже перевірив поліс. 94%. Сума до 50 тисяч, ескалація не потрібна. Стандартний кейс.”</p>
-<p>09:47:38 — Марія клікає APPROVE.</p>
-<p>26 секунд.</p>
+<p>09:47:12 — Maria sees: water damage, commercial property, coverage applies, amount is reasonable, confidence 94%.</p>
+<p>Maria thinks: “AI already checked the policy. 94%. Amount under 50 thousand, no escalation needed. Standard case.”</p>
+<p>09:47:38 — Maria clicks APPROVE.</p>
+<p>26 seconds.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -788,16 +766,14 @@ Andriy Batutin
 <p><strong>Section 3: Description of Loss</strong></p>
 <p><em>“We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for <strong>‘at least 2-3 months’</strong> based on corrosion.”</em></p>
 </div></div>
-<div class="fragment">
 <div class="danger-callout" style="margin-top: 20px;">
 <p><strong>GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>А тепер — що вона пропустила.</p>
-<p>Поліс, сторінка 147: затоплення покрито тільки якщо раптове. Протікання більше 14 днів — виключення.</p>
-<p>У заявці чорним по білому: “труба текла 2-3 місяці.”</p>
-<p>Правильна виплата: нуль. Не 38 500.</p>
+<p>Now — what she missed.</p>
+<p>The policy, page 147: water damage is covered only if sudden. Seepage over 14 days — excluded.</p>
+<p>The claim form says it in black and white: “the pipe had been leaking for 2-3 months.”</p>
+<p>Correct payout: zero. Not 38,500.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -823,9 +799,9 @@ Andriy Batutin
 <p><em>Why? Free text. No structured field. Senior Adjuster knows this. AI doesn’t.</em></p>
 </div></div>
 <aside class="notes">
-<p>Чому AI помилився? Проблема перша: виключення лежало в іншій системі.</p>
-<p>AI шукав “затоплення” — знайшов базовий поліс. Виключення називалось “CP-1147” — без слова “вода”. Пошук його не зачепив. Проблема друга: “труба текла 2-3 місяці” було написано в заявці.</p>
-<p>Але — вільний текст без структури. AI прочитав і пропустив. Людина з 30-річним досвідом це ловить автоматично. AI — ні.</p>
+<p>Why did AI get it wrong? Problem one: the exclusion was in a different system.</p>
+<p>AI searched for “water damage” — found the base policy. The exclusion was called “CP-1147” — no word “water” in it. The search didn’t pick it up. Problem two: “the pipe had been leaking for 2-3 months” was written in the claim form.</p>
+<p>But — free text with no structure. AI read it and missed it. A human with 30 years of experience catches this automatically. AI doesn’t.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -875,16 +851,14 @@ Andriy Batutin
 </tbody>
 </table>
 </div>
-<div class="fragment">
 <div class="danger-callout" style="margin-top: 10px;">
 <p><strong>Day +180</strong> — Pattern discovered. <strong>23 similar claims. Total: PLN 885,500</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>День 3 — платіж.</p>
-<p>День 47 — аудит.</p>
-<p>День 49 — клієнт: “У мене ваш апрув.”</p>
-<p>День 180 — 23 кейси, 885 тисяч.</p>
+<p>Day 3 — payment processed.</p>
+<p>Day 47 — audit.</p>
+<p>Day 49 — claimant: “We have your approval.”</p>
+<p>Day 180 — 23 cases, 885 thousand.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -907,16 +881,14 @@ Andriy Batutin
 <p><strong>CLAIMS MGR:</strong> <em>“We set 45/day target based on AI assistance. That’s what we promised the board.”</em></p>
 <p><strong>VP:</strong> <em>“The audit trail shows human approval. That’s our compliance defense. …right?”</em></p>
 </div></div>
-<div class="fragment">
 <div class="insight-box" style="margin-top: 30px;">
 <p><strong>“Human in the loop” became “Human as rubber stamp”</strong></p>
 <p>The human isn’t REVIEWING. The human is LEGITIMIZING.</p>
 </div>
-</div>
 <aside class="notes">
-<p>Марія: “AI сказав 94%.” IT: “Людина апрувила.”</p>
-<p>Менеджер: “Таргет від борду.”</p>
-<p>Кожен показує на іншого. “Human in the loop” перетворився на “human as rubber stamp”. Не перевірка — легітимізація рішення AI.</p>
+<p>Maria: “AI said 94%.” IT: “The human approved it.”</p>
+<p>Manager: “The target came from the board.”</p>
+<p>Everyone points at someone else. “Human in the loop” turned into “human as rubber stamp.” Not verification — legitimization of AI’s decision.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -929,69 +901,24 @@ Andriy Batutin
           display:block!important;
       }</style></aside>
 </section>
-<section id="the-math-of-rubber-stamping" class="slide level2 center">
-<h2>The Math of Rubber Stamping</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="before-ai">Before AI</h3>
-<ul>
-<li>Claims/day/adjuster: <strong>15</strong></li>
-<li>Time per claim: <strong>30 min</strong></li>
-<li>Error rate: <strong>2%</strong></li>
-<li>Human catches own mistakes: <strong>80%</strong></li>
-<li><strong>Net errors/day: 0.06</strong></li>
-</ul>
-</div><div class="column" style="width:50%;">
-<h3 id="after-ai-rubber-stamping">After AI (Rubber Stamping)</h3>
-<ul>
-<li>Claims/day/adjuster: <strong>45</strong></li>
-<li>Time per claim: <strong>10 min</strong> <em>(mostly AI)</em></li>
-<li>AI error rate: <strong>5%</strong></li>
-<li>Human override rate: <strong>3%</strong></li>
-<li><strong>Net errors/day: ~2.0</strong></li>
-</ul>
-</div></div>
-<div class="fragment">
-<div class="danger-callout" style="margin-top: 20px;">
-<p>12 adjusters × 2 errors/day × 220 days = <strong>5,280 errors/year</strong></p>
-<p>Avg overpayment: PLN 38,500 → <strong>Annual exposure: PLN 203M</strong></p>
-</div>
-</div>
-<aside class="notes">
-<p>До AI: 15 кейсів на день, 30 хвилин кожен, 2% помилок, людина ловить 80% своїх помилок. Результат: 0.06 помилки на день. Після AI: 45 кейсів на день, 10 хвилин кожен, AI помиляється в 5%, людина виправляє 3%. Результат: 2 помилки на день.</p>
-<p>12 людей × 2 помилки × 220 робочих днів = 5 280 помилок на рік.</p>
-<p>Середня переплата 38 500 — це 203 мільйони злотих річної експозиції.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
+
 <section id="section-8" class="slide level2 center" data-background-color="#0F172A">
 <h2></h2>
 <div class="r-fit-text">
 <p>This is not a story about AI making mistakes.</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 30px;">
+<div style="margin-top: 30px;">
 <p>AI will always make mistakes.</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 30px;">
+<div style="margin-top: 30px;">
 <p>This is a story about a system designed to <strong>LOOK LIKE</strong> it has human oversight</p>
 <p>while <strong>REMOVING</strong> the conditions that make oversight possible.</p>
 </div>
-<div class="fragment">
 <div class="danger-callout" style="margin-top: 40px;">
 <p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
 </div>
-</div>
 <aside class="notes">
-<p>Це не історія про те, що AI помиляється. AI завжди буде помилятися. Це історія про систему, яка виглядає як контроль над AI. Але насправді це AI контролює поведінку людей.</p>
+<p>This is not a story about AI making mistakes. AI will always make mistakes. This is a story about a system that looks like it controls AI. But in reality, it’s AI that controls human behavior.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1010,14 +937,14 @@ Andriy Batutin
 <p>The question isn’t:</p>
 <p><em>“How do we make AI more accurate?”</em></p>
 </div>
-<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.3em;">
+<div style="margin-top: 40px; font-size: 1.3em;">
 <p>The question is:</p>
 <p><strong>“How do we verify AI outputs BEFORE the human sees them</strong></p>
 <p><strong>so the human isn’t the last line of defense?“</strong></p>
 </div>
 <aside class="notes">
-<p>Питання не “як зробити AI точнішим?” Питання: “Як перевіряти те, що AI видає, ДО того, як людина це бачить?”</p>
-<p>Щоб людина не була останньою лінією оборони.</p>
+<p>The question is not “how do we make AI more accurate?” The question is: “How do we verify what AI produces BEFORE the human sees it?”</p>
+<p>So the human isn’t the last line of defense.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1029,7 +956,7 @@ Andriy Batutin
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<div style="margin-top: 40px; font-size: 1.5em;">
 <p>→ <strong>THE VERIFICATION STACK</strong></p>
 </div>
 </section></section>
@@ -1038,7 +965,7 @@ Andriy Batutin
 <h1>Evaluation Methodology</h1>
 <p><em>Applying the <a href="https://hamel.dev/blog/posts/evals-faq/">Hamel Husain Framework</a> to Claim WD-2847</em></p>
 <aside class="notes">
-<p>Найкращим фреймворком для побудови надійного AI наразі є метода Hamel Husain</p>
+<p>The best framework for building reliable AI right now is the Hamel Husain methodology.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1055,11 +982,11 @@ Andriy Batutin
 <h2></h2>
 
 <img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
-<p>Методика має п’ять кроків. Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.</p>
-<p>Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.</p>
-<p>Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.</p>
-<p>Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?</p>
-<p>П’ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.</p>
+<p>The methodology has five steps. First — error collection. You simply log all your AI’s failures into a spreadsheet. No analysis, no conclusions — just facts.</p>
+<p>Second — categorization. You break errors down by root cause: is it a document retrieval problem or a reasoning error in the model itself? Important: expand the list with similar cases so you have enough to test.</p>
+<p>Third — decomposition into steps. You split the entire AI workflow into individual stages and evaluate each one separately.</p>
+<p>Fourth — aggregation. You look at metrics per stage: where are the most problems?</p>
+<p>Fifth — fixing. Now you know where it hurts — and you fix exactly that.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1087,11 +1014,11 @@ Andriy Batutin
 <p>for every failure mode</p>
 <p>still doesn’t scale.</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 60px;">
+<div style="margin-top: 60px;">
 <p>You can’t have Senior Adjuster review every claim.</p>
 <p>But you CAN have their expertise review every claim.</p>
 </div>
-<div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
+<div style="font-size: 1.5em; margin-top: 40px;">
 <p><strong>That’s Verifier Primacy.</strong></p>
 </div>
 </section></section>
@@ -1122,12 +1049,10 @@ Andriy Batutin
 <p><strong>Senior Adjuster reviews the rules once.</strong></p>
 <p><strong>Rules review every claim, forever.</strong></p>
 </div></div>
-<div class="fragment">
 <div class="neutral-box" style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;">
 <p><span class="math inline">\(|\text{Rules}| \ll |\text{Actions}|\)</span></p>
 <p>The space of “correct actions under business policy” is <strong>vastly smaller</strong> than “all possible agent actions.”</p>
 <p><strong>This asymmetry is your leverage. Build verifiers once. Run them infinitely.</strong></p>
-</div>
 </div>
 </section></section>
 <section>
@@ -1193,13 +1118,13 @@ Andriy Batutin
 <div class="r-fit-text">
 <p>Everyone will have GPT-5.</p>
 </div>
-<div class="fragment">
+<div>
 <p>AI capability is becoming <strong>commodity</strong>.</p>
 </div>
-<div class="fragment fade-up" style="color: #0891B2; font-size: 1.5em; margin-top: 40px;">
+<div style="color: #0891B2; font-size: 1.5em; margin-top: 40px;">
 <p><strong>Encoded expertise is the moat.</strong></p>
 </div>
-<div class="fragment" style="margin-top: 40px;">
+<div style="margin-top: 40px;">
 <p>You’re not investing in AI.</p>
 <p>You’re investing in <strong>capturing what your experts know</strong></p>
 <p><strong>before they retire.</strong></p>
@@ -1229,15 +1154,13 @@ Andriy Batutin
 <li>A smart manager with the right tool does what took FDEs 5 weeks</li>
 </ul>
 </div></div>
-<div class="fragment fade-up">
 <div class="insight-box" style="margin-top: 30px;">
 <p><strong>The verification layer becomes the product.</strong></p>
 <p>Not a safety feature. The core primitive that enables everything else.</p>
 </div>
-</div>
 <aside class="notes">
-<p>Sierra — $10B компанія — закриває gap між демо і продакшеном дорогими інженерами. 3-5 тижнів на клієнта. Не масштабується.</p>
-<p>Але нові моделі з RL набагато краще слідують правилам. Тепер можна інвертувати: закодувати бізнес-правила як формальні обмеження, верифікаційний шар ловить помилки, модель виправляє себе. Верифікація стає продуктом, а не фічею безпеки.</p>
+<p>Sierra — a $10B company — closes the gap between demo and production with expensive engineers. 3-5 weeks per customer. Doesn’t scale.</p>
+<p>But new RL-trained models follow rules dramatically better. Now you can invert: encode business rules as formal constraints, the verification layer catches mistakes, the model corrects itself. Verification becomes the product, not a safety feature.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1255,10 +1178,9 @@ Andriy Batutin
 <div class="r-fit-text">
 <p>Trust is a <strong>formal, provable property.</strong></p>
 </div>
-<div class="fragment fade-up" style="margin-top: 40px;">
+<div style="margin-top: 40px;">
 <p>It can be expressed as <strong>SLAs</strong>.</p>
 </div>
-<div class="fragment fade-up">
 <div class="columns" style="margin-top: 40px;">
 <div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px; text-align: center;">
 <h3 id="outcome-pricing">Outcome Pricing</h3>
@@ -1270,11 +1192,10 @@ Andriy Batutin
 <h3 id="voice-frontier">Voice Frontier</h3>
 <p>Voice interactions are higher-stakes, higher-value, harder to verify manually. A formal verification layer for voice is a <strong>genuine moat</strong>.</p>
 </div></div>
-</div>
 <aside class="notes">
-<p>Довіра — це не відчуття. Це формальна, доказова властивість. Її можна виразити як SLA.</p>
-<p>Агент генерує. Верифікатор доводить. Бізнес бачить pass/fail rate, який можна вписати в контракт. Outcome-based pricing стає бізнес-моделлю, а не ризиком.</p>
-<p>І голос — наступний фронтір. Голосові взаємодії — вищі ставки, вища цінність, складніше верифікувати вручну. Формальний верифікаційний шар для голосу — це справжній moat.</p>
+<p>Trust is not a feeling. It’s a formal, provable property. It can be expressed as SLAs.</p>
+<p>The agent generates. The verifier proves. The business sees pass/fail rates they can put in a contract. Outcome-based pricing becomes a business model, not a risk.</p>
+<p>And voice is the next frontier. Voice interactions — higher stakes, higher value, harder to verify manually. A formal verification layer for voice is a genuine moat.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1293,10 +1214,10 @@ Andriy Batutin
 <p>Invest in verification infrastructure</p>
 <p>to use LLMs safely.</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 50px; font-size: 1.3em;">
+<div style="margin-top: 50px; font-size: 1.3em;">
 <p>This is the best way to tame chaos</p>
 </div>
-<div class="fragment fade-up" style="margin-top: 30px; font-size: 1.5em;">
+<div style="margin-top: 30px; font-size: 1.5em;">
 <p><strong>and become the casino.</strong></p>
 </div>
 </section>
@@ -1305,12 +1226,12 @@ Andriy Batutin
 <div class="r-fit-text">
 <p><strong>Stop praying. Start verifying.</strong></p>
 </div>
-<div class="fragment fade-up" style="margin-top: 30px; font-size: 1.1em; color: #0891B2;">
+<div style="margin-top: 30px; font-size: 1.1em; color: #0891B2;">
 <p>It is easier to define the rules an agent must obey</p>
 <p>than to build a perfect agent.</p>
 <p><strong>That asymmetry is the entire game.</strong></p>
 </div>
-<div class="fragment" style="color: #64748B; margin-top: 40px;">
+<div style="color: #64748B; margin-top: 40px;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/abatutin_qr.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>

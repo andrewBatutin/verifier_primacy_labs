@@ -1,6 +1,6 @@
 ---
 title: "VERIFIER PRIMACY"
-subtitle: "Building Trust Infrastructure for AI Systems. \n\n SKELAR Analytics MeetUp"
+subtitle: "Building Trust Infrastructure for AI Systems. \n\n LLMday Warsaw 2026 Q1"
 author: "Andriy Batutin"
 format:
   revealjs:
@@ -44,12 +44,12 @@ execute:
 :::
 
 ::: {.notes}
-Добрий день! Мене звати Андрій Батутін.
-Я Senior AI Engineer, працював в Accenture, Shelf, MacPaw.
+Hello! My name is Andriy Batutin.
+I'm a Senior AI Engineer — I've worked at Accenture, Shelf, and MacPaw.
 
-Останні роки фокусуюсь на AI Agents — це коли AI не просто відповідає на питання юзера, а виконує конкретні дії — шукає інформацію в інтернеті, замовляє піцу або заповнює страхову форму.
+In recent years I've been focusing on AI Agents — systems where AI doesn't just answer user questions, but takes concrete actions — searching the internet, ordering pizza, or filling out insurance forms.
 
-І сьогодні я хочу поговорити про те, чому ці системи небезпечні, і як вибудувати довіру до них.
+And today I want to talk about why these systems are dangerous, and how to build trust in them.
 :::
 
 
@@ -61,19 +61,19 @@ execute:
 In the next 12 months,
 :::
 
-::: {.fragment .fade-up}
+::: {style="font-size: 1.3em;"}
 a C-level executive will lose their job
 because of a critical AI failure.
 :::
 
-::: {.fragment .fade-up style="color: #0891B2; font-style: italic;"}
+::: {style="color: #0891B2; font-style: italic;"}
 [OpenRouter data](https://openrouter.ai/state-of-ai) supports this.
 :::
 
 ::: {.notes}
-Ось моя теза: протягом наступних 12 місяців хтось із C-level втратить роботу через критичний AI fail.
+Here's my thesis: within the next 12 months, a C-level executive will lose their job because of a critical AI failure.
 
-Це не залякування. Це математика.
+This isn't fearmongering. This is math.
 :::
 
 ---
@@ -87,11 +87,11 @@ Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
 :::
 
 ::: {.notes}
-Подивіться на цей графік з OpenRouter.
-Рік тому трафік на "думаючі" моделі — ті, що планують і міркують перед дією — був майже нуль. Зараз — більше 50%.
+Look at this graph from OpenRouter.
+A year ago, traffic to "thinking" models — the ones that plan and reason before acting — was nearly zero. Now it's over 50%.
 
-Що це означає? Компанії масово деплоять агентів, які думають, планують, виконують складні задачі.
-Але інфраструктура верифікації не встигає. Цей gap — це ризик.
+What does this mean? Companies are mass-deploying agents that think, plan, and execute complex tasks.
+But verification infrastructure isn't keeping up. That gap is risk.
 :::
 
 ---
@@ -120,18 +120,16 @@ Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
 :::
 :::
 
-::: {.fragment .fade-up}
 ::: {.danger-callout style="margin-top: 30px;"}
 **The gap between deployment and governance is major risk.**
 :::
-:::
 
 ::: {.notes}
-KPMG опитали 48 тисяч людей у 47 країнах.
-56% кажуть, що роблять помилки через AI. 66% не перевіряють що AI видає.
+KPMG surveyed 48,000 people across 47 countries.
+56% say they're making mistakes because of AI. 66% don't verify what AI produces.
 
-Deloitte: 75% компаній вже запускають AI-агентів. Але тільки 21% мають систему контролю.
-Три чверті запускають. П'ята частина контролює. Решта — молиться.
+Deloitte: 75% of companies are already deploying AI agents. But only 21% have governance models.
+Three-quarters deploying. One-fifth governing. The rest are praying.
 :::
 
 ---
@@ -165,26 +163,24 @@ Production data is:
 :::
 :::
 
-::: {.fragment .fade-up}
 ::: {.danger-callout style="margin-top: 30px;"}
 **You cannot close this gap by improving the model. You close it by verifying the output.**
 :::
-:::
 
 ::: {.notes}
-Sierra — компанія за $10B — зробила свій бенчмарк τ-bench.
-Найкращі моделі проходять 85% тестів. На чистих, синтетичних даних.
-В реальності — набагато гірше.
+Sierra — a $10B company — built their own benchmark, τ-bench.
+The best models pass 85% of tests. On clean, synthetic data.
+In reality — much worse.
 
-Висновок: розрив між "вражаючим демо" і "контрактно надійним" — величезний.
-І його не закрити кращою моделлю. Тільки верифікацією.
+The takeaway: the gap between "impressive demo" and "contractually reliable" is enormous.
+And you can't close it with a better model. Only with verification.
 :::
 
 ---
 
 ## Today's Journey
 
-::: {.fade-up}
+::: {style="text-align: left;"}
 1. **The Stochasticity Paradox** — Why AI is chaos by design
 2. **Real World Insurance Org Structure** — How AI can actuate risks
 3. **The Rubber Stamp Trap** — When "human in the loop" fails
@@ -226,11 +222,10 @@ RAG gives wrong answers. Agents take wrong actions.
 :::
 :::
 
-::: {.fragment .fade-up style="margin-top: 40px; text-align: center;"}
+::: {style="margin-top: 40px; text-align: center;"}
 **Both paths feel like career risk.**
 :::
 
-::: {.fragment .fade-up}
 ::: {.insight-box style="margin-top: 20px;"}
 And here's the uncomfortable truth:
 
@@ -238,14 +233,13 @@ And here's the uncomfortable truth:
 
 A perfectly reliable AI is a database.
 :::
-:::
 ::: {.notes}
-Отже, для будь-якого IT-лідера зараз є дві сторони медалі.
-Страх: AI непередбачуваний. Одна помилка — судовий позов, заголовки в пресі, кінець кар'єри.
+So for any IT leader right now, there are two sides of the coin.
+Fear: AI is unpredictable. One mistake — a lawsuit, press headlines, end of career.
 
-FOMO: конкуренти вже запускають AI. Борд чекає трансформації. Бути останнім — теж кінець кар'єри.
-Обидва шляхи виглядають як ризик.
-Але ось парадокс: та непередбачуваність, якої ви боїтесь — це саме те, що робить AI корисним
+FOMO: competitors are already shipping AI. The board expects transformation. Being last is also end of career.
+Both paths look like risk.
+But here's the paradox: the unpredictability you fear is exactly what makes AI useful.
 :::
 
 
@@ -265,18 +259,16 @@ $$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
 
 Each token is a **local decision** based on preceding context.
 
-::: {.fragment .fade-up}
 ::: {.danger-callout style="margin-top: 20px; text-align: left;"}
 **The Butterfly Effect**: One different token → completely different output.
 
 Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
 :::
-:::
 
 ::: {.notes}
-Що таке LLM математично? 
-Машина, яка дивиться на всі попередні слова і вгадує наступне слово. 
-Одне слово за раз. Без можливості заглянути вперед чи виправити помилку.
+What is an LLM mathematically?
+A machine that looks at all previous words and guesses the next word.
+One word at a time. No ability to look ahead or correct a mistake.
 :::
 
 ---
@@ -285,14 +277,14 @@ Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
 
 ![](images/llm_slot_machine.png){fig-align="center" width="80%" height="80%"}
 
-::: {.fragment .fade-up style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+::: {style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
 Every token is a spin. The house always has edge.
 :::
 
 ::: {.notes}
-Як слот-машина. Кожне слово — spin. Ви не контролюєте результат. 
-Помилка на третьому слові — весь текст поїхав.
-Це не баг. Це так працює.
+Like a slot machine. Every word is a spin. You don't control the outcome.
+An error on the third word — the entire text goes off the rails.
+This isn't a bug. This is how it works.
 :::
 
 ---
@@ -326,21 +318,19 @@ Endorsement CP-1147, Exclusion (iii)
 :::
 :::
 
-::: {.fragment .fade-up}
 ::: {.insight-box style="margin-top: 30px;"}
 **You're asking search to read minds.**
 :::
-:::
 
 ::: {.notes}
-Уявіть: AI шукає відповідь у тисячі сторінок ваших документів.
-Ви питаєте: "Чи покриває страховка операцію на коліні?"
+Imagine: AI is searching for an answer across thousands of pages of your documents.
+You ask: "Is knee surgery covered?"
 
-6 слів питання. 
+6 words in the question.
 
-Правильна відповідь: сторінка 147, секція 8.3.2(b), якийсь апендикс з кодом.
-Відповідь закопана в одному реченні на 147 сторінці.
-В документі в якому 4000 слів
+The correct answer: page 147, section 8.3.2(b), some appendix with a code.
+The answer is buried in a single sentence on page 147.
+In a document that's 4,000 words long.
 :::
 
 ---
@@ -373,19 +363,17 @@ Synonymy & polysemy break everything:
 :::
 :::
 
-::: {.fragment .fade-up}
 ::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **RAG retrieves plausible documents. LLM generates confident answers.**
 
 But confidence ≠ correctness.
 :::
-:::
 
 ::: {.notes}
-Це як шукати голку в стозі сіна, коли ви не знаєте як голка виглядає.
+It's like searching for a needle in a haystack when you don't know what the needle looks like.
 
-AI знайде щось схоже. AI відповість впевнено.
-Але впевненість — це не правильність.
+AI will find something similar. AI will answer confidently.
+But confidence is not correctness.
 :::
 
 ---
@@ -398,25 +386,23 @@ AI знайде щось схоже. AI відповість впевнено.
 
 $$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
 
-::: {.fragment}
+:::
 8 tools × 5 params × 4 steps = **12,800+ trajectories**
 
 Per claim. 500 claims/day.
 :::
 
-::: {.fragment}
 ::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **No exhaustive testing possible.**
 
 You're sampling from chaos. But the rules the agent must obey? **Those are finite and enumerable.**
 :::
-:::
 
 ::: {.notes}
-Agentic AI - ще гірше
+Agentic AI — it's even worse.
 
-Порахуємо: 8 інструментів, 5 параметрів, 4 кроки — це 12 тисяч можливих сценаріїв. 
-На один запит. 500 запитів на день. Протестувати все неможливо
+Let's do the math: 8 tools, 5 parameters, 4 steps — that's 12,000 possible trajectories.
+Per single request. 500 requests per day. Exhaustive testing is impossible.
 :::
 
 ---
@@ -425,18 +411,16 @@ Agentic AI - ще гірше
 
 ![](images/ai_casino.png){fig-align="center" width="80%"}
 
-::: {.fragment .fade-up}
 ::: {.danger-callout .large-text style="margin-bottom: 30px;"}
 **Every query is a pull. Every action is a bet.**
 
 You expected to win? Own the casino.
 :::
-:::
 
 ::: {.notes}
-Ви просто граєте замісто одної слот машини на багатьох одночасно.
+You're just playing multiple slot machines at once instead of one.
 
-Кожен запит — pull. Кожна дія — ставка x 10.
+Every query is a pull. Every action is a bet times 10.
 :::
 
 ---
@@ -451,12 +435,12 @@ with the mentality of a **casino owner**,
 not a casino player.
 :::
 
-::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+::: {style="margin-top: 40px; font-size: 1.5em;"}
 **That is how they will win in the long run.**
 :::
 
 ::: {.notes}
-Лідери мають думати як власник казино, не як гравець. 
+Leaders must think like casino owners, not casino players.
 
 :::
 
@@ -472,15 +456,15 @@ not a casino player.
 
 
 ::: {.notes}
-Давайте подивимось на реальну структуру страхової компанії.
-Хед офіс, бек офіс, кастомер сапорт. 
-Один відділ відповідає за страхові поліси — вони в SharePoint з 2019 року, але реальні правила в голові у Олени, яка працює тут 30 років.
+Let's look at a real insurance company structure.
+Head office, back office, customer support.
+One department handles insurance policies — they're in SharePoint since 2019, but the real rules live in the head of Olena, who's been working here for 30 years.
 
-Інший обробляє страхові випадки — "нова" система 2005 року, + нотатки в зошиті у супервайзера.
+Another processes claims — a "new" system from 2005, plus notes in the supervisor's notebook.
 
-Тепер уявіть: ви ставите AI поверх цього хаосу. 
-Агент бачить частину даних одного відділу, але не бачить даних з іншіх відділів, 
-І не знає про email де Олена відписала за особливий порадок вилат в 2023 році.
+Now imagine: you put AI on top of this chaos.
+The agent sees data from one department but can't see data from others,
+and doesn't know about the email where Olena described a special payout procedure in 2023.
 
 :::
 
@@ -492,16 +476,16 @@ not a casino player.
 ![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
 
 ::: {.notes}
-Розглянемо три рівні ризику, який AI несе страховій індустрії.
+Let's consider three levels of risk that AI brings to the insurance industry.
 
-Перший: chatbot на сайті помилився — клієнт роздратований. Неприємно, але не критично.
+First: a chatbot on the website makes a mistake — the customer is annoyed. Unpleasant, but not critical.
 
-Другий: пошук по документах помилився — клієнт отримав неправильну інформацію. Гірше, але є час зловити і виправити.
+Second: document search makes a mistake — the customer gets wrong information. Worse, but there's time to catch and fix it.
 
-Третій: AI-агент помилився і сам відправив гроші клієнту. Це вже реальна проблема.
+Third: an AI agent makes a mistake and sends money to the customer on its own. That's a real problem.
 
-Але найгірше — rubber stamp trap. Коли людина не дивлячись апрувить неправильне рішення AI.
-І головна проблема: з AI людина може робити такі помилки набагато частіше.
+But the worst is the rubber stamp trap. When a human blindly approves AI's wrong decision.
+And the key issue: with AI, humans can make these mistakes far more frequently.
 
 :::
 
@@ -536,25 +520,23 @@ not a casino player.
 :::
 :::
 
-::: {.fragment}
 ::: {.fear-box style="margin-top: 30px; text-align: center;"}
 **AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
 
 Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely safe."*
 :::
-:::
 ::: {.notes}
-Краків, департамент обробки страхових випадків. 
-12 людей обробляють 500 заявок на день. 
-Кожен має закрити 45.
+Kraków, claims processing department.
+12 people process 500 claims per day.
+Each one has to close 45.
 
-Впроваджують AI Claims Assistant. 
-Він читає документи, витягує поліс, перевіряє що покрито, рахує скільки платити, показує рекомендацію.
+They deploy an AI Claims Assistant.
+It reads documents, pulls the policy, checks what's covered, calculates the payout, and presents the recommendation.
 
-Але — AI не має права апрувити. 
-Не має доступу до платежів. Фінальне рішення — за людиною. APPROVE або REJECT.
-"Human in the loop. Абсолютно безпечно."
-Правда?
+But — AI doesn't have authority to approve.
+No access to the payment system. The final decision is with the human. APPROVE or REJECT.
+"Human in the loop. Completely safe."
+Right?
 
 :::
 
@@ -565,13 +547,13 @@ Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely
 ![](images/claims_wb.png){fig-align="center" width="85%"}
 
 ::: {.notes}
-Екран Марії. Заявка WD-2847 — затоплення, комерційна нерухомість.
+Maria's screen. Claim WD-2847 — water damage, commercial property.
 
-AI рекомендує: APPROVE. 38 500 злотих. Впевненість — 94%.
+AI recommends: APPROVE. PLN 38,500. Confidence — 94%.
 
-В черзі 47 заявок. Таргет — 45. Зараз 9:47 ранку.
+47 claims in the queue. Target — 45. It's 9:47 AM.
 
-Що робить Марія?
+What does Maria do?
 
 :::
 
@@ -598,22 +580,20 @@ AI рекомендує: APPROVE. 38 500 злотих. Впевненість �
 
 **09:47:38** — Maria clicks: **[APPROVE]**
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 20px;"}
 **Time spent on claim: 26 seconds**
 :::
 :::
 :::
-:::
 
 ::: {.notes}
-09:47:12 — Марія бачить: затоплення, комерційна нерухомість, покриття є, сума адекватна, впевненість 94%.
+09:47:12 — Maria sees: water damage, commercial property, coverage applies, amount is reasonable, confidence 94%.
 
-Марія думає: "AI вже перевірив поліс. 94%. Сума до 50 тисяч, ескалація не потрібна. Стандартний кейс."
+Maria thinks: "AI already checked the policy. 94%. Amount under 50 thousand, no escalation needed. Standard case."
 
-09:47:38 — Марія клікає APPROVE.
+09:47:38 — Maria clicks APPROVE.
 
-26 секунд.
+26 seconds.
 
 :::
 
@@ -645,19 +625,17 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 :::
 :::
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 20px;"}
 **GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0**
 :::
-:::
 ::: {.notes}
-А тепер — що вона пропустила.
+Now — what she missed.
 
-Поліс, сторінка 147: затоплення покрито тільки якщо раптове. Протікання більше 14 днів — виключення.
+The policy, page 147: water damage is covered only if sudden. Seepage over 14 days — excluded.
 
-У заявці чорним по білому: "труба текла 2-3 місяці."
+The claim form says it in black and white: "the pipe had been leaking for 2-3 months."
 
-Правильна виплата: нуль. Не 38 500.
+Correct payout: zero. Not 38,500.
 
 :::
 
@@ -690,14 +668,14 @@ Coverage for water damage **LIMITED TO sudden and accidental discharge.**
 :::
 :::
 ::: {.notes}
-Чому AI помилився?
-Проблема перша: виключення лежало в іншій системі. 
+Why did AI get it wrong?
+Problem one: the exclusion was in a different system.
 
-AI шукав "затоплення" — знайшов базовий поліс. Виключення називалось "CP-1147" — без слова "вода". Пошук його не зачепив.
-Проблема друга: "труба текла 2-3 місяці" було написано в заявці. 
+AI searched for "water damage" — found the base policy. The exclusion was called "CP-1147" — no word "water" in it. The search didn't pick it up.
+Problem two: "the pipe had been leaking for 2-3 months" was written in the claim form.
 
-Але — вільний текст без структури. AI прочитав і пропустив.
-Людина з 30-річним досвідом це ловить автоматично. AI — ні.
+But — free text with no structure. AI read it and missed it.
+A human with 30 years of experience catches this automatically. AI doesn't.
 
 :::
 
@@ -718,19 +696,17 @@ AI шукав "затоплення" — знайшов базовий полі�
 | **+49** | Recovery attempted. Claimant: *"We have approval confirmation."* |
 :::
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 10px;"}
 **Day +180** — Pattern discovered. **23 similar claims. Total: PLN 885,500**
 :::
-:::
 ::: {.notes}
-День 3 — платіж.
+Day 3 — payment processed.
 
-День 47 — аудит.
+Day 47 — audit.
 
-День 49 — клієнт: "У мене ваш апрув."
+Day 49 — claimant: "We have your approval."
 
-День 180 — 23 кейси, 885 тисяч.
+Day 180 — 23 cases, 885 thousand.
 
 :::
 ---
@@ -751,29 +727,27 @@ AI шукав "затоплення" — знайшов базовий полі�
 :::
 :::
 
-::: {.fragment}
 ::: {.insight-box style="margin-top: 30px;"}
 **"Human in the loop" became "Human as rubber stamp"**
 
 The human isn't REVIEWING. The human is LEGITIMIZING.
 :::
-:::
 
 ::: {.notes}
-Марія: "AI сказав 94%."
-IT: "Людина апрувила."
+Maria: "AI said 94%."
+IT: "The human approved it."
 
-Менеджер: "Таргет від борду."
+Manager: "The target came from the board."
 
-Кожен показує на іншого.
-"Human in the loop" перетворився на "human as rubber stamp". 
-Не перевірка — легітимізація рішення AI.
+Everyone points at someone else.
+"Human in the loop" turned into "human as rubber stamp."
+Not verification — legitimization of AI's decision.
 
 :::
 
 ---
 
-## The Math of Rubber Stamping
+## The Math of Rubber Stamping {visibility="hidden"}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -797,22 +771,20 @@ IT: "Людина апрувила."
 :::
 :::
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 20px;"}
 12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
 
 Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
 :::
-:::
 ::: {.notes}
-До AI: 15 кейсів на день, 30 хвилин кожен, 2% помилок, людина ловить 80% своїх помилок. 
-Результат: 0.06 помилки на день.
-Після AI: 45 кейсів на день, 10 хвилин кожен, AI помиляється в 5%, людина виправляє 3%.
-Результат: 2 помилки на день.
+Before AI: 15 cases per day, 30 minutes each, 2% error rate, human catches 80% of own mistakes.
+Result: 0.06 errors per day.
+After AI: 45 cases per day, 10 minutes each, AI error rate 5%, human overrides only 3%.
+Result: 2 errors per day.
 
-12 людей × 2 помилки × 220 робочих днів = 5 280 помилок на рік.
+12 people x 2 errors x 220 working days = 5,280 errors per year.
 
-Середня переплата 38 500 — це 203 мільйони злотих річної експозиції.
+Average overpayment of PLN 38,500 — that's PLN 203 million in annual exposure.
 :::
 ---
 
@@ -822,26 +794,24 @@ Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
 This is not a story about AI making mistakes.
 :::
 
-::: {.fragment .fade-up style="margin-top: 30px;"}
+::: {style="margin-top: 30px;"}
 AI will always make mistakes.
 :::
 
-::: {.fragment .fade-up style="margin-top: 30px;"}
+::: {style="margin-top: 30px;"}
 This is a story about a system designed to **LOOK LIKE** it has human oversight
 
 while **REMOVING** the conditions that make oversight possible.
 :::
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 40px;"}
 What gave: **actual oversight.** What remained: **the appearance of oversight.**
 :::
-:::
 ::: {.notes}
-Це не історія про те, що AI помиляється. 
-AI завжди буде помилятися. 
-Це історія про систему, яка виглядає як контроль над AI.
-Але насправді це AI контролює поведінку людей.
+This is not a story about AI making mistakes.
+AI will always make mistakes.
+This is a story about a system that looks like it controls AI.
+But in reality, it's AI that controls human behavior.
 
 :::
 
@@ -855,7 +825,7 @@ The question isn't:
 *"How do we make AI more accurate?"*
 :::
 
-::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.3em;"}
+::: {style="margin-top: 40px; font-size: 1.3em;"}
 The question is:
 
 **"How do we verify AI outputs BEFORE the human sees them**
@@ -865,14 +835,14 @@ The question is:
 
 ::: {.notes}
 
-Питання не "як зробити AI точнішим?"
-Питання: "Як перевіряти те, що AI видає, ДО того, як людина це бачить?" 
+The question is not "how do we make AI more accurate?"
+The question is: "How do we verify what AI produces BEFORE the human sees it?"
 
-Щоб людина не була останньою лінією оборони.
+So the human isn't the last line of defense.
 
 :::
 
-::: {.fragment .fade-up style="margin-top: 40px; font-size: 1.5em;"}
+::: {style="margin-top: 40px; font-size: 1.5em;"}
 → **THE VERIFICATION STACK**
 :::
 
@@ -882,7 +852,7 @@ The question is:
 
 ::: {.notes}
 
-Найкращим фреймворком для побудови надійного AI наразі є метода Hamel Husain
+The best framework for building reliable AI right now is the Hamel Husain methodology.
 
 :::
 
@@ -894,16 +864,16 @@ The question is:
 
 ::: {.notes}
 
-Методика має п'ять кроків.
-Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.
+The methodology has five steps.
+First — error collection. You simply log all your AI's failures into a spreadsheet. No analysis, no conclusions — just facts.
 
-Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.
+Second — categorization. You break errors down by root cause: is it a document retrieval problem or a reasoning error in the model itself? Important: expand the list with similar cases so you have enough to test.
 
-Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.
+Third — decomposition into steps. You split the entire AI workflow into individual stages and evaluate each one separately.
 
-Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?
+Fourth — aggregation. You look at metrics per stage: where are the most problems?
 
-П'ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.
+Fifth — fixing. Now you know where it hurts — and you fix exactly that.
 
 :::
 
@@ -966,10 +936,8 @@ The question is:
 :::
 :::
 
-::: {.fragment}
 ::: {.danger-callout style="margin-top: 20px;"}
 **The 41% gradual/sudden failure rate = your first verifier target.**
-:::
 :::
 
 ---
@@ -1023,10 +991,8 @@ The question is:
 | **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
 :::
 
-::: {.fragment}
 ::: {.insight-box style="margin-top: 20px;"}
 **Investment Priorities:** (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%
-:::
 :::
 
 ---
@@ -1048,13 +1014,13 @@ for every failure mode
 still doesn't scale.
 :::
 
-::: {.fragment .fade-up style="margin-top: 60px;"}
+::: {style="margin-top: 60px;"}
 You can't have Senior Adjuster review every claim.
 
 But you CAN have their expertise review every claim.
 :::
 
-::: {.fragment .fade-up style="font-size: 1.5em; margin-top: 40px;"}
+::: {style="font-size: 1.5em; margin-top: 40px;"}
 **That's Verifier Primacy.**
 :::
 
@@ -1092,14 +1058,12 @@ So Maria got 26 seconds and a 94% confidence score.
 :::
 :::
 
-::: {.fragment}
 ::: {.neutral-box style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;"}
 $|\text{Rules}| \ll |\text{Actions}|$
 
 The space of "correct actions under business policy" is **vastly smaller** than "all possible agent actions."
 
 **This asymmetry is your leverage. Build verifiers once. Run them infinitely.**
-:::
 :::
 
 
@@ -1136,15 +1100,15 @@ The space of "correct actions under business policy" is **vastly smaller** than 
 Everyone will have GPT-5.
 :::
 
-::: {.fragment}
+::: {}
 AI capability is becoming **commodity**.
 :::
 
-::: {.fragment .fade-up style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
+::: {style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
 **Encoded expertise is the moat.**
 :::
 
-::: {.fragment style="margin-top: 40px;"}
+::: {style="margin-top: 40px;"}
 You're not investing in AI.
 
 You're investing in **capturing what your experts know**
@@ -1184,22 +1148,20 @@ What if:
 :::
 :::
 
-::: {.fragment .fade-up}
 ::: {.insight-box style="margin-top: 30px;"}
 **The verification layer becomes the product.**
 
 Not a safety feature. The core primitive that enables everything else.
 :::
-:::
 
 ::: {.notes}
-Sierra — $10B компанія — закриває gap між демо і продакшеном дорогими інженерами.
-3-5 тижнів на клієнта. Не масштабується.
+Sierra — a $10B company — closes the gap between demo and production with expensive engineers.
+3-5 weeks per customer. Doesn't scale.
 
-Але нові моделі з RL набагато краще слідують правилам.
-Тепер можна інвертувати: закодувати бізнес-правила як формальні обмеження,
-верифікаційний шар ловить помилки, модель виправляє себе.
-Верифікація стає продуктом, а не фічею безпеки.
+But new RL-trained models follow rules dramatically better.
+Now you can invert: encode business rules as formal constraints,
+the verification layer catches mistakes, the model corrects itself.
+Verification becomes the product, not a safety feature.
 :::
 
 ---
@@ -1210,11 +1172,10 @@ Sierra — $10B компанія — закриває gap між демо і п�
 Trust is a **formal, provable property.**
 :::
 
-::: {.fragment .fade-up style="margin-top: 40px;"}
+::: {style="margin-top: 40px;"}
 It can be expressed as **SLAs**.
 :::
 
-::: {.fragment .fade-up}
 ::: {.columns style="margin-top: 40px;"}
 ::: {.column width="33%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px; text-align: center;"}
 ### Outcome Pricing
@@ -1234,17 +1195,16 @@ You can **formally bound** your error rate. Not "we're pretty accurate." Rather:
 Voice interactions are higher-stakes, higher-value, harder to verify manually. A formal verification layer for voice is a **genuine moat**.
 :::
 :::
-:::
 
 ::: {.notes}
-Довіра — це не відчуття. Це формальна, доказова властивість.
-Її можна виразити як SLA.
+Trust is not a feeling. It's a formal, provable property.
+It can be expressed as SLAs.
 
-Агент генерує. Верифікатор доводить. Бізнес бачить pass/fail rate, який можна вписати в контракт.
-Outcome-based pricing стає бізнес-моделлю, а не ризиком.
+The agent generates. The verifier proves. The business sees pass/fail rates they can put in a contract.
+Outcome-based pricing becomes a business model, not a risk.
 
-І голос — наступний фронтір. Голосові взаємодії — вищі ставки, вища цінність, складніше верифікувати вручну.
-Формальний верифікаційний шар для голосу — це справжній moat.
+And voice is the next frontier. Voice interactions — higher stakes, higher value, harder to verify manually.
+A formal verification layer for voice is a genuine moat.
 :::
 
 ---
@@ -1257,11 +1217,11 @@ Invest in verification infrastructure
 to use LLMs safely.
 :::
 
-::: {.fragment .fade-up style="margin-top: 50px; font-size: 1.3em;"}
+::: {style="margin-top: 50px; font-size: 1.3em;"}
 This is the best way to tame chaos
 :::
 
-::: {.fragment .fade-up style="margin-top: 30px; font-size: 1.5em;"}
+::: {style="margin-top: 30px; font-size: 1.5em;"}
 **and become the casino.**
 :::
 
@@ -1273,7 +1233,7 @@ This is the best way to tame chaos
 **Stop praying. Start verifying.**
 :::
 
-::: {.fragment .fade-up style="margin-top: 30px; font-size: 1.1em; color: #0891B2;"}
+::: {style="margin-top: 30px; font-size: 1.1em; color: #0891B2;"}
 It is easier to define the rules an agent must obey
 
 than to build a perfect agent.
@@ -1281,7 +1241,7 @@ than to build a perfect agent.
 **That asymmetry is the entire game.**
 :::
 
-::: {.fragment style="color: #64748B; margin-top: 40px;"}
+::: {style="color: #64748B; margin-top: 40px;"}
 
 ![](images/abatutin_qr.png){fig-align="center" width="20%"}
 :::
