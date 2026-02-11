@@ -4,6 +4,7 @@ subtitle: "Building Trust Infrastructure for AI Systems. \n\n LLMday Warsaw 2026
 author: "Andriy Batutin"
 format:
   revealjs:
+    embed-resources: true
     theme: [dark, custom.scss]
     slide-number: true
     preview-links: auto
@@ -386,11 +387,9 @@ But confidence is not correctness.
 
 $$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
 
-:::
 8 tools × 5 params × 4 steps = **12,800+ trajectories**
 
 Per claim. 500 claims/day.
-:::
 
 ::: {.neutral-box style="margin-top: 30px; text-align: center;"}
 **No exhaustive testing possible.**
@@ -1094,7 +1093,7 @@ The space of "correct actions under business policy" is **vastly smaller** than 
 
 ---
 
-## {background-color="#0F172A"}
+## {background-color="#0F172A" visibility="hidden"}
 
 ::: {.r-fit-text}
 Everyone will have GPT-5.
