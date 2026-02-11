@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="verifier_primacy_v2_short_files/libs/clipboard/clipboard.min.js"></script>
+<script src="verifier_primacy_v2_short_files/libs/quarto-html/tabby.min.js"></script>
+<script src="verifier_primacy_v2_short_files/libs/quarto-html/popper.min.js"></script>
+<script src="verifier_primacy_v2_short_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="verifier_primacy_v2_short_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="verifier_primacy_v2_short_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="verifier_primacy_v2_short_files/libs/quarto-html/quarto-syntax-highlighting-dark-f1aadacce99040138bbb613f9330654f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.27">
+
+  <meta name="author" content="Andriy Batutin">
+  <title>VERIFIER PRIMACY</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="verifier_primacy_v2_short_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="verifier_primacy_v2_short_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="verifier_primacy_v2_short_files/libs/revealjs/dist/theme/quarto-772e520486accbfb4e20b6de85fc714a.css">
+  <link href="verifier_primacy_v2_short_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="verifier_primacy_v2_short_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="verifier_primacy_v2_short_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="verifier_primacy_v2_short_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">VERIFIER PRIMACY</h1>
+  <p class="subtitle">Building Trust in AI Systems.<br>
+SKELAR Analytics MeetUp</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Andriy Batutin 
+</div>
+</div>
+</div>
+
+</section>
+<section id="about-me" class="slide level2 center">
+<h2>About Me</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="andriy-batutin">Andriy Batutin</h3>
+<ul>
+<li><strong>Senior AI Engineer</strong> focused on AI/ML systems</li>
+<li>Accenture | Shelf | MacPaw</li>
+<li>Writing at <a href="https://andriybatutin.substack.com/">andriybatutin.substack.com</a></li>
+<li>linkedin <a href="https://www.linkedin.com/in/andrewbatutin/">andrewbatutin</a></li>
+</ul>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/abatutin_img.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+</div></div>
+<aside class="notes">
+<p>Добрий день! Мене звати Андрій Батутін. Я Senior AI Engineer, працював в Accenture, Shelf, MacPaw.</p>
+<p>Останні роки фокусуюсь на AI Agents — це коли AI не просто відповідає на питання юзера, а виконує конкретні дії — шукає інформацію в інтернеті, замовляє піцу або заповнює страхову форму.</p>
+<p>І сьогодні я хочу поговорити про те, чому ці системи небезпечні, і як вибудувати довіру до них.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text" style="color: #DC2626;">
+<p>In the next 12 months,</p>
+</div>
+<div class="fragment fade-up">
+<p>a C-level executive will lose their job because of a critical AI failure.</p>
+</div>
+<div class="fragment fade-up" style="color: #0891B2; font-style: italic;">
+<p><a href="https://openrouter.ai/state-of-ai">OpenRouter data</a> supports this.</p>
+</div>
+<aside class="notes">
+<p>Ось моя теза: протягом наступних 12 місяців хтось із C-level втратить роботу через критичний AI fail.</p>
+<p>Це не залякування. Це математика.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-1" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/reasoning-tokens-growth.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
+</figure>
+</div>
+
+<aside class="notes">
+<p>Подивіться на цей графік з OpenRouter. Рік тому трафік на “думаючі” моделі — ті, що планують і міркують перед дією — був майже нуль. Зараз — більше 50%.</p>
+<p>Що це означає? Компанії масово деплоять агентів, які думають, планують, виконують складні задачі. Але інфраструктура верифікації не встигає. Цей gap — це ризик.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Source: <a href="https://openrouter.ai/state-of-ai">OpenRouter State of AI 2025</a></p>
+</div></aside></section>
+<section id="the-governance-gap" class="slide level2 center" data-background-color="#0F172A">
+<h2>The Governance Gap</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="kpmg-2025"><a href="https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html">KPMG 2025</a></h3>
+<p><em>48,000 people, 47 countries</em></p>
+<ul>
+<li><strong>56%</strong> making mistakes due to AI</li>
+<li><strong>66%</strong> don’t verify AI outputs</li>
+<li><strong>46%</strong> trust AI systems</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="deloitte-2026"><a href="https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html">Deloitte 2026</a></h3>
+<p><em>3,235 leaders, 24 countries</em></p>
+<ul>
+<li><strong>75%</strong> deploying agentic AI</li>
+<li><strong>21%</strong> have governance models</li>
+<li><strong>25%</strong> moving pilots to production</li>
+</ul>
+</div></div>
+<div class="fragment fade-up">
+<div class="danger-callout" style="margin-top: 30px;">
+<p><strong>The gap between deployment and governance is major risk.</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>KPMG опитали 48 тисяч людей у 47 країнах. 56% кажуть, що роблять помилки через AI. 66% не перевіряють що AI видає.</p>
+<p>Deloitte: 75% компаній вже запускають AI-агентів. Але тільки 21% мають систему контролю. Три чверті запускають. П’ята частина контролює. Решта — молиться.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="todays-journey" class="slide level2 center">
+<h2>Today’s Journey</h2>
+<div class="fade-up">
+<ol type="1">
+<li><strong>The Stochasticity Paradox</strong> — Why AI is chaos by design</li>
+<li><strong>Real World Insurance Org Structure</strong> — How AI can actuate risks</li>
+<li><strong>The Rubber Stamp Trap</strong> — When “human in the loop” fails</li>
+<li><strong>Evaluation Methodology</strong> — From error analysis to verifiers</li>
+<li><strong>Verifier Primacy</strong> — Scaling judgment as infrastructure</li>
+</ol>
+</div>
+<aside class="notes">
+<p>The arc: WHY → WHAT GOES WRONG → HOW TO FIX IT</p>
+<p>Focus on agentic because that’s where the real liability concentrates. RAG gives wrong answers. Agents take wrong actions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="the-stochasticity-paradox" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>The Stochasticity Paradox</h1>
+<p><em>Why AI cannot be made reliable — and why that’s the point</em></p>
+</section>
+<section id="the-problem" class="slide level2 center">
+<h2>The Problem</h2>
+<div class="columns">
+<div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
+<h3 id="the-fear">The Fear</h3>
+<ul>
+<li>AI outputs are unpredictable</li>
+<li>Wrong action = lawsuit</li>
+<li>Career ends in headline</li>
+</ul>
+</div><div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
+<h3 id="the-fomo">The FOMO</h3>
+<ul>
+<li>Competitors are shipping AI</li>
+<li>Boards expect transformation</li>
+<li>“Slowpoke” is career poison</li>
+</ul>
+</div></div>
+<div class="fragment fade-up" style="margin-top: 40px; text-align: center;">
+<p><strong>Both paths feel like career risk.</strong></p>
+</div>
+<div class="fragment fade-up">
+<div class="insight-box" style="margin-top: 20px;">
+<p>And here’s the uncomfortable truth:</p>
+<p><strong>The unpredictability you fear is exactly what makes AI useful.</strong></p>
+<p>A perfectly reliable AI is a database.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Отже, для будь-якого IT-лідера зараз є дві сторони медалі. Страх: AI непередбачуваний. Одна помилка — судовий позов, заголовки в пресі, кінець кар’єри.</p>
+<p>FOMO: конкуренти вже запускають AI. Борд чекає трансформації. Бути останнім — теж кінець кар’єри. Обидва шляхи виглядають як ризик. Але ось парадокс: та непередбачуваність, якої ви боїтесь — це саме те, що робить AI корисним</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="fundamentals-of-modern-ai-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>Fundamentals of Modern AI Stack</h1>
+<p><em>Why LLMs, RAG, and Agents Fail by Design</em></p>
+</section>
+<section id="the-autoregressive-decoder" class="slide level2 center">
+<h2>The Autoregressive Decoder</h2>
+<div class="callout callout-note no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>LLMs Are Conditional Probability Machines</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<p><span class="math display">\[P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{&lt;t})\]</span></p>
+<p>Each token is a <strong>local decision</strong> based on preceding context.</p>
+<div class="fragment fade-up">
+<div class="danger-callout" style="margin-top: 20px; text-align: left;">
+<p><strong>The Butterfly Effect</strong>: One different token → completely different output.</p>
+<p>Errors compound multiplicatively: <span class="math inline">\(\prod_{t=1}^{T} \epsilon_t\)</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Що таке LLM математично? Машина, яка дивиться на всі попередні слова і вгадує наступне слово. Одне слово за раз. Без можливості заглянути вперед чи виправити помилку.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-2" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/llm_slot_machine.png" class="quarto-figure quarto-figure-center" style="width:80.0%;height:80.0%"></p>
+</figure>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px; text-align: center; font-size: 1.3em;">
+<p>Every token is a spin. The house always has edge.</p>
+</div>
+<aside class="notes">
+<p>Як слот-машина. Кожне слово — spin. Ви не контролюєте результат. Помилка на третьому слові — весь текст поїхав. Це не баг. Це так працює.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="information-imbalance" class="slide level2 center">
+<h2>Information Imbalance</h2>
+<div class="callout callout-warning no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>Query Entropy &lt;&lt; Document Entropy</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<p><span class="math display">\[H(\text{Query}) \ll H(\text{Document})\]</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="the-question">The Question</h3>
+<p>“Is knee surgery covered?”</p>
+<p><strong>= 4 tokens</strong></p>
+</div><div class="column" style="width:50%;">
+<h3 id="the-answer-location">The Answer Location</h3>
+<p>Page 147, Section 8.3.2(b)</p>
+<p>Endorsement CP-1147, Exclusion (iii)</p>
+<p><strong>= 4000 tokens</strong></p>
+</div></div>
+<div class="fragment fade-up">
+<div class="insight-box" style="margin-top: 30px;">
+<p><strong>You’re asking search to read minds.</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>Уявіть: AI шукає відповідь у тисячі сторінок ваших документів. Ви питаєте: “Чи покриває страховка операцію на коліні?”</p>
+<p>6 слів питання.</p>
+<p>Правильна відповідь: сторінка 147, секція 8.3.2(b), якийсь апендикс з кодом. Відповідь закопана в одному реченні на 147 сторінці. В документі в якому 4000 слів</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-retrieval-problem" class="slide level2 center">
+<h2>The Retrieval Problem</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
+<h3 id="semantic-search-fails">Semantic Search Fails</h3>
+<p>In high-dimensional space:</p>
+<p><span class="math display">\[\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c\]</span></p>
+<p><strong>Similar ≠ Relevant</strong></p>
+<p>“What’s my deductible?” ≈ “What is a deductible?”</p>
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
+<h3 id="keyword-search-fails">Keyword Search Fails</h3>
+<p>Synonymy &amp; polysemy break everything:</p>
+<ul>
+<li>“coverage” ≠ “benefits”</li>
+<li>“benefits” ≠ “included services”</li>
+<li>“included services” ≠ “covered procedures”</li>
+</ul>
+<p><strong>Same concept, different words.</strong></p>
+</div></div>
+<div class="fragment fade-up">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
+<p><strong>RAG retrieves plausible documents. LLM generates confident answers.</strong></p>
+<p>But confidence ≠ correctness.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Це як шукати голку в стозі сіна, коли ви не знаєте як голка виглядає.</p>
+<p>AI знайде щось схоже. AI відповість впевнено. Але впевненість — це не правильність.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="agentic-combinatorial-explosion" class="slide level2 center">
+<h2>Agentic Combinatorial Explosion</h2>
+<div class="callout callout-important no-icon callout-titled callout-style-simple">
+<div class="callout-body">
+<div class="callout-title">
+<p><strong>The Action Space Is Intractable</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+<p><span class="math display">\[|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}\]</span></p>
+<div class="fragment">
+<p>8 tools × 5 params × 4 steps = <strong>12,800+ trajectories</strong></p>
+<p>Per claim. 500 claims/day.</p>
+</div>
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 30px; text-align: center;">
+<p><strong>No exhaustive testing possible.</strong></p>
+<p>You’re sampling from chaos.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Agentic AI -&nbsp;ще гірше</p>
+<p>Порахуємо: 8 інструментів, 5 параметрів, 4 кроки — це 12 тисяч можливих сценаріїв. На один запит. 500 запитів на день. Протестувати все неможливо</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-3" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/ai_casino.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="fragment fade-up">
+<div class="danger-callout large-text" style="margin-bottom: 30px;">
+<p><strong>Every query is a pull. Every action is a bet.</strong></p>
+<p>You expected to win? Own the casino.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Ви просто граєте замісто одної слот машини на багатьох одночасно.</p>
+<p>Кожен запит — pull. Кожна дія — ставка x 10.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-4" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>Leaders must approach building AI systems</p>
+<p>with the mentality of a <strong>casino owner</strong>,</p>
+<p>not a casino player.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<p><strong>That is how they will win in the long run.</strong></p>
+</div>
+<aside class="notes">
+<p>Лідери мають думати як власник казино, не як гравець.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="real-world-insurance-org-structure" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>Real World Insurance Org Structure</h1>
+<p><em>How AI Can Actuate Risks Instead of Decreasing Them</em></p>
+</section>
+<section id="section-5" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/insurance_org.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
+<p>Давайте подивимось на реальну структуру страхової компанії. Хед офіс, бек офіс, кастомер сапорт. Один відділ відповідає за страхові поліси — вони в SharePoint з 2019 року, але реальні правила в голові у Олени, яка працює тут 30 років.</p>
+<p>Інший обробляє страхові випадки — “нова” система 2005 року, + нотатки в зошиті у супервайзера.</p>
+<p>Тепер уявіть: ви ставите AI поверх цього хаосу. Агент бачить частину даних одного відділу, але не бачить даних з іншіх відділів, І не знає про email де Олена відписала за особливий порадок вилат в 2023 році.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-6" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/Insurance_risk_ladder.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
+<p>Розглянемо три рівні ризику, який AI несе страховій індустрії.</p>
+<p>Перший: chatbot на сайті помилився — клієнт роздратований. Неприємно, але не критично.</p>
+<p>Другий: пошук по документах помилився — клієнт отримав неправильну інформацію. Гірше, але є час зловити і виправити.</p>
+<p>Третій: AI-агент помилився і сам відправив гроші клієнту. Це вже реальна проблема.</p>
+<p>Але найгірше — rubber stamp trap. Коли людина не дивлячись апрувить неправильне рішення AI. І головна проблема: з AI людина може робити такі помилки набагато частіше.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="the-rubber-stamp-trap" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>The Rubber Stamp Trap</h1>
+<p><em>When “Human in the Loop” Becomes Human-Shaped Decoration</em></p>
+</section>
+<section id="the-setup-kraków-back-office" class="slide level2 center">
+<h2>The Setup: Kraków Back Office</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
+<h3 id="claims-department">Claims Department</h3>
+<ul>
+<li><strong>Staff:</strong> 12 adjusters</li>
+<li><strong>Volume:</strong> 500+ claims/day</li>
+<li><strong>Target:</strong> 45 claims/adjuster/day</li>
+<li><strong>Avg time:</strong> 10-12 minutes per claim</li>
+</ul>
+</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
+<h3 id="new-ai-claims-assistant">NEW: AI Claims Assistant</h3>
+<ul>
+<li>Reads claim documents</li>
+<li>Pulls policy from admin system</li>
+<li>Checks coverage rules</li>
+<li>Calculates recommended payout</li>
+<li>Presents recommendation to adjuster</li>
+</ul>
+</div></div>
+<div class="fragment">
+<div class="fear-box" style="margin-top: 30px; text-align: center;">
+<p><strong>AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.</strong></p>
+<p>Human adjuster must click [APPROVE] or [REJECT]. <em>“Human in the loop. Completely safe.”</em></p>
+</div>
+</div>
+<aside class="notes">
+<p>Краків, департамент обробки страхових випадків. 12 людей обробляють 500 заявок на день. Кожен має закрити 45.</p>
+<p>Впроваджують AI Claims Assistant. Він читає документи, витягує поліс, перевіряє що покрито, рахує скільки платити, показує рекомендацію.</p>
+<p>Але — AI не має права апрувити. Не має доступу до платежів. Фінальне рішення — за людиною. APPROVE або REJECT. “Human in the loop. Абсолютно безпечно.” Правда?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-7" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/claims_wb.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
+<p>Екран Марії. Заявка WD-2847 — затоплення, комерційна нерухомість.</p>
+<p>AI рекомендує: APPROVE. 38 500 злотих. Впевненість — 94%.</p>
+<p>В черзі 47 заявок. Таргет — 45. Зараз 9:47 ранку.</p>
+<p>Що робить Марія?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-maria-does" class="slide level2 center">
+<h2>What Maria Does</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>09:47:12 — Maria sees:</strong></p>
+<ul>
+<li>Water damage ✓ <em>(common claim type)</em></li>
+<li>Commercial property ✓ <em>(handles daily)</em></li>
+<li>Coverage applies ✓ <em>(AI checked)</em></li>
+<li>Amount reasonable ✓ <em>(within limits)</em></li>
+<li>Confidence 94% ✓ <em>(AI is sure)</em></li>
+<li>47 claims still in queue ✗ <em>(pressure)</em></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Maria thinks:</strong></p>
+<p><em>“AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard.”</em></p>
+<p><strong>09:47:38</strong> — Maria clicks: <strong>[APPROVE]</strong></p>
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
+<p><strong>Time spent on claim: 26 seconds</strong></p>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>09:47:12 — Марія бачить: затоплення, комерційна нерухомість, покриття є, сума адекватна, впевненість 94%.</p>
+<p>Марія думає: “AI вже перевірив поліс. 94%. Сума до 50 тисяч, ескалація не потрібна. Стандартний кейс.”</p>
+<p>09:47:38 — Марія клікає APPROVE.</p>
+<p>26 секунд.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-maria-should-have-checked" class="slide level2 center">
+<h2>What Maria Should Have Checked</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
+<h3 id="if-view-policy-page-147">IF [View Policy] — Page 147</h3>
+<p><strong>ENDORSEMENT CP-1147 - WATER DAMAGE</strong></p>
+<p>Coverage for water damage <strong>LIMITED TO sudden and accidental discharge.</strong></p>
+<p><strong>EXCLUDED:</strong></p>
+<ul>
+<li>Gradual seepage &gt;14 days</li>
+<li>Damage from lack of maintenance</li>
+<li>Known source not repaired</li>
+</ul>
+</div><div class="column" style="background-color: #991B1B; padding: 20px; border-radius: 8px;">
+<h3 id="if-view-claim-form">IF [View Claim Form]</h3>
+<p><strong>Section 3: Description of Loss</strong></p>
+<p><em>“We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for <strong>‘at least 2-3 months’</strong> based on corrosion.”</em></p>
+</div></div>
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
+<p><strong>GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>А тепер — що вона пропустила.</p>
+<p>Поліс, сторінка 147: затоплення покрито тільки якщо раптове. Протікання більше 14 днів — виключення.</p>
+<p>У заявці чорним по білому: “труба текла 2-3 місяці.”</p>
+<p>Правильна виплата: нуль. Не 38 500.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-the-ai-missed-and-why" class="slide level2 center">
+<h2>What the AI Missed (and Why)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="ai-retrieval">AI Retrieval</h3>
+<p>✓ Found policy CP-847291 ✓ Found base coverage ✓ Found deductible: PLN 5,000 ✗ <strong>Did NOT retrieve Endorsement CP-1147</strong></p>
+<p><em>Why? Endorsement in separate DMS. RAG query “water damage coverage” returned base policy. “CP-1147” doesn’t contain “water”.</em></p>
+</div><div class="column" style="width:50%;">
+<h3 id="ai-reasoning">AI Reasoning</h3>
+<p>✓ Water damage covered <em>(generally true)</em> ✓ Policy is active ✓ Amount within limits ✗ <strong>Did NOT parse “2-3 months”</strong> ✗ <strong>Did NOT flag gradual vs sudden</strong></p>
+<p><em>Why? Free text. No structured field. Senior Adjuster knows this. AI doesn’t.</em></p>
+</div></div>
+<aside class="notes">
+<p>Чому AI помилився? Проблема перша: виключення лежало в іншій системі.</p>
+<p>AI шукав “затоплення” — знайшов базовий поліс. Виключення називалось “CP-1147” — без слова “вода”. Пошук його не зачепив. Проблема друга: “труба текла 2-3 місяці” було написано в заявці.</p>
+<p>Але — вільний текст без структури. AI прочитав і пропустив. Людина з 30-річним досвідом це ловить автоматично. AI — ні.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-aftermath" class="slide level2 center">
+<h2>The Aftermath</h2>
+<div class="fomo-box">
+<p><strong>09:47:39</strong> — System logs: <em>“Claim WD-2847 APPROVED by Maria Kowalska”</em></p>
+</div>
+<div class="fear-box" style="margin-top: 20px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 41%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>+3</strong></td>
+<td>Payment of PLN 38,500 processed</td>
+</tr>
+<tr class="even">
+<td><strong>+47</strong></td>
+<td>Monthly audit sample pulls Claim WD-2847</td>
+</tr>
+<tr class="odd">
+<td><strong>+48</strong></td>
+<td>Senior Adjuster: <em>“Why did we pay this? It’s gradual damage.”</em></td>
+</tr>
+<tr class="even">
+<td><strong>+49</strong></td>
+<td>Recovery attempted. Claimant: <em>“We have approval confirmation.”</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 10px;">
+<p><strong>Day +180</strong> — Pattern discovered. <strong>23 similar claims. Total: PLN 885,500</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>День 3 — платіж.</p>
+<p>День 47 — аудит.</p>
+<p>День 49 — клієнт: “У мене ваш апрув.”</p>
+<p>День 180 — 23 кейси, 885 тисяч.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-accountability-question" class="slide level2 center">
+<h2>The Accountability Question</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>MARIA:</strong> <em>“AI said it was covered. 94% confidence. I can’t check every endorsement on every claim. I process 45/day.”</em></p>
+<p><strong>IT:</strong> <em>“AI performed as designed. Human approval is required precisely for edge cases. The human approved it.”</em></p>
+</div><div class="column" style="width:50%;">
+<p><strong>CLAIMS MGR:</strong> <em>“We set 45/day target based on AI assistance. That’s what we promised the board.”</em></p>
+<p><strong>VP:</strong> <em>“The audit trail shows human approval. That’s our compliance defense. …right?”</em></p>
+</div></div>
+<div class="fragment">
+<div class="insight-box" style="margin-top: 30px;">
+<p><strong>“Human in the loop” became “Human as rubber stamp”</strong></p>
+<p>The human isn’t REVIEWING. The human is LEGITIMIZING.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Марія: “AI сказав 94%.” IT: “Людина апрувила.”</p>
+<p>Менеджер: “Таргет від борду.”</p>
+<p>Кожен показує на іншого. “Human in the loop” перетворився на “human as rubber stamp”. Не перевірка — легітимізація рішення AI.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-math-of-rubber-stamping" class="slide level2 center">
+<h2>The Math of Rubber Stamping</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="before-ai">Before AI</h3>
+<ul>
+<li>Claims/day/adjuster: <strong>15</strong></li>
+<li>Time per claim: <strong>30 min</strong></li>
+<li>Error rate: <strong>2%</strong></li>
+<li>Human catches own mistakes: <strong>80%</strong></li>
+<li><strong>Net errors/day: 0.06</strong></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="after-ai-rubber-stamping">After AI (Rubber Stamping)</h3>
+<ul>
+<li>Claims/day/adjuster: <strong>45</strong></li>
+<li>Time per claim: <strong>10 min</strong> <em>(mostly AI)</em></li>
+<li>AI error rate: <strong>5%</strong></li>
+<li>Human override rate: <strong>3%</strong></li>
+<li><strong>Net errors/day: ~2.0</strong></li>
+</ul>
+</div></div>
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 20px;">
+<p>12 adjusters × 2 errors/day × 220 days = <strong>5,280 errors/year</strong></p>
+<p>Avg overpayment: PLN 38,500 → <strong>Annual exposure: PLN 203M</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>До AI: 15 кейсів на день, 30 хвилин кожен, 2% помилок, людина ловить 80% своїх помилок. Результат: 0.06 помилки на день. Після AI: 45 кейсів на день, 10 хвилин кожен, AI помиляється в 5%, людина виправляє 3%. Результат: 2 помилки на день.</p>
+<p>12 людей × 2 помилки × 220 робочих днів = 5 280 помилок на рік.</p>
+<p>Середня переплата 38 500 — це 203 мільйони злотих річної експозиції.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-8" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text">
+<p>This is not a story about AI making mistakes.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px;">
+<p>AI will always make mistakes.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px;">
+<p>This is a story about a system designed to <strong>LOOK LIKE</strong> it has human oversight</p>
+<p>while <strong>REMOVING</strong> the conditions that make oversight possible.</p>
+</div>
+<div class="fragment">
+<div class="danger-callout" style="margin-top: 40px;">
+<p>What gave: <strong>actual oversight.</strong> What remained: <strong>the appearance of oversight.</strong></p>
+</div>
+</div>
+<aside class="notes">
+<p>Це не історія про те, що AI помиляється. AI завжди буде помилятися. Це історія про систему, яка виглядає як контроль над AI. Але насправді це AI контролює поведінку людей.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-9" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>The question isn’t:</p>
+<p><em>“How do we make AI more accurate?”</em></p>
+</div>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.3em;">
+<p>The question is:</p>
+<p><strong>“How do we verify AI outputs BEFORE the human sees them</strong></p>
+<p><strong>so the human isn’t the last line of defense?“</strong></p>
+</div>
+<aside class="notes">
+<p>Питання не “як зробити AI точнішим?” Питання: “Як перевіряти те, що AI видає, ДО того, як людина це бачить?”</p>
+<p>Щоб людина не була останньою лінією оборони.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="fragment fade-up" style="margin-top: 40px; font-size: 1.5em;">
+<p>→ <strong>THE VERIFICATION STACK</strong></p>
+</div>
+</section></section>
+<section>
+<section id="evaluation-methodology" class="title-slide slide level1 center" data-background-color="#EA580C">
+<h1>Evaluation Methodology</h1>
+<p><em>Applying the <a href="https://hamel.dev/blog/posts/evals-faq/">Hamel Husain Framework</a> to Claim WD-2847</em></p>
+<aside class="notes">
+<p>Найкращим фреймворком для побудови надійного AI наразі є метода Hamel Husain</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-10" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/five-step-eval.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><aside class="notes">
+<p>Методика має п’ять кроків. Перший — збір помилок. Просто записуєте всі фейли вашого AI в табличку. Без аналізу, без висновків — тільки факти.</p>
+<p>Другий — категоризація. Розбиваєте помилки по причинах: це проблема пошуку документів чи помилка в логіці самої моделі? Важливо: розширте список схожими кейсами, щоб було що тестувати.</p>
+<p>Третій — розбиття на кроки. Весь ланцюжок роботи AI ділите на окремі етапи і оцінюєте кожен окремо.</p>
+<p>Четвертий — агрегація. Дивитесь метрики по кожному етапу: де найбільше проблем?</p>
+<p>П’ятий — виправлення. Тепер ви знаєте де боляче — і чините саме там.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+
+
+
+
+<section id="phase-5-the-data-viewer" class="slide level2 center" data-background-color="#0F172A">
+<h2>Phase 5: The Data Viewer</h2>
+
+<img data-src="images/claims-web-ui.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%"></section>
+<section id="section-11" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>But building verifiers manually</p>
+<p>for every failure mode</p>
+<p>still doesn’t scale.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 60px;">
+<p>You can’t have Senior Adjuster review every claim.</p>
+<p>But you CAN have their expertise review every claim.</p>
+</div>
+<div class="fragment fade-up" style="font-size: 1.5em; margin-top: 40px;">
+<p><strong>That’s Verifier Primacy.</strong></p>
+</div>
+</section></section>
+<section>
+<section id="verifier-primacy" class="title-slide slide level1 center" data-background-color="#7C3AED">
+<h1>VERIFIER PRIMACY</h1>
+<p><em>From Error Analysis to Scalable Judgment</em></p>
+</section>
+<section id="the-core-insight" class="slide level2 center">
+<h2>The Core Insight</h2>
+<div class="columns">
+<div class="column" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;">
+<h3 id="what-failed">What Failed</h3>
+<ul>
+<li>Senior Adjuster knows gradual vs sudden</li>
+<li>Senior Adjuster knows to check endorsements</li>
+<li>Senior Adjuster knows when to escalate</li>
+</ul>
+<p><strong>But Senior Adjuster can’t review 500 claims/day.</strong></p>
+<p>So Maria got 26 seconds and a 94% confidence score.</p>
+</div><div class="column" style="background-color: #065F46; padding: 20px; border-radius: 8px;">
+<h3 id="what-if">What If</h3>
+<ul>
+<li>Senior Adjuster’s knowledge was <strong>encoded in rules</strong></li>
+<li>Endorsement checks were <strong>automated</strong></li>
+<li>Escalation triggers were <strong>systematic</strong></li>
+</ul>
+<p><strong>Senior Adjuster reviews the rules once.</strong></p>
+<p><strong>Rules review every claim, forever.</strong></p>
+</div></div>
+<div class="fragment">
+<div class="neutral-box" style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;">
+<p><span class="math inline">\(|\text{Rules}| \ll |\text{Claims}|\)</span></p>
+<p><strong>Build verifiers once. Run them infinitely.</strong></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-verification-stack" class="title-slide slide level1 center" data-background-color="#1E293B">
+<h1>The Verification Stack</h1>
+<p><em>Six gates between AI recommendation and Maria’s screen</em></p>
+</section>
+<section id="section-12" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+
+<img data-src="images/verification_stack.png" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"></section>
+<section id="the-six-verification-layers" class="slide level2 center">
+<h2>The Six Verification Layers</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 28%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Purpose</th>
+<th>WD-2847 Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Schema</strong></td>
+<td>Valid format, required fields, data types</td>
+<td>✓ PASS — All fields valid</td>
+</tr>
+<tr class="even">
+<td><strong>2. Retrieval</strong></td>
+<td>All documents retrieved? Endorsements complete?</td>
+<td><strong>✗ BLOCKED</strong> — Missing CP-1147</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Semantic</strong></td>
+<td>Does reasoning contradict itself?</td>
+<td>✗ Would block — “2-3 months” vs “sudden”</td>
+</tr>
+<tr class="even">
+<td><strong>4. Domain Rules</strong></td>
+<td>Business logic, exclusions, regulations</td>
+<td>✗ Would block — CP-1147 excludes gradual</td>
+</tr>
+<tr class="odd">
+<td><strong>5. LLM-as-Judge</strong></td>
+<td>Would Senior Adjuster approve?</td>
+<td>✗ Would block — “Recommend DENY”</td>
+</tr>
+<tr class="even">
+<td><strong>6. Human Escalation</strong></td>
+<td>Route flagged cases to expert</td>
+<td>→ Escalate to Senior Adjuster</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section-13" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text">
+<p>Everyone will have GPT-5.</p>
+</div>
+<div class="fragment">
+<p>AI capability is becoming <strong>commodity</strong>.</p>
+</div>
+<div class="fragment fade-up" style="color: #0891B2; font-size: 1.5em; margin-top: 40px;">
+<p><strong>Encoded expertise is the moat.</strong></p>
+</div>
+<div class="fragment" style="margin-top: 40px;">
+<p>You’re not investing in AI.</p>
+<p>You’re investing in <strong>capturing what your experts know</strong></p>
+<p><strong>before they retire.</strong></p>
+</div>
+</section>
+<section id="section-14" class="slide level2 center" data-background-color="#7C3AED">
+<h2></h2>
+<div class="r-fit-text">
+<p>Invest in verification infrastructure</p>
+<p>to use LLMs safely.</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 50px; font-size: 1.3em;">
+<p>This is the best way to tame chaos</p>
+</div>
+<div class="fragment fade-up" style="margin-top: 30px; font-size: 1.5em;">
+<p><strong>and become the casino.</strong></p>
+</div>
+</section>
+<section id="section-15" class="slide level2 center" data-background-color="#0F172A">
+<h2></h2>
+<div class="r-fit-text">
+<p><strong>Stop praying. Start verifying.</strong></p>
+</div>
+<div class="fragment" style="color: #64748B; margin-top: 60px;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/abatutin_qr.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></p>
+</figure>
+</div>
+</div>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Verifier Primacy | <a href="https://andriybatutin.substack.com/">andriybatutin.substack.com</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="verifier_primacy_v2_short_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
