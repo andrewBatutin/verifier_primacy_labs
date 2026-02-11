@@ -1033,7 +1033,7 @@ But you CAN have their expertise review every claim.
 ## The Core Insight
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
 ### What Failed
 
 - Senior Adjuster knows gradual vs sudden
@@ -1045,7 +1045,7 @@ But you CAN have their expertise review every claim.
 So Maria got 26 seconds and a 94% confidence score.
 :::
 
-::: {.column width="50%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #065F46; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
 ### What If
 
 - Senior Adjuster's knowledge was **encoded in rules**
@@ -1058,7 +1058,7 @@ So Maria got 26 seconds and a 94% confidence score.
 :::
 :::
 
-::: {.neutral-box style="margin-top: 40px; text-align: center; font-size: 1.3em; padding: 30px;"}
+::: {.neutral-box style="margin-top: 10px; text-align: center; font-size: 0.85em; padding: 10px;"}
 $|\text{Rules}| \ll |\text{Actions}|$
 
 The space of "correct actions under business policy" is **vastly smaller** than "all possible agent actions."
@@ -1121,7 +1121,7 @@ You're investing in **capturing what your experts know**
 ## How $10B Companies Solve This Today {background-color="#0F172A"}
 
 ::: {.columns}
-::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #991B1B; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
 ### The FDE Model
 
 Sierra hit **$100M ARR in 21 months**.
@@ -1134,7 +1134,7 @@ How? Elite engineers (FDEs) spend **3-5 weeks per customer** hand-tuning agents 
 - Verification lives in **human heads**
 :::
 
-::: {.column width="50%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+::: {.column width="50%" style="background-color: #065F46; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
 ### The Inversion
 
 Modern RL-trained models (o3, Claude 4.5) follow rules **dramatically better**.
@@ -1148,7 +1148,7 @@ What if:
 :::
 :::
 
-::: {.insight-box style="margin-top: 30px;"}
+::: {.insight-box style="margin-top: 10px; font-size: 0.85em; padding: 10px;"}
 **The verification layer becomes the product.**
 
 Not a safety feature. The core primitive that enables everything else.
