@@ -1,0 +1,1247 @@
+---
+title: "VERIFIER PRIMACY"
+subtitle: "Building Trust Infrastructure for AI Systems. \n\n LLMday Warsaw 2026 Q1"
+author: "Andriy Batutin"
+format:
+  revealjs:
+    embed-resources: true
+    theme: [dark, custom.scss]
+    slide-number: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+    highlight-style: github-dark
+    code-line-numbers: false
+    footer: "Verifier Primacy | [andriybatutin.substack.com](https://andriybatutin.substack.com/)"
+    width: 1920
+    height: 1080
+    margin: 0.1
+    center: true
+    hash: true
+    history: true
+    controls: true
+    progress: true
+    touch: true
+execute:
+  echo: false
+  warning: false
+---
+
+## About Me
+
+::: {.columns}
+::: {.column width="70%"}
+### Andriy Batutin
+
+- **Senior AI Engineer** focused on AI/ML systems
+- Accenture | Shelf | MacPaw
+- Writing at [andriybatutin.substack.com](https://andriybatutin.substack.com/)
+- linkedin [andrewbatutin](https://www.linkedin.com/in/andrewbatutin/)
+
+:::
+::: {.column width="30%"}
+![](images/abatutin_img.jpg){fig-align="center" width="80%"}
+:::
+:::
+
+::: {.notes}
+Hello! My name is Andriy Batutin.
+I'm a Senior AI Engineer — I've worked at Accenture, Shelf, and MacPaw.
+
+In recent years I've been focusing on AI Agents — systems where AI doesn't just answer user questions, but takes concrete actions — searching the internet, ordering pizza, or filling out insurance forms.
+
+And today I want to talk about why these systems are dangerous, and how to build trust in them.
+:::
+
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text style="color: #DC2626;"}
+In the next 12 months,
+:::
+
+::: {style="font-size: 1.3em;"}
+a C-level executive will lose their job
+because of a critical AI failure.
+:::
+
+::: {style="color: #0891B2; font-style: italic;"}
+[OpenRouter data](https://openrouter.ai/state-of-ai) supports this.
+:::
+
+::: {.notes}
+Here's my thesis: within the next 12 months, a C-level executive will lose their job because of a critical AI failure.
+
+This isn't fearmongering. This is math.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/reasoning-tokens-growth.png){fig-align="center" width="80%"}
+
+::: {.aside}
+Source: [OpenRouter State of AI 2025](https://openrouter.ai/state-of-ai)
+:::
+
+::: {.notes}
+Look at this graph from OpenRouter.
+A year ago, traffic to "thinking" models — the ones that plan and reason before acting — was nearly zero. Now it's over 50%.
+
+What does this mean? Companies are mass-deploying agents that think, plan, and execute complex tasks.
+But verification infrastructure isn't keeping up. That gap is risk.
+:::
+
+---
+
+## The Governance Gap {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%"}
+### [KPMG 2025](https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html)
+*48,000 people, 47 countries*
+
+- **56%** making mistakes due to AI
+- **66%** don't verify AI outputs
+- **46%** trust AI systems
+
+:::
+
+::: {.column width="50%"}
+### [Deloitte 2026](https://www.deloitte.com/us/en/about/press-room/state-of-ai-report-2026.html)
+*3,235 leaders, 24 countries*
+
+- **75%** deploying agentic AI
+- **21%** have governance models
+- **25%** moving pilots to production
+
+:::
+:::
+
+::: {.danger-callout style="margin-top: 30px;"}
+**The gap between deployment and governance is major risk.**
+:::
+
+::: {.notes}
+KPMG surveyed 48,000 people across 47 countries.
+56% say they're making mistakes because of AI. 66% don't verify what AI produces.
+
+Deloitte: 75% of companies are already deploying AI agents. But only 21% have governance models.
+Three-quarters deploying. One-fifth governing. The rest are praying.
+:::
+
+---
+
+## The τ-bench Reality Check {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Best Models on Customer Support
+
+Sierra's own [τ-bench](https://github.com/sierra-research/tau-bench):
+
+- **85% Pass-1** on synthetic tasks
+- GPT-4o: **<50%** on realistic scenarios
+- Best available: still **15%+ failure rate**
+
+On **curated, clean** evaluation data.
+:::
+
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Reality Is Harder
+
+Production data is:
+
+- Messier than eval samples
+- Multi-system, multi-format
+- Full of edge cases nobody documented
+- Written by real humans (ambiguous)
+
+**The gap between "impressive demo" and "contractually reliable" is enormous.**
+:::
+:::
+
+::: {.danger-callout style="margin-top: 30px;"}
+**You cannot close this gap by improving the model. You close it by verifying the output.**
+:::
+
+::: {.notes}
+Sierra — a $10B company — built their own benchmark, τ-bench.
+The best models pass 85% of tests. On clean, synthetic data.
+In reality — much worse.
+
+The takeaway: the gap between "impressive demo" and "contractually reliable" is enormous.
+And you can't close it with a better model. Only with verification.
+:::
+
+---
+
+## Today's Journey
+
+::: {style="text-align: left;"}
+1. **The Stochasticity Paradox** — Why AI is chaos by design
+2. **Real World Insurance Org Structure** — How AI can actuate risks
+3. **The Rubber Stamp Trap** — When "human in the loop" fails
+4. **Evaluation Methodology** — From error analysis to verifiers
+5. **Verifier Primacy** — Scaling judgment as infrastructure
+6. **The Industry Inversion** — Why verification replaces FDEs
+:::
+
+::: {.notes}
+The arc: WHY → WHAT GOES WRONG → HOW TO FIX IT
+
+Focus on agentic because that's where the real liability concentrates.
+RAG gives wrong answers. Agents take wrong actions.
+:::
+
+# The Stochasticity Paradox {background-color="#1E293B"}
+
+*Why AI cannot be made reliable — and why that's the point*
+
+---
+
+## The Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### The Fear
+
+- AI outputs are unpredictable
+- Wrong action = lawsuit
+- Career ends in headline
+:::
+
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### The FOMO
+
+- Competitors are shipping AI
+- Boards expect transformation
+- "Slowpoke" is career poison
+:::
+:::
+
+::: {style="margin-top: 40px; text-align: center;"}
+**Both paths feel like career risk.**
+:::
+
+::: {.insight-box style="margin-top: 20px;"}
+And here's the uncomfortable truth:
+
+**The unpredictability you fear is exactly what makes AI useful.**
+
+A perfectly reliable AI is a database.
+:::
+::: {.notes}
+So for any IT leader right now, there are two sides of the coin.
+Fear: AI is unpredictable. One mistake — a lawsuit, press headlines, end of career.
+
+FOMO: competitors are already shipping AI. The board expects transformation. Being last is also end of career.
+Both paths look like risk.
+But here's the paradox: the unpredictability you fear is exactly what makes AI useful.
+:::
+
+
+# Fundamentals of Modern AI Stack {background-color="#1E293B"}
+
+*Why LLMs, RAG, and Agents Fail by Design*
+
+---
+
+## The Autoregressive Decoder
+
+::: {.callout-note appearance="minimal"}
+## LLMs Are Conditional Probability Machines
+:::
+
+$$P(x_1, x_2, \ldots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_{<t})$$
+
+Each token is a **local decision** based on preceding context.
+
+::: {.danger-callout style="margin-top: 20px; text-align: left;"}
+**The Butterfly Effect**: One different token → completely different output.
+
+Errors compound multiplicatively: $\prod_{t=1}^{T} \epsilon_t$
+:::
+
+::: {.notes}
+What is an LLM mathematically?
+A machine that looks at all previous words and guesses the next word.
+One word at a time. No ability to look ahead or correct a mistake.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/llm_slot_machine.png){fig-align="center" width="80%" height="80%"}
+
+::: {style="margin-top: 30px; text-align: center; font-size: 1.3em;"}
+Every token is a spin. The house always has edge.
+:::
+
+::: {.notes}
+Like a slot machine. Every word is a spin. You don't control the outcome.
+An error on the third word — the entire text goes off the rails.
+This isn't a bug. This is how it works.
+:::
+
+---
+
+## Information Imbalance
+
+::: {.callout-warning appearance="minimal"}
+## Query Entropy << Document Entropy
+:::
+
+$$H(\text{Query}) \ll H(\text{Document})$$
+
+::: {.columns}
+::: {.column width="50%"}
+### The Question
+
+"Is knee surgery covered?"
+
+**= 4 tokens**
+
+:::
+
+::: {.column width="50%"}
+### The Answer Location
+
+Page 147, Section 8.3.2(b)
+
+Endorsement CP-1147, Exclusion (iii)
+
+**= 4000 tokens**
+:::
+:::
+
+::: {.insight-box style="margin-top: 30px;"}
+**You're asking search to read minds.**
+:::
+
+::: {.notes}
+Imagine: AI is searching for an answer across thousands of pages of your documents.
+You ask: "Is knee surgery covered?"
+
+6 words in the question.
+
+The correct answer: page 147, section 8.3.2(b), some appendix with a code.
+The answer is buried in a single sentence on page 147.
+In a document that's 4,000 words long.
+:::
+
+---
+
+## The Retrieval Problem
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Semantic Search Fails
+
+In high-dimensional space:
+
+$$\cos(a, b) \approx \cos(a, c) \quad \forall a, b, c$$
+
+**Similar ≠ Relevant**
+
+"What's my deductible?" ≈ "What is a deductible?"
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Keyword Search Fails
+
+Synonymy & polysemy break everything:
+
+- "coverage" ≠ "benefits"
+- "benefits" ≠ "included services"
+- "included services" ≠ "covered procedures"
+
+**Same concept, different words.**
+:::
+:::
+
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
+**RAG retrieves plausible documents. LLM generates confident answers.**
+
+But confidence ≠ correctness.
+:::
+
+::: {.notes}
+It's like searching for a needle in a haystack when you don't know what the needle looks like.
+
+AI will find something similar. AI will answer confidently.
+But confidence is not correctness.
+:::
+
+---
+
+## Agentic Combinatorial Explosion
+
+::: {.callout-important appearance="minimal"}
+## The Action Space Is Intractable
+:::
+
+$$|\text{Action Space}| = n_{\text{tools}} \times m_{\text{params}} \times k_{\text{steps}}$$
+
+8 tools × 5 params × 4 steps = **12,800+ trajectories**
+
+Per claim. 500 claims/day.
+
+::: {.neutral-box style="margin-top: 30px; text-align: center;"}
+**No exhaustive testing possible.**
+
+You're sampling from chaos. But the rules the agent must obey? **Those are finite and enumerable.**
+:::
+
+::: {.notes}
+Agentic AI — it's even worse.
+
+Let's do the math: 8 tools, 5 parameters, 4 steps — that's 12,000 possible trajectories.
+Per single request. 500 requests per day. Exhaustive testing is impossible.
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/ai_casino.png){fig-align="center" width="80%"}
+
+::: {.danger-callout .large-text style="margin-bottom: 30px;"}
+**Every query is a pull. Every action is a bet.**
+
+You expected to win? Own the casino.
+:::
+
+::: {.notes}
+You're just playing multiple slot machines at once instead of one.
+
+Every query is a pull. Every action is a bet times 10.
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Leaders must approach building AI systems
+
+with the mentality of a **casino owner**,
+
+not a casino player.
+:::
+
+::: {style="margin-top: 40px; font-size: 1.5em;"}
+**That is how they will win in the long run.**
+:::
+
+::: {.notes}
+Leaders must think like casino owners, not casino players.
+
+:::
+
+# Real World Insurance Org Structure {background-color="#1E293B"}
+
+*How AI Can Actuate Risks Instead of Decreasing Them*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/insurance_org.png){fig-align="center" width="85%"}
+
+
+::: {.notes}
+Let's look at a real insurance company structure.
+Head office, back office, customer support.
+One department handles insurance policies — they're in SharePoint since 2019, but the real rules live in the head of Olena, who's been working here for 30 years.
+
+Another processes claims — a "new" system from 2005, plus notes in the supervisor's notebook.
+
+Now imagine: you put AI on top of this chaos.
+The agent sees data from one department but can't see data from others,
+and doesn't know about the email where Olena described a special payout procedure in 2023.
+
+:::
+
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/Insurance_risk_ladder.png){fig-align="center" width="85%"}
+
+::: {.notes}
+Let's consider three levels of risk that AI brings to the insurance industry.
+
+First: a chatbot on the website makes a mistake — the customer is annoyed. Unpleasant, but not critical.
+
+Second: document search makes a mistake — the customer gets wrong information. Worse, but there's time to catch and fix it.
+
+Third: an AI agent makes a mistake and sends money to the customer on its own. That's a real problem.
+
+But the worst is the rubber stamp trap. When a human blindly approves AI's wrong decision.
+And the key issue: with AI, humans can make these mistakes far more frequently.
+
+:::
+
+
+
+# The Rubber Stamp Trap {background-color="#1E293B"}
+
+*When "Human in the Loop" Becomes Human-Shaped Decoration*
+
+---
+
+## The Setup: Kraków Back Office
+
+::: {.columns}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Claims Department
+
+- **Staff:** 12 adjusters
+- **Volume:** 500+ claims/day
+- **Target:** 45 claims/adjuster/day
+- **Avg time:** 10-12 minutes per claim
+:::
+
+::: {.column width="48%" style="background-color: #065F46; padding: 20px; border-radius: 8px;"}
+### NEW: AI Claims Assistant
+
+- Reads claim documents
+- Pulls policy from admin system
+- Checks coverage rules
+- Calculates recommended payout
+- Presents recommendation to adjuster
+:::
+:::
+
+::: {.fear-box style="margin-top: 30px; text-align: center;"}
+**AI DOES NOT have authority to approve. AI DOES NOT have access to payment system.**
+
+Human adjuster must click [APPROVE] or [REJECT]. *"Human in the loop. Completely safe."*
+:::
+::: {.notes}
+Kraków, claims processing department.
+12 people process 500 claims per day.
+Each one has to close 45.
+
+They deploy an AI Claims Assistant.
+It reads documents, pulls the policy, checks what's covered, calculates the payout, and presents the recommendation.
+
+But — AI doesn't have authority to approve.
+No access to the payment system. The final decision is with the human. APPROVE or REJECT.
+"Human in the loop. Completely safe."
+Right?
+
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/claims_wb.png){fig-align="center" width="85%"}
+
+::: {.notes}
+Maria's screen. Claim WD-2847 — water damage, commercial property.
+
+AI recommends: APPROVE. PLN 38,500. Confidence — 94%.
+
+47 claims in the queue. Target — 45. It's 9:47 AM.
+
+What does Maria do?
+
+:::
+
+---
+
+## What Maria Does
+
+::: {.columns}
+::: {.column width="50%"}
+**09:47:12 — Maria sees:**
+
+- Water damage ✓ *(common claim type)*
+- Commercial property ✓ *(handles daily)*
+- Coverage applies ✓ *(AI checked)*
+- Amount reasonable ✓ *(within limits)*
+- Confidence 94% ✓ *(AI is sure)*
+- 47 claims still in queue ✗ *(pressure)*
+:::
+
+::: {.column width="50%"}
+**Maria thinks:**
+
+*"AI already checked the policy. 94% confidence. Amount under PLN 50k so no escalation needed. Looks standard."*
+
+**09:47:38** — Maria clicks: **[APPROVE]**
+
+::: {.danger-callout style="margin-top: 20px;"}
+**Time spent on claim: 26 seconds**
+:::
+:::
+:::
+
+::: {.notes}
+09:47:12 — Maria sees: water damage, commercial property, coverage applies, amount is reasonable, confidence 94%.
+
+Maria thinks: "AI already checked the policy. 94%. Amount under 50 thousand, no escalation needed. Standard case."
+
+09:47:38 — Maria clicks APPROVE.
+
+26 seconds.
+
+:::
+
+---
+
+## What Maria Should Have Checked
+
+::: {.columns}
+::: {.column width="48%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### IF [View Policy] — Page 147
+
+**ENDORSEMENT CP-1147 - WATER DAMAGE**
+
+Coverage for water damage **LIMITED TO sudden and accidental discharge.**
+
+**EXCLUDED:**
+
+- Gradual seepage >14 days
+- Damage from lack of maintenance
+- Known source not repaired
+:::
+
+::: {.column width="48%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### IF [View Claim Form]
+
+**Section 3: Description of Loss**
+
+*"We noticed water stains on ceiling in November. Thought it was condensation. On January 15 ceiling collapsed. Plumber found pipe had been leaking for **'at least 2-3 months'** based on corrosion."*
+:::
+:::
+
+::: {.danger-callout style="margin-top: 20px;"}
+**GRADUAL LEAK = EXCLUDED | CORRECT PAYOUT = PLN 0**
+:::
+::: {.notes}
+Now — what she missed.
+
+The policy, page 147: water damage is covered only if sudden. Seepage over 14 days — excluded.
+
+The claim form says it in black and white: "the pipe had been leaking for 2-3 months."
+
+Correct payout: zero. Not 38,500.
+
+:::
+
+---
+
+## What the AI Missed (and Why)
+
+::: {.columns}
+::: {.column width="50%"}
+### AI Retrieval
+
+✓ Found policy CP-847291
+✓ Found base coverage
+✓ Found deductible: PLN 5,000
+✗ **Did NOT retrieve Endorsement CP-1147**
+
+*Why? Endorsement in separate DMS. RAG query "water damage coverage" returned base policy. "CP-1147" doesn't contain "water".*
+:::
+
+::: {.column width="50%"}
+### AI Reasoning
+
+✓ Water damage covered *(generally true)*
+✓ Policy is active
+✓ Amount within limits
+✗ **Did NOT parse "2-3 months"**
+✗ **Did NOT flag gradual vs sudden**
+
+*Why? Free text. No structured field. Senior Adjuster knows this. AI doesn't.*
+:::
+:::
+::: {.notes}
+Why did AI get it wrong?
+Problem one: the exclusion was in a different system.
+
+AI searched for "water damage" — found the base policy. The exclusion was called "CP-1147" — no word "water" in it. The search didn't pick it up.
+Problem two: "the pipe had been leaking for 2-3 months" was written in the claim form.
+
+But — free text with no structure. AI read it and missed it.
+A human with 30 years of experience catches this automatically. AI doesn't.
+
+:::
+
+---
+
+## The Aftermath
+
+::: {.fomo-box}
+**09:47:39** — System logs: *"Claim WD-2847 APPROVED by Maria Kowalska"*
+:::
+
+::: {.fear-box style="margin-top: 20px;"}
+| Day | Event |
+|-----|-------|
+| **+3** | Payment of PLN 38,500 processed |
+| **+47** | Monthly audit sample pulls Claim WD-2847 |
+| **+48** | Senior Adjuster: *"Why did we pay this? It's gradual damage."* |
+| **+49** | Recovery attempted. Claimant: *"We have approval confirmation."* |
+:::
+
+::: {.danger-callout style="margin-top: 10px;"}
+**Day +180** — Pattern discovered. **23 similar claims. Total: PLN 885,500**
+:::
+::: {.notes}
+Day 3 — payment processed.
+
+Day 47 — audit.
+
+Day 49 — claimant: "We have your approval."
+
+Day 180 — 23 cases, 885 thousand.
+
+:::
+---
+
+## The Accountability Question
+
+::: {.columns}
+::: {.column width="50%"}
+**MARIA:** *"AI said it was covered. 94% confidence. I can't check every endorsement on every claim. I process 45/day."*
+
+**IT:** *"AI performed as designed. Human approval is required precisely for edge cases. The human approved it."*
+:::
+
+::: {.column width="50%"}
+**CLAIMS MGR:** *"We set 45/day target based on AI assistance. That's what we promised the board."*
+
+**VP:** *"The audit trail shows human approval. That's our compliance defense. ...right?"*
+:::
+:::
+
+::: {.insight-box style="margin-top: 30px;"}
+**"Human in the loop" became "Human as rubber stamp"**
+
+The human isn't REVIEWING. The human is LEGITIMIZING.
+:::
+
+::: {.notes}
+Maria: "AI said 94%."
+IT: "The human approved it."
+
+Manager: "The target came from the board."
+
+Everyone points at someone else.
+"Human in the loop" turned into "human as rubber stamp."
+Not verification — legitimization of AI's decision.
+
+:::
+
+---
+
+## The Math of Rubber Stamping {visibility="hidden"}
+
+::: {.columns}
+::: {.column width="50%"}
+### Before AI
+
+- Claims/day/adjuster: **15**
+- Time per claim: **30 min**
+- Error rate: **2%**
+- Human catches own mistakes: **80%**
+- **Net errors/day: 0.06**
+:::
+
+::: {.column width="50%"}
+### After AI (Rubber Stamping)
+
+- Claims/day/adjuster: **45**
+- Time per claim: **10 min** *(mostly AI)*
+- AI error rate: **5%**
+- Human override rate: **3%**
+- **Net errors/day: ~2.0**
+:::
+:::
+
+::: {.danger-callout style="margin-top: 20px;"}
+12 adjusters × 2 errors/day × 220 days = **5,280 errors/year**
+
+Avg overpayment: PLN 38,500 → **Annual exposure: PLN 203M**
+:::
+::: {.notes}
+Before AI: 15 cases per day, 30 minutes each, 2% error rate, human catches 80% of own mistakes.
+Result: 0.06 errors per day.
+After AI: 45 cases per day, 10 minutes each, AI error rate 5%, human overrides only 3%.
+Result: 2 errors per day.
+
+12 people x 2 errors x 220 working days = 5,280 errors per year.
+
+Average overpayment of PLN 38,500 — that's PLN 203 million in annual exposure.
+:::
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+This is not a story about AI making mistakes.
+:::
+
+::: {style="margin-top: 30px;"}
+AI will always make mistakes.
+:::
+
+::: {style="margin-top: 30px;"}
+This is a story about a system designed to **LOOK LIKE** it has human oversight
+
+while **REMOVING** the conditions that make oversight possible.
+:::
+
+::: {.danger-callout style="margin-top: 40px;"}
+What gave: **actual oversight.** What remained: **the appearance of oversight.**
+:::
+::: {.notes}
+This is not a story about AI making mistakes.
+AI will always make mistakes.
+This is a story about a system that looks like it controls AI.
+But in reality, it's AI that controls human behavior.
+
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+The question isn't:
+
+*"How do we make AI more accurate?"*
+:::
+
+::: {style="margin-top: 40px; font-size: 1.3em;"}
+The question is:
+
+**"How do we verify AI outputs BEFORE the human sees them**
+
+**so the human isn't the last line of defense?"**
+:::
+
+::: {.notes}
+
+The question is not "how do we make AI more accurate?"
+The question is: "How do we verify what AI produces BEFORE the human sees it?"
+
+So the human isn't the last line of defense.
+
+:::
+
+::: {style="margin-top: 40px; font-size: 1.5em;"}
+→ **THE VERIFICATION STACK**
+:::
+
+# Evaluation Methodology {background-color="#EA580C"}
+
+*Applying the [Hamel Husain Framework](https://hamel.dev/blog/posts/evals-faq/) to Claim WD-2847*
+
+::: {.notes}
+
+The best framework for building reliable AI right now is the Hamel Husain methodology.
+
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/five-step-eval.png){fig-align="center" width="85%"}
+
+::: {.notes}
+
+The methodology has five steps.
+First — error collection. You simply log all your AI's failures into a spreadsheet. No analysis, no conclusions — just facts.
+
+Second — categorization. You break errors down by root cause: is it a document retrieval problem or a reasoning error in the model itself? Important: expand the list with similar cases so you have enough to test.
+
+Third — decomposition into steps. You split the entire AI workflow into individual stages and evaluate each one separately.
+
+Fourth — aggregation. You look at metrics per stage: where are the most problems?
+
+Fifth — fixing. Now you know where it hurts — and you fix exactly that.
+
+:::
+
+
+---
+
+## Phase 1: Error Analysis First {visibility="hidden"}
+
+**Before using new LLM, understand how Maria's claim failed:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Retrieval Failure
+
+- AI queried "water damage coverage CP-847291"
+- **Returned:** base policy ✓
+- **Missed:** Endorsement CP-1147 ✗
+- *Why: No "water" keyword in endorsement title, stored in separate DMS*
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Reasoning Failure
+
+- AI read claim form but didn't flag "2-3 months"
+- OCR quality: 87% on scanned PDF
+- No structured field for "duration"
+- *Gradual vs sudden distinction: not in training*
+:::
+:::
+
+
+
+---
+
+## Phase 2: Build Failure Taxonomy {visibility="hidden"}
+
+**From WD-2847 and 22 similar claims, patterns emerge:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Retrieval Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Missing endorsement | 34% | ✓ |
+| Wrong policy version | 18% | |
+| Cross-system doc gap | 23% | ✓ |
+| Outdated guidelines | 12% | |
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Reasoning Failures
+
+| Pattern | Freq | WD-2847? |
+|---------|------|----------|
+| Gradual vs sudden | 41% | ✓ |
+| Maintenance exclusion | 22% | |
+| Coverage limit misread | 15% | |
+| Deductible calculation | 8% | |
+:::
+:::
+
+::: {.danger-callout style="margin-top: 20px;"}
+**The 41% gradual/sudden failure rate = your first verifier target.**
+:::
+
+---
+
+## Phase 3: Tiered Evaluation {visibility="hidden"}
+
+**Decompose Maria's 26-second decision into verifiable checkpoints:**
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px;"}
+### Tier 1: Retrieval
+
+- ✓ Base policy CP-847291
+- ✗ **Endorsements — MISSING CP-1147**
+- ✓ Current version
+- ✓ Claim form
+
+**Score: 3/4 = 75%**
+
+*VERDICT: INCOMPLETE*
+:::
+
+::: {.column width="50%" style="background-color: #991B1B; padding: 20px; border-radius: 8px;"}
+### Tier 2: Reasoning
+
+- ✗ Coverage determination — WRONG
+- ✗ Exclusions checked — MISSED
+- ✗ Timeline extracted — MISSED
+- ✗ Damage classified — WRONG
+
+**Score: 0/4 = 0%**
+
+*VERDICT: FAIL*
+:::
+:::
+
+
+---
+
+## Phase 4: Transition Failure Matrix {visibility="hidden"}
+
+**Map where the WD-2847 workflow broke down:**
+
+::: {.neutral-box}
+| From State | To State | Failure Rate | WD-2847 |
+|------------|----------|--------------|---------|
+| receive_claim | lookup_policy | 2% | ✓ passed |
+| lookup_policy | **retrieve_endorsements** | **31%** | **✗ FAILED** |
+| check_coverage | **extract_timeline** | **28%** | **✗ WOULD FAIL** |
+| extract_timeline | classify_damage | 15% | *(skipped)* |
+| **ANY_STATE** | **escalate_to_senior** | **47% MISSED** | **✗ CRITICAL** |
+:::
+
+::: {.insight-box style="margin-top: 20px;"}
+**Investment Priorities:** (1) Endorsement completeness — 31% (2) Escalation triggers — 47% missed (3) Timeline extraction — 28%
+:::
+
+---
+
+## Phase 5: The Data Viewer {background-color="#0F172A"}
+
+![](images/claims-web-ui.png){fig-align="center" width="90%"}
+
+---
+
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+But building verifiers manually
+
+for every failure mode
+
+still doesn't scale.
+:::
+
+::: {style="margin-top: 60px;"}
+You can't have Senior Adjuster review every claim.
+
+But you CAN have their expertise review every claim.
+:::
+
+::: {style="font-size: 1.5em; margin-top: 40px;"}
+**That's Verifier Primacy.**
+:::
+
+# VERIFIER PRIMACY {background-color="#7C3AED"}
+
+*From Error Analysis to Scalable Judgment*
+
+---
+
+## The Core Insight
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #1E40AF; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
+### What Failed
+
+- Senior Adjuster knows gradual vs sudden
+- Senior Adjuster knows to check endorsements
+- Senior Adjuster knows when to escalate
+
+**But Senior Adjuster can't review 500 claims/day.**
+
+So Maria got 26 seconds and a 94% confidence score.
+:::
+
+::: {.column width="50%" style="background-color: #065F46; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
+### What If
+
+- Senior Adjuster's knowledge was **encoded in rules**
+- Endorsement checks were **automated**
+- Escalation triggers were **systematic**
+
+**Senior Adjuster reviews the rules once.**
+
+**Rules review every claim, forever.**
+:::
+:::
+
+::: {.neutral-box style="margin-top: 10px; text-align: center; font-size: 0.85em; padding: 10px;"}
+$|\text{Rules}| \ll |\text{Actions}|$
+
+The space of "correct actions under business policy" is **vastly smaller** than "all possible agent actions."
+
+**This asymmetry is your leverage. Build verifiers once. Run them infinitely.**
+:::
+
+
+
+# The Verification Stack {background-color="#1E293B"}
+
+*Six gates between AI recommendation and Maria's screen*
+
+---
+
+## {background-color="#0F172A"}
+
+![](images/verification_stack.png){fig-align="center" width="85%"}
+
+---
+
+## The Six Verification Layers
+
+| Layer | Purpose | WD-2847 Result |
+|-------|---------|----------------|
+| **1. Schema** | Valid format, required fields, data types | ✓ PASS — All fields valid |
+| **2. Retrieval** | All documents retrieved? Endorsements complete? | **✗ BLOCKED** — Missing CP-1147 |
+| **3. Semantic** | Does reasoning contradict itself? | ✗ Would block — "2-3 months" vs "sudden" |
+| **4. Domain Rules** | Business logic, exclusions, regulations | ✗ Would block — CP-1147 excludes gradual |
+| **5. LLM-as-Judge** | Would Senior Adjuster approve? | ✗ Would block — "Recommend DENY" |
+| **6. Human Escalation** | Route flagged cases to expert | → Escalate to Senior Adjuster |
+
+
+---
+
+## {background-color="#0F172A" visibility="hidden"}
+
+::: {.r-fit-text}
+Everyone will have GPT-5.
+:::
+
+::: {}
+AI capability is becoming **commodity**.
+:::
+
+::: {style="color: #0891B2; font-size: 1.5em; margin-top: 40px;"}
+**Encoded expertise is the moat.**
+:::
+
+::: {style="margin-top: 40px;"}
+You're not investing in AI.
+
+You're investing in **capturing what your experts know**
+
+**before they retire.**
+:::
+
+---
+
+## How $10B Companies Solve This Today {background-color="#0F172A"}
+
+::: {.columns}
+::: {.column width="50%" style="background-color: #991B1B; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
+### The FDE Model
+
+Sierra hit **$100M ARR in 21 months**.
+
+How? Elite engineers (FDEs) spend **3-5 weeks per customer** hand-tuning agents against business rules.
+
+- Expensive
+- Doesn't scale
+- Creates vendor dependency
+- Verification lives in **human heads**
+:::
+
+::: {.column width="50%" style="background-color: #065F46; padding: 15px; border-radius: 8px; font-size: 0.85em;"}
+### The Inversion
+
+Modern RL-trained models (o3, Claude 4.5) follow rules **dramatically better**.
+
+What if:
+
+- Business rules encoded as **formal constraints**
+- Verification layer catches what models miss
+- Model **fixes itself** from verifier feedback
+- A smart manager with the right tool does what took FDEs 5 weeks
+:::
+:::
+
+::: {.insight-box style="margin-top: 10px; font-size: 0.85em; padding: 10px;"}
+**The verification layer becomes the product.**
+
+Not a safety feature. The core primitive that enables everything else.
+:::
+
+::: {.notes}
+Sierra — a $10B company — closes the gap between demo and production with expensive engineers.
+3-5 weeks per customer. Doesn't scale.
+
+But new RL-trained models follow rules dramatically better.
+Now you can invert: encode business rules as formal constraints,
+the verification layer catches mistakes, the model corrects itself.
+Verification becomes the product, not a safety feature.
+:::
+
+---
+
+## Trust Is Not a Feeling {background-color="#0F172A"}
+
+::: {.r-fit-text}
+Trust is a **formal, provable property.**
+:::
+
+::: {style="margin-top: 40px;"}
+It can be expressed as **SLAs**.
+:::
+
+::: {.columns style="margin-top: 40px;"}
+::: {.column width="33%" style="background-color: #1E40AF; padding: 20px; border-radius: 8px; text-align: center;"}
+### Outcome Pricing
+
+Agent generates → Verifier proves → Business owner sees **pass/fail rates** they can put in a contract.
+:::
+
+::: {.column width="33%" style="background-color: #065F46; padding: 20px; border-radius: 8px; text-align: center;"}
+### Bounded Failure
+
+You can **formally bound** your error rate. Not "we're pretty accurate." Rather: "failure rate < X%, provably."
+:::
+
+::: {.column width="33%" style="background-color: #7C3AED; padding: 20px; border-radius: 8px; text-align: center;"}
+### Voice Frontier
+
+Voice interactions are higher-stakes, higher-value, harder to verify manually. A formal verification layer for voice is a **genuine moat**.
+:::
+:::
+
+::: {.notes}
+Trust is not a feeling. It's a formal, provable property.
+It can be expressed as SLAs.
+
+The agent generates. The verifier proves. The business sees pass/fail rates they can put in a contract.
+Outcome-based pricing becomes a business model, not a risk.
+
+And voice is the next frontier. Voice interactions — higher stakes, higher value, harder to verify manually.
+A formal verification layer for voice is a genuine moat.
+:::
+
+---
+
+## {background-color="#7C3AED"}
+
+::: {.r-fit-text}
+Invest in verification infrastructure
+
+to use LLMs safely.
+:::
+
+::: {style="margin-top: 50px; font-size: 1.3em;"}
+This is the best way to tame chaos
+:::
+
+::: {style="margin-top: 30px; font-size: 1.5em;"}
+**and become the casino.**
+:::
+
+---
+
+## {background-color="#0F172A"}
+
+::: {.r-fit-text}
+**Stop praying. Start verifying.**
+:::
+
+::: {style="margin-top: 30px; font-size: 1.1em; color: #0891B2;"}
+It is easier to define the rules an agent must obey
+
+than to build a perfect agent.
+
+**That asymmetry is the entire game.**
+:::
+
+::: {style="color: #64748B; margin-top: 40px;"}
+
+![](images/abatutin_qr.png){fig-align="center" width="20%"}
+:::
+
